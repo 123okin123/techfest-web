@@ -55,7 +55,7 @@ app.use(morgan('combined'));
 app.use('/', index);
 
 // Serve static assets
-app.use(express.static(path.resolve(__dirname,  'build')));
+app.use(express.static(path.resolve(__dirname, '..', 'build')));
 
 app.use('/api', proxy('/api',{
   target: apiURI,
