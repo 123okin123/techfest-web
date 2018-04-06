@@ -1,0 +1,107 @@
+// Your variable overrides
+$theme-colors: (
+        "primary": #000000,
+        "secondary": #fff,
+        "warning": #fca12c,
+        "info": #fce200
+);
+
+$body-bg: #fce200;
+$link-color: #6c757d;
+
+// Bootstrap and its default variables
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+@font-face {
+  font-family: 'Avenir';
+  font-weight: normal;
+ // src: url('../fonts/open-sans-v13-latin-regular.eot'); /* IE9 Compat Modes */
+  src:
+//  url('../fonts/open-sans-v13-latin-regular.woff') format('woff'), /* Modern Browsers */
+  url('../assets/font/Avenir-Medium.ttf') format('truetype') /* Safari, Android, iOS */
+}
+@font-face {
+  font-family: 'Avenir';
+  font-weight: bold;
+  // src: url('../fonts/open-sans-v13-latin-regular.eot'); /* IE9 Compat Modes */
+  src:
+    //  url('../fonts/open-sans-v13-latin-regular.woff') format('woff'), /* Modern Browsers */
+  url('../assets/font/Avenir-Heavy.ttf') format('truetype') /* Safari, Android, iOS */
+}
+@font-face {
+  font-family: 'Avenir';
+  font-weight: 900;
+  // src: url('../fonts/open-sans-v13-latin-regular.eot'); /* IE9 Compat Modes */
+  src:
+          //  url('../fonts/open-sans-v13-latin-regular.woff') format('woff'), /* Modern Browsers */
+          url('../assets/font/Avenir-Black.ttf') format('truetype') /* Safari, Android, iOS */
+}
+
+
+body {
+  font-family: 'Avenir', sans-serif;
+}
+h1, h2 {
+  font-weight: 900;
+}
+.btn {
+  border-radius: 0;
+  font-weight: 900;
+}
+.btn-info {
+  border: none;
+  color: theme-color("primary");
+}
+.btn-info:hover, .btn-info:active {
+  border: none;
+  color: theme-color("primary");
+}
+.btn-warning, .btn-warning:hover, .btn-warning:active {
+  color: #ffffff;
+}
+
+
+section {
+  margin: 8em 0;
+}
+a:hover {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.list-style-x li:before {
+  content: "[X]";
+  left: 1em;
+  font-weight: bold;
+  position:absolute;
+}
+.list-style-x {
+  list-style: none;
+}
+.list-inline li {
+  display: inline-block;
+}
+.list-inline li:not(:last-child) {
+  margin-right: 0.5rem;
+}
+.form-control {
+  border: 0;
+  border-radius: 0;
+}
+input[type="radio"], input[type="checkbox"] {
+  margin: 0.4em;
+}
+.error-detail {
+  list-style: none;
+  padding: 0;
+  font-size: 0.8em;
+}
+
+.custom-alt-date-widget>ul>li>.btn {
+  display: none;
+}
+
+
+
+.av-invalid>.form-group>.invalid-feedback {
+  display: block;
+}
