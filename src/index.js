@@ -6,23 +6,23 @@ import ReactDOM from 'react-dom';
 import App from './components/App';
 import ScrollToTop from './components/other/ScrollToTop'
 import { Provider } from 'react-redux';
-import {store} from './helpers/store'
+import configureStore from './store';
 import {ThemeProvider} from 'styled-components'
 import {BrowserRouter as Router} from 'react-router-dom'
+import scTheme from './scTheme'
 //import 'bootstrap/dist/css/bootstrap.css';
 import './scss/index.css';
 
-const theme = {
-    primary: '#000',
-    secondary: '#fff',
-    background: '#fce200'
-};
 
+// Grab the state from a global variable injected into the server-generated HTML
+const preloadedState = window.__PRELOADED_STATE__;
+// Allow the passed state to be garbage-collected
+delete window.__PRELOADED_STATE__;
 
-
+const store = configureStore(preloadedState);
 ReactDOM.render(
     <Provider store={store}>
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={scTheme}>
         <Router onUpdate={() => window.scrollTo(0, 0)}>
             <ScrollToTop>
                 <App />

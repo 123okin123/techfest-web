@@ -9,6 +9,7 @@ import Footer from './other/Footer'
 import NotFoundPage from "./other/NotFoundPage";
 import Page from './other/Page';
 import PartnerRegistration from './register/PartnerRegistration';
+import styled from 'styled-components';
 
 
 
@@ -17,6 +18,7 @@ import PartnerRegistration from './register/PartnerRegistration';
 class App extends Component<{}> {
   render() { return (
       <div>
+        <LoadingScreen id="loading"/>
           <Switch>
               <Route exact path="/" render={ () => <div><Navigation isFrontPage={true}/><Home/></div>}/>
               <Route path="/" render={() => { return(
@@ -41,6 +43,14 @@ class App extends Component<{}> {
   }
 }
 
+
+const LoadingScreen = styled.div`
+height: 100vh;
+width: 100vw;
+background-color: ${props => props.theme.background};
+z-index: 1040;
+position: fixed;
+`;
 
 
 
