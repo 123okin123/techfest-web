@@ -37,15 +37,13 @@ const ElementContainer = styled.div`
 const Element = styled.div`
     background: url(${props => props.imageURL}) no-repeat center;
     background-size: cover;
-    //filter: brightness(50%);
-    //border: solid 10px rgba(255,255,255,0.51);
     width: ${props => props.elementWidth + 'px'};
     height: ${props => props.elementHeight + 'px'};
     margin: 10px;
 `;
 
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
     const {response, isFetching} = state.pages['241'] || {isFetching: true};
     return {
         response,

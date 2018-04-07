@@ -1,10 +1,14 @@
 //@flow
-import React from 'react'
+import React, {Component} from 'react'
 import styled from 'styled-components'
 import {Container, Row, Col} from 'reactstrap'
 import {Bracket} from '../common'
+import {connect} from "react-redux";
 
-const TracksContainer = () => (
+class TracksContainer extends Component {
+    render() {
+
+        return (
     <Container>
         {/*<Row className="my-5">*/}
             {/*<LineCol xs="12" lg="3" className="border-bottom border-dark"><LineColText>INDUSTRY</LineColText></LineCol>*/}
@@ -19,44 +23,22 @@ const TracksContainer = () => (
             {/*</IndustryCol>*/}
             {/*<LineCol className="border-bottom border-dark  d-none d-lg-block"> </LineCol>*/}
         {/*</Row>*/}
-
-        <Row className="justify-content-center mt-3">
-            <Col xs="12" lg="4">
-                <StyledImg src={require('../../assets/icons/icon_smart-automation_black-white.png')}/>
-                <FlexContainer>
-                    <Bracket/>
-                    <HeaderTitle><HeaderTitleTrack>TRACK 1</HeaderTitleTrack>THE SMART<br/>AUTOMATION WAVE</HeaderTitle>
-                    <Bracket right/>
-                </FlexContainer>
-                <ColText>
-                    Inspired by Industrie 4.0, Internet of things or Blockchain?<br/>
-                    Put no limits to your creativity in this track.
-                </ColText>
-            </Col>
-            <Col xs="12" lg="4">
-                <StyledImg src={require('../../assets/icons/icon_quantified-earth-and-space_black-white.png')}/>
-                <FlexContainer>
-                    <Bracket/>
-                    <HeaderTitle><HeaderTitleTrack>TRACK 2</HeaderTitleTrack>QUANTIFIED<br/>EARTH AND SPACE</HeaderTitle>
-                    <Bracket right/>
-                </FlexContainer>
-                <ColText>
-                    Eager to work with  Drones, Geo-Information or Object Recognition?<br/>
-                    Picking this track we offer you everything you need.
-                </ColText>
-            </Col>
-            <Col xs="12" lg="4">
-                <StyledImg src={require('../../assets/icons/icon_future-mobility_black-white.png')}/>
-                <FlexContainer>
-                    <Bracket/>
-                    <HeaderTitle><HeaderTitleTrack>TRACK 3</HeaderTitleTrack>FUTURE MOBILITY<br/>AND TRANSPORT</HeaderTitle>
-                    <Bracket right/>
-                </FlexContainer>
-                <ColText>
-                    Are you interested in Autonomous Driving, Electro Mobility, Intelligent Vehicles?<br/>
-                    Then this is the right track to choose.
-                </ColText>
-            </Col>
+        <Row>
+            {this.props.response && this.props.response.acf && this.props.response.acf.tracks &&
+              this.props.response.acf.tracks.map((track, index) =>
+                <Col xs="12" lg="4">
+                    <StyledImg src={track.icon}/>
+                    <FlexContainer>
+                        <Bracket/>
+                        <HeaderTitle>
+                            <HeaderTitleTrack>TRACK {index + 1}</HeaderTitleTrack><p dangerouslySetInnerHTML={{__html: track.title}}/>
+                        </HeaderTitle>
+                        <Bracket right/>
+                    </FlexContainer>
+                    <ColText dangerouslySetInnerHTML={{__html: track.description}} />
+                </Col>
+              )
+            }
         </Row>
         <Row><Col className="text-center"><strong>MORE TRACKS TO BE ANNOUNCED SOON</strong></Col></Row>
         <Row className="my-5">
@@ -88,8 +70,8 @@ const TracksContainer = () => (
             <LineCol className="border-bottom border-dark  d-none d-lg-block"> </LineCol>
         </Row>
     </Container>
-);
-
+);}
+}
 const IndustryCol = styled(Col)`
   min-width: 110px;
 `;
@@ -133,5 +115,13 @@ const ColText = styled.p`
   padding: 40px 5%;
 `;
 
-export default TracksContainer;
+const mapStateToProps = (state) => {
+    const {response, isFetching} = state.pages['241'] || {isFetching: true};
+    return {
+        response,
+        isFetching
+    }
+};
+
+export default connect(mapStateToProps)(TracksContainer);
 

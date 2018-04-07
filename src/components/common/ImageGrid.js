@@ -14,6 +14,7 @@ type Props = {
     elements: Array<{
         imageURL: string,
         title?: string,
+        url?: string,
         description?: string,
         extraDescription?: string
     }>
@@ -24,7 +25,11 @@ export const ImageGrid = (props: Props) => {
     const elements = props.elements.map((e, i) =>
         <Element margin={props.elementMargin} height={props.elementHeight} width={props.elementWidth} key={i}>
             <Bracket/>
-            <ElementImage leftRightInset={props.leftRightInset} contain={props.containImage} width={props.imageWidth} imageURL={e.imageURL}/>
+            {e.url ?
+              <ElementImageLink width={props.imageWidth}  target="_blank" href={e.url}><ElementImage leftRightInset={props.leftRightInset} contain={props.containImage} imageURL={e.imageURL}/></ElementImageLink>
+              :
+              <ElementImage leftRightInset={props.leftRightInset} contain={props.containImage} imageURL={e.imageURL} width={props.imageWidth}/>
+            }
             <Bracket right/>
             {e.title &&
             <ElementTextBox>
@@ -74,6 +79,10 @@ const ElementExtraDescription = styled.p`
 const MagnifierImage = styled.img`
     width: 20px;
     height: 20px;
+`;
+const ElementImageLink = styled.a`
+    height: calc(100% - 10px);
+    width: ${props => props.width};
 `;
 const ElementImage = styled.div`
     background: url(${props => props.imageURL}) no-repeat center;

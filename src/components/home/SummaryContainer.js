@@ -1,28 +1,30 @@
 //@flow
 
-import React from 'react'
+import React, {Component} from 'react'
 import styled from "styled-components";
 import {Container} from 'reactstrap'
 import {Bracket} from "../common";
+import {connect} from "react-redux";
 
 
-const SummaryContainer = () => (
-    <Container>
-    <DescriptionBox>
-        <Bracket/>
-        <DescriptionContent>
+class SummaryContainer extends Component {
+  render() {
+    console.log(this.props);
+    return (
+      <Container>
+        <DescriptionBox>
+          <Bracket/>
+          <DescriptionContent>
             <DescriptionHead>[MORE_DISCIPLINES] [MORE_IMPACT] [MORE_FUN]</DescriptionHead>
-            <DescriptionText>
-                THE FUSION OF TECHNOLOGY AND CREATIVE SPIRIT MAKES YOU FEEL THE BUZZING ATMOSPHERE OF TECHFEST.<br/>
-                HERE, HACKERS, DESIGNERS, AND MAKERS START DOING OVER WATCHING, IMPLEMENTATION OVER TALKING AND CRAZY OVER NORMAL.<br/>
-                GET SCHWIFTY AND CREATE THE UNTHINKABLE - FOR THE WORLD YOU WANT TO LIVE IN.
-            </DescriptionText>
-        </DescriptionContent>
-        <Bracket right/>
-    </DescriptionBox>
-    </Container>
-);
-
+            {this.props.response && this.props.response.acf && this.props.response.acf.summarytext &&
+            <DescriptionText dangerouslySetInnerHTML={{__html: this.props.response.acf.summarytext}}/>}
+          </DescriptionContent>
+          <Bracket right/>
+        </DescriptionBox>
+      </Container>
+    );
+  }
+}
 const DescriptionBox = styled.div`
   display: flex;
   justify-content: center;
@@ -42,4 +44,14 @@ const DescriptionText = styled.p`
   font-size: 0.9em;
   line-height: 2em;
 `;
-export default SummaryContainer;
+
+
+
+const mapStateToProps = (state) => {
+  const {response, isFetching} = state.pages['241'] || {isFetching: true};
+  return {
+    response,
+    isFetching
+  }
+};
+export default connect(mapStateToProps)(SummaryContainer);
