@@ -8,7 +8,7 @@ type State = {
     scrollY: number
 }
 
-class HomeHeader extends Component<State> {
+class HomeHeader extends Component<{},State> {
     constructor() {
         super();
         this.state = {

@@ -46,6 +46,7 @@
     "styled-components": "^3.1.6"
   },
   "scripts": {
+    "dev": "npm run build && heroku local",
     "start": "node server/index.js",
     "start:react": "react-scripts start",
     "start:server": "NODE_ENV=development node server/index.js",

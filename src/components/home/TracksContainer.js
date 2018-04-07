@@ -26,7 +26,7 @@ class TracksContainer extends Component {
         <Row>
             {this.props.response && this.props.response.acf && this.props.response.acf.tracks &&
               this.props.response.acf.tracks.map((track, index) =>
-                <Col xs="12" lg="4">
+                <Col key={index} xs="12" lg="4">
                     <StyledImg src={track.icon}/>
                     <FlexContainer>
                         <Bracket/>

@@ -17,8 +17,7 @@ import styled from 'styled-components';
 
 class App extends Component<{}> {
   render() { return (
-      <div>
-        <LoadingScreen id="loading"/>
+      <RootComponent id="app-root">
           <Switch>
               <Route exact path="/" render={ () => <div><Navigation isFrontPage={true}/><Home/></div>}/>
               <Route path="/" render={() => { return(
@@ -38,18 +37,14 @@ class App extends Component<{}> {
               )}}/>
           </Switch>
           <Footer/>
-      </div>
+      </RootComponent>
     );
   }
 }
 
 
-const LoadingScreen = styled.div`
-height: 100vh;
-width: 100vw;
-background-color: ${props => props.theme.background};
-z-index: 1040;
-position: fixed;
+const RootComponent = styled.div`
+display: none;
 `;
 
 

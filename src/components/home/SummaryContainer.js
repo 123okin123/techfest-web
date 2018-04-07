@@ -9,7 +9,6 @@ import {connect} from "react-redux";
 
 class SummaryContainer extends Component {
   render() {
-    console.log(this.props);
     return (
       <Container>
         <DescriptionBox>
