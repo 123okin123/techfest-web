@@ -98,7 +98,7 @@ const schema = {
                         },
                         {
                             properties: {isProgrammer: {enum: ["yes"]},
-                                programmerSuperPowers: {type: "string", title: "Tell us your programming superpowers (Python, Arduino, Anuglar ect.)."}
+                                programmerSuperPowers: {type: "string", title: "Tell us your programming superpowers (Python, Arduino, Angular ect.)."}
                             },
                             required: ["programmerSuperPowers"]
                         }

@@ -49,7 +49,11 @@ export type User = {
         whyChoose: string,
         needsAccommodation: boolean,
         jobSeeking: boolean,
-        informOfComingEvents: boolean
+        informEvents: string,
+        informEventsDoubleOptInToken: string,
+        informEventsDoubleOptIn: boolean,
+        howHearAbout: string,
+        howHearAboutOther: string,
     },
 
     token?: string

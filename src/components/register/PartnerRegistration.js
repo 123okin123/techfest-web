@@ -124,7 +124,7 @@ class PartnerRegistration extends Component<Props, State> {
     onSubmit(form) {
         if (this.props.registering) {return}
         console.log("Data submitted: ",  form);
-        store.dispatch(userActions.register(this.state.form.formData)).then(()=>{
+        this.props.register(this.state.form.formData).then(()=>{
             if (this.props.registrationSuccess === true) {
                 //$FlowFixMe
                 window.scrollTo(0, 0);
@@ -217,6 +217,14 @@ const mapStateToProps = (state) => {
         registrationSuccess
     };
 };
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        register: (formData) => {
+            dispatch(userActions.register(formData))
+        }
+    }
+};
 // $FlowFixMe
 Object.byString = function(o, s) {
     s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
@@ -234,4 +242,4 @@ Object.byString = function(o, s) {
 };
 
 
-export default connect(mapStateToProps)(PartnerRegistration);
+export default connect(mapStateToProps, mapDispatchToProps)(PartnerRegistration);

@@ -36,10 +36,18 @@ if (process.env.ENV === 'stage') {
 }
 // routes
 const index = require('./routes/index');
-const api = require('./routes/api');
 const universalLoader = require('./universal');
 
-
+app.use('/api', proxy('/api',{
+    target: apiURI,
+    pathRewrite: {
+        '^/api' : ''
+    },
+    changeOrigin: true,
+    headers: {
+        'x-access-apikey': process.env.TECHFEST_API_KEY
+    }
+}));
 
 
 // Support Gzip
@@ -47,7 +55,7 @@ app.use(compression());
 
 // Support post requests with body data (doesn't support multipart, use multer)
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // Setup logger
 app.use(morgan('combined'));
@@ -57,16 +65,7 @@ app.use('/', index);
 // Serve static assets
 app.use(express.static(path.resolve(__dirname, '..', 'build')));
 
-app.use('/api', proxy('/api',{
-  target: apiURI,
-  pathRewrite: {
-    '^/api' : ''
-  },
-  changeOrigin: true,
-  headers: {
-    'x-access-apikey': process.env.TECHFEST_API_KEY
-  }
-}));
+
 
 // Always return the main index.html, so react-router render the route in the client
 app.use('/', universalLoader);

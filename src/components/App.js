@@ -9,6 +9,8 @@ import Footer from './other/Footer'
 import NotFoundPage from "./other/NotFoundPage";
 import Page from './other/Page';
 import PartnerRegistration from './register/PartnerRegistration';
+import PressMediaPage from './PressMediaPage';
+import VerifyNewsletterPage from './VerifyNewsletterPage';
 import styled from 'styled-components';
 
 
@@ -30,6 +32,8 @@ class App extends Component<{}> {
                         <Route path="/terms-conditions" render={() => (<Page title="Terms & Conditions" id='211'/>)}/>
                         <Route path="/register" component={RegisterPage}/>
                         <Route path="/register-partner" component={PartnerRegistration}/>
+                        <Route path="/press-media" component={PressMediaPage}/>
+                        <Route path="/verify-newsletter" component={VerifyNewsletterPage}/>
                         <Route component={NotFoundPage}/>
                     </Switch>
                   </div>

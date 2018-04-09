@@ -1,5 +1,5 @@
 
-
+import fetch from "cross-fetch";
 import { authHeader } from '../helpers';
 import {type User} from "../constants";
 
@@ -20,7 +20,7 @@ function login(email: string, password: string) :Promise<User> {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
     };
-    return fetch('api/public/login', requestOptions)
+    return fetch('/api/public/login', requestOptions)
         .then((response) => {
             if (!response.ok) {
                 return Promise.reject(response.statusText);
@@ -57,7 +57,7 @@ function getById(id) {
         headers: authHeader()
     };
 
-    return fetch('api/users/' + id, requestOptions).then(handleResponse);
+    return fetch('/api/users/' + id, requestOptions).then(handleResponse);
 }
 
 function register(user: User) :Promise<JSON> {
@@ -66,7 +66,7 @@ function register(user: User) :Promise<JSON> {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(user)
     };
-    return fetch('api/public/register', requestOptions).then(handleResponse);
+    return fetch('/api/public/register', requestOptions).then(handleResponse);
 }
 
 function update(user) {
@@ -76,7 +76,7 @@ function update(user) {
         body: JSON.stringify(user)
     };
 
-    return fetch('api/users/' + user.id, requestOptions).then(handleResponse);
+    return fetch('/api/users/' + user.id, requestOptions).then(handleResponse);
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
@@ -86,7 +86,7 @@ function _delete(id) {
         headers: authHeader()
     };
 
-    return fetch('api/users/' + id, requestOptions).then(handleResponse);
+    return fetch('/api/users/' + id, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) :Promise<JSON> {

@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {Button, Container,  Alert} from 'reactstrap';
 import {userActions} from "../../actions/index";
-import {store} from '../../helpers/store';
 import Form from "react-jsonschema-form";
 import LayoutField  from 'react-jsonschema-form-layout';
 import styled from 'styled-components';
@@ -80,7 +79,7 @@ class RegisterPage extends Component<Props,State> {
         if (this.props.registering || this.props.uploading) {return}
         // recaptchaInstance.execute();
         //console.log("Data submitted: ",  form);
-        store.dispatch(userActions.uploadFileAndRegister(this.state.form.formData, uploadFiles)).then(()=>{
+        this.props.uploadAndRegister(this.state.form.formData, uploadFiles).then(()=>{
             if ((this.props.registrationSuccess === true) && (this.props.uploadingSuccess === true)) {
                 //$FlowFixMe
                 window.scrollTo(0, 0);
@@ -216,5 +215,13 @@ const mapStateToProps = (state) => {
     };
 };
 
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        uploadAndRegister: (formData, uploadFiles) => {
+            dispatch(userActions.uploadFileAndRegister(formData, uploadFiles))
+        }
+    }
+};
 
-export default connect(mapStateToProps)(RegisterPage);
+
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterPage);

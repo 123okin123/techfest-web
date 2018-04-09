@@ -4,6 +4,7 @@ import styled from "styled-components";
 import {pageActions} from "../../actions/pageActions";
 import {store} from '../../helpers'
 import {connect} from 'react-redux'
+import {Container, Col, Row} from 'reactstrap'
 
 
 type Props = {
@@ -19,11 +20,23 @@ class GalleryContainer extends Component<Props> {
     }
     render() {
         return(
+          <div>
             <ElementContainer>
                 {this.props.response && this.props.response.acf && this.props.response.acf.gallery.map((e, i) =>
                     <Element key={i} imageURL={e.image} elementWidth={e.width} elementHeight={e.height}/>
                 )}
             </ElementContainer>
+            <Container>
+                <Row className="mt-5">
+                    <Col xs="12" md="6">
+                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/-E-DKadx5Hk" frameBorder="0"  allowFullScreen/>
+                    </Col>
+                    <Col xs="12" md="6">
+                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/CUOdwcsd6ww" frameBorder="0"  allowFullScreen/>
+                    </Col>
+                </Row>
+            </Container>
+          </div>
         );
     }
 }
