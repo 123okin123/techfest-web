@@ -48,17 +48,17 @@ class Home extends Component<{}> {
                     <section id="partners">
                         <PartnersContainer/>
                     </section>
+                  <section id="timeline">
+                      <Container>
+                          <Heading title="TIMELINE TECHFEST 2018" subtitle="72H HACKATHON WITH A WARM-UP PRE-EVENT AND FIRST OF IT´S KIND LAUNCHPAD DAY FOR WINNING TEAMS"/>
+                          <TimelineContainer/>
+                      </Container>
+                  </section>
                     <section id="gallery">
                         <Container>
                             <Heading title="GALLERY" subtitle="SOME IMPRESSIONS OF THE TECHFEST MUNICH 2017"/>
                         </Container>
                         <GalleryContainer/>
-                    </section>
-                    <section id="timeline">
-                        <Container>
-                        <Heading title="TIMELINE TECHFEST 2018" subtitle="72H HACKATHON WITH A WARM-UP PRE-EVENT AND FIRST OF IT´S KIND LAUNCHPAD DAY FOR WINNING TEAMS"/>
-                        <TimelineContainer/>
-                        </Container>
                     </section>
                     {/*<section id="team">*/}
                         {/*<Heading imageURL={require('../../assets/icons/icon_team-people_black.png')} title="REACH THE TEAM" subtitle="WE ARE HACKERS, MAKERS AND DESIGNERS"/>*/}

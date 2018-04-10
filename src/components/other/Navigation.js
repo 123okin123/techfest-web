@@ -67,10 +67,10 @@ class Navigation extends Component<Props, State> {
                                 <StyledNavLink scroll={(el)=> el.scrollIntoView({ behavior: 'smooth', block: 'start'})} to="/#partners"  isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Partners</StyledNavLink>
                             </StyledNavItem>
                             <StyledNavItem>
-                                <StyledNavLink scroll={(el)=> el.scrollIntoView({ behavior: 'smooth', block: 'start'})} to="/#gallery"  isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Gallery</StyledNavLink>
+                                <StyledNavLink scroll={(el)=> el.scrollIntoView({ behavior: 'smooth', block: 'start'})} to="/#timeline"  isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Timeline 2018</StyledNavLink>
                             </StyledNavItem>
                             <StyledNavItem>
-                                <StyledNavLink scroll={(el)=> el.scrollIntoView({ behavior: 'smooth', block: 'start'})} to="/#timeline"  isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Timeline 2018</StyledNavLink>
+                                <StyledNavLink scroll={(el)=> el.scrollIntoView({ behavior: 'smooth', block: 'start'})} to="/#gallery"  isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Gallery</StyledNavLink>
                             </StyledNavItem>
                             {/*<StyledNavItem>*/}
                                 {/*<StyledNavLink smooth to="/#team"  isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Team</StyledNavLink>*/}

@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import {store} from '../../helpers/store';
 import {contactActions} from "../../actions/contactActions";
 import { withGoogleMap, GoogleMap, Marker } from "react-google-maps"
+import {pageActions} from "../../actions/pageActions";
 
 type Props = {
     contacting: boolean,
@@ -21,9 +22,7 @@ class ContactContainer extends Component<Props> {
     handleValidSubmit(event, values) {
         console.log("submit");
         if (this.props.contacting) {return}
-        store.dispatch(contactActions.contact(values)).then(()=>{
-
-        });
+        this.props.contact(values);
     }
 
     render() { return(
@@ -34,7 +33,7 @@ class ContactContainer extends Component<Props> {
                     <AvField name="email" type="email" placeholder="Email Address" autoComplete="email" required />
                     <AvField name="phone" type="text" placeholder="Phone number" autoComplete="tel-national" required />
                     <AvField name="message" type="textarea" placeholder="Message" required />
-                    <Button disabled={this.props.contacting} className="w-25" color="primary">SEND</Button>
+                    <Button disabled={this.props.contacting || this.props.contactSuccess} className="w-25" color="primary">SEND</Button>
                 </AvForm>
                 {(!this.props.contacting && this.props.contactSuccess === false) &&
                 <Alert className="mt-3" color="danger">
@@ -78,7 +77,15 @@ const mapStateToProps = (state) => {
     };
 };
 
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        contact: (values) => {
+            dispatch(contactActions.contact(values))
+        }
+    }
+};
 
 
-export default connect(mapStateToProps)(ContactContainer);
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactContainer);
 

@@ -21,7 +21,6 @@ class FAQs extends Component {
         });
     }
     render() {
-        console.log(this.state);
         return (
           <Container>
               <Row className="justify-content-center">
@@ -57,6 +56,7 @@ const CollapseButton = styled(Button)`
     font-size: 1.2em;
     font-weight: 500;
     color: #000;
+    white-space: pre-wrap;
     &:hover, &:focus {
       text-decoration: none;
       color: #000;

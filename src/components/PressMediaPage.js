@@ -35,7 +35,7 @@ class PressMediaPage extends Component<Props> {
               <Row className="mt-5 justify-content-center">
               {this.props.response && this.props.response.acf && this.props.response.acf.uploads &&
                   this.props.response.acf.uploads.map((e,i)=>
-                    <ElementContainer xs="6" md="3" key={i} className="text-center">
+                    <ElementContainer xs="6" md="3" key={i} className="text-center mb-3">
                         <Bracket/>
                           <Link className="pt-3" target="_blank" href={e.file}>
                               <FontAwesomeIcon size="4x" icon={faCloudDownloadAlt}/>
@@ -56,7 +56,8 @@ const ElementContainer = styled(Col)`
   justify-content: space-between;
 `;
 const Link = styled.a`
-color: #000
+color: #000;
+width: 90%;
 `;
 const LoaderContainer = styled.div`
   position: absolute;

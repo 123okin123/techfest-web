@@ -67,6 +67,7 @@ class RegisterPage extends Component<Props,State> {
             submitTried: false
         };
         (this: any).onSubmit = this.onSubmit.bind(this);
+        (this: any).handleChange = this.handleChange.bind(this);
         (this: any).onCaptachVerification = this.onCaptachVerification.bind(this);
         (this: any).onBlur = this.onBlur.bind(this);
         (this: any).validate = this.validate.bind(this);
@@ -126,6 +127,7 @@ class RegisterPage extends Component<Props,State> {
     }
 
     handleChange(form) {
+        this.setState({form});
         const {formData} = form;
         let schema = {...this.state.form.schema};
         if (formData.participantsFields.residence.city !== "munich"
@@ -143,21 +145,20 @@ class RegisterPage extends Component<Props,State> {
             delete formData.participantsFields.needsTransport;
             delete schema.properties.participantsFields.properties.needsTransport;
         }
-        this.setState({form})
+
     }
 
     render() {
-        let self = this;
         return (
                 <StyledContainer className="p-md-5">
                     <h1>BE PART OF TECHFEST</h1>
                     {!((this.props.registrationSuccess === true) && (this.props.uploadingSuccess === true)) &&
-                    <Form schema={self.state.form.schema}
-                          uiSchema={self.state.form.uiSchema}
-                          onChange={this.handleChange.bind(this)}
+                    <Form schema={this.state.form.schema}
+                          uiSchema={this.state.form.uiSchema}
+                          onChange={this.handleChange}
                           onSubmit={this.onSubmit}
                           onError={(errors) => console.log("Errors: ", errors)}
-                          formData={self.state.form.formData}
+                          formData={this.state.form.formData}
                           showErrorList={false}
                           validate={this.validate}
                           onBlur={this.onBlur}
