@@ -22,7 +22,7 @@ class GalleryContainer extends Component<Props> {
         return(
           <div>
             <ElementContainer>
-                {this.props.response && this.props.response.acf && this.props.response.acf.gallery.map((e, i) =>
+                {this.props.response && this.props.response.acf &&  this.props.response.acf.gallery && this.props.response.acf.gallery.map((e, i) =>
                     <Element key={i} imageURL={e.image} elementWidth={e.width} elementHeight={e.height}/>
                 )}
             </ElementContainer>

@@ -80,12 +80,7 @@ class RegisterPage extends Component<Props,State> {
         if (this.props.registering || this.props.uploading) {return}
         // recaptchaInstance.execute();
         //console.log("Data submitted: ",  form);
-        this.props.uploadAndRegister(this.state.form.formData, uploadFiles).then(()=>{
-            if ((this.props.registrationSuccess === true) && (this.props.uploadingSuccess === true)) {
-                //$FlowFixMe
-                window.scrollTo(0, 0);
-            }
-        });
+        this.props.uploadAndRegister(this.state.form.formData, uploadFiles);
         form.formData = this.state.form.formData
     }
 
