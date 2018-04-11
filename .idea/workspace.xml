@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="71b20bad-1dbf-42ec-adb6-da8be49af097" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/components/other/Navigation.js" afterPath="$PROJECT_DIR$/src/components/other/Navigation.js" />
+      <change beforePath="$PROJECT_DIR$/src/components/VerifyNewsletterPage.js" afterPath="$PROJECT_DIR$/src/components/VerifyNewsletterPage.js" />
+      <change beforePath="$PROJECT_DIR$/src/store.js" afterPath="$PROJECT_DIR$/src/store.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -27,19 +28,53 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Navigation.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Navigation.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/other/Navigation.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="79" column="31" lean-forward="false" selection-start-line="79" selection-start-column="31" selection-end-line="79" selection-end-column="31" />
+            <state relative-caret-position="261">
+              <caret line="82" column="14" lean-forward="true" selection-start-line="82" selection-start-column="14" selection-end-line="82" selection-end-column="14" />
               <folding>
-                <marker date="1523421908986" expanded="true" signature="4776:4793" ph="{...}" />
-                <marker date="1523421908986" expanded="true" signature="4883:5253" ph="{...}" />
-                <marker date="1523421908986" expanded="true" signature="5000:5252" ph="{...}" />
-                <marker date="1523421908986" expanded="true" signature="5343:5627" ph="{...}" />
-                <marker date="1523421908986" expanded="true" signature="5365:5391" ph="{...}" />
-                <marker date="1523421908986" expanded="true" signature="5418:5626" ph="{...}" />
-                <marker date="1523421908986" expanded="true" signature="5515:5623" ph="{...}" />
+                <marker date="1523422072141" expanded="true" signature="4776:4793" ph="{...}" />
+                <marker date="1523422072141" expanded="true" signature="4883:5253" ph="{...}" />
+                <marker date="1523422072141" expanded="true" signature="5000:5252" ph="{...}" />
+                <marker date="1523422072141" expanded="true" signature="5343:5627" ph="{...}" />
+                <marker date="1523422072141" expanded="true" signature="5365:5391" ph="{...}" />
+                <marker date="1523422072141" expanded="true" signature="5418:5626" ph="{...}" />
+                <marker date="1523422072141" expanded="true" signature="5515:5623" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VerifyNewsletterPage.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/VerifyNewsletterPage.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="275">
+              <caret line="29" column="33" lean-forward="false" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="store.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/store.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="15" column="19" lean-forward="true" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+              <folding>
+                <element signature="e#0#61#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Page.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/other/Page.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="28" column="30" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+              <folding>
+                <marker date="1522760129000" expanded="true" signature="1053:1153" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -74,7 +109,6 @@
         <option value="$PROJECT_DIR$/src/helpers/history.js" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/helpers/store.js" />
-        <option value="$PROJECT_DIR$/src/store.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/server/index.js" />
         <option value="$PROJECT_DIR$/src/services/pageServices.js" />
@@ -100,7 +134,6 @@
         <option value="$PROJECT_DIR$/src/components/App.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/components/register/registrationSchema.js" />
-        <option value="$PROJECT_DIR$/src/components/VerifyNewsletterPage.js" />
         <option value="$PROJECT_DIR$/src/components/home/GalleryContainer.js" />
         <option value="$PROJECT_DIR$/src/components/register/PartnerRegistration.js" />
         <option value="$PROJECT_DIR$/src/components/home/ContactContainer.js" />
@@ -109,6 +142,8 @@
         <option value="$PROJECT_DIR$/src/components/home/FAQs.js" />
         <option value="$PROJECT_DIR$/src/components/home/Home.js" />
         <option value="$PROJECT_DIR$/src/components/other/Navigation.js" />
+        <option value="$PROJECT_DIR$/src/components/VerifyNewsletterPage.js" />
+        <option value="$PROJECT_DIR$/src/store.js" />
       </list>
     </option>
   </component>
@@ -209,19 +244,6 @@
               <item name="techfest-web" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="techfest-web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="techfest-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="techfest-web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="techfest-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="other" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -294,7 +316,7 @@
       <workItem from="1523238730265" duration="9697000" />
       <workItem from="1523253193212" duration="4791000" />
       <workItem from="1523335833643" duration="2030000" />
-      <workItem from="1523421857155" duration="119000" />
+      <workItem from="1523421857155" duration="1488000" />
     </task>
     <task id="LOCAL-00001" summary="ssr">
       <created>1523076405221</created>
@@ -307,7 +329,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71716000" />
+    <option name="totallyTimeSpent" value="73085000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -329,9 +351,9 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32885906" sideWeight="0.50277996" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3267974" sideWeight="0.49722" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3267974" sideWeight="0.49722" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23529412" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23529412" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -377,13 +399,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="179">
           <caret line="27" column="28" lean-forward="false" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/store.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="14" column="14" lean-forward="false" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -517,13 +532,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/other/Page.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="65" column="37" lean-forward="false" selection-start-line="65" selection-start-column="37" selection-end-line="65" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-400">
@@ -560,13 +568,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/VerifyNewsletterPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="32" lean-forward="true" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="456">
@@ -587,7 +588,7 @@
         <state relative-caret-position="158">
           <caret line="35" column="55" lean-forward="false" selection-start-line="35" selection-start-column="55" selection-end-line="35" selection-end-column="55" />
           <folding>
-            <marker date="1523242766108" expanded="true" signature="1941:1957" ph="{...}" />
+            <marker date="1523422072120" expanded="true" signature="1941:1957" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -645,6 +646,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
           <caret line="125" column="18" lean-forward="false" selection-start-line="125" selection-start-column="18" selection-end-line="125" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -672,16 +674,44 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/other/Navigation.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="79" column="31" lean-forward="false" selection-start-line="79" selection-start-column="31" selection-end-line="79" selection-end-column="31" />
+        <state relative-caret-position="261">
+          <caret line="82" column="14" lean-forward="true" selection-start-line="82" selection-start-column="14" selection-end-line="82" selection-end-column="14" />
           <folding>
-            <marker date="1523421908986" expanded="true" signature="4776:4793" ph="{...}" />
-            <marker date="1523421908986" expanded="true" signature="4883:5253" ph="{...}" />
-            <marker date="1523421908986" expanded="true" signature="5000:5252" ph="{...}" />
-            <marker date="1523421908986" expanded="true" signature="5343:5627" ph="{...}" />
-            <marker date="1523421908986" expanded="true" signature="5365:5391" ph="{...}" />
-            <marker date="1523421908986" expanded="true" signature="5418:5626" ph="{...}" />
-            <marker date="1523421908986" expanded="true" signature="5515:5623" ph="{...}" />
+            <marker date="1523422072141" expanded="true" signature="4776:4793" ph="{...}" />
+            <marker date="1523422072141" expanded="true" signature="4883:5253" ph="{...}" />
+            <marker date="1523422072141" expanded="true" signature="5000:5252" ph="{...}" />
+            <marker date="1523422072141" expanded="true" signature="5343:5627" ph="{...}" />
+            <marker date="1523422072141" expanded="true" signature="5365:5391" ph="{...}" />
+            <marker date="1523422072141" expanded="true" signature="5418:5626" ph="{...}" />
+            <marker date="1523422072141" expanded="true" signature="5515:5623" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/other/Page.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="28" column="30" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding>
+            <marker date="1522760129000" expanded="true" signature="1053:1153" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/VerifyNewsletterPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="29" column="33" lean-forward="false" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="15" column="19" lean-forward="true" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#61#0" expanded="true" />
           </folding>
         </state>
       </provider>

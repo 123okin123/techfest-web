@@ -21,6 +21,7 @@ class VerifyNewsletterPage extends Component {
         console.log(this.state);
         return(
           <Container className="container pt-5">
+              <h1>Newsletter</h1>
               {(this.state.verified === true) &&
               <Alert className="mt-3" color="success">
                   Thanks for subscribing to our newsletter.

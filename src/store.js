@@ -1,11 +1,11 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import reducers from './reducers'
 import thunkMiddleware from 'redux-thunk';
-import {createLogger} from "redux-logger";
+//import {createLogger} from "redux-logger";
 
 //import createSagaMiddleware from 'redux-saga'
 
-const loggerMiddleware = createLogger();
+//const loggerMiddleware = createLogger();
 //const sagaMiddleware = createSagaMiddleware()
 
 export default function configureStore(initialState = {}) {
@@ -13,19 +13,18 @@ export default function configureStore(initialState = {}) {
   const middlewares = [
   //  sagaMiddleware
     //, logger
-    thunkMiddleware,
-    loggerMiddleware
-  ]
+    thunkMiddleware
+  ];
 
   const enhancers = [
     applyMiddleware(...middlewares)
-  ]
+  ];
 
   const store = createStore(
     reducers
   , initialState
   , compose(...enhancers)
-  )
+  );
 
   // Extensions
   //store.runSaga = sagaMiddleware.run
