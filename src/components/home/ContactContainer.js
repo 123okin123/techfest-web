@@ -3,10 +3,8 @@ import React, {Component} from 'react'
 import {Button, Row, Col, Alert} from 'reactstrap'
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 import {connect} from "react-redux";
-import {store} from '../../helpers/store';
 import {contactActions} from "../../actions/contactActions";
 import { withGoogleMap, GoogleMap, Marker } from "react-google-maps"
-import {pageActions} from "../../actions/pageActions";
 
 type Props = {
     contacting: boolean,

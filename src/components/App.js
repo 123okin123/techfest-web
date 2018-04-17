@@ -12,6 +12,8 @@ import PartnerRegistration from './register/PartnerRegistration';
 import PressMediaPage from './PressMediaPage';
 import VerifyNewsletterPage from './VerifyNewsletterPage';
 import styled from 'styled-components';
+import LoginPage from './other/LoginPage';
+import PrivateRoute from "./other/PrivateRoute";
 
 
 
@@ -34,6 +36,8 @@ class App extends Component<{}> {
                         <Route path="/register-partner" component={PartnerRegistration}/>
                         <Route path="/press-media" component={PressMediaPage}/>
                         <Route path="/verify-newsletter" component={VerifyNewsletterPage}/>
+                        <Route path="/login" component={LoginPage}/>
+                        <PrivateRoute path="/private" component={PressMediaPage}/>
                         <Route component={NotFoundPage}/>
                     </Switch>
                   </div>

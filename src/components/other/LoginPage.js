@@ -1,10 +1,11 @@
 //@flow
 
 import React, {Component} from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { userActions } from '../../actions/index';
-import {Form, FormGroup, Label, Input} from 'reactstrap';
+import {Col, Row, Container, Button, Alert} from 'reactstrap';
+import {AvForm, AvField} from 'availity-reactstrap-validation'
+import { Redirect } from 'react-router-dom';
 
 
 type State = {
@@ -16,72 +17,70 @@ type Props = {
     loggingIn: boolean,
     logout: ()=>void,
     login: (string, string)=>void,
-    handleSubmit: (Event)=>void,
-    handleChange: (Event)=>void
+    loginFailure: boolean
 }
 
 class LoginPage extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
-        this.props.logout();
+        (this:any).handleValidSubmit = this.handleValidSubmit.bind(this);
         this.state = {
-            email: '',
-            password: '',
-            submitted: false
+            redirectToReferrer: false
         };
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    handleValidSubmit(event: SyntheticEvent<HTMLButtonElement>, values) {
+        this.props.login(values.email, values.password).then(()=>{
+            if (!this.props.loginFailure) {
+                this.setState({redirectToReferrer: true});
+            }
+        });
     }
 
-    handleChange = (e) => {
-        const { name, value } = e.target;
-        this.setState({ [name]: value });
-    };
-
-    handleSubmit = (e) => {
-        e.preventDefault();
-        this.setState({ submitted: true });
-        const { email, password } = this.state;
-        if (email && password) {
-            this.props.login(email, password);
-        }
-    };
-
     render() {
-        const { loggingIn } = this.props;
-        const { email, password, submitted } = this.state;
+        const { from } = this.props.location.state || { from: { pathname: "/" } };
+        const { redirectToReferrer } = this.state;
+
+        if (redirectToReferrer) {
+            return <Redirect to={from} />;
+        }
         return (
-            <div>
-                <Form>
-                    <FormGroup>
-                        <Label for="exampleEmail">Email</Label>
-                        <Input type="email" name="email" id="loginEmail" placeholder="Email" />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for="examplePassword">Password</Label>
-                        <Input type="password" name="password" id="loginPassword" placeholder="Password" />
-                    </FormGroup>
-                </Form>
-            </div>
+            <Container>
+                <Row className="justify-content-center pt-5">
+                    <Col sm="4">
+                        <h1>Login</h1>
+                        <AvForm onValidSubmit={this.handleValidSubmit}>
+                            <AvField name="email" label="Email" type="email" autoComplete="email" required />
+                            <AvField name="password" label="Password" type="password" autoComplete="current-password" required />
+                            <Button disabled={this.props.loggingIn} color="primary">Login</Button>
+                        </AvForm>
+                        {this.props.loginFailure &&
+                        <Alert className="mt-3" color="danger">
+                            Sorry, login was not successful.
+                        </Alert>
+                        }
+                    </Col>
+                </Row>
+            </Container>
         );
     }
 }
 
 const mapStateToProps = (state) => {
-    const { loggingIn } = state.authentication;
+    const { loggingIn, loginFailure } = state.authentication;
     return {
-        loggingIn
+        loggingIn,
+        loginFailure
     };
-}
+};
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         logout: () => {
             dispatch(userActions.logout())
         },
         login: (email, password) => {
-            dispatch(userActions.login(email, password))
+            return dispatch(userActions.login(email, password))
         }
     }
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

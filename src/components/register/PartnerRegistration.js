@@ -8,7 +8,6 @@ import { ScaleLoader } from 'react-spinners';
 import {Alert, Button} from 'reactstrap';
 import LayoutField from "react-jsonschema-form-layout";
 import {connect} from "react-redux";
-import {store} from "../../helpers/store";
 import {userActions} from "../../actions/index";
 import {TextWidget} from "./registrationWidgets";
 

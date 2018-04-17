@@ -122,7 +122,7 @@ class RegisterPage extends Component<Props,State> {
     }
 
     handleChange(form) {
-        this.setState({form});
+
         const {formData} = form;
         let schema = {...this.state.form.schema};
         if (formData.participantsFields.residence.city !== "munich"
@@ -140,7 +140,7 @@ class RegisterPage extends Component<Props,State> {
             delete formData.participantsFields.needsTransport;
             delete schema.properties.participantsFields.properties.needsTransport;
         }
-
+        this.setState({form});
     }
 
     render() {
@@ -152,14 +152,13 @@ class RegisterPage extends Component<Props,State> {
                           uiSchema={this.state.form.uiSchema}
                           onChange={this.handleChange}
                           onSubmit={this.onSubmit}
-                          onError={(errors) => console.log("Errors: ", errors)}
+                          onError={(errors)=>this.setState({errors})}
                           formData={this.state.form.formData}
                           showErrorList={false}
                           validate={this.validate}
                           onBlur={this.onBlur}
                           fields={fields}
                           noHtml5Validate
-                          liveValidate
                           className="p-lg-5"
                           transformErrors={this.transformErrors}>
                         {/*<Recaptcha*/}
@@ -182,6 +181,12 @@ class RegisterPage extends Component<Props,State> {
                             Sorry, registration was not successful.
                             {this.props.error}
                         </Alert>
+                    }
+                    {(!this.props.uploading && !this.props.registering) &&
+                        (typeof this.state.errors !== 'undefined' && this.state.errors.length > 0)  &&
+                    <Alert className="mt-3" color="danger">
+                        Please check the registration from.
+                    </Alert>
                     }
                     {(!this.props.uploading && !this.props.registering) &&
                     ((this.props.registrationSuccess === true) && (this.props.uploadingSuccess === true)) &&

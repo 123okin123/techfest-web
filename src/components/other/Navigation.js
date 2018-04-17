@@ -10,6 +10,9 @@ import {
     Nav,
     NavItem } from 'reactstrap';
 import styled from 'styled-components'
+import {userActions} from "../../actions";
+import {connect} from "react-redux";
+
 
 type State = {
     isOpen: boolean,
@@ -17,7 +20,8 @@ type State = {
 }
 type Props = {
     toggle?: () => void,
-    isFrontPage: boolean
+    isFrontPage: boolean,
+    loggedIn: boolean
 }
 
 class Navigation extends Component<Props, State> {
@@ -50,6 +54,14 @@ class Navigation extends Component<Props, State> {
     render() {
         const logo = (this.state.isTop && this.props.isFrontPage) ? <img className="d-none d-sm-block" src={require('../../assets/TF_logoNEW_ square_white.png')} height="40" alt="techfest-logo"/> :  <img className="d-none d-sm-block" src={require('../../assets/TF_logoNEW_ square_black.png')} height="40" alt="techfest-logo"/>;
         const mobileLogo = <img className="d-block d-sm-none" src={require('../../assets/TF_logoNEW_ square_black.png')} height="40" alt="techfest-logo"/>;
+        const LoginComponent = (this.props.loggedIn) ?
+          <StyledNavItem>
+              <StyledNavLink to="/" onClick={this.props.logout} isFrontPage={this.props.isFrontPage} isTop={this.state.isTop}>Logout</StyledNavLink>
+          </StyledNavItem> :
+          <StyledNavItem>
+            <StyledNavLink to="/login" isFrontPage={this.props.isFrontPage} isTop={this.state.isTop}>Login</StyledNavLink>
+          </StyledNavItem>;
+
         return (
             <div>
                 <StyledNavBar isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} light fixed="top" expand="sm">
@@ -84,6 +96,7 @@ class Navigation extends Component<Props, State> {
                             <StyledNavItem>
                                 <StyledNavLink target="_blank" to="/register" isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Apply now</StyledNavLink>
                             </StyledNavItem>
+                            {LoginComponent}
                         </Nav>
                     </Collapse>
                 </StyledNavBar>
@@ -117,4 +130,19 @@ text-decoration: none;
  }
 `;
 
-export default Navigation;
+
+const mapStateToProps = (state) => {
+    const { loggedIn } = state.authentication;
+    return {
+        loggedIn
+    };
+};
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        logout: () => {
+            dispatch(userActions.logout())
+        }
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

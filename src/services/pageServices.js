@@ -1,15 +1,19 @@
 //@flow
 
 import fetch from "cross-fetch";
+import {authHeader} from "../helpers";
 
 const pageServices = {
     fetchPage
 };
 
 function fetchPage(id: string): Promise<{}> {
-    return fetch(`/api/public/wp-api/pages/${id}`)
-        .then(handleResponse)
-        .then(json=> json);
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
+    return fetch(`/api/public/wp-api/pages/${id}`, requestOptions)
+        .then(handleResponse);
 }
 
 

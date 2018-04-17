@@ -1,26 +1,34 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import reducers from './reducers'
 import thunkMiddleware from 'redux-thunk';
-//import {createLogger} from "redux-logger";
+import {createLogger} from "redux-logger";
 
-//import createSagaMiddleware from 'redux-saga'
+import { routerMiddleware } from 'react-router-redux'
 
-//const loggerMiddleware = createLogger();
-//const sagaMiddleware = createSagaMiddleware()
+const loggerMiddleware = createLogger();
 
-export default function configureStore(initialState = {}) {
+
+export default function configureStore(initialState = {}, history) {
   // Create the store with two middlewares
-  const middlewares = [
-  //  sagaMiddleware
-    //, logger
-    thunkMiddleware
-  ];
+    let middlewares = [
+        loggerMiddleware,
+        thunkMiddleware
+    ];
+  if (typeof history === 'object') {
+      const historyMiddleware = routerMiddleware(history);
+      middlewares = [
+        ...middlewares,
+          historyMiddleware
+      ];
+  }
+
+
 
   const enhancers = [
     applyMiddleware(...middlewares)
   ];
 
-  const store = createStore(
+  return createStore(
     reducers
   , initialState
   , compose(...enhancers)
@@ -28,7 +36,5 @@ export default function configureStore(initialState = {}) {
 
   // Extensions
   //store.runSaga = sagaMiddleware.run
-  store.asyncReducers = {} // Async reducer registry
 
-  return store
 }

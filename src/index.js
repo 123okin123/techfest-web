@@ -10,6 +10,8 @@ import configureStore from './store';
 import {ThemeProvider} from 'styled-components'
 import {BrowserRouter as Router} from 'react-router-dom'
 import scTheme from './scTheme'
+
+
 //import 'bootstrap/dist/css/bootstrap.css';
 import './scss/index.css';
 

@@ -38,8 +38,10 @@ function login(email: string, password: string) :Promise<User> {
 }
 
 function logout() {
+    if (!(typeof localStorage === 'undefined')) {
+        localStorage.removeItem('user');
+    }
     // remove user from local storage to log user out
-    localStorage.removeItem('user');
 }
 
 function getAll() {

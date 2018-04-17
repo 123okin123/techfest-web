@@ -2,7 +2,6 @@
 import React, {Component} from 'react'
 import styled from "styled-components";
 import {pageActions} from "../../actions/pageActions";
-import {store} from '../../helpers'
 import {connect} from 'react-redux'
 import {Container, Col, Row} from 'reactstrap'
 
@@ -13,10 +12,10 @@ type Props = {
 }
 class GalleryContainer extends Component<Props> {
     componentDidMount() {
-        store.dispatch(pageActions.fetchPageIfNeeded('241'));
+        this.props.fetchPage()
     }
     componentDidUpdate() {
-        store.dispatch(pageActions.fetchPageIfNeeded('241'));
+        this.props.fetchPage()
     }
     render() {
         return(
@@ -63,5 +62,11 @@ const mapStateToProps = (state) => {
         isFetching
     }
 };
-
-export default connect(mapStateToProps)(GalleryContainer);
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        fetchPage: () => {
+            dispatch(pageActions.fetchPageIfNeeded('241'));
+        }
+    }
+};
+export default connect(mapStateToProps,mapDispatchToProps)(GalleryContainer);

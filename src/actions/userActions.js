@@ -1,8 +1,8 @@
 //@flow
 import {userConstants, type User} from '../constants';
 import userService from '../services/userServices';
-import { alertActions } from '.';
-import { history } from '../helpers/history';
+//import { history } from '../helpers/history';
+import { push } from 'react-router-redux'
 import { uploadActions} from './uploadActions';
 
 export const userActions = {
@@ -58,15 +58,15 @@ function uploadFileAndRegister(user: User, uploadFiles: Array<any>) {
 function login(email: string, password: string) {
     return (dispatch: any) => {
         dispatch(request({ email }));
-        userService.login(email, password)
+        return userService.login(email, password)
             .then(
                 user => {
                     dispatch(success(user));
-                    history.push('/');
+                    return Promise.resolve();
                 },
                 error => {
                     dispatch(failure(error));
-                    dispatch(alertActions.error(error));
+                    return Promise.reject(error);
                 }
             );
     };
