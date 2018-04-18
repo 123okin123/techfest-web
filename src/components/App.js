@@ -7,12 +7,12 @@ import RegisterPage from './register/RegisterPage'
 import {Route, Switch} from 'react-router-dom'
 import Footer from './other/Footer'
 import NotFoundPage from "./other/NotFoundPage";
-import Page from './other/Page';
-import PartnerRegistration from './register/PartnerRegistration';
+import Page from './Page';
+import PartnerRegistration from './PartnerRegistration';
 import PressMediaPage from './PressMediaPage';
 import VerifyNewsletterPage from './VerifyNewsletterPage';
 import styled from 'styled-components';
-import LoginPage from './other/LoginPage';
+import LoginPage from './LoginPage';
 import PrivateRoute from "./other/PrivateRoute";
 
 

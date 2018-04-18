@@ -1,11 +1,11 @@
 //@flow
 import React, {Component} from 'react'
 import {connect} from "react-redux";
-import {pageActions} from "../../actions/pageActions";
+import {pageActions} from "../actions/pageActions";
 import {ScaleLoader} from 'react-spinners';
 import {Container} from 'reactstrap';
 import styled from 'styled-components';
-import {store} from '../../helpers';
+import {store} from '../helpers/index';
 
 type Props = {
     +response: {},

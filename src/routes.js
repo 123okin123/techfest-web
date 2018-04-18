@@ -3,8 +3,8 @@ import { Route } from 'react-router';
 
 // Components
 import Home from './components/home/Home';
-import Page from './components/other/Page';
-import LoginPage from "./components/other/LoginPage";
+import Page from './components/Page';
+import LoginPage from "./components/LoginPage";
 import RegisterPage from "./components/register/RegisterPage";
 import App from './components/App'
 
