@@ -23,7 +23,6 @@ module.exports = function universalLoader(req, res) {
     }
     const context = {};
     const token = getCookie("jwt", req) || '';
-    console.log(token);
       jwt.verify(token, process.env.SUPER_SECRET, (err, decoded) => {
         preFetchLandingPage()
           .then((result) => {

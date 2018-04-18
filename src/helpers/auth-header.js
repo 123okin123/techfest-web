@@ -8,7 +8,7 @@ export function authHeader() {
 
     const jwt = getCookie("jwt");
     if (jwt) {
-        return { 'Authorization': 'Bearer ' + jwt };
+        return { 'x-access-token': 'Bearer ' + jwt };
     } else {
         return {};
     }

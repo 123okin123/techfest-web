@@ -29,7 +29,7 @@ if (process.env.ENV === 'stage') {
   const basic = auth.basic({
       realm: "Restricted Access! Please login to proceed"
     }, function (username, password, callback) {
-      callback( (username === "awesomeTeam" && password === "festtech"));
+      callback((username === "awesomeTeam" && password === "festtech"));
     }
   );
   app.use(auth.connect(basic));
