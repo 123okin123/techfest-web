@@ -24,10 +24,11 @@ class LoginPage extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
         (this:any).handleValidSubmit = this.handleValidSubmit.bind(this);
-        this.state = {
-            redirectToReferrer: false
-        };
     }
+    componentWillMount() {
+        this.setState({redirectToReferrer: false})
+    }
+
     handleValidSubmit(event: SyntheticEvent<HTMLButtonElement>, values) {
         this.props.login(values.email, values.password).then(()=>{
             if (!this.props.loginFailure) {

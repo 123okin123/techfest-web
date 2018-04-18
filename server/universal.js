@@ -11,6 +11,7 @@ const scTheme = require('../src/scTheme');
 const {preFetchLandingPage} = require('./preFetchLandingPage');
 const {ThemeProvider} = require('styled-components');
 const jwt = require('jsonwebtoken');
+const {getCookie} = require('../src/helpers/session');
 
 module.exports = function universalLoader(req, res) {
   const filePath = path.resolve(__dirname, '..', 'build', 'index.html');
@@ -21,11 +22,20 @@ module.exports = function universalLoader(req, res) {
       return res.status(404).end()
     }
     const context = {};
-    const token = req.body.token || req.query.token || req.headers['x-access-token'] || '';
+    const token = getCookie("jwt", req) || '';
+    console.log(token);
       jwt.verify(token, process.env.SUPER_SECRET, (err, decoded) => {
         preFetchLandingPage()
-          .then((result) => configureStore({pages: {241: {isFetching: false, response: result}}, authentication: {loggedIn: decoded}}))
-          .catch(err=> configureStore())
+          .then((result) => {
+              let initialStore =  {pages: {241: {isFetching: false, response: result}}};
+              if (decoded) {
+                  initialStore = {...initialStore,  authentication: {loggedIn: !(err), role: decoded.role}}
+              }
+              return configureStore(initialStore)
+          })
+          .catch(err=> {
+            console.log(err);
+            return configureStore()})
           .then((store)=>{
               const sheet = new ServerStyleSheet();
               const markup = renderToString(sheet.collectStyles(

@@ -2,6 +2,7 @@
 import fetch from "cross-fetch";
 import { authHeader } from '../helpers';
 import {type User} from "../constants";
+import {setCookie, removeCookie} from "../helpers/session";
 
 const userService = {
     login,
@@ -31,16 +32,20 @@ function login(email: string, password: string) :Promise<User> {
             // login successful if there's a jwt token in the response
             if (user && user.token) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('user', JSON.stringify(user));
+                setCookie("jwt",user.token);
+                setCookie("role",user.role);
+                //localStorage.setItem('user', JSON.stringify(user));
             }
             return user;
         });
 }
 
 function logout() {
-    if (!(typeof localStorage === 'undefined')) {
-        localStorage.removeItem('user');
-    }
+    removeCookie("jwt");
+    removeCookie("role");
+    // if (!(typeof localStorage === 'undefined')) {
+    //     localStorage.removeItem('user');
+    // }
     // remove user from local storage to log user out
 }
 

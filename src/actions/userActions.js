@@ -2,7 +2,6 @@
 import {userConstants, type User} from '../constants';
 import userService from '../services/userServices';
 //import { history } from '../helpers/history';
-import { push } from 'react-router-redux'
 import { uploadActions} from './uploadActions';
 
 export const userActions = {

@@ -25,6 +25,7 @@
     "http-proxy-middleware": "^0.17.4",
     "ignore-styles": "^5.0.1",
     "jquery": "^3.3.1",
+    "js-cookie": "^2.2.0",
     "jsonwebtoken": "^8.1.1",
     "morgan": "^1.8.1",
     "node-fetch": "^2.1.2",
@@ -52,7 +53,8 @@
     "styled-components": "^3.1.6"
   },
   "scripts": {
-    "dev": "npm run build && heroku local",
+    "prod-dev": "npm run build && heroku local",
+    "dev": "npm run start:react && heroku local",
     "start": "node server/index.js",
     "start:react": "react-scripts start",
     "start:server": "NODE_ENV=development node server/index.js",
