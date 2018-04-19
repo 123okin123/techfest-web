@@ -19,6 +19,7 @@ export function preFetchLandingPage() {
       }
       return response.json();
     })
-    .then(json=> json);
+    .then(json=> json)
+    .catch(err=>Promise.reject(err));
 }
 
