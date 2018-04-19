@@ -52,7 +52,7 @@ module.exports = function universalLoader(req, res) {
         }
 
 
-      }).catch(err=>console.log(`wp fetch error: ${err}`))
- // })
+    //  }).catch(err=>console.log(`wp fetch error: ${err}`))
+  })
 };
 
