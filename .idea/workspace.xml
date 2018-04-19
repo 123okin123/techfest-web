@@ -415,11 +415,26 @@
       <option name="project" value="LOCAL" />
       <updated>1524027781775</updated>
     </task>
+<<<<<<< Updated upstream
     <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
     <option name="totallyTimeSpent" value="140770000" />
+=======
+    <task id="LOCAL-00006" summary="search console">
+      <created>1524120567849</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1524120567849</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="76550000" />
+>>>>>>> Stashed changes
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">

@@ -24,6 +24,7 @@ const uiSchema =  {
         gender: {"ui:widget": "radio"},
         needsAccommodation: {"ui:widget": "radio", "ui:options": {inline: true}},
         needsTransport: {"ui:widget": NeedsTransport, "ui:options": {inline: true}},
+        acknowledgement: {"ui:widget": TermsAndConditions},
         'ui:field': 'layout',
         'ui:layout': [
             {
@@ -44,6 +45,8 @@ const uiSchema =  {
                 startup: {sm: 12}
             },{
                 talent: {sm: 12}
+            },{
+                acknowledgement: {sm: 12}
             }
         ],
         residence: {
@@ -93,7 +96,6 @@ const uiSchema =  {
             worksOn: {"ui:widget": "textarea"},
             whyChoose: {"ui:widget": "textarea"},
             pitchDeck:{"ui:widget": FileWidget},
-            acknowledgement: {"ui:widget": TermsAndConditions},
             'ui:field': 'layout',
             'ui:layout': [
                 {

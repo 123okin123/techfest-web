@@ -130,7 +130,6 @@ const schema = {
                             enum: ["techfestFB", "utumFB", "uni", "friends_family", "other"],
                             enumNames: ["TECHFEST facebook", "UnternehmerTUM facebook", "University", "Friends & Family", "other"]
                         },
-                        acknowledgement: {type: "boolean", title: " ", description: " "},
                     },
                     dependencies: {
                         howHearAbout: {
@@ -146,9 +145,8 @@ const schema = {
                             ]
                         }
                     }
-                }
-
-
+                },
+                acknowledgement: {type: "boolean", title: " ", description: " "},
             },
             dependencies: {
                 needsAccommodation: {

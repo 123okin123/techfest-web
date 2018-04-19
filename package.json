@@ -5,6 +5,7 @@
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-preset-env": "^1.5.1",
+    "concurrently": "^3.5.1",
     "flow-bin": "^0.69.0",
     "react-scripts": "1.0.6"
   },
@@ -53,14 +54,15 @@
     "styled-components": "^3.1.6"
   },
   "scripts": {
-    "dev": "npm run build && heroku local",
+    "dev": "concurrently --kill-others \"heroku local\" \"npm run start:react\"",
     "start": "node server/index.js",
-    "start:react": "react-scripts start",
+    "start:react": "PORT=4001 react-scripts start",
     "start:server": "NODE_ENV=development node server/index.js",
     "now-start": "NODE_ENV=production node server/index.js",
     "heroku-postbuild": "npm install --only=dev --no-shrinkwrap && npm run build",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "proxy": "http://localhost:4000"
 }

@@ -35,19 +35,13 @@ function uploadFileAndRegister(user: User, uploadFiles: Array<any>) {
         return dispatch(uploadActions.upload(e))
     });
     Promise.all(actions).then(uploadSuccess => {
-        console.log(`uploadSuccess: ${uploadSuccess}`);
         const keys = uploadSuccess.map((e, i)=> {
             return {[`upload-${i}`]: e.key}
         });
-        console.log(`keys: ${keys}`);
         const newUser = {
             ...user,
-            participantsFields: {
-                ...user.participantsFields,
-                keys
-            }
+            keys
         };
-        console.log(`newUser: ${newUser}`);
         return dispatch(register(newUser))
     }).catch(error =>console.log(error));
     }
