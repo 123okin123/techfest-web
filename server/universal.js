@@ -24,7 +24,7 @@ module.exports = function universalLoader(req, res) {
     let store = configureStore();
     preFetchLandingPage()
       .then(result => {
-          configureStore({pages: {241: {isFetching: false, response: result}}});
+          store = configureStore({pages: {241: {isFetching: false, response: result}}});
         const sheet = new ServerStyleSheet();
         const markup = renderToString(sheet.collectStyles(
           <Provider store={store}>
