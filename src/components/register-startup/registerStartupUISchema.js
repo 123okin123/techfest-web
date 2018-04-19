@@ -96,6 +96,7 @@ const uiSchema =  {
             worksOn: {"ui:widget": "textarea"},
             whyChoose: {"ui:widget": "textarea"},
             pitchDeck:{"ui:widget": FileWidget},
+            invitationCode: {"ui:widget": "hidden"},
             'ui:field': 'layout',
             'ui:layout': [
                 {

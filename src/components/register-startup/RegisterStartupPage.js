@@ -64,9 +64,8 @@ class RegisterStartupPage extends Component<Props,State> {
                 idSchema: {}
             },
             touchedFields: [],
-            submitTried: false
+            submitTried: false,
         };
-        console.log(props);
         (this: any).onSubmit = this.onSubmit.bind(this);
         (this: any).handleChange = this.handleChange.bind(this);
         (this: any).onCaptachVerification = this.onCaptachVerification.bind(this);
@@ -75,6 +74,20 @@ class RegisterStartupPage extends Component<Props,State> {
         (this: any).transformErrors = this.transformErrors.bind(this);
     }
 
+    componentDidMount() {
+        const search = this.props.location.search;
+        const params = new URLSearchParams(search);
+        const inviteCode = params.get('invite');
+        this.setState({
+            form: {
+              ...this.state.form,
+                formData: {
+                  ...this.state.form.formData,
+                    inviteCode
+                }
+            }
+        });
+    }
 
 
     onSubmit(form) {
@@ -123,7 +136,8 @@ class RegisterStartupPage extends Component<Props,State> {
     }
 
     handleChange(form) {
-
+        console.log(this.state);
+        console.log(form);
         const {formData} = form;
         let schema = {...this.state.form.schema};
         if (formData.startupFields.residence.city !== "munich"

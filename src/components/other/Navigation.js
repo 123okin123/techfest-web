@@ -96,6 +96,10 @@ class Navigation extends Component<Props, State> {
                             <StyledNavItem>
                                 <StyledNavLink target="_blank" to="/register" isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Apply now</StyledNavLink>
                             </StyledNavItem>
+                            {this.props.loggedIn &&
+                            <StyledNavItem>
+                                <StyledNavLink to="/private" isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Private</StyledNavLink>
+                            </StyledNavItem>}
                             {LoginComponent}
                         </Nav>
                     </Collapse>
