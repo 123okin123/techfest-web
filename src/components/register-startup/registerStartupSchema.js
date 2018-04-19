@@ -16,7 +16,6 @@ const schema = {
               "nationality",
               "dateOfBirth",
               "gender",
-              "residence",
               "needsAccommodation",
               "numberOfAccommodation"
             ],
@@ -29,7 +28,7 @@ const schema = {
                 },
                 residence: {
                     type: "object",
-                    title: "Address",
+                    title: "PLACE OF RESIDENCE",
                     required: ["address", "city", "zipCode", "country"],
                     properties: {
                         address: {type: "string", title: "Street, house number"},
@@ -52,18 +51,100 @@ const schema = {
                             type: "string", title: "How many vegetarians are in your team?",
                             enum: ["0", "1", "2", "3", "5", "6"]
                         }
+                    },
+                    dependencies: {
+                        numberOfMembers: {
+                            oneOf: [
+                                {
+                                    properties: {numberOfMembers: {enum: ["2"]},
+                                        firstName1: {type: "string", title: "First Name"},
+                                        lastName1: {type: "string", title: "Last Name"},
+                                        email1: {type: "string", title: "Email"},
+                                    }
+                                },
+                                {
+                                    properties: {numberOfMembers: {enum: ["3"]},
+                                        firstName1: {type: "string", title: "First Name"},
+                                        lastName1: {type: "string", title: "Last Name"},
+                                        email1: {type: "string", title: "Email"},
+                                        firstName2: {type: "string", title: "First Name"},
+                                        lastName2: {type: "string", title: "Last Name"},
+                                        email2: {type: "string", title: "Email"},
+                                    }
+                                },
+                                {
+                                    properties: {numberOfMembers: {enum: ["4"]},
+                                        firstName1: {type: "string", title: "First Name"},
+                                        lastName1: {type: "string", title: "Last Name"},
+                                        email1: {type: "string", title: "Email"},
+                                        firstName2: {type: "string", title: "First Name"},
+                                        lastName2: {type: "string", title: "Last Name"},
+                                        email2: {type: "string", title: "Email"},
+                                        firstName3: {type: "string", title: "First Name"},
+                                        lastName3: {type: "string", title: "Last Name"},
+                                        email3: {type: "string", title: "Email"},
+                                        firstName4: {type: "string", title: "First Name"},
+                                        lastName4: {type: "string", title: "Last Name"},
+                                        email4: {type: "string", title: "Email"},
+
+                                    }
+                                },
+                                {
+                                    properties: {numberOfMembers: {enum: ["5"]},
+                                        firstName1: {type: "string", title: "First Name"},
+                                        lastName1: {type: "string", title: "Last Name"},
+                                        email1: {type: "string", title: "Email"},
+                                        firstName2: {type: "string", title: "First Name"},
+                                        lastName2: {type: "string", title: "Last Name"},
+                                        email2: {type: "string", title: "Email"},
+                                        firstName3: {type: "string", title: "First Name"},
+                                        lastName3: {type: "string", title: "Last Name"},
+                                        email3: {type: "string", title: "Email"},
+                                        firstName4: {type: "string", title: "First Name"},
+                                        lastName4: {type: "string", title: "Last Name"},
+                                        email4: {type: "string", title: "Email"},
+                                        firstName5: {type: "string", title: "First Name"},
+                                        lastName5: {type: "string", title: "Last Name"},
+                                        email5: {type: "string", title: "Email"},
+                                    }
+                                }
+                            ]
+                        },
                     }
                 },
                 talent: {
                     type: "object",
                     title: "TALENT",
-                    required: ["numberOfMembers"],
+                    required: ["track", "worksOn", "whyChoose", "pitchDeck", "informEvents", "howHearAbout"],
                     properties: {
                         track: {type: "string", title: "Please choose your track:",
                             enum: ["futureMobilityTransport", "quantifiedEarthAndSpace", "theSmartAutomationWave"],
                             enumNames: ["Future Mobility & Transport", "Quantified Earth and Space", "The Smart Automation Wave"]
                         },
-
+                        worksOn: {type: "string", title: "Which product feature do you plan to work on at TECHFEST?"},
+                        whyChoose: {type: "string", title: "Why should we select your start-up (max. 140 characters)?"},
+                        pitchDeck: {type: "string", title: "Please upload your pitchdeck."},
+                        invitationCode: {type: "string", title: "Did you get an invitation code? If so, please type it in."},
+                        informEvents: {type: "boolean", title: "Please inform me, if there are any events coming up. To do so I permit the use of my submitted personal data by UnternehmerTUM."},
+                        howHearAbout: {type: "string", title: "How did you hear about TECHFEST?",
+                            enum: ["techfestFB", "utumFB", "uni", "friends_family", "other"],
+                            enumNames: ["TECHFEST facebook", "UnternehmerTUM facebook", "University", "Friends & Family", "other"]
+                        },
+                        acknowledgement: {type: "boolean", title: " ", description: " "},
+                    },
+                    dependencies: {
+                        howHearAbout: {
+                            oneOf: [
+                                {
+                                    properties: {howHearAbout: {enum: ["techfestFB", "utumFB", "uni", "friends_family"]}}
+                                },
+                                {
+                                    properties: {howHearAbout: {enum: ["other"]},
+                                        howHearAboutOther: {type: "string", title: "How did you hear about TECHFEST then?"}
+                                    },
+                                }
+                            ]
+                        }
                     }
                 }
 
@@ -77,68 +158,13 @@ const schema = {
                         },
                         {
                             properties: {needsAccommodation: {enum: ["yes"]},
-                                numberOfAccommodation: {type: "string", title: "Number of start-up members that need a sleeping place?"},
+                                numberOfAccommodation: {type: "string", title: "Number of start-up members that need a sleeping place?",
+                                enum: ["1", "2", "3", "4", "5", "6"]
+                                },
                             }
                         }
                     ]
-                },
-                numberOfMembers: {
-                    oneOf: [
-                        {
-                            properties: {numberOfMembers: {enum: ["2"]},
-                                firstName1: {type: "string", title: "First Name"},
-                                lastName1: {type: "string", title: "Last Name"},
-                                email1: {type: "string", title: "Email"},
-                            }
-                        },
-                        {
-                            properties: {numberOfMembers: {enum: ["3"]},
-                                firstName1: {type: "string", title: "First Name"},
-                                lastName1: {type: "string", title: "Last Name"},
-                                email1: {type: "string", title: "Email"},
-                                firstName2: {type: "string", title: "First Name"},
-                                lastName2: {type: "string", title: "Last Name"},
-                                email2: {type: "string", title: "Email"},
-                            }
-                        },
-                        {
-                            properties: {numberOfMembers: {enum: ["4"]},
-                                firstName1: {type: "string", title: "First Name"},
-                                lastName1: {type: "string", title: "Last Name"},
-                                email1: {type: "string", title: "Email"},
-                                firstName2: {type: "string", title: "First Name"},
-                                lastName2: {type: "string", title: "Last Name"},
-                                email2: {type: "string", title: "Email"},
-                                firstName3: {type: "string", title: "First Name"},
-                                lastName3: {type: "string", title: "Last Name"},
-                                email3: {type: "string", title: "Email"},
-                                firstName4: {type: "string", title: "First Name"},
-                                lastName4: {type: "string", title: "Last Name"},
-                                email4: {type: "string", title: "Email"},
-
-                            }
-                        },
-                        {
-                            properties: {numberOfMembers: {enum: ["5"]},
-                                firstName1: {type: "string", title: "First Name"},
-                                lastName1: {type: "string", title: "Last Name"},
-                                email1: {type: "string", title: "Email"},
-                                firstName2: {type: "string", title: "First Name"},
-                                lastName2: {type: "string", title: "Last Name"},
-                                email2: {type: "string", title: "Email"},
-                                firstName3: {type: "string", title: "First Name"},
-                                lastName3: {type: "string", title: "Last Name"},
-                                email3: {type: "string", title: "Email"},
-                                firstName4: {type: "string", title: "First Name"},
-                                lastName4: {type: "string", title: "Last Name"},
-                                email4: {type: "string", title: "Email"},
-                                firstName5: {type: "string", title: "First Name"},
-                                lastName5: {type: "string", title: "Last Name"},
-                                email5: {type: "string", title: "Email"},
-                            }
-                        }
-                    ]
-                },
+                }
             }
         }
     }

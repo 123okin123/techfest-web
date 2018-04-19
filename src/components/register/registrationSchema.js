@@ -38,7 +38,7 @@ const schema = {
                 vegetarian: {type: "boolean", title: "Are you vegetarian?"},
                 residence: {
                     type: "object",
-                    title: "Address",
+                    title: "PLACE OF RESIDENCE",
                     required: ["address", "city", "zipCode", "country"],
                     properties: {
                         address: {type: "string", title: "Street, house number"},

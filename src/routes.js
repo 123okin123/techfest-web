@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router';
 
 // Components
-import Home from './components/home/Home';
+import Home from './components/home/HomePage';
 import Page from './components/Page';
 import LoginPage from "./components/LoginPage";
 import RegisterPage from "./components/register/RegisterPage";

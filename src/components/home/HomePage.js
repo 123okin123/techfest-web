@@ -64,12 +64,12 @@ class Home extends Component<{}> {
                         {/*<Heading imageURL={require('../../assets/icons/icon_team-people_black.png')} title="REACH THE TEAM" subtitle="WE ARE HACKERS, MAKERS AND DESIGNERS"/>*/}
                         {/*<ImageGrid imageWidth={'180px'} elementWidth={'340px'} elementHeight={'130px'} elementMargin={'20px 0px'} elements={teamElements}/>*/}
                     {/*</section>*/ }
-                    {/*<section id="faqs">*/}
-                        {/*<Container>*/}
-                            {/*<Heading title="FAQs" subtitle=""/>*/}
-                            {/*<FAQs/>*/}
-                        {/*</Container>*/}
-                    {/*</section>*/}
+                    <section id="faqs">
+                        <Container>
+                            <Heading title="FAQs" subtitle=""/>
+                            <FAQs/>
+                        </Container>
+                    </section>
                     <section id="contact">
                         <Container>
                         <Heading imageURL={require('../../assets/icons/icon_contact-mail_black.png')} title="GET IN CONTACT" subtitle="QUESTIONS, INQUIRIES AND FURTHER INFORMATION"/>

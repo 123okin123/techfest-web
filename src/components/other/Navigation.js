@@ -12,6 +12,7 @@ import {
 import styled from 'styled-components'
 import {userActions} from "../../actions";
 import {connect} from "react-redux";
+import HomePageNavigation from './HomePageNavigation'
 
 
 type State = {
@@ -56,10 +57,10 @@ class Navigation extends Component<Props, State> {
         const mobileLogo = <img className="d-block d-sm-none" src={require('../../assets/TF_logoNEW_ square_black.png')} height="40" alt="techfest-logo"/>;
         const LoginComponent = (this.props.loggedIn) ?
           <StyledNavItem>
-              <StyledNavLink to="/" onClick={this.props.logout} isFrontPage={this.props.isFrontPage} isTop={this.state.isTop}>Logout</StyledNavLink>
+              <LoginNavLink to="/" onClick={this.props.logout} isFrontPage={this.props.isFrontPage} isTop={this.state.isTop}>Logout</LoginNavLink>
           </StyledNavItem> :
           <StyledNavItem>
-            <StyledNavLink to="/login" isFrontPage={this.props.isFrontPage} isTop={this.state.isTop}>Login</StyledNavLink>
+            <LoginNavLink to="/private" isFrontPage={this.props.isFrontPage} isTop={this.state.isTop}>Login</LoginNavLink>
           </StyledNavItem>;
 
         return (
@@ -73,7 +74,7 @@ class Navigation extends Component<Props, State> {
                                 <StyledNavLink scroll={(el)=> el.scrollIntoView({ behavior: 'smooth', block: 'start'})} to="/#tracks" isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Tracks</StyledNavLink>
                             </StyledNavItem>
                             {/*<StyledNavItem>*/}
-                                {/*<StyledNavLink smooth to="/#speakers"  isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Speakers</StyledNavLink>*/}
+                            {/*<StyledNavLink smooth to="/#speakers"  isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Speakers</StyledNavLink>*/}
                             {/*</StyledNavItem>*/}
                             <StyledNavItem>
                                 <StyledNavLink scroll={(el)=> el.scrollIntoView({ behavior: 'smooth', block: 'start'})} to="/#partners"  isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Partners</StyledNavLink>
@@ -85,14 +86,14 @@ class Navigation extends Component<Props, State> {
                                 <StyledNavLink scroll={(el)=> el.scrollIntoView({ behavior: 'smooth', block: 'start'})} to="/#gallery"  isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Gallery</StyledNavLink>
                             </StyledNavItem>
                             {/*<StyledNavItem>*/}
-                                {/*<StyledNavLink smooth to="/#team"  isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Team</StyledNavLink>*/}
+                            {/*<StyledNavLink smooth to="/#team"  isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Team</StyledNavLink>*/}
                             {/*</StyledNavItem>*/}
                             <StyledNavItem>
                                 <StyledNavLink scroll={(el)=> el.scrollIntoView({ behavior: 'smooth', block: 'start'})} to="/#contact"  isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Contact</StyledNavLink>
                             </StyledNavItem>
-                            {/*<StyledNavItem>*/}
-                                {/*<StyledNavLink to="/press-media" isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Press & Media</StyledNavLink>*/}
-                            {/*</StyledNavItem>*/}
+                            <StyledNavItem>
+                                <StyledNavLink to="/press-media" isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Press & Media</StyledNavLink>
+                            </StyledNavItem>
                             <StyledNavItem>
                                 <StyledNavLink target="_blank" to="/register" isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Apply now</StyledNavLink>
                             </StyledNavItem>
@@ -128,6 +129,11 @@ text-decoration: none;
   color: ${props => (props.isTop && props.isFrontPage) ? props.theme.secondary : '#828282' }!important;
  }
  }
+`;
+const LoginNavLink = styled(StyledNavLink)`
+    background: #e4d041;
+    padding: 0.3em 0.7em;
+    border-radius: 3px;
 `;
 
 

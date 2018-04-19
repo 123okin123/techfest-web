@@ -68,10 +68,7 @@ const LoaderContainer = styled.div`
 `;
 
 const mapStateToProps = (state, ownProps) => {
-    console.log("mapStateToProps");
-    console.log(state);
     const {response, isFetching} = state.pages[PAGE_ID] || {response: {content: {rendered: ''}},isFetching: true};
-    console.log(response);
     return {
         response,
         isFetching

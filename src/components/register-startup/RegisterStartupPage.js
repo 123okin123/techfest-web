@@ -9,7 +9,7 @@ import styled from 'styled-components';
 import { ScaleLoader } from 'react-spinners';
 import schema from './registerStartupSchema';
 import uiSchema from './registerStartupUISchema';
-import {uploadFiles} from './registerStartupWidgets';
+import {uploadFiles} from '../register/registrationWidgets';
 
 //$FlowFixMe
 
@@ -53,7 +53,7 @@ Object.byString = function(o, s) {
     return o;
 };
 
-class RegisterPage extends Component<Props,State> {
+class RegisterStartupPage extends Component<Props,State> {
     constructor(props: Props) {
         super(props);
         this.state = {
@@ -66,6 +66,7 @@ class RegisterPage extends Component<Props,State> {
             touchedFields: [],
             submitTried: false
         };
+        console.log(props);
         (this: any).onSubmit = this.onSubmit.bind(this);
         (this: any).handleChange = this.handleChange.bind(this);
         (this: any).onCaptachVerification = this.onCaptachVerification.bind(this);
@@ -129,24 +130,40 @@ class RegisterPage extends Component<Props,State> {
             && formData.startupFields.residence.city !== "Munich"
             && formData.startupFields.residence.city !== "München"
             && formData.startupFields.residence.city !== "münchen") {
-            schema.properties.startupFields.properties = Object.assign(schema.properties.startupFields.properties, {
+            schema.properties.startupFields.properties = {...schema.properties.startupFields.properties,
                 needsTransport: {
-                    type: "boolean",
-                    title: "We are not from Munich and want to arrive by Flixbus (please be aware of Flixbus routes)."
-                },
-                numberOfTransport: {
                     type: "string",
-                    title: "Number of start-up members that want to arrive by Flixbus?",
-                    enum: ["1", "2", "3", "4", "5", "6"]
+                    title: "We are not from Munich and want to arrive by Flixbus (please be aware of Flixbus routes).",
+                    enum: ["yes", "no"]
+                },
+            };
+            schema.properties.startupFields.dependencies = {
+              ...schema.properties.startupFields.dependencies,
+                needsTransport: {
+                    oneOf: [
+                        {
+                            properties: {needsTransport: {enum: ["no"]}}
+                        },
+                        {
+                            properties: {needsTransport: {enum: ["yes"]},
+                                numberOfTransport: {
+                                    type: "string",
+                                    title: "Number of start-up members that want to arrive by Flixbus?",
+                                    enum: ["1", "2", "3", "4", "5", "6"]
+                                },
+                            }
+                        }
+                    ]
                 }
-            })
+            };
+
         } else {
             schema.properties.startupFields.properties = Object.assign({},schema.properties.startupFields.properties);
             delete formData.startupFields.needsTransport;
-            delete schema.properties.startupFields.properties.needsTransport;
-
             delete formData.startupFields.numberOfTransport;
-            delete schema.properties.startupFields.properties.numberOfTransport;
+
+            delete schema.properties.startupFields.properties.needsTransport;
+            delete schema.properties.startupFields.dependencies.numberOfTransport;
         }
         this.setState({form});
     }
@@ -154,7 +171,7 @@ class RegisterPage extends Component<Props,State> {
     render() {
         return (
                 <StyledContainer className="p-md-5">
-                    <h1>BE PART OF TECHFEST</h1>
+                    <h1>APPLY AS START-UP</h1>
                     {!((this.props.registrationSuccess === true) && (this.props.uploadingSuccess === true)) &&
                     <Form schema={this.state.form.schema}
                           uiSchema={this.state.form.uiSchema}
@@ -233,4 +250,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(RegisterPage);
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterStartupPage);

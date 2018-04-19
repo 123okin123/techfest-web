@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 import Navigation from './other/Navigation'
-import Home from './home/Home'
+import Home from './home/HomePage'
 import RegisterPage from './register/RegisterPage'
 import {Route, Switch} from 'react-router-dom'
 import Footer from './other/Footer'
@@ -14,6 +14,8 @@ import VerifyNewsletterPage from './VerifyNewsletterPage';
 import styled from 'styled-components';
 import LoginPage from './LoginPage';
 import PrivateRoute from "./other/PrivateRoute";
+import RegisterStartupPage from "./register-startup/RegisterStartupPage";
+import RegisterStartPage from "./RegisterStartPage";
 
 
 
@@ -32,7 +34,9 @@ class App extends Component<{}> {
                         <Route path="/imprint" render={() => (<Page title="Imprint" id='11'/>)}/>
                         <Route path="/privacy-policy" render={() => (<Page title="Privacy Policy" id='121'/>)}/>
                         <Route path="/terms-conditions" render={() => (<Page title="Terms & Conditions" id='211'/>)}/>
-                        <Route path="/register" component={RegisterPage}/>
+                        <Route path="/register" component={RegisterStartPage}/>
+                        <Route path="/register-participant" component={RegisterPage}/>
+                        <Route path="/register-startup" component={RegisterStartupPage}/>
                         <Route path="/register-partner" component={PartnerRegistration}/>
                         <Route path="/press-media" component={PressMediaPage}/>
                         <Route path="/verify-newsletter" component={VerifyNewsletterPage}/>
