@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="71b20bad-1dbf-42ec-adb6-da8be49af097" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/server/preFetchLandingPage.js" afterPath="$PROJECT_DIR$/server/preFetchLandingPage.js" />
       <change beforePath="$PROJECT_DIR$/server/universal.js" afterPath="$PROJECT_DIR$/server/universal.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -50,8 +51,8 @@
       <file leaf-file-name="universal.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/universal.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="678">
-              <caret line="49" column="42" lean-forward="false" selection-start-line="49" selection-start-column="19" selection-end-line="49" selection-end-column="42" />
+            <state relative-caret-position="-41">
+              <caret line="25" column="18" lean-forward="false" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -60,8 +61,8 @@
       <file leaf-file-name="preFetchLandingPage.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/preFetchLandingPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="19" column="22" lean-forward="false" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+            <state relative-caret-position="253">
+              <caret line="17" column="7" lean-forward="false" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -147,8 +148,8 @@
         <option value="$PROJECT_DIR$/src/components/home/Home.js" />
         <option value="$PROJECT_DIR$/src/components/home/GalleryContainer.js" />
         <option value="$PROJECT_DIR$/public/index.html" />
-        <option value="$PROJECT_DIR$/server/preFetchLandingPage.js" />
         <option value="$PROJECT_DIR$/server/universal.js" />
+        <option value="$PROJECT_DIR$/server/preFetchLandingPage.js" />
       </list>
     </option>
   </component>
@@ -362,7 +363,7 @@
       <workItem from="1523457918580" duration="527000" />
       <workItem from="1523462678289" duration="476000" />
       <workItem from="1523588037764" duration="1094000" />
-      <workItem from="1524140262941" duration="3317000" />
+      <workItem from="1524140262941" duration="4142000" />
     </task>
     <task id="LOCAL-00001" summary="ssr">
       <created>1523076405221</created>
@@ -434,11 +435,18 @@
       <option name="project" value="LOCAL" />
       <updated>1524144226749</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="fix">
+      <created>1524144754196</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1524144754196</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79715000" />
+    <option name="totallyTimeSpent" value="80540000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -781,14 +789,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/PressMediaPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="34" column="39" lean-forward="false" selection-start-line="34" selection-start-column="39" selection-end-line="34" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/home/GalleryContainer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="237">
@@ -800,18 +800,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/PressMediaPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="34" column="39" lean-forward="false" selection-start-line="34" selection-start-column="39" selection-end-line="34" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/server/preFetchLandingPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="19" column="22" lean-forward="false" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+        <state relative-caret-position="253">
+          <caret line="17" column="7" lean-forward="false" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/universal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="678">
-          <caret line="49" column="42" lean-forward="false" selection-start-line="49" selection-start-column="19" selection-end-line="49" selection-end-column="42" />
+        <state relative-caret-position="-41">
+          <caret line="25" column="18" lean-forward="false" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="18" />
           <folding />
         </state>
       </provider>

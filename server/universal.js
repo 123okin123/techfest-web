@@ -14,17 +14,18 @@ const {ThemeProvider} = require('styled-components');
 module.exports = function universalLoader(req, res) {
   const filePath = path.resolve(__dirname, '..', 'build', 'index.html');
 
-  fs.readFile(filePath, 'utf8', (err, htmlData)=>{
+  fs.readFile(filePath, 'utf8', (err, htmlData)=> {
     if (err) {
       console.error('read err', err);
       return res.status(404).end()
     }
     const context = {};
 
+    let store = configureStore();
     preFetchLandingPage()
-      .then(result => configureStore({pages: {241: {isFetching: false, response: result}}}))
-      .catch(err=> {console.log(`wp error: ${err}`);return configureStore()})
-      .then((store)=>{
+      .then(result => {
+          configureStore({pages: {241: {isFetching: false, response: result}}});
+
           console.log(`store: ${store}`);
         const sheet = new ServerStyleSheet();
         const markup = renderToString(sheet.collectStyles(
@@ -49,7 +50,9 @@ module.exports = function universalLoader(req, res) {
           const StyledRenderedStatedApp = StyledRenderedApp.replace('{{STATE}}', script);
           res.send(StyledRenderedStatedApp);
         }
-      });
+
+
+      }).catch(err=>console.log(`wp fetch error: ${err}`))
   })
 };
 

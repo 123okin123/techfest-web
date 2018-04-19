@@ -12,12 +12,12 @@ export function preFetchLandingPage() {
   return fetch(`${apiURI}/public/wp-api/pages/241`, {headers: myHeaders})
     .then(response => {
       if (!response.ok) {
-          return Promise.reject("error fetching")
+          return Promise.resolve({})
       } else {
           return response.json();
       }
     })
     .then(json=> json)
-    .catch(err=>{});
+    .catch(err=>Promise.resolve({}));
 }
 
