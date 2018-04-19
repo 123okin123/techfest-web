@@ -22,9 +22,9 @@ module.exports = function universalLoader(req, res) {
     const context = {};
 
     let store = configureStore();
-    preFetchLandingPage()
-      .then(result => {
-          configureStore({pages: {241: {isFetching: false, response: result}}});
+    // preFetchLandingPage()
+    //   .then(result => {
+          configureStore({pages: {241: {isFetching: false, response: {}}}});
 
           console.log(`store: ${store}`);
         const sheet = new ServerStyleSheet();
@@ -53,6 +53,6 @@ module.exports = function universalLoader(req, res) {
 
 
       }).catch(err=>console.log(`wp fetch error: ${err}`))
-  })
+ // })
 };
 
