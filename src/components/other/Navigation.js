@@ -12,7 +12,6 @@ import {
 import styled from 'styled-components'
 import {userActions} from "../../actions";
 import {connect} from "react-redux";
-import HomePageNavigation from './HomePageNavigation'
 
 
 type State = {
