@@ -13,10 +13,11 @@ export function preFetchLandingPage() {
   myHeaders.append("x-access-apikey", process.env.TECHFEST_API_KEY);
   return fetch(`${apiURI}/public/wp-api/pages/241`, {headers: myHeaders, timeout: 7000})
     .then(response => {
-        if (response.ok) {
+        if (!response.ok) {
+            throw new Error('Network response was not ok.');
+        } else {
             return response.json()
         }
-        throw new Error('Network response was not ok.');
     })
 }
 

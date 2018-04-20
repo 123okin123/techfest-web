@@ -152,7 +152,7 @@ class RegisterPage extends Component<Props,State> {
                           uiSchema={this.state.form.uiSchema}
                           onChange={this.handleChange}
                           onSubmit={this.onSubmit}
-                          onError={(errors) => console.log("Errors: ", errors)}
+                          onError={(errors)=>this.setState({errors})}
                           formData={this.state.form.formData}
                           showErrorList={false}
                           validate={this.validate}
