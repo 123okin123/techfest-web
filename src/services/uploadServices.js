@@ -59,13 +59,6 @@ function uploadFile(file: any, signedRequest: SignedRequest) :Promise<SignedRequ
         };
         xhr.send(file);
     })
-    // return fetch(signedRequest.signedRequestURL, options)
-    //     .then(response => {
-    //         if (!response.ok) {
-    //             throw new Error(`${response.status}: ${response.statusText}`);
-    //         }
-    //         return signedRequest;
-    //     });
 }
 
 

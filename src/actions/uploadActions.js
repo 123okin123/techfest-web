@@ -11,8 +11,7 @@ export const uploadActions = {
 function upload(file: any) {
     return (dispatch: any) => {
         if (file === null || (Object.keys(file).length === 0 && file.constructor === Object)) {
-            dispatch(failure('no file.'));
-            return
+            return dispatch(failure('no file.'));
         }
         dispatch(request());
         return uploadServices.uploadToS3(file)
