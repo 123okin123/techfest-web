@@ -122,6 +122,7 @@ class RegisterPage extends Component<Props,State> {
     }
 
     handleChange(form) {
+        this.setState({...this.state, errors: []});
         this.setState({form});
         const {formData} = form;
         let schema = {...this.state.form.schema};
@@ -144,6 +145,7 @@ class RegisterPage extends Component<Props,State> {
     }
 
     render() {
+        console.log(this.state);
         return (
                 <StyledContainer className="p-md-5">
                     <h1>BE PART OF TECHFEST</h1>
