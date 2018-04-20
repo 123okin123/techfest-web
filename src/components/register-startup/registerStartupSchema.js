@@ -16,8 +16,7 @@ const schema = {
               "nationality",
               "dateOfBirth",
               "gender",
-              "needsAccommodation",
-              "numberOfAccommodation"
+              "needsAccommodation"
             ],
             properties: {
                 nationality: {type: "string", title: "Nationality", enum: countryList.map(e=>e.label)},

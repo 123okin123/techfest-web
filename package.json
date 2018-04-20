@@ -56,6 +56,7 @@
     "whatwg-fetch-timeout": "^2.0.2-timeout"
   },
   "scripts": {
+    "dev-build": "npm run build && heroku local",
     "dev": "concurrently --kill-others \"heroku local\" \"npm run start:react\"",
     "start": "node server/index.js",
     "start:react": "PORT=4001 react-scripts start",

@@ -80,7 +80,10 @@ class RegisterPage extends Component<Props,State> {
         if (this.props.registering || this.props.uploading) {return}
         // recaptchaInstance.execute();
         //console.log("Data submitted: ",  form);
-        this.props.uploadAndRegister(this.state.form.formData, uploadFiles);
+        this.setState({...this.state, errors: []});
+        this.props.uploadAndRegister(this.state.form.formData, uploadFiles).then(()=>{
+            window.scroll(0, 0);
+        });
         form.formData = this.state.form.formData
     }
 
@@ -181,7 +184,7 @@ class RegisterPage extends Component<Props,State> {
                     ((this.props.registrationSuccess === false) || (this.props.uploadingSuccess === false)) &&
                         <Alert className="mt-3" color="danger">
                             Sorry, registration was not successful.
-                            {this.props.error}
+                            {" "}{this.props.error}
                         </Alert>
                     }
                     {(!this.props.uploading && !this.props.registering) &&
@@ -221,7 +224,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         uploadAndRegister: (formData, uploadFiles) => {
-            dispatch(userActions.uploadFileAndRegister(formData, uploadFiles))
+            return dispatch(userActions.uploadFileAndRegister(formData, uploadFiles))
         }
     }
 };

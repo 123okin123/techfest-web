@@ -94,7 +94,10 @@ class RegisterStartupPage extends Component<Props,State> {
         if (this.props.registering || this.props.uploading) {return}
         // recaptchaInstance.execute();
         //console.log("Data submitted: ",  form);
-        this.props.uploadAndRegister(this.state.form.formData, uploadFiles);
+        this.props.uploadAndRegister(this.state.form.formData, uploadFiles).then(()=>{
+            window.scroll(0, 0);
+        });
+        this.setState({...this.state, errors: []});
         form.formData = this.state.form.formData
     }
 
@@ -136,8 +139,8 @@ class RegisterStartupPage extends Component<Props,State> {
     }
 
     handleChange(form) {
-        console.log(this.state);
-        console.log(form);
+        this.setState({...this.state, errors: []});
+        this.setState({form});
         const {formData} = form;
         let schema = {...this.state.form.schema};
         if (formData.startupFields.residence.city !== "munich"
@@ -179,7 +182,6 @@ class RegisterStartupPage extends Component<Props,State> {
             delete schema.properties.startupFields.properties.needsTransport;
             delete schema.properties.startupFields.dependencies.numberOfTransport;
         }
-        this.setState({form});
     }
 
     render() {
@@ -198,6 +200,7 @@ class RegisterStartupPage extends Component<Props,State> {
                           onBlur={this.onBlur}
                           fields={fields}
                           noHtml5Validate
+                          liveValidate
                           className="p-lg-5"
                           transformErrors={this.transformErrors}>
                         {/*<Recaptcha*/}
@@ -218,7 +221,7 @@ class RegisterStartupPage extends Component<Props,State> {
                     ((this.props.registrationSuccess === false) || (this.props.uploadingSuccess === false)) &&
                         <Alert className="mt-3" color="danger">
                             Sorry, registration was not successful.
-                            {this.props.error}
+                            {" "}{this.props.error}
                         </Alert>
                     }
                     {(!this.props.uploading && !this.props.registering) &&
@@ -258,7 +261,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         uploadAndRegister: (formData, uploadFiles) => {
-            dispatch(userActions.uploadFileAndRegister(formData, uploadFiles))
+            return dispatch(userActions.uploadFileAndRegister(formData, uploadFiles))
         }
     }
 };

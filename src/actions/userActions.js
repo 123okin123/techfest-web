@@ -36,10 +36,7 @@ function uploadFileAndRegister(user: User, uploadFiles: Array<any>) {
             });
             const newUser = {
                 ...user,
-                participantsFields: {
-                    ...user.participantsFields,
                     keys
-                }
             };
             return dispatch(register(newUser))
         })
