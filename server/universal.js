@@ -23,8 +23,9 @@ module.exports = function universalLoader(req, res) {
 
     let store = configureStore();
     preFetchLandingPage()
-      .then(result => {
-          store = configureStore({pages: {241: {isFetching: false, response: result}}});
+      .then(res=> {store = configureStore({pages: {241: {isFetching: false, response: res}}})})
+      .catch(err=>console.log(`wp fetch error: ${err}`))
+      .then(() => {
         const sheet = new ServerStyleSheet();
         const markup = renderToString(sheet.collectStyles(
           <Provider store={store}>
@@ -48,9 +49,7 @@ module.exports = function universalLoader(req, res) {
           const StyledRenderedStatedApp = StyledRenderedApp.replace('{{STATE}}', script);
           res.send(StyledRenderedStatedApp);
         }
-
-
-      }).catch(err=>console.log(`wp fetch error: ${err}`))
+      })
   })
 };
 
