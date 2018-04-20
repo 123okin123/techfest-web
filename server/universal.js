@@ -11,6 +11,7 @@ const scTheme = require('../src/scTheme');
 const {preFetchLandingPage} = require('./preFetchLandingPage');
 const {ThemeProvider} = require('styled-components');
 
+
 module.exports = function universalLoader(req, res) {
   const filePath = path.resolve(__dirname, '..', 'build', 'index.html');
 
@@ -23,8 +24,7 @@ module.exports = function universalLoader(req, res) {
 
     let store = configureStore();
     preFetchLandingPage()
-      .then(
-        res=> {store = configureStore({pages: {241: {isFetching: false, response: res}}});return store})
+      .then(res=> {store = configureStore({pages: {241: {isFetching: false, response: res}}});return store})
       .catch(err=> {console.log(`wp fetch error: ${err}`)})
       .then(() => {
           console.log("serve");

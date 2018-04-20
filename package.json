@@ -47,7 +47,9 @@
     "redux": "^3.6.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
-    "styled-components": "^3.1.6"
+    "styled-components": "^3.1.6",
+    "whatwg-fetch": "^2.0.4",
+    "whatwg-fetch-timeout": "^2.0.2-timeout"
   },
   "scripts": {
     "dev": "npm run build && heroku local",
