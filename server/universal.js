@@ -23,8 +23,9 @@ module.exports = function universalLoader(req, res) {
 
     let store = configureStore();
     preFetchLandingPage()
-      .then(res=> {store = configureStore({pages: {241: {isFetching: false, response: res}}})})
-      .catch(err=>console.log(`wp fetch error: ${err}`))
+      .then(
+        res=> {store = configureStore({pages: {241: {isFetching: false, response: res}}})},
+        err=> console.log(`wp fetch error: ${err}`) )
       .then(() => {
         const sheet = new ServerStyleSheet();
         const markup = renderToString(sheet.collectStyles(
