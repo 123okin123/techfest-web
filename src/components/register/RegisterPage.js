@@ -184,6 +184,12 @@ class RegisterPage extends Component<Props,State> {
                         </Alert>
                     }
                     {(!this.props.uploading && !this.props.registering) &&
+                    (typeof this.state.errors !== 'undefined' && this.state.errors.length > 0)  &&
+                    <Alert className="mt-3" color="danger">
+                        Please check the registration from.
+                    </Alert>
+                    }
+                    {(!this.props.uploading && !this.props.registering) &&
                     ((this.props.registrationSuccess === true) && (this.props.uploadingSuccess === true)) &&
                         <Alert className="mt-3" color="success">
                             Congratulations, registration was successfully sent.
