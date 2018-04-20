@@ -98,7 +98,7 @@ const schema = {
                         },
                         {
                             properties: {isProgrammer: {enum: ["yes"]},
-                                programmerSuperPowers: {type: "string", title: "Tell us your programming superpowers (Python, Arduino, Angular ect.)."}
+                                programmerSuperPowers: {type: "string", title: "Tell us your programming superpowers (Python, Arduino, Angular ect.).", minLength: 0, maxLength: 140}
                             },
                             required: ["programmerSuperPowers"]
                         }
@@ -111,7 +111,7 @@ const schema = {
                         },
                         {
                             properties: {isDesigner: {enum: ["yes"]},
-                                designerSuperpowers: {type: "string", title: "Tell us your designing superpowers (CAD, Autodesk Inventor, Adobe Illustrator, UI, Artist ect.)"},
+                                designerSuperpowers: {type: "string", title: "Tell us your designing superpowers (CAD, Autodesk Inventor, Adobe Illustrator, UI, Artist ect.)", minLength: 0, maxLength: 140},
                             },
                             required: ["designerSuperpowers"]
                         }
@@ -124,7 +124,7 @@ const schema = {
                         },
                         {
                             properties: {isMaker: {enum: ["yes"]},
-                                makerSuperpowers: {type: "string", title: "Tell us your superpowers in Making Stuff (Elektroniks, 3D Printing, Lasercutting etc.)."},
+                                makerSuperpowers: {type: "string", title: "Tell us your superpowers in Making Stuff (Elektroniks, 3D Printing, Lasercutting etc.).", minLength: 0, maxLength: 140},
                             },
                             required: ["makerSuperpowers"]
                         }

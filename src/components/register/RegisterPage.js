@@ -122,7 +122,8 @@ class RegisterPage extends Component<Props,State> {
     }
 
     handleChange(form) {
-
+        this.setState({...this.state, errors: []});
+        this.setState({form});
         const {formData} = form;
         let schema = {...this.state.form.schema};
         if (formData.participantsFields.residence.city !== "munich"
@@ -140,7 +141,7 @@ class RegisterPage extends Component<Props,State> {
             delete formData.participantsFields.needsTransport;
             delete schema.properties.participantsFields.properties.needsTransport;
         }
-        this.setState({form});
+
     }
 
     render() {
@@ -159,6 +160,7 @@ class RegisterPage extends Component<Props,State> {
                           onBlur={this.onBlur}
                           fields={fields}
                           noHtml5Validate
+                          liveValidate
                           className="p-lg-5"
                           transformErrors={this.transformErrors}>
                         {/*<Recaptcha*/}
@@ -183,7 +185,7 @@ class RegisterPage extends Component<Props,State> {
                         </Alert>
                     }
                     {(!this.props.uploading && !this.props.registering) &&
-                        (typeof this.state.errors !== 'undefined' && this.state.errors.length > 0)  &&
+                    (typeof this.state.errors !== 'undefined' && this.state.errors.length > 0)  &&
                     <Alert className="mt-3" color="danger">
                         Please check the registration from.
                     </Alert>

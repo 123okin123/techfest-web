@@ -22,45 +22,37 @@ module.exports = function universalLoader(req, res) {
       return res.status(404).end()
     }
     const context = {};
-    const token = getCookie("jwt", req) || '';
-      jwt.verify(token, process.env.SUPER_SECRET, (err, decoded) => {
-        preFetchLandingPage()
-          .then((result) => {
-              let initialStore =  {pages: {241: {isFetching: false, response: result}}};
-              if (decoded) {
-                  initialStore = {...initialStore,  authentication: {loggedIn: !(err), role: decoded.role}}
-              }
-              return configureStore(initialStore)
-          })
-          .catch(err=> {
-            console.log(err);
-            return configureStore()})
-          .then((store)=>{
-              const sheet = new ServerStyleSheet();
-              const markup = renderToString(sheet.collectStyles(
-                <Provider store={store}>
-                    <ThemeProvider theme={scTheme}>
-                        <StaticRouter location={req.url} context={context}>
-                            <App/>
-                        </StaticRouter>
-                    </ThemeProvider>
-                </Provider>
-              ));
 
-              if (context.url) {
-                  // Somewhere a `<Redirect>` was rendered
-                  res.redirect(301, context.url)
-              } else {
-                  // we're good, send the response
-                  const RenderedApp = htmlData.replace('{{SSR}}', markup);
-                  const styles = sheet.getStyleTags(); // <-- getting all the tags from the sheet
-                  const StyledRenderedApp = RenderedApp.replace('{{STYLES}}', styles);
-                  const script = `<script>window.__PRELOADED_STATE__ = ${JSON.stringify(store.getState()).replace(/</g, '\\u003c')}</script>`;
-                  const StyledRenderedStatedApp = StyledRenderedApp.replace('{{STATE}}', script);
-                  res.send(StyledRenderedStatedApp);
-              }
-          });
-    });
+    let store = configureStore();
+    preFetchLandingPage()
+      .then(res=> {store = configureStore({pages: {241: {isFetching: false, response: res}}});return store})
+      .catch(err=> {console.log(`wp fetch error: ${err}`)})
+      .then(() => {
+          console.log("serve");
+        const sheet = new ServerStyleSheet();
+        const markup = renderToString(sheet.collectStyles(
+          <Provider store={store}>
+            <ThemeProvider theme={scTheme}>
+            <StaticRouter location={req.url} context={context}>
+              <App/>
+            </StaticRouter>
+            </ThemeProvider>
+          </Provider>
+        ));
+
+        if (context.url) {
+          // Somewhere a `<Redirect>` was rendered
+          res.redirect(301, context.url)
+        } else {
+          // we're good, send the response
+          const RenderedApp = htmlData.replace('{{SSR}}', markup);
+          const styles = sheet.getStyleTags(); // <-- getting all the tags from the sheet
+          const StyledRenderedApp = RenderedApp.replace('{{STYLES}}', styles);
+          const script = `<script>window.__PRELOADED_STATE__ = ${JSON.stringify(store.getState()).replace(/</g, '\\u003c')}</script>`;
+          const StyledRenderedStatedApp = StyledRenderedApp.replace('{{STATE}}', script);
+          res.send(StyledRenderedStatedApp);
+        }
+      })
   })
 };
 

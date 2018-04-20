@@ -17,11 +17,10 @@ function register(user: User) :(any)=>void {
         dispatch(request());
         return userService.register(user)
             .then( r => {
-                console.log(r);
                 dispatch(success())},
                 error => {
-                console.log(error);
-                dispatch(failure(error))}
+                dispatch(failure(error));
+                    throw error}
             );
     };
     function request() { return { type: userConstants.REGISTER_REQUEST } }
@@ -30,21 +29,21 @@ function register(user: User) :(any)=>void {
 }
 
 function uploadFileAndRegister(user: User, uploadFiles: Array<any>) {
-    return (dispatch: any) => {
-    let actions = uploadFiles.map(e => {
-        return dispatch(uploadActions.upload(e))
-    });
-    Promise.all(actions).then(uploadSuccess => {
-        const keys = uploadSuccess.map((e, i)=> {
-            return {[`upload-${i}`]: e.key}
-        });
-        const newUser = {
-            ...user,
-            keys
-        };
-        return dispatch(register(newUser))
-    }).catch(error =>console.log(error));
-    }
+    return (dispatch, getState) => {
+        return dispatch(uploadActions.uploadMulti(uploadFiles)).then(()=>{
+            const keys = getState().upload.keys.map((e, i)=> {
+                return {[`upload-${i}`]: e}
+            });
+            const newUser = {
+                ...user,
+                participantsFields: {
+                    ...user.participantsFields,
+                    keys
+                }
+            };
+            return dispatch(register(newUser))
+        })
+    };
 }
 
 

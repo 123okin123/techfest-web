@@ -98,22 +98,7 @@ function _delete(id) {
 
 function handleResponse(response) :Promise<JSON> {
     if (!response.ok) {
-        return response.json().then(v => {
-            let errorDescription = "\n";
-            if (v.hasOwnProperty('reason')) {
-            for (const reason in v.reason) {
-                console.log(v.reason[reason]);
-                if (v.reason[reason].hasOwnProperty('message')) {
-                    errorDescription = errorDescription + v.reason[reason].message + ".\n";
-                    console.log(errorDescription)
-                }
-            }
-            } else {
-                errorDescription = response.statusText;
-            }
-        return Promise.reject(errorDescription)
-        });
-
+        return Promise.reject('An error occurred.')
     }
     return response.json();
 }

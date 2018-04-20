@@ -3,7 +3,8 @@
 import fetch from "cross-fetch";
 
 export const uploadServices = {
-    uploadToS3
+    uploadToS3,
+    uploadMultiToS3
 };
 
 type SignedRequest = {
@@ -11,6 +12,12 @@ type SignedRequest = {
     url: string,
     key: string
 };
+
+function uploadMultiToS3(files): Promise<string[]> {
+    let uploads = files.map(file=>uploadToS3(file));
+    return Promise.all(uploads)
+}
+
 
 function uploadToS3(file: any) :Promise<string> {
     return getSignedRequest(file)
@@ -59,13 +66,6 @@ function uploadFile(file: any, signedRequest: SignedRequest) :Promise<SignedRequ
         };
         xhr.send(file);
     })
-    // return fetch(signedRequest.signedRequestURL, options)
-    //     .then(response => {
-    //         if (!response.ok) {
-    //             throw new Error(`${response.status}: ${response.statusText}`);
-    //         }
-    //         return signedRequest;
-    //     });
 }
 
 
