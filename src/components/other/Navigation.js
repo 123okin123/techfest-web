@@ -90,9 +90,9 @@ class Navigation extends Component<Props, State> {
                             <StyledNavItem>
                                 <StyledNavLink scroll={(el)=> el.scrollIntoView({ behavior: 'smooth', block: 'start'})} to="/#contact"  isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Contact</StyledNavLink>
                             </StyledNavItem>
-                            {/*<StyledNavItem>*/}
-                                {/*<StyledNavLink to="/press-media" isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Press & Media</StyledNavLink>*/}
-                            {/*</StyledNavItem>*/}
+                            <StyledNavItem>
+                                <StyledNavLink to="/press-media" isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Press & Media</StyledNavLink>
+                            </StyledNavItem>
                             <StyledNavItem>
                                 <StyledNavLink target="_blank" to="/register" isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Apply now</StyledNavLink>
                             </StyledNavItem>
@@ -100,7 +100,7 @@ class Navigation extends Component<Props, State> {
                             <StyledNavItem>
                                 <StyledNavLink to="/private" isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Private</StyledNavLink>
                             </StyledNavItem>}
-                           {/* {LoginComponent}*/}
+                           {LoginComponent}
                         </Nav>
                     </Collapse>
                 </StyledNavBar>

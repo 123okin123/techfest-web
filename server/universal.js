@@ -24,35 +24,50 @@ module.exports = function universalLoader(req, res) {
     const context = {};
 
     let store = configureStore();
-    preFetchLandingPage()
-      .then(res=> {store = configureStore({pages: {241: {isFetching: false, response: res}}});return store})
-      .catch(err=> {console.log(`wp fetch error: ${err}`)})
-      .then(() => {
-          console.log("serve");
-        const sheet = new ServerStyleSheet();
-        const markup = renderToString(sheet.collectStyles(
-          <Provider store={store}>
-            <ThemeProvider theme={scTheme}>
-            <StaticRouter location={req.url} context={context}>
-              <App/>
-            </StaticRouter>
-            </ThemeProvider>
-          </Provider>
-        ));
+        preFetchLandingPage()
+          .then(result => {
+              let initialStore =  {pages: {241: {isFetching: false, response: result}}};
+              const token = getCookie("jwt", req) || '';
+              try {
+                  const decoded = jwt.verify(token, process.env.SUPER_SECRET);
+                  if (decoded) {
+                      initialStore = {...initialStore,  authentication: {loggedIn: !(err), role: decoded.role}}
+                  }
+              } catch(err) {
+                 console.log(err);
+              }
+              store = configureStore(initialStore);
+              return store
+          })
+          .catch(err => {
+              console.log(`wp fetch error: ${err}`)
+          })
+          .then(() => {
+              console.log("serve");
+              const sheet = new ServerStyleSheet();
+              const markup = renderToString(sheet.collectStyles(
+                <Provider store={store}>
+                    <ThemeProvider theme={scTheme}>
+                        <StaticRouter location={req.url} context={context}>
+                            <App/>
+                        </StaticRouter>
+                    </ThemeProvider>
+                </Provider>
+              ));
 
-        if (context.url) {
-          // Somewhere a `<Redirect>` was rendered
-          res.redirect(301, context.url)
-        } else {
-          // we're good, send the response
-          const RenderedApp = htmlData.replace('{{SSR}}', markup);
-          const styles = sheet.getStyleTags(); // <-- getting all the tags from the sheet
-          const StyledRenderedApp = RenderedApp.replace('{{STYLES}}', styles);
-          const script = `<script>window.__PRELOADED_STATE__ = ${JSON.stringify(store.getState()).replace(/</g, '\\u003c')}</script>`;
-          const StyledRenderedStatedApp = StyledRenderedApp.replace('{{STATE}}', script);
-          res.send(StyledRenderedStatedApp);
-        }
-      })
-  })
+              if (context.url) {
+                  // Somewhere a `<Redirect>` was rendered
+                  res.redirect(301, context.url)
+              } else {
+                  // we're good, send the response
+                  const RenderedApp = htmlData.replace('{{SSR}}', markup);
+                  const styles = sheet.getStyleTags(); // <-- getting all the tags from the sheet
+                  const StyledRenderedApp = RenderedApp.replace('{{STYLES}}', styles);
+                  const script = `<script>window.__PRELOADED_STATE__ = ${JSON.stringify(store.getState()).replace(/</g, '\\u003c')}</script>`;
+                  const StyledRenderedStatedApp = StyledRenderedApp.replace('{{STATE}}', script);
+                  res.send(StyledRenderedStatedApp);
+              }
+          })
+    })
 };
 
