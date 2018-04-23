@@ -13,9 +13,9 @@ const Footer = () => (
                 <Col xs="12" sm="8" md="6">
                     <Slug>POWERED BY</Slug>
                     <Row>
-                    <Col xs="6" sm="6" ><a target="_blank" href="https://www.unternehmertum.de/index.html"><Logo src={require('../../assets/icons/icon_unternehmertum.png')}/></a></Col>
-                    {/*<Col xs="6" sm="3"><Logo src={require('../assets/icons/icon_tum.png')}/></Col>*/}
-                    <Col xs="6" sm="6"><a target="_blank" href="http://x.unternehmertum.de/"><Logo src={require('../../assets/icons/icon_x.png')}/></a></Col>
+                    <Col xs="4" sm="4" ><a target="_blank" href="https://www.unternehmertum.de/index.html"><Logo src={require('../../assets/icons/icon_unternehmertum.png')}/></a></Col>
+                    <Col xs="4" sm="4"><a target="_blank" href="https://www.tum.de/"><Logo src={require('../../assets/icons/icon_tum.png')}/></a></Col>
+                    <Col xs="4" sm="4"><a target="_blank" href="http://x.unternehmertum.de/"><Logo src={require('../../assets/icons/icon_x.png')}/></a></Col>
                     <Col xs="6" sm="6"><a target="_blank" href="https://www.maker-space.de/index.html"><Logo src={require('../../assets/icons/icon_makerspace.png')}/></a></Col>
                     <Col xs="6" sm="6"><a target="_blank" href="https://www.unternehmertum.de/venture-capital.html"><Logo src={require('../../assets/icons/icon_uvm.png')}/></a></Col>
                     </Row>
