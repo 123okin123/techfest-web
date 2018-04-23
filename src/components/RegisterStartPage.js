@@ -18,7 +18,7 @@ const RegisterStartPage = () => (
                       <Button color="primary" tag={Link} to="/register-startup">APPLY AS START-UP</Button>
                   </Col>
               </Row>
-              <p className="text-muted">*for detailed information please check the <Link to="/#faqs">FAQs.</Link></p>
+              <p className="text-muted">*for detailed information please check the <a href="/#faqs">FAQs.</a></p>
           </Container>
         );
 

@@ -185,6 +185,7 @@ class RegisterStartupPage extends Component<Props,State> {
     }
 
     render() {
+        console.log(this.state);
         return (
                 <StyledContainer className="p-md-5">
                     <h1>APPLY AS START-UP</h1>

@@ -2,6 +2,7 @@
 import {countryList} from "../../helpers";
 
 const schema = {
+    title: "CONTACT PERSON OF YOUR STARTUP",
     type: "object",
     required: ["firstName", "lastName", "email", "emailConfirmation", "startupFields"],
     properties: {
