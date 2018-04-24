@@ -118,8 +118,8 @@ const schema = {
                     required: ["track", "worksOn", "whyChoose", "pitchDeck", "informEvents", "howHearAbout"],
                     properties: {
                         track: {type: "string", title: "Please choose your track:",
-                            enum: ["futureMobilityTransport", "quantifiedEarthAndSpace", "theSmartAutomationWave"],
-                            enumNames: ["Future Mobility & Transport", "Quantified Earth and Space", "The Smart Automation Wave"]
+                            enum: ["futureMobilityTransport", "quantifiedEarthAndSpace", "theSmartAutomationWave", "theAugmentedHuman"],
+                            enumNames: ["Future Mobility and Transport", "Quantified Earth and Space", "The Smart Automation Wave", "The Augmented Human"],
                         },
                         worksOn: {type: "string", title: "Which product feature do you plan to work on at TECHFEST?"},
                         whyChoose: {type: "string", title: "Why should we select your start-up (max. 140 characters)?"},
@@ -127,8 +127,8 @@ const schema = {
                         invitationCode: {type: "string", title: "Did you get an invitation code? If so, please type it in."},
                         informEvents: {type: "boolean", title: "Please inform me, if there are any events coming up. To do so I permit the use of my submitted personal data by UnternehmerTUM."},
                         howHearAbout: {type: "string", title: "How did you hear about TECHFEST?",
-                            enum: ["techfestFB", "utumFB", "uni", "friends_family", "other"],
-                            enumNames: ["TECHFEST facebook", "UnternehmerTUM facebook", "University", "Friends & Family", "other"]
+                            enum: ["techfestFB", "utumFB", "techFounders", "xpreneurs", "utumVCP", "appliedAi", "uni", "friends_family", "other"],
+                            enumNames: ["TECHFEST facebook", "UnternehmerTUM facebook", "TechFounders", "Xpreneurs", "UnternehmerTUM Venture Captial Partners", "appliedAI", "University", "Friends & Family", "other"],
                         },
                     },
                     dependencies: {

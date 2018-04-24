@@ -10,12 +10,12 @@ const RegisterStartPage = () => (
               <h1 className="mb-5">APPLY</h1>
               <Row>
                   <Col lg="6" className="mb-5">
-                      <p>You want to join TECHFEST individually or in a team? Apply here for the hackathon competition!*</p>
-                      <Button color="primary" tag={Link} to="/register-participant">APPLY AS INDIVIDUAL PARTICIPANT OR TEAM</Button>
+                      <Button color="primary" tag={Link} to="/register-participant">APPLY FOR HACKATHON COMPETITION</Button>
+                      <p className="mt-3">You want to join TECHFEST individually or in a team? Apply here for the TECHFEST Hackathon Competition!*</p>
                   </Col>
                   <Col lg="6" className="mb-5">
-                      <p>Your start-up wants to get challenged at TECHFEST? Apply here for the start-up competition!*</p>
-                      <Button color="primary" tag={Link} to="/register-startup">APPLY AS START-UP</Button>
+                      <Button color="primary" tag={Link} to="/register-startup">APPLY FOR START-UP COMPETITION </Button>
+                      <p className="mt-3">Your start-up wants to participate in TECHFEST? Apply here as a start-up for the TECHFEST Start-up Competition.*</p>
                   </Col>
               </Row>
               <p className="text-muted">*for detailed information please check the <a href="/#faqs">FAQs.</a></p>
