@@ -34,7 +34,11 @@ class VerifyRegistrationPage extends Component<{},State> {
         console.log(this.state);
         const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic YXdlc29tZVRlYW06ZmVzdHRlY2g=',
+                'Proxy-Authorization': 'Basic YXdlc29tZVRlYW06ZmVzdHRlY2g='
+            },
             body: JSON.stringify({ password: values.password, token: this.state.token })
         };
         this.setState({confirming: true});
