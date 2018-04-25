@@ -2,11 +2,18 @@
 
 
 import React, {Component} from 'react'
-
+import {Container, Row, Col} from 'reactstrap'
 
 class PrivatePage extends Component {
     render() {return (
-      <div>Private test</div>
+      <Container>
+          <h1>Member Area</h1>
+          <Row>
+              <Col>
+                  <p>Coming soon...</p>
+              </Col>
+          </Row>
+      </Container>
     )}
 }
 
