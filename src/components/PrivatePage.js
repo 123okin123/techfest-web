@@ -6,7 +6,7 @@ import {Container, Row, Col} from 'reactstrap'
 
 class PrivatePage extends Component {
     render() {return (
-      <Container>
+      <Container className="pt-5">
           <h1>Member Area</h1>
           <Row>
               <Col>

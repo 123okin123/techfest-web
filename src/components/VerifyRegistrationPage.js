@@ -51,7 +51,7 @@ class VerifyRegistrationPage extends Component<{},State> {
 
     render() {
         return(
-          <Container className="container pt-5">
+          <Container className="pt-5">
               <h1>CONFIRM REGISTRATION</h1>
               <Row className="py-5">
                   <Col sm="4">
