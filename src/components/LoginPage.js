@@ -38,7 +38,7 @@ class LoginPage extends Component<Props, State> {
     }
 
     render() {
-        const { from } = this.props.location.state || { from: { pathname: "/" } };
+        const { from } = this.props.location.state || { from: { pathname: "/private" } };
         const { redirectToReferrer } = this.state;
 
         if (redirectToReferrer) {
