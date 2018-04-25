@@ -56,6 +56,7 @@ const schema = {
                         numberOfMembers: {
                             oneOf: [
                                 {
+                                    required: ["firstName1", "lastName1", "email1"],
                                     properties: {numberOfMembers: {enum: ["2"]},
                                         firstName1: {type: "string", title: "First Name"},
                                         lastName1: {type: "string", title: "Last Name"},
@@ -63,6 +64,7 @@ const schema = {
                                     }
                                 },
                                 {
+                                    required: ["firstName2", "lastName2", "email2"],
                                     properties: {numberOfMembers: {enum: ["3"]},
                                         firstName1: {type: "string", title: "First Name"},
                                         lastName1: {type: "string", title: "Last Name"},
@@ -73,7 +75,22 @@ const schema = {
                                     }
                                 },
                                 {
+                                    required: ["firstName3", "lastName3", "email3"],
                                     properties: {numberOfMembers: {enum: ["4"]},
+                                        firstName1: {type: "string", title: "First Name"},
+                                        lastName1: {type: "string", title: "Last Name"},
+                                        email1: {type: "string", title: "Email"},
+                                        firstName2: {type: "string", title: "First Name"},
+                                        lastName2: {type: "string", title: "Last Name"},
+                                        email2: {type: "string", title: "Email"},
+                                        firstName3: {type: "string", title: "First Name"},
+                                        lastName3: {type: "string", title: "Last Name"},
+                                        email3: {type: "string", title: "Email"},
+                                    }
+                                },
+                                {
+                                    required: ["firstName4", "lastName4", "email4"],
+                                    properties: {numberOfMembers: {enum: ["5"]},
                                         firstName1: {type: "string", title: "First Name"},
                                         lastName1: {type: "string", title: "Last Name"},
                                         email1: {type: "string", title: "Email"},
@@ -86,11 +103,11 @@ const schema = {
                                         firstName4: {type: "string", title: "First Name"},
                                         lastName4: {type: "string", title: "Last Name"},
                                         email4: {type: "string", title: "Email"},
-
                                     }
                                 },
                                 {
-                                    properties: {numberOfMembers: {enum: ["5"]},
+                                    required: ["firstName5", "lastName5", "email5"],
+                                    properties: {numberOfMembers: {enum: ["6"]},
                                         firstName1: {type: "string", title: "First Name"},
                                         lastName1: {type: "string", title: "Last Name"},
                                         email1: {type: "string", title: "Email"},
@@ -135,7 +152,7 @@ const schema = {
                         howHearAbout: {
                             oneOf: [
                                 {
-                                    properties: {howHearAbout: {enum: ["techfestFB", "utumFB", "uni", "friends_family"]}}
+                                    properties: {howHearAbout: {enum: ["techfestFB", "utumFB", "techFounders", "xpreneurs", "utumVCP", "appliedAi", "uni", "friends_family"]}}
                                 },
                                 {
                                     properties: {howHearAbout: {enum: ["other"]},
