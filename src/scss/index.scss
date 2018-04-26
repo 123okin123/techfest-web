@@ -105,3 +105,18 @@ input[type="radio"], input[type="checkbox"] {
 .av-invalid>.form-group>.invalid-feedback {
   display: block;
 }
+
+
+.custom-switch {
+  border: 1px solid #343a40;
+  margin-right: 10px;
+  margin-bottom: -7px;
+}
+.custom-switch.on {
+  background: #343a40;
+}
+.custom-switch>.switch-toggle {
+  border: 1px solid #343a40;
+  -webkit-box-shadow: 1px 1px 1px #343a40;
+  box-shadow: 1px 1px 1px #343a40;
+}

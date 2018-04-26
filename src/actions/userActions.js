@@ -8,7 +8,9 @@ export const userActions = {
     register,
     uploadFileAndRegister,
     login,
-    logout
+    logout,
+    update,
+    getInfo
 };
 
 
@@ -70,4 +72,46 @@ function logout() {
     return { type: userConstants.LOGOUT };
 }
 
+
+function update(user: {}) {
+    return (dispatch: any) => {
+        dispatch(request({ user }));
+        return userService.update(user)
+          .then(
+            user => {
+                dispatch(success(user));
+                return Promise.resolve();
+            },
+            error => {
+                dispatch(failure(error));
+                return Promise.reject(error);
+            }
+          );
+    };
+
+    function request(user) { return { type: userConstants.UPDATE_INFO_REQUEST, user } }
+    function success(user) { return { type: userConstants.UPDATE_INFO_SUCCESS, user } }
+    function failure(error) { return { type: userConstants.UPDATE_INFO_FAILURE, error } }
+}
+
+function getInfo() {
+    return (dispatch: any) => {
+        dispatch(request());
+        return userService.getMe()
+          .then(
+            user => {
+                dispatch(success(user));
+                return Promise.resolve();
+            },
+            error => {
+                dispatch(failure(error));
+                return Promise.reject(error);
+            }
+          );
+    };
+
+    function request(user) { return { type: userConstants.GET_INFO_REQUEST } }
+    function success(user) { return { type: userConstants.GET_INFO_SUCCESS, user } }
+    function failure(error) { return { type: userConstants.GET_INFO_FAILURE, error } }
+}
 

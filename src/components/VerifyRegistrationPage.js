@@ -1,7 +1,7 @@
 //@flow
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
-import {Container, Alert, Row, Col, Button} from 'reactstrap';
+import {Container, Alert, Row, Col, Button, FormFeedback} from 'reactstrap';
 import {AvForm, AvField} from 'availity-reactstrap-validation'
 
 
@@ -9,7 +9,8 @@ import {AvForm, AvField} from 'availity-reactstrap-validation'
 type State = {
     confirming: boolean,
     token: ?string,
-    verified: ?boolean
+    verified: ?boolean,
+    error: ?string
 }
 
 
@@ -44,7 +45,9 @@ class VerifyRegistrationPage extends Component<{},State> {
         this.setState({confirming: true});
         fetch('api/public/verify-register/', requestOptions)
           .then((response)=>response.json())
-          .then(json=>this.setState({verified : json}))
+          .then(json=> {
+              this.setState({verified: json.success, error: json.reason + '. ' + json.error})
+          })
           .catch(err=>{console.log(err);this.setState({verified : false})})
           .then(()=>this.setState({confirming: false}))
     }
@@ -57,10 +60,11 @@ class VerifyRegistrationPage extends Component<{},State> {
                   <Col sm="4">
                       {!(this.state.verified === true) &&
                       <div className="py-2">
-                          <p>To confirm your participation at TECHFEST 2018 set a password for your members account and click on confirm.</p>
+                          <p>By setting your password your registration for TECHFEST MUNICH 2018 is set. You can register until May 6th. Please, be aware if you do not register until that date, your place will be offered to other applicants.</p>
                           <AvForm onValidSubmit={this.confirmRegistration}>
-                              <AvField name="password" label="Password" type="password" required />
-                              <AvField name="confirmationPassword" label="Confirm Password" type="password" validate={{match:{value:'password'}}} required />
+                              <AvField name="password" label="Password" type="password" required minLength={6}
+                                       helpMessage="Min length 6 characters"/>
+                              <AvField name="confirmationPassword" label="Confirm Password" type="password" validate={{match:{value:'password'}}} required minLength={6}/>
                               <Button disabled={this.state.confirming} color="primary">Confirm Registration</Button>
                           </AvForm>
                       </div>
@@ -75,7 +79,7 @@ class VerifyRegistrationPage extends Component<{},State> {
                       }
                       {(this.state.verified === false) &&
                       <Alert className="mt-3" color="danger">
-                          Ops, something bad happened. Please contact: info@techfest.com
+                          Ops, something bad happened. {this.state.error}
                       </Alert>
                       }
                   </Col>

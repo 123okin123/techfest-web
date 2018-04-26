@@ -6,6 +6,7 @@ import { alert } from './alertReducer';
 import {pages} from './pageReducer';
 import {upload} from './uploadReducer';
 import {contact} from "./contactReducer";
+import {user} from "./userReducer";
 
 const rootReducer = combineReducers({
     pages,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
     registration,
     alert,
     upload,
-    contact
+    contact,
+    user
 });
 
 export default rootReducer;
