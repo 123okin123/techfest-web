@@ -28,7 +28,7 @@ class PreEventInfo extends Component<Props> {
         return (
           <div className="mt-5 pt-5">
               <h2>TECHFEST Pre-Event, JUNE 14TH, 7pm</h2>
-              <p>TECHFEST Munich starts on Friday, June 14th at 7pm. We will kick-off with a warm-up pre-event and we would love to see you there. On this day, we want all our amazing participants of TECHFEST 2018, from all around Germany and Europe, to get to know each other, in a chilled festival atmosphere, before the actual hacking starts on friday. The participation in this pre-event is not obligatory, but we HIGHLY RECOMMEND it and who would say no to get in touch with like-minded, inspiring people for a nice summer barbecue?</p>
+              <p>TECHFEST Munich starts on Friday, June 14th. We will kick-off with a warm-up pre-event and we would love to see you there. On this day, we want all our amazing participants of TECHFEST 2018, from all around Germany and Europe, to get to know each other, in a chilled festival atmosphere, before the actual hacking starts on friday. The participation in this pre-event is not obligatory, but we HIGHLY RECOMMEND it and who would say no to get in touch with like-minded, inspiring people for a nice summer barbecue?</p>
               <Row>
                   <Col md='6'>
                       <Form className="pt-3" onSubmit={(e)=>{e.preventDefault();this.props.onChange(this.state.preEvent)}}>
