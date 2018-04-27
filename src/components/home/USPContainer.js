@@ -20,7 +20,6 @@ class USPContainer extends Component {
         this.setState({
             [id] : !this.state[id]
         });
-        console.log(this.state);
     }
 
     render() { return (

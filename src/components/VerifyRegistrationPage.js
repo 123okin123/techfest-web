@@ -32,7 +32,6 @@ class VerifyRegistrationPage extends Component<{},State> {
     }
 
     confirmRegistration(event: SyntheticEvent<HTMLButtonElement>, values) {
-        console.log(this.state);
         const requestOptions = {
             method: 'POST',
             headers: {

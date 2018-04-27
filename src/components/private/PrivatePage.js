@@ -25,7 +25,6 @@ class PrivatePage extends Component {
     }
 
     challengeSelectionChanged(userChallenges: {}) {
-        console.log('challengeSelectionChanged', userChallenges);
         if (!this.props.data) {return}
         this.props.update({
               ...this.props.data,

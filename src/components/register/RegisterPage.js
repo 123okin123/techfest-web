@@ -79,7 +79,6 @@ class RegisterPage extends Component<Props,State> {
     onSubmit(form) {
         if (this.props.registering || this.props.uploading) {return}
         // recaptchaInstance.execute();
-        //console.log("Data submitted: ",  form);
         this.setState({...this.state, errors: []});
         this.props.uploadAndRegister(this.state.form.formData, uploadFiles).then(()=>{
             window.scroll(0, 0);

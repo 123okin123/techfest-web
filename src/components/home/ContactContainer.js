@@ -18,7 +18,6 @@ class ContactContainer extends Component<Props> {
     }
 
     handleValidSubmit(event, values) {
-        console.log("submit");
         if (this.props.contacting) {return}
         this.props.contact(values);
     }

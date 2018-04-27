@@ -71,7 +71,6 @@ class ChallengeSelection extends Component<Props> {
     }
 
     render() {
-        console.log(this.state);
         return (
           <div className="mt-5">
               <h2>Challenge Preference</h2>

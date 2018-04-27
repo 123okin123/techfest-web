@@ -43,7 +43,6 @@ module.exports = function universalLoader(req, res) {
               console.log(`wp fetch error: ${err}`)
           })
           .then(() => {
-              console.log("serve");
               const sheet = new ServerStyleSheet();
               const markup = renderToString(sheet.collectStyles(
                 <Provider store={store}>

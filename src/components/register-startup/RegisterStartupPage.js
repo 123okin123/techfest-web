@@ -93,7 +93,6 @@ class RegisterStartupPage extends Component<Props,State> {
     onSubmit(form) {
         if (this.props.registering || this.props.uploading) {return}
         // recaptchaInstance.execute();
-        //console.log("Data submitted: ",  form);
         this.props.uploadAndRegister(this.state.form.formData, uploadFiles).then(()=>{
             window.scroll(0, 0);
         });
@@ -185,7 +184,6 @@ class RegisterStartupPage extends Component<Props,State> {
     }
 
     render() {
-        console.log(this.state);
         return (
                 <StyledContainer className="p-md-5">
                     <h1>APPLY AS START-UP</h1>
