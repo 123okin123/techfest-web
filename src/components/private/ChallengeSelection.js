@@ -142,7 +142,7 @@ class ChallengeSelection extends Component<Props> {
                                   <div key={index.toString()}>
                                       <h5 className="mt-4">{challenge.challenge_title}</h5>
                                       <p className="mb-0"><strong>{challenge.challenge_company}</strong></p>
-                                      <p>{challenge.challenge_description}</p>
+                                      <div dangerouslySetInnerHTML={{__html: challenge.challenge_description}}/>
                                   </div>
                                 )}
                             </div>
