@@ -91,7 +91,7 @@ class ChallengeSelection extends Component<Props> {
           <div className="mt-5">
               <h2>Challenge Preference</h2>
               <p>Please choose your three prefered challenges <strong>until May 6th</strong> (1 -  first preference, 2 - second preference, 3 - third preference). In the next couple of weeks we will assign you to one challenge and inform you about our decision as soon as possible. Of course, we try to consider your preferences as far as possible.</p>
-              <a className="d-block mb-5" href='/#tracks' rel="noopener noreferrer" target='_blank'>Challenge overview...</a>
+              <p className="d-block mb-5">You find a detailed challenge description below...</p>
               <Switch className="custom-switch" onClick={this.switchChanged} on={this.state.userChallenges.dontCare}/>
               <span>I do not care - I am ready to hack any challenge</span>
                   <Row>
