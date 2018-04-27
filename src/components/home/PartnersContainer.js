@@ -72,7 +72,7 @@ class PartnersContainer extends Component {
         {this.props.response && this.props.response.acf && this.props.response.acf.trackPartners &&
         <div>
         <Container><PartnerSubTitle>Our track partners</PartnerSubTitle> </Container>
-        <ImageGrid containImage leftRightInset="20px" imageWidth={'100%'} elementWidth={'380px'} elementHeight={'200px'} elementMargin={'20px 20px'} elements={this.props.response.acf.trackPartners}/>
+        <ImageGrid containImage leftRightInset="20px" imageWidth={'100%'} elementWidth={'340px'} elementHeight={'200px'} elementMargin={'20px 20px'} elements={this.props.response.acf.trackPartners}/>
         </div>}
 
         {this.props.response && this.props.response.acf && this.props.response.acf.challengePartners &&
