@@ -50,7 +50,7 @@ class Home extends Component<{}> {
                     </section>
                   <section id="timeline">
                       <Container>
-                          <Heading title="TIMELINE TECHFEST 2018" subtitle="72H HACKATHON WITH A WARM-UP PRE-EVENT AND FIRST OF IT´S KIND LAUNCHPAD DAY FOR WINNING TEAMS"/>
+                          <Heading title="TIMELINE TECHFEST 2018" subtitle="72H HACKATHON WITH A WARM-UP PRE-EVENT AND FIRST OF ITS KIND LAUNCHPAD DAY"/>
                           <TimelineContainer/>
                       </Container>
                   </section>

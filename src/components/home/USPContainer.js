@@ -30,7 +30,7 @@ class USPContainer extends Component {
                 <FlexContainer id="usp-title-1" className="mb-4">
                     <Bracket/>
                     <HeaderLogo src={require('../../assets/icons/icon_challenge-mountain_black-white.png')}/>
-                    <HeaderTitle  onMouseOut={(e) =>e.target.innerHTML = "THE HACKATHON CHALLENGE"} onMouseOver={(e) =>e.target.innerHTML = "MORE_DISCIPLINES"}>THE HACKATHON CHALLENGE</HeaderTitle>
+                    <HeaderTitle  onMouseOut={(e) =>e.target.innerHTML = "THE TECHFEST COMPETITION"} onMouseOver={(e) =>e.target.innerHTML = "MORE_DISCIPLINES"}>THE TECHFEST COMPETITION</HeaderTitle>
                     <Bracket right/>
                 </FlexContainer>
                 <ul className="list-style-x">
@@ -44,7 +44,7 @@ class USPContainer extends Component {
                 <FlexContainer id="usp-title-3" className="mb-4">
                     <Bracket/>
                     <HeaderLogo src={require('../../assets/icons/icon_launchpad-rocket_black-white.png')}/>
-                    <HeaderTitle onMouseOut={(e) =>e.target.innerHTML = "A LAUNCH PAD FOR STARTUPS"} onMouseOver={(e) =>e.target.innerHTML = "MORE_IMPACT"}>A LAUNCH PAD FOR STARTUPS</HeaderTitle>
+                    <HeaderTitle onMouseOut={(e) =>e.target.innerHTML = "UNTERNEHMERTUM LAUNCH PAD"} onMouseOver={(e) =>e.target.innerHTML = "MORE_IMPACT"}>UNTERNEHMERTUM LAUNCH PAD</HeaderTitle>
                     <Bracket right/>
                 </FlexContainer>
                 <ul className="list-style-x">

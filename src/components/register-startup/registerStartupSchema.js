@@ -56,6 +56,7 @@ const schema = {
                         numberOfMembers: {
                             oneOf: [
                                 {
+                                    required: ["firstName1", "lastName1", "email1"],
                                     properties: {numberOfMembers: {enum: ["2"]},
                                         firstName1: {type: "string", title: "First Name"},
                                         lastName1: {type: "string", title: "Last Name"},
@@ -63,6 +64,7 @@ const schema = {
                                     }
                                 },
                                 {
+                                    required: ["firstName2", "lastName2", "email2"],
                                     properties: {numberOfMembers: {enum: ["3"]},
                                         firstName1: {type: "string", title: "First Name"},
                                         lastName1: {type: "string", title: "Last Name"},
@@ -73,7 +75,22 @@ const schema = {
                                     }
                                 },
                                 {
+                                    required: ["firstName3", "lastName3", "email3"],
                                     properties: {numberOfMembers: {enum: ["4"]},
+                                        firstName1: {type: "string", title: "First Name"},
+                                        lastName1: {type: "string", title: "Last Name"},
+                                        email1: {type: "string", title: "Email"},
+                                        firstName2: {type: "string", title: "First Name"},
+                                        lastName2: {type: "string", title: "Last Name"},
+                                        email2: {type: "string", title: "Email"},
+                                        firstName3: {type: "string", title: "First Name"},
+                                        lastName3: {type: "string", title: "Last Name"},
+                                        email3: {type: "string", title: "Email"},
+                                    }
+                                },
+                                {
+                                    required: ["firstName4", "lastName4", "email4"],
+                                    properties: {numberOfMembers: {enum: ["5"]},
                                         firstName1: {type: "string", title: "First Name"},
                                         lastName1: {type: "string", title: "Last Name"},
                                         email1: {type: "string", title: "Email"},
@@ -86,11 +103,11 @@ const schema = {
                                         firstName4: {type: "string", title: "First Name"},
                                         lastName4: {type: "string", title: "Last Name"},
                                         email4: {type: "string", title: "Email"},
-
                                     }
                                 },
                                 {
-                                    properties: {numberOfMembers: {enum: ["5"]},
+                                    required: ["firstName5", "lastName5", "email5"],
+                                    properties: {numberOfMembers: {enum: ["6"]},
                                         firstName1: {type: "string", title: "First Name"},
                                         lastName1: {type: "string", title: "Last Name"},
                                         email1: {type: "string", title: "Email"},
@@ -118,8 +135,8 @@ const schema = {
                     required: ["track", "worksOn", "whyChoose", "pitchDeck", "informEvents", "howHearAbout"],
                     properties: {
                         track: {type: "string", title: "Please choose your track:",
-                            enum: ["futureMobilityTransport", "quantifiedEarthAndSpace", "theSmartAutomationWave"],
-                            enumNames: ["Future Mobility & Transport", "Quantified Earth and Space", "The Smart Automation Wave"]
+                            enum: ["futureMobilityTransport", "quantifiedEarthAndSpace", "theSmartAutomationWave", "theAugmentedHuman"],
+                            enumNames: ["Future Mobility and Transport", "Quantified Earth and Space", "The Smart Automation Wave", "The Augmented Human"],
                         },
                         worksOn: {type: "string", title: "Which product feature do you plan to work on at TECHFEST?"},
                         whyChoose: {type: "string", title: "Why should we select your start-up (max. 140 characters)?"},
@@ -127,15 +144,15 @@ const schema = {
                         invitationCode: {type: "string", title: "Did you get an invitation code? If so, please type it in."},
                         informEvents: {type: "boolean", title: "Please inform me, if there are any events coming up. To do so I permit the use of my submitted personal data by UnternehmerTUM."},
                         howHearAbout: {type: "string", title: "How did you hear about TECHFEST?",
-                            enum: ["techfestFB", "utumFB", "uni", "friends_family", "other"],
-                            enumNames: ["TECHFEST facebook", "UnternehmerTUM facebook", "University", "Friends & Family", "other"]
+                            enum: ["techfestFB", "utumFB", "techFounders", "xpreneurs", "utumVCP", "appliedAi", "uni", "friends_family", "other"],
+                            enumNames: ["TECHFEST facebook", "UnternehmerTUM facebook", "TechFounders", "Xpreneurs", "UnternehmerTUM Venture Captial Partners", "appliedAI", "University", "Friends & Family", "other"],
                         },
                     },
                     dependencies: {
                         howHearAbout: {
                             oneOf: [
                                 {
-                                    properties: {howHearAbout: {enum: ["techfestFB", "utumFB", "uni", "friends_family"]}}
+                                    properties: {howHearAbout: {enum: ["techfestFB", "utumFB", "techFounders", "xpreneurs", "utumVCP", "appliedAi", "uni", "friends_family"]}}
                                 },
                                 {
                                     properties: {howHearAbout: {enum: ["other"]},

@@ -21,12 +21,12 @@ const TimelineContainer = () => (
                 <td>PRESENTATION OF PARTNER CHALLENGES</td>
                 <td>PROJECTWORK & WORKSHOPS</td>
                 <td>PROJECTWORK SEMI FINALS</td>
-                <td>LAUNCHPAD DAY<br/>For Start-ups and winning teams only</td>
+                <td>LAUNCHPAD DAY<br/>Exclusively for invited teams with most promising<br/> ideas for future business.</td>
             </tr>
             <tr><td/><td className="border-bottom border-dark" colSpan="3">LUNCH BREAK</td><td/></tr>
             <tr>
                 <td/>
-                <td>TRACK FACILITATION<br/>Project Work & Ideation</td>
+                <td>TRACK FACILITATION<br/>PROJECT WORK & IDEATION</td>
                 <td>PROJECTWORK & WORKSHOPS</td>
                 <td>GRAND FINAL TECHSLAM</td>
                 <td/>
@@ -51,6 +51,7 @@ const StyledTable = styled(Table)`
  > tbody > tr > td {
  border: none;
  font-weight: 700;
+ width: 200px;
 }
 `;
 

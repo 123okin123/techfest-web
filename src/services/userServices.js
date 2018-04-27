@@ -2,13 +2,14 @@
 import fetch from "cross-fetch";
 import { authHeader } from '../helpers';
 import {type User} from "../constants";
-import {setCookie, removeCookie} from "../helpers/session";
+import {setCookie, removeCookie, getCookie} from "../helpers/session";
 
 const userService = {
     login,
     logout,
     register,
     getById,
+    getMe,
     getAll,
     update,
     delete: _delete
@@ -67,6 +68,13 @@ function getById(id) {
     return fetch('/api/users/' + id, requestOptions).then(handleResponse);
 }
 
+function getMe() {
+    const requestOptions = {
+        method: 'GET',
+    };
+    return fetch('/api/users/me?token=' + getCookie("jwt") , requestOptions).then(handleResponse);
+}
+
 function register(user: User) :Promise<JSON> {
     const requestOptions = {
         method: 'POST',
@@ -83,7 +91,7 @@ function update(user) {
         body: JSON.stringify(user)
     };
 
-    return fetch('/api/users/' + user.id, requestOptions).then(handleResponse);
+    return fetch('/api/users/me?token=' + getCookie("jwt"), requestOptions).then(handleResponse);
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript

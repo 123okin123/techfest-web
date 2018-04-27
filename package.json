@@ -46,6 +46,7 @@
     "react-s3-uploader": "^4.8.0",
     "react-scroll": "^1.7.7",
     "react-spinners": "^0.2.6",
+    "react-toggle-switch": "^3.0.4",
     "react-transition-group": "^1.1.2",
     "reactstrap": "^5.0.0-beta",
     "redux": "^3.6.0",

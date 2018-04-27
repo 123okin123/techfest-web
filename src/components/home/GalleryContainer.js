@@ -28,10 +28,10 @@ class GalleryContainer extends Component<Props> {
             <Container className="pt-5">
                 <Row className="mt-5">
                     <Col xs="12" md="6">
-                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/-E-DKadx5Hk" frameBorder="0"  allowFullScreen/>
+                        <iframe title="techfest1" width="100%" height="315" src="https://www.youtube.com/embed/-E-DKadx5Hk" frameBorder="0"  allowFullScreen/>
                     </Col>
                     <Col xs="12" md="6">
-                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/CUOdwcsd6ww" frameBorder="0"  allowFullScreen/>
+                        <iframe title="techfest2" width="100%" height="315" src="https://www.youtube.com/embed/CUOdwcsd6ww" frameBorder="0"  allowFullScreen/>
                     </Col>
                 </Row>
             </Container>

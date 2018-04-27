@@ -7,59 +7,7 @@ import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 
 
-const technologyPartners = [
-    {
-        imageURL: require('../../assets/partnerLogos/logo_sap.jpg'),
-    },
-    {
-        imageURL: require('../../assets/partnerLogos/logo_google.png'),
-    },
-    {
-        imageURL: require('../../assets/partnerLogos/logo_we.png'),
-    },
-    {
-        imageURL: require('../../assets/partnerLogos/logo_infinion.png'),
-    },
-    {
-        imageURL: require('../../assets/partnerLogos/logo_flixbus.jpg'),
-    }
-];
-const ecosystemPartners = [
-    {
-        imageURL: require('../../assets/partnerLogos/logo_nbt.png'),
-    },
-    {
-        imageURL: require('../../assets/partnerLogos/logo_digitalhub.jpg'),
-    }
-];
-const trackPartners = [
-    {
-        imageURL: require('../../assets/partnerLogos/logo_osram.png'),
-    },
-    {
-        imageURL: require('../../assets/partnerLogos/logo_wacker.png'),
-    }
-];
-const challengePartners = [
-    {
-        imageURL: require('../../assets/partnerLogos/logo_stihl.png'),
-    },
-    {
-        imageURL: require('../../assets/partnerLogos/logo_magna.png'),
-    },
-    {
-        imageURL: require('../../assets/partnerLogos/logo_rohde.png'),
-    },
-    {
-        imageURL: require('../../assets/partnerLogos/logo_knorr.png'),
-    },
-    {
-        imageURL: require('../../assets/partnerLogos/logo_lh.png'),
-    },
-    {
-        imageURL: require('../../assets/partnerLogos/logo_hawe.jpg'),
-    }
-];
+
 
 class PartnersContainer extends Component {
     render() {return (

@@ -16,7 +16,8 @@ import LoginPage from './LoginPage';
 import PrivateRoute from "./other/PrivateRoute";
 import RegisterStartupPage from "./register-startup/RegisterStartupPage";
 import RegisterStartPage from "./RegisterStartPage";
-import PrivatePage from './PrivatePage';
+import PrivatePage from './private/PrivatePage';
+import VerifyRegistrationPage from "./VerifyRegistrationPage";
 
 
 
@@ -41,6 +42,8 @@ class App extends Component<{}> {
                         <Route path="/register-partner" component={PartnerRegistration}/>
                         <Route path="/press-media" component={PressMediaPage}/>
                         <Route path="/verify-newsletter" component={VerifyNewsletterPage}/>
+                        <Route path="/verify-register" component={VerifyRegistrationPage}/>
+
                         <Route path="/login" component={LoginPage}/>
                         <PrivateRoute path="/private" component={PrivatePage}/>
                         <Route component={NotFoundPage}/>

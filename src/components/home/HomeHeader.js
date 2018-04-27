@@ -11,24 +11,24 @@ type State = {
 class HomeHeader extends Component<{},State> {
     constructor() {
         super();
+        this.onScroll = this.onScroll.bind(this);
         this.state = {
             scrollY: 0
         }
     }
     componentDidMount() {
-        //$FlowFixMe
-        document.addEventListener('scroll', () => {
-                //$FlowFixMe
-                this.setState({ scrollY: window.scrollY })
-
-        });
+        document.addEventListener('scroll',this.onScroll);
     }
+    componentWillUnmount() {
+        document.removeEventListener('scroll', this.onScroll)
+    }
+
+    onScroll() {
+        this.setState({ scrollY: window.scrollY })
+    }
+
     render() { return (
         <Header>
-            {/*<Video className="d-none d-sm-block" autoPlay loop muted>*/}
-            {/*<source src={require('../../assets/X-bg-2.mp4')} type="video/mp4"/>*/}
-            {/*</Video>*/}
-            {/*<Overlay/>*/}
             <Background imgURL={require('../../assets/TF_WebsiteHeader_opt.jpg')}/>
             <LineOverlay yPosition={- this.state.scrollY * 0.6}/>
             <Container>
