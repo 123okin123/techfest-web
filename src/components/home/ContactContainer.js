@@ -25,7 +25,7 @@ class ContactContainer extends Component<Props> {
 
     render() { return(
         <Row>
-            <Col xs="12" sm="6" className="mb-3">
+            <Col xs="12" md="6" className="mb-3">
                 <AvForm onValidSubmit={this.handleValidSubmit}>
                     <AvField name="name" type="text" placeholder="Surname, Name" autoComplete="name" required />
                     <AvField name="email" type="email" placeholder="Email Address" autoComplete="email" required />
@@ -44,7 +44,7 @@ class ContactContainer extends Component<Props> {
                 </Alert>
                 }
             </Col>
-            <Col>
+            <Col xs="12" md="6">
                 <MapComponent
                     isMarkerShown
                     googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
