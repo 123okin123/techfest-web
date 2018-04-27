@@ -7,6 +7,8 @@ import Switch from 'react-toggle-switch'
 import "../../../node_modules/react-toggle-switch/dist/css/switch.min.css"
 import {pageActions} from "../../actions/pageActions";
 import {connect} from "react-redux";
+import styled from 'styled-components';
+import {ScaleLoader} from 'react-spinners';
 
 
 
@@ -133,10 +135,10 @@ class ChallengeSelection extends Component<Props> {
                     <h3 className="mt-5 mb-4">Challenge Descriptions</h3>
                       {this.props.response && this.props.response.acf && this.props.response.acf.challenge_descriptions &&
                       <div>
-                          {this.props.response.acf.challenge_descriptions.map((track, index)=>
+                          {this.props.response.acf.challenge_descriptions.map((track, index) =>
                             <div key={index.toString()}>
                                 <h4 className="mt-5">{track.track_title}</h4>
-                                {track.challenges.map((challenge, index)=>
+                                {track.challenges.map((challenge, index) =>
                                   <div key={index.toString()}>
                                       <h5 className="mt-4">{challenge.challenge_title}</h5>
                                       <p className="mb-0"><strong>{challenge.challenge_company}</strong></p>
@@ -146,7 +148,10 @@ class ChallengeSelection extends Component<Props> {
                             </div>
                           )}
                       </div>
-                      }
+                      }{this.props.isFetching &&
+                        <LoaderContainer><ScaleLoader loading={true} height={20} width={2}/></LoaderContainer>
+                       }
+
 
 
 
@@ -188,10 +193,10 @@ class ChallengeSelection extends Component<Props> {
                       {/*<h4 className="mt-5">FUTURE MOBILITY</h4>*/}
                       {/*<h5 className="mt-4">Sense the World!</h5>*/}
                       {/*<p className="mb-0"><strong>Magna</strong></p>*/}
-                      <p>
-                          Today’s vehicles have over 100 sensors on board and are getting smarter with each vehicle generation. Invent new functionalities & features by using the sensor & connectivity landscape!
-                          Dive into the world of automotive sensors and their current functions, be creative, use sensor fusion to create new features with the existing sensor landscape! Show us your new and innovative ideas to transform the world of mobility: It’s about creating technology that is smarter, cleaner, safer, and lighter. For the automotive industry, our communities, and all who share the road. Drive the future of Mobility!
-                      </p>
+                      {/*<p>*/}
+                          {/*Today’s vehicles have over 100 sensors on board and are getting smarter with each vehicle generation. Invent new functionalities & features by using the sensor & connectivity landscape!*/}
+                          {/*Dive into the world of automotive sensors and their current functions, be creative, use sensor fusion to create new features with the existing sensor landscape! Show us your new and innovative ideas to transform the world of mobility: It’s about creating technology that is smarter, cleaner, safer, and lighter. For the automotive industry, our communities, and all who share the road. Drive the future of Mobility!*/}
+                      {/*</p>*/}
 
                       {/*<h5 className="mt-5">Audi Autonomous Fleet Experience</h5>*/}
                       {/*<p className="mb-0"><strong>Audi</strong></p>*/}
@@ -228,7 +233,12 @@ class ChallengeSelection extends Component<Props> {
     }
 }
 
-
+const LoaderContainer = styled.div`
+  padding-top: 100px;
+  margin: auto;
+  text-align: center;
+  width: 100px;
+`;
 
 function mapStateToProps(state, ownProps) {
     const {response, isFetching} = state.pages['2211'] || {response: {content: {rendered: ''}}, isFetching: true};
