@@ -24,10 +24,12 @@ function fetchPage(id: string) {
         return pageServices.fetchPage(id)
             .then(
                 response => {
-                    dispatch(success(response, id))
+                    dispatch(success(response, id));
+                    return Promise.resolve();
                 },
                 error => {
-                    dispatch(failure(error, id))
+                    dispatch(failure(error, id));
+                    return Promise.reject(error);
                 })
     };
     function request(id) {return {type: pageConstants.PAGE_REQUEST, id}}
