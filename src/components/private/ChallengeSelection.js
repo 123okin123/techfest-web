@@ -1,10 +1,10 @@
 //@flow
 
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input, Alert, Col, Row } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Col, Row } from 'reactstrap';
 import Switch from 'react-toggle-switch'
 
-import "../../node_modules/react-toggle-switch/dist/css/switch.min.css"
+import "../../../node_modules/react-toggle-switch/dist/css/switch.min.css"
 
 
 
@@ -32,7 +32,16 @@ class ChallengeSelection extends Component<Props> {
             thirdChoice: ''
         };
         this.state = {
-            options: [" ","1", "2", "3", "4"],
+            options: [" ",
+                "Sense the World! - Future Mobility",
+                "German quality tools in a smart and connected future - Smart Automation Wave",
+                "Countering drones - Build your SKY-PROTECTOR - Quantified Earth",
+                "Future Hydraulics - Smart Automation Wave",
+                "Shape energy efficient rail transportation - Future Mobility",
+                "Wild Track and Smart City - Wild Track and Smart City",
+                "Food and Baverage - Smart Automation Wave",
+                "Audi Autonomous Fleet Experience - Future Mobility"
+            ],
             userChallenges: userChallenges
         }
     }
@@ -64,8 +73,8 @@ class ChallengeSelection extends Component<Props> {
         return (
           <div className="mt-5">
               <h2>Challenge Preference</h2>
-              <p>Please choose your three prefered challenges until May 6th (1 -  first preference, 2 - second preference, 3 - third preference). In the next couple of weeks we will assign you to one challenge and inform you about our decision as soon as possible. Of course, we try to consider your preferences as far as possible.</p>
-              <a className="d-block mb-5" href='/#tracks' target='_blank'>Challenge overview...</a>
+              <p>Please choose your three prefered challenges <strong>until May 6th</strong> (1 -  first preference, 2 - second preference, 3 - third preference). In the next couple of weeks we will assign you to one challenge and inform you about our decision as soon as possible. Of course, we try to consider your preferences as far as possible.</p>
+              <a className="d-block mb-5" href='/#tracks' rel="noopener noreferrer" target='_blank'>Challenge overview...</a>
               <Switch className="custom-switch" onClick={this.switchChanged} on={this.state.userChallenges.dontCare}/>
               <span>I do not care - I am ready to hack any challenge</span>
                   <Row>

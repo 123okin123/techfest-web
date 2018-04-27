@@ -5,7 +5,7 @@ import React, {Component} from 'react'
 import {Container, Row, Col, Alert} from 'reactstrap'
 import ChallengeSelection from './ChallengeSelection'
 import {connect} from "react-redux";
-import {userActions} from "../actions";
+import {userActions} from "../../actions/index";
 import PreEventInfo from './PreEventInfo';
 import styled from 'styled-components'
 
@@ -61,7 +61,7 @@ class PrivatePage extends Component {
         return (
       <Container className="pt-5">
           {this.state.showAlert &&
-          <StyledAlert className="mt-3" color="success">
+          <StyledAlert className="mt-3 text-center" color="success">
               Saved
           </StyledAlert>}
           <h1>MEMBER AREA</h1>

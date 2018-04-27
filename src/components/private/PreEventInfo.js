@@ -1,7 +1,7 @@
 //@flow
 
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input, Alert, Col, Row } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Col, Row } from 'reactstrap';
 import styled from 'styled-components'
 
 

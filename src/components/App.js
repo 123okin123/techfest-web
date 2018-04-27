@@ -16,7 +16,7 @@ import LoginPage from './LoginPage';
 import PrivateRoute from "./other/PrivateRoute";
 import RegisterStartupPage from "./register-startup/RegisterStartupPage";
 import RegisterStartPage from "./RegisterStartPage";
-import PrivatePage from './PrivatePage';
+import PrivatePage from './private/PrivatePage';
 import VerifyRegistrationPage from "./VerifyRegistrationPage";
 
 
