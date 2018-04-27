@@ -52,8 +52,8 @@ class Navigation extends Component<Props, State> {
     }
 
     render() {
-        const logo = (this.state.isTop && this.props.isFrontPage) ? <img className="d-none d-sm-block" src={require('../../assets/TF_logoNEW_ square_white.png')} height="40" alt="techfest-logo"/> :  <img className="d-none d-sm-block" src={require('../../assets/TF_logoNEW_ square_black.png')} height="40" alt="techfest-logo"/>;
-        const mobileLogo = <img className="d-block d-sm-none" src={require('../../assets/TF_logoNEW_ square_black.png')} height="40" alt="techfest-logo"/>;
+        const logo = (this.state.isTop && this.props.isFrontPage) ? <img className="d-none d-lg-block" src={require('../../assets/TF_logoNEW_ square_white.png')} height="40" alt="techfest-logo"/> :  <img className="d-none d-lg-block" src={require('../../assets/TF_logoNEW_ square_black.png')} height="40" alt="techfest-logo"/>;
+        const mobileLogo = <img className="d-block d-lg-none" src={require('../../assets/TF_logoNEW_ square_black.png')} height="40" alt="techfest-logo"/>;
         const LoginComponent = (this.props.loggedIn) ?
           <StyledNavItem>
               <LoginNavLink to="/" onClick={this.props.logout} isFrontPage={this.props.isFrontPage} isTop={this.state.isTop}>Logout</LoginNavLink>
@@ -64,7 +64,7 @@ class Navigation extends Component<Props, State> {
 
         return (
             <div>
-                <StyledNavBar isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} light fixed="top" expand="sm">
+                <StyledNavBar isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} light fixed="top" expand="lg">
                     <NavbarBrand tag={Link} to="/">{logo}{mobileLogo}</NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
@@ -118,7 +118,7 @@ padding: 0.8em;
 const StyledNavBar = styled(({ isTop, isFrontPage, ...rest }) => <Navbar {...rest} />)`
 background-color: ${props => props.theme.background};
 box-shadow: 0 7px 10px 0 #00000024;
-@media (min-width: 576px) { 
+@media (min-width: 992px) { 
 background-color: ${props => (props.isTop && props.isFrontPage) ? '#ffffff00' : props.theme.background};
 box-shadow: ${props => (props.isTop && props.isFrontPage) ? 'none' : '0px 7px 10px 0px #00000024'};
 transition: background-color 200ms linear;
@@ -129,7 +129,7 @@ color: #000;
 &:hover {
 text-decoration: none;
 }
-@media (min-width: 576px) { 
+@media (min-width: 992px) { 
  color: ${props => (props.isTop && props.isFrontPage) ? '#fff' : '#000' }!important;
  &:hover {
   color: ${props => (props.isTop && props.isFrontPage) ? props.theme.secondary : '#828282' }!important;

@@ -57,15 +57,17 @@ class ChallengeSelection extends Component<Props> {
     }
 
     switchChanged() {
-        this.setState({
-            ...this.state,
-            userChallenges: {
+        const userChallenges = {
                 dontCare: !this.state.userChallenges.dontCare,
                 firstChoice: '',
                 secondChoice: '',
                 thirdChoice: '',
-            }
-        })
+        };
+        this.setState({
+            ...this.state,
+            userChallenges
+        });
+        this.props.onChange(userChallenges);
     }
 
     render() {
