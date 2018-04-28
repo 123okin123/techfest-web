@@ -8,8 +8,7 @@ export function authentication(state = {}, action: Action) {
     switch (action.type) {
         case userConstants.LOGIN_REQUEST:
             return {
-                loggingIn: true,
-                role: action.user.role
+                loggingIn: true
             };
         case userConstants.LOGIN_SUCCESS:
             return {

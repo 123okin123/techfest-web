@@ -48,7 +48,7 @@ function uploadFileAndRegister(user: User, uploadFiles: Array<any>) {
 
 function login(email: string, password: string) {
     return (dispatch: any) => {
-        dispatch(request({ email }));
+        dispatch(request());
         return userService.login(email, password)
             .then(
                 user => {
@@ -62,7 +62,7 @@ function login(email: string, password: string) {
             );
     };
 
-    function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
+    function request(user) { return { type: userConstants.LOGIN_REQUEST } }
     function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
     function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
 }

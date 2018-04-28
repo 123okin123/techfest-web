@@ -1,17 +1,17 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import reducers from './reducers'
 import thunkMiddleware from 'redux-thunk';
-//import {createLogger} from "redux-logger";
+import {createLogger} from "redux-logger";
 
 import { routerMiddleware } from 'react-router-redux'
 
-//const loggerMiddleware = createLogger();
+const loggerMiddleware = createLogger();
 
 
 export default function configureStore(initialState = {}, history) {
   // Create the store with two middlewares
     let middlewares = [
-       // loggerMiddleware,
+        loggerMiddleware,
         thunkMiddleware
     ];
   if (typeof history === 'object') {

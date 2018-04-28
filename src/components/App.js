@@ -1,7 +1,8 @@
 //@flow
 import React, { Component } from 'react';
 
-import Navigation from './other/Navigation'
+import Navigation from './other/Navigation';
+import MemberNavigation from './other/MemberNavigation';
 import Home from './home/HomePage'
 import RegisterPage from './register/RegisterPage'
 import {Route, Switch} from 'react-router-dom'
@@ -18,9 +19,15 @@ import RegisterStartupPage from "./register-startup/RegisterStartupPage";
 import RegisterStartPage from "./RegisterStartPage";
 import PrivatePage from './private/PrivatePage';
 import VerifyRegistrationPage from "./VerifyRegistrationPage";
+import {roles} from '../constants/userConstants';
+import PartnerPage from "./private/PartnerPage";
 
-
-
+const allPartnerRoles = [
+    roles.CHALLENGE_PARTNER_ROLE,
+    roles.ECOSYSTEM_PARTNER_ROLE,
+    roles.TECHNOLOGY_PARTNER_ROLE,
+    roles.TRACK_PARTNER_ROLE
+];
 
 
 class App extends Component<{}> {
@@ -28,6 +35,18 @@ class App extends Component<{}> {
       <RootComponent id="app-root">
           <Switch>
               <Route exact path="/" render={ () => <div><Navigation isFrontPage={true}/><Home/></div>}/>
+              <PrivateRoute path="/private" render={ () => { return (
+                <div>
+                    <MemberNavigation isFrontPage={false}/>
+                    <div style={{marginTop: '5em', minHeight: '100vh'}}>
+                        <Switch>
+                            <PrivateRoute exact path="/private" permittedRoles={[roles.ADMIN_ROLE, roles.PARTICIPANT_ROLE]} component={PrivatePage}/>
+                            <PrivateRoute path="/private/partner" permittedRoles={[roles.ADMIN_ROLE].concat(allPartnerRoles)} component={PartnerPage}/>
+                            <Route component={NotFoundPage}/>
+                        </Switch>
+                    </div>
+                </div>
+              )}}/>
               <Route path="/" render={() => { return(
                   <div>
                   <Navigation isFrontPage={false}/>
@@ -45,7 +64,6 @@ class App extends Component<{}> {
                         <Route path="/verify-register" component={VerifyRegistrationPage}/>
 
                         <Route path="/login" component={LoginPage}/>
-                        <PrivateRoute path="/private" component={PrivatePage}/>
                         <Route component={NotFoundPage}/>
                     </Switch>
                   </div>
