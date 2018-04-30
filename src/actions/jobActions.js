@@ -1,0 +1,109 @@
+//@flow
+
+import {type Dispatch, jobConstants} from "../constants";
+import {type State} from "../reducers/jobsReducer";
+import jobServices from '../services/jobServices';
+
+export const jobActions = {
+    fetchJobsIfNeeded,
+    saveJob,
+    updateJob,
+    deleteJob
+};
+
+function fetchJobsIfNeeded() {
+    return (dispatch: Dispatch, getState: () => State) => {
+        if (shouldFetchJobs(getState())) {
+            return dispatch(fetchJobs())
+        }
+    }
+}
+
+function fetchJobs() {
+    return (dispatch: Dispatch) => {
+        dispatch(request());
+        return jobServices.fetchJobs()
+          .then(
+            jobs => {
+                dispatch(success(jobs));
+                return Promise.resolve();
+            },
+            error => {
+                dispatch(failure(error));
+                return Promise.reject(error);
+            })
+    };
+    function request() {return {type: jobConstants.GET_JOBS_REQUEST }}
+    function success(jobs) {return {type: jobConstants.GET_JOBS_SUCCESS, jobs}}
+    function failure(error) {return {type: jobConstants.GET_JOBS_FAILURE, error}}
+}
+
+function shouldFetchJobs(state: State) :boolean {
+    const jobs = state.jobs;
+    if (!jobs) {
+        return true
+    } else if (state.loading) {
+        return false
+    } else {
+        return false
+    }
+}
+
+
+function saveJob(job: {}) {
+    return (dispatch: Dispatch) => {
+        dispatch(request());
+        return jobServices.saveJob(job)
+          .then(
+            () => {
+                dispatch(success(job));
+                return Promise.resolve();
+            },
+            error => {
+                dispatch(failure(error));
+                return Promise.reject(error);
+            })
+    };
+    function request() {return {type: jobConstants.SAVE_JOB_REQUEST }}
+    function success(job) {return {type: jobConstants.SAVE_JOB_SUCCESS, job }}
+    function failure(error) {return {type: jobConstants.SAVE_JOB_FAILURE, error}}
+}
+
+function updateJob(job: {}) {
+    return (dispatch: Dispatch) => {
+        dispatch(request(job));
+        return jobServices.updateJob(job)
+          .then(
+            (job) => {
+                dispatch(success(job));
+                return Promise.resolve();
+            },
+            error => {
+                dispatch(failure(job, error));
+                return Promise.reject(error);
+            })
+    };
+    function request(job) {return {type: jobConstants.UPDATE_JOB_REQUEST, job }}
+    function success(job) {return {type: jobConstants.UPDATE_JOB_SUCCESS, job }}
+    function failure(job,error) {return {type: jobConstants.UPDATE_JOB_FAILURE, job, error}}
+}
+
+function deleteJob(id: string) {
+    return (dispatch: Dispatch) => {
+        dispatch(request(id));
+        return jobServices.deleteJob(id)
+          .then(
+            () => {
+                dispatch(success(id));
+                return Promise.resolve();
+            },
+            error => {
+                dispatch(failure(id, error));
+                return Promise.reject(error);
+            })
+    };
+    function request(id) {return {type: jobConstants.DELETE_JOB_REQUEST, id }}
+    function success(id) {return {type: jobConstants.DELETE_JOB_SUCCESS, id }}
+    function failure(id, error) {return {type: jobConstants.DELETE_JOB_FAILURE, id, error}}
+}
+

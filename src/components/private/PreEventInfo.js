@@ -8,12 +8,15 @@ import styled from 'styled-components'
 
 
 type Props = {
-    onChange: (boolean)=>void,
-    loading: ?boolean,
-    preEvent: ?boolean
+    onChange: (?boolean)=>void,
+    loading?: boolean,
+    preEvent?: boolean
+}
+type State = {
+    preEvent?: boolean
 }
 
-class PreEventInfo extends Component<Props> {
+class PreEventInfo extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
 

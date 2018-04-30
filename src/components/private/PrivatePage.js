@@ -9,11 +9,30 @@ import {userActions} from "../../actions/index";
 import PreEventInfo from './PreEventInfo';
 import styled from 'styled-components'
 
-class PrivatePage extends Component {
+type Props = {
+    updateSuccess?: boolean,
+    updating?: boolean,
+    loading?: boolean,
+    data: {
+        applicantFields?: {
+            userChallenges?: {},
+            preEvent?: boolean
+        }
+    },
+    getInfo: ()=>void,
+    update: ({})=>void
+}
+
+type State = {
+    showAlert: boolean,
+    timer: any,
+}
+
+class PrivatePage extends Component<Props,State> {
     constructor(props) {
         super(props);
-        this.challengeSelectionChanged = this.challengeSelectionChanged.bind(this);
-        this.preEventChanged = this.preEventChanged.bind(this);
+        (this: any).challengeSelectionChanged = this.challengeSelectionChanged.bind(this);
+        (this: any).preEventChanged = this.preEventChanged.bind(this);
         this.state = {
             showAlert: false,
             timer: null,
@@ -35,7 +54,7 @@ class PrivatePage extends Component {
         });
     }
 
-    preEventChanged(preEvent: boolean) {
+    preEventChanged(preEvent: ?boolean) {
         if (!this.props.data) {return}
         this.props.update({
             ...this.props.data,

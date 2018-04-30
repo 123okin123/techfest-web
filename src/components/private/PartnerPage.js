@@ -6,7 +6,7 @@ import {Container, Row, Col} from 'reactstrap'
 import {connect} from "react-redux";
 
 
-class PartnerPage extends Component {
+class PartnerPage extends Component<{}> {
 
     render() {
         return (

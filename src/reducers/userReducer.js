@@ -3,11 +3,11 @@
 import { userConstants, type Action } from '../constants';
 
 type State = {
-    loading: ?boolean,
-    updating: ?boolean,
-    data: ?{},
-    updateSuccess: boolean,
-    error: ?string
+    +loading?: boolean,
+    +updating?: boolean,
+    +data?: {},
+    +updateSuccess?: boolean,
+    +error?: string
 }
 
 export function user(state: State = {}, action: Action):State {

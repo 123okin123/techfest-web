@@ -3,7 +3,8 @@
 import React from 'react';
 import {connect} from "react-redux";
 import styled from 'styled-components'
-import {NavLink, NavItem} from 'reactstrap';
+import { NavHashLink as NavLink } from 'react-router-hash-link';
+import { NavItem} from 'reactstrap';
 
 const PrivateNavItem = ({ title,  permittedRoles, ...rest }) => {
     let roleAllowed = true;
@@ -12,10 +13,10 @@ const PrivateNavItem = ({ title,  permittedRoles, ...rest }) => {
     }
     return (
     rest.loggedIn && roleAllowed ?
-        <StyledNavItem>
-            <StyledNavLink {...rest} >{title}</StyledNavLink>
-        </StyledNavItem>
-      : <div/>
+      <StyledNavItem>
+          <StyledNavLink {...rest} >{title}</StyledNavLink>
+      </StyledNavItem>
+      : <span/>
     )
 };
 
@@ -23,7 +24,7 @@ const StyledNavItem = styled(NavItem)`
   padding: 0.8em;
 `;
 
-const StyledNavLink = styled(({isLogin, ...rest}) => <NavLink {...rest} />)`
+const StyledNavLink = styled(({isLogin, role, loggedIn, ...rest}) => {return (<NavLink {...rest} />)})`
     color: #000!important;
     &:hover {
     text-decoration: none;
