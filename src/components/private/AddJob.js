@@ -10,6 +10,10 @@ type Props = {
     +saveJob: ({})=>void
 }
 
+type State = {
+    defaultValues: {}
+}
+
 class AddJob extends Component<Props> {
     constructor(props: Props) {
         super(props);
@@ -17,18 +21,22 @@ class AddJob extends Component<Props> {
     }
 
     handleValidSubmit(event, values) {
-        this.props.saveJob(values);
+        this.props.saveJob(values).then(job=>{
+            this.form && this.form.reset();
+        });
     }
 
-    render() {return (
-      <div>
-      <AvForm onValidSubmit={this.handleValidSubmit}>
+    render() {
+        const {className} = this.props;
+        return (
+      <div className={className}>
+      <AvForm id="add-job-form" onValidSubmit={this.handleValidSubmit} ref={c => (this.form = c)}>
           <AvField name="title" label="Title" required />
-          <AvField type="textarea" name="description" label="Description" required />
-          <Button>Submit</Button>
+          <AvField type="textarea" rows="8" name="description" label="Description" required />
+          <Button>Save</Button>
       </AvForm>
           {this.props.saveError &&
-          <Alert>{this.props.saveError}</Alert>
+          <Alert color="danger" className="mt-3">{this.props.saveError}</Alert>
           }
       </div>
     )}
@@ -42,7 +50,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         saveJob: (job) => {
-            dispatch(jobActions.saveJob(job))
+            return dispatch(jobActions.saveJob(job))
         }
     }
 };

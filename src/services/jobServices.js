@@ -27,7 +27,8 @@ function saveJob(job: {}) :Promise<JSON> {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(job)
     };
-    return fetch('/api/jobs/?token=' + getCookie("jwt"), requestOptions).then(handleResponse);
+    return fetch('/api/jobs/?token=' + getCookie("jwt"), requestOptions)
+      .then(handleResponse).then(response=>Promise.resolve(response.job));
 }
 
 function updateJob(id: string, job: {}) {
@@ -36,7 +37,6 @@ function updateJob(id: string, job: {}) {
         headers: { ...authHeader(), 'Content-Type': 'application/json' },
         body: JSON.stringify(job)
     };
-
     return fetch('/api/jobs/'+ id +'?token=' + getCookie("jwt"), requestOptions)
       .then(handleResponse).then(response=>Promise.resolve(response.job));
 }

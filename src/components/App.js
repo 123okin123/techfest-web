@@ -22,7 +22,7 @@ import VerifyRegistrationPage from "./VerifyRegistrationPage";
 import {roles, allPartnerRoles} from '../constants/userConstants';
 import PartnerPage from "./private/PartnerPage";
 import MemberAreaPage from './private/MemberAreaPage';
-
+import JobPage from './private/JobPage';
 
 
 
@@ -40,6 +40,8 @@ class App extends Component<{}> {
                   <PrivateRoute exact path="/private" component={MemberAreaPage}/>
                   <PrivateRoute path="/private/pre-event" permittedRoles={[roles.ADMIN_ROLE, roles.PARTICIPANT_ROLE]} component={PreEventPage}/>
                   <PrivateRoute path="/private/partner" permittedRoles={[roles.ADMIN_ROLE].concat(allPartnerRoles)} component={PartnerPage}/>
+                  <PrivateRoute path="/private/jobs" permittedRoles={Object.values(roles)} component={JobPage}/>
+
 
                   <Route exact path="/" component={HomePage}/>
                   <Route path="/imprint" render={() => (<Page title="Imprint" id='11'/>)}/>

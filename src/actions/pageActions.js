@@ -14,6 +14,8 @@ function fetchPageIfNeeded(id: string) {
     return (dispatch: any, getState: () => Pages) => {
         if (shouldFetchPage(getState(), id)) {
             return dispatch(fetchPage(id))
+        } else {
+            return Promise.resolve();
         }
     }
 }

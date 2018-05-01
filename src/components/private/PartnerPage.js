@@ -9,14 +9,21 @@ import JobList from './JobList';
 
 class PartnerPage extends Component<{}> {
 
+
     render() {
         return (
           <Container className="pt-5">
               <h1>PARTNER AREA</h1>
               <Row>
+                  <Col md="6">
+                      <h4>Add Job</h4>
+                      <AddJob className="mb-5"/>
+                  </Col>
+              </Row>
+              <Row>
                   <Col>
-                      <AddJob/>
-                      <JobList/>
+                      <h4>Published Jobs</h4>
+                      <JobList editable/>
                   </Col>
               </Row>
           </Container>

@@ -53,12 +53,13 @@ class ChallengeSelection extends Component<Props> {
     }
 
     componentDidMount() {
+        if (this.props.isFetching) {return}
         this.props.fetchPage()
           .then(()=>{
             if (this.props.response && this.props.response.acf && this.props.response.acf.preference_options) {
                 this.setState({options: this.props.response.acf.preference_options.map(e=> e.option)})
             }
-        })
+        }).catch(err=>console.log(err))
     }
 
 

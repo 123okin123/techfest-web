@@ -11,7 +11,6 @@ const PrivateNavItem = ({ title,  permittedRoles, to, isLogin, ...rest }) => {
     if (permittedRoles) {
         roleAllowed = permittedRoles.includes(rest.role)
     }
-    console.log('render', title);
     return (
     rest.loggedIn && roleAllowed ?
       <Route path={to} children={(match)=> {console.log(title, match);return (
@@ -25,9 +24,11 @@ const PrivateNavItem = ({ title,  permittedRoles, to, isLogin, ...rest }) => {
 
 const StyledNavItem = styled(({isLogin, ...rest}) => {return(<NavItem {...rest}/>)})`
     padding: 0.8em;
+    @media (min-width: 992px) { 
     & .active {
     border-bottom: ${props=> props.isLogin ? '': '3px solid #000'};
     padding-bottom: ${props=> props.isLogin ? '': '1.2em'};
+    }
     }
 `;
 

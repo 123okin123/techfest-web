@@ -15,6 +15,8 @@ function fetchJobsIfNeeded() {
     return (dispatch: Dispatch, getState: () => JobsState) => {
         if (shouldFetchJobs(getState())) {
             return dispatch(fetchJobs())
+        } else {
+            return Promise.resolve();
         }
     }
 }
@@ -55,9 +57,9 @@ function saveJob(job: {}) {
         dispatch(request());
         return jobServices.saveJob(job)
           .then(
-            () => {
-                dispatch(success(job));
-                return Promise.resolve();
+            (newJob) => {
+                dispatch(success(newJob));
+                return Promise.resolve(newJob);
             },
             error => {
                 dispatch(failure(error));
@@ -72,11 +74,11 @@ function saveJob(job: {}) {
 function updateJob(job: {}) {
     return (dispatch: Dispatch) => {
         dispatch(request(job));
-        return jobServices.updateJob(job)
+        return jobServices.updateJob(job._id, job)
           .then(
             (job) => {
                 dispatch(success(job));
-                return Promise.resolve();
+                return Promise.resolve(job);
             },
             error => {
                 dispatch(failure(job, error));
@@ -95,7 +97,7 @@ function deleteJob(id: string) {
           .then(
             () => {
                 dispatch(success(id));
-                return Promise.resolve();
+                return Promise.resolve(id);
             },
             error => {
                 dispatch(failure(id, error));
