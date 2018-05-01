@@ -49,7 +49,7 @@ class PreEventInfo extends Component<Props, State> {
                                   </Label>
                               </FormGroup>
                           </FormGroup>
-                          <Button disabled={this.props.loading} type="submit">Save</Button>
+                          <Button color="primary" disabled={this.props.loading} type="submit">Save</Button>
                       </Form>
 
                   </Col>

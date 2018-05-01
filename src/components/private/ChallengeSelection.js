@@ -127,7 +127,7 @@ class ChallengeSelection extends Component<Props> {
                                       ))}
                                   </Input>
                               </FormGroup>
-                              <Button disabled={this.props.loading} type="submit">Save</Button>
+                              <Button color="primary" disabled={this.props.loading} type="submit">Save</Button>
                           </Form>
                       </Col>
                 </Row>

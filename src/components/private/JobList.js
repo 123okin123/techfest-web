@@ -6,6 +6,7 @@ import {jobActions} from "../../actions";
 import {AvForm, AvField} from "availity-reactstrap-validation";
 import {Button} from 'reactstrap';
 import styled from 'styled-components';
+import {getCookie} from '../../helpers/session';
 
 type Props = {
     showJobsOfCompany?: string,
@@ -26,6 +27,7 @@ type State = {
         description: string,
         company: string,
         editable?: boolean,
+        fileURL: string,
     }>
 }
 
@@ -70,7 +72,7 @@ class JobList extends Component<Props,State> {
               {jobs.map((job, index)=> {
               if (job.editable) {
                   return (
-                    <li className="border-bottom border-dark p-3" key={index.toString()}>
+                    <li className="border-bottom border-dark p-4" key={index.toString()}>
                         <AvForm onValidSubmit={(event, values)=>this.handleValidSubmit(event, values, job)} model={{title: job.title, description: job.description}}>
                             <StyledAvField name="title" required />
                             <p className="mb-0"><strong>{job.company}</strong></p>
@@ -81,7 +83,8 @@ class JobList extends Component<Props,State> {
                     </li>)
               } else {
                   return (
-                    <li className="border-bottom border-dark p-3" key={index.toString()}>
+                    <li className="border-bottom border-dark p-4" key={index.toString()}>
+                        <Button className="float-right" tag={'a'} size="sm" href={job.fileURL + '?token=' + getCookie("jwt")}>Job File</Button>
                         <h5 className="mb-0">{job.title}</h5>
                         <p className="mb-0"><strong>{job.company}</strong></p>
                         <p className="mb-0">{job.description}</p>
