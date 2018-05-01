@@ -16,13 +16,13 @@ import FAQs from './FAQs'
 
 
 
-class Home extends Component<{}> {
+class HomePage extends Component<{}> {
     componentWillMount() {
 
     }
 
     render() {
-        return(<div>
+        return(<div style={{marginTop: '-5em'}}>
                 <HomeHeader/>
                     <section id="summary">
                         <SummaryContainer/>
@@ -88,4 +88,4 @@ class Home extends Component<{}> {
 
 
 
-export default Home
+export default HomePage

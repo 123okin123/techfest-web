@@ -4,7 +4,6 @@
 import fetch from "cross-fetch";
 import {getCookie} from "../helpers/session";
 import {authHeader} from "../helpers";
-import type {User} from "../constants";
 
 const jobServices = {
     fetchJobs,

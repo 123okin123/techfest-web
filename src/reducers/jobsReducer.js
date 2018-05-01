@@ -2,45 +2,53 @@
 
 import {type Action, jobConstants} from '../constants';
 
-type State = {
-    +loading?: boolean,
-    +items?: Array<{}>,
+export type JobsState = {
+    +fetching: boolean,
+    +saving :boolean,
+    +items?: Array<{
+        +updating?: boolean,
+        +deleting?: boolean
+    }>,
     +fetchError?: string,
     +deleteError?: string,
     +updateError?: string,
     +saveError?: string
 }
 
-export function jobs(state: State = {}, action: Action):State {
+export function jobs(state: JobsState = {fetching: false, saving: false}, action: Action):JobsState {
     switch (action.type) {
         case jobConstants.GET_JOBS_REQUEST:
             return {
                 ...state,
-                loading: true
+                fetching: true
             };
         case jobConstants.GET_JOBS_SUCCESS:
             return {
                 ...state,
+                fetching: false,
                 items: action.jobs
             };
         case jobConstants.GET_JOBS_FAILURE:
             return {
                 ...state,
+                fetching: false,
                 fetchError: action.error
             };
         case jobConstants.SAVE_JOB_REQUEST:
             return {
                 ...state,
-                loading: true
+                saving: true
             };
         case jobConstants.SAVE_JOB_SUCCESS:
             return {
                 ...state,
-                items: [...state.items, action.job]
+                saving: false,
+                items: [...(state.items || []), action.job]
             };
         case jobConstants.SAVE_JOB_FAILURE:
             return {
                 ...state,
+                saving: false,
                 saveError: action.error
             };
         case jobConstants.DELETE_JOB_REQUEST:
@@ -96,9 +104,9 @@ export function jobs(state: State = {}, action: Action):State {
                 items: state.items.map(job => {
                     if (job._id === action.job._id) {
                         // make copy of user without 'deleting:true' property
-                        const { updating, ...userCopy } = job;
+                        const { updating, ...copy } = job;
                         // return copy of user with 'deleteError:[error]' property
-                        return { ...userCopy, updateError: action.error };
+                        return { ...copy, updateError: action.error };
                     }
                     return job;
                 })

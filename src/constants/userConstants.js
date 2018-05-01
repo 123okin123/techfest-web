@@ -65,6 +65,13 @@ export const roles = {
     ECOSYSTEM_PARTNER_ROLE: 'ECOSYSTEM_PARTNER'
 };
 
+export const allPartnerRoles = [
+    roles.CHALLENGE_PARTNER_ROLE,
+    roles.ECOSYSTEM_PARTNER_ROLE,
+    roles.TECHNOLOGY_PARTNER_ROLE,
+    roles.TRACK_PARTNER_ROLE
+];
+
 
 
 export type User = {

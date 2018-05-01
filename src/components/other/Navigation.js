@@ -2,13 +2,7 @@
 import React, { Component } from 'react';
 import { NavHashLink as NavLink } from 'react-router-hash-link';
 import {Link} from 'react-router-dom'
-import {
-    Collapse,
-    Navbar,
-    NavbarToggler,
-    NavbarBrand,
-    Nav,
-    NavItem } from 'reactstrap';
+import {Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem } from 'reactstrap';
 import styled from 'styled-components'
 import {userActions} from "../../actions";
 import {connect} from "react-redux";
@@ -28,6 +22,7 @@ class Navigation extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
         (this: any).toggle = this.toggle.bind(this);
+        (this: any).onScroll = this.onScroll.bind(this);
         this.state = {
             isOpen: false,
             isTop: true
@@ -38,18 +33,20 @@ class Navigation extends Component<Props, State> {
             isOpen: !this.state.isOpen
         });
     }
-
-
     componentDidMount() {
-        //$FlowFixMe
-        document.addEventListener('scroll', () => {
-            //$FlowFixMe
-            const isTop = window.scrollY < 50;
-            if (isTop !== this.state.isTop) {
-                this.setState({ isTop })
-            }
-        });
+        document.addEventListener('scroll',this.onScroll);
     }
+    componentWillUnmount() {
+        document.removeEventListener('scroll', this.onScroll)
+    }
+
+    onScroll() {
+        const isTop = window.scrollY < 50;
+        if (isTop !== this.state.isTop) {
+            this.setState({ isTop })
+        }
+    }
+
 
     render() {
         const logo = (this.state.isTop && this.props.isFrontPage) ? <img className="d-none d-lg-block" src={require('../../assets/TF_logoNEW_ square_white.png')} height="40" alt="techfest-logo"/> :  <img className="d-none d-lg-block" src={require('../../assets/TF_logoNEW_ square_black.png')} height="40" alt="techfest-logo"/>;

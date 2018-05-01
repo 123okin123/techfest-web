@@ -11,8 +11,8 @@ const loggerMiddleware = createLogger();
 export default function configureStore(initialState = {}, history) {
   // Create the store with two middlewares
     let middlewares = [
-        loggerMiddleware,
-        thunkMiddleware
+        thunkMiddleware,
+        loggerMiddleware
     ];
   if (typeof history === 'object') {
       const historyMiddleware = routerMiddleware(history);

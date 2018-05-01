@@ -3,25 +3,32 @@
 import React from 'react';
 import {connect} from "react-redux";
 import styled from 'styled-components'
-import { NavHashLink as NavLink } from 'react-router-hash-link';
+import { NavLink as NavLink, Route } from 'react-router-dom';
 import { NavItem} from 'reactstrap';
 
-const PrivateNavItem = ({ title,  permittedRoles, ...rest }) => {
+const PrivateNavItem = ({ title,  permittedRoles, to, isLogin, ...rest }) => {
     let roleAllowed = true;
     if (permittedRoles) {
         roleAllowed = permittedRoles.includes(rest.role)
     }
+    console.log('render', title);
     return (
     rest.loggedIn && roleAllowed ?
-      <StyledNavItem>
-          <StyledNavLink {...rest} >{title}</StyledNavLink>
-      </StyledNavItem>
+      <Route path={to} children={(match)=> {console.log(title, match);return (
+        <StyledNavItem isLogin={isLogin} className={match ? "active" : ""}>
+            <StyledNavLink isLogin={isLogin} to={to}  {...rest} >{title}</StyledNavLink>
+        </StyledNavItem>
+      )}}/>
       : <span/>
     )
 };
 
-const StyledNavItem = styled(NavItem)`
-  padding: 0.8em;
+const StyledNavItem = styled(({isLogin, ...rest}) => {return(<NavItem {...rest}/>)})`
+    padding: 0.8em;
+    & .active {
+    border-bottom: ${props=> props.isLogin ? '': '3px solid #000'};
+    padding-bottom: ${props=> props.isLogin ? '': '1.2em'};
+    }
 `;
 
 const StyledNavLink = styled(({isLogin, role, loggedIn, ...rest}) => {return (<NavLink {...rest} />)})`

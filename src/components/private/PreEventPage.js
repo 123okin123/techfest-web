@@ -1,6 +1,4 @@
 //@flow
-
-
 import React, {Component} from 'react'
 import {Container, Row, Col, Alert} from 'reactstrap'
 import ChallengeSelection from './ChallengeSelection'
@@ -28,7 +26,7 @@ type State = {
     timer: any,
 }
 
-class PrivatePage extends Component<Props,State> {
+class PreEventPage extends Component<Props,State> {
     constructor(props) {
         super(props);
         (this: any).challengeSelectionChanged = this.challengeSelectionChanged.bind(this);
@@ -75,8 +73,6 @@ class PrivatePage extends Component<Props,State> {
 
 
     render() {
-
-
         return (
       <Container className="pt-5">
           {this.state.showAlert &&
@@ -137,4 +133,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PrivatePage);
+export default connect(mapStateToProps, mapDispatchToProps)(PreEventPage);

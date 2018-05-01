@@ -1,7 +1,7 @@
 //@flow
 
 import {type Dispatch, jobConstants} from "../constants";
-import {type State} from "../reducers/jobsReducer";
+import {type JobsState} from "../reducers/jobsReducer";
 import jobServices from '../services/jobServices';
 
 export const jobActions = {
@@ -12,7 +12,7 @@ export const jobActions = {
 };
 
 function fetchJobsIfNeeded() {
-    return (dispatch: Dispatch, getState: () => State) => {
+    return (dispatch: Dispatch, getState: () => JobsState) => {
         if (shouldFetchJobs(getState())) {
             return dispatch(fetchJobs())
         }
@@ -38,11 +38,11 @@ function fetchJobs() {
     function failure(error) {return {type: jobConstants.GET_JOBS_FAILURE, error}}
 }
 
-function shouldFetchJobs(state: State) :boolean {
-    const jobs = state.jobs;
+function shouldFetchJobs(state: JobsState) :boolean {
+    const jobs = state.items;
     if (!jobs) {
         return true
-    } else if (state.loading) {
+    } else if (state.fetching) {
         return false
     } else {
         return false

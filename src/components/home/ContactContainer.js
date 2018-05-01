@@ -4,7 +4,8 @@ import {Button, Row, Col, Alert} from 'reactstrap'
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 import {connect} from "react-redux";
 import {contactActions} from "../../actions/contactActions";
-import { withGoogleMap, GoogleMap, Marker } from "react-google-maps"
+import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
+import styled from 'styled-components';
 
 type Props = {
     contacting: boolean,
@@ -24,7 +25,7 @@ class ContactContainer extends Component<Props> {
 
     render() { return(
         <Row>
-            <Col xs="12" md="6" className="mb-3">
+            <StyledCol xs="12" md="6" className="mb-3">
                 <AvForm onValidSubmit={this.handleValidSubmit}>
                     <AvField name="name" type="text" placeholder="Surname, Name" autoComplete="name" required />
                     <AvField name="email" type="email" placeholder="Email Address" autoComplete="email" required />
@@ -42,8 +43,9 @@ class ContactContainer extends Component<Props> {
                     Congratulations, message was successfully sent.
                 </Alert>
                 }
-            </Col>
+            </StyledCol>
             <Col xs="12" md="6">
+                <p><strong>DIRECTIONS TO TECHFEST</strong></p>
                 <MapComponent
                     isMarkerShown
                     googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
@@ -65,6 +67,10 @@ const MapComponent = withGoogleMap((props) =>
         {props.isMarkerShown && <Marker position={{ lat: 48.2681512, lng: 11.6662131 }} />}
     </GoogleMap>
 );
+
+const StyledCol = styled(Col)`
+padding-top: 40px;
+`;
 
 const mapStateToProps = (state) => {
     const { contacting, contactSuccess } = state.contact;

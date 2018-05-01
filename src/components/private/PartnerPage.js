@@ -4,7 +4,8 @@
 import React, {Component} from 'react'
 import {Container, Row, Col} from 'reactstrap'
 import {connect} from "react-redux";
-
+import AddJob from './AddJob';
+import JobList from './JobList';
 
 class PartnerPage extends Component<{}> {
 
@@ -14,6 +15,8 @@ class PartnerPage extends Component<{}> {
               <h1>PARTNER AREA</h1>
               <Row>
                   <Col>
+                      <AddJob/>
+                      <JobList/>
                   </Col>
               </Row>
           </Container>
