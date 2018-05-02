@@ -77,7 +77,6 @@ class ChallengeSelection extends Component<Props, State> {
     }
 
     componentDidMount() {
-        if (this.props.isFetching) {return}
         this.props.fetchPage()
           .then(()=>{
             if (this.props.response && this.props.response.acf && this.props.response.acf.preference_options) {

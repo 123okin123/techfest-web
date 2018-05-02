@@ -18,6 +18,12 @@ export const jobConstants = {
     DELETE_JOB_FAILURE : 'DELETE_JOB_FAILURE'
 };
 
+export type Job = {
+    +_id: string,
+    +updating?: ?boolean,
+    +deleting?: ?boolean
+}
+
 export type JobAction =
   | { type: 'GET_JOBS_REQUEST' }
   | { type: 'GET_JOBS_SUCCESS', jobs: Array<Job> }
@@ -32,9 +38,5 @@ export type JobAction =
   | { type: 'DELETE_JOB_SUCCESS', id: string }
   | { type: 'DELETE_JOB_FAILURE', id: string, error: string }
 
-export type Job = {
-    +_id: string,
-    +updating?: ?boolean,
-    +deleting?: ?boolean
-}
+
 

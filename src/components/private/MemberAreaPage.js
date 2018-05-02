@@ -10,10 +10,6 @@ type Props = {
 }
 
 class MemberAreaPage extends Component<Props> {
-    constructor(props: Props) {
-        super(props)
-    }
-
     render() {
         return (
           <div>

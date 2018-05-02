@@ -3,7 +3,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 import styled from 'styled-components'
-import { NavLink as NavLink, Route } from 'react-router-dom';
+import { NavLink, Route } from 'react-router-dom';
 import { NavItem} from 'reactstrap';
 
 const PrivateNavItem = ({ title,  permittedRoles, to, isLogin, ...rest }) => {

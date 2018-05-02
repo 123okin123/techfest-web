@@ -8,9 +8,6 @@ import {Container} from 'reactstrap';
 type Props = {}
 
 class Template extends Component<Props> {
-    constructor(props: Props) {
-        super(props)
-    }
 
     render() {
         return (

@@ -7,7 +7,8 @@ import {Link} from 'react-router-dom'
 
 const RegisterStartPage = () => (
           <Container className="pt-5">
-              <h1 className="mb-5">APPLY</h1>
+              <h1>APPLY</h1>
+              <h2 className="mb-5 h4">Application Deadline (25. Mai, 23:59 pm)</h2>
               <Row>
                   <Col lg="6" className="mb-5">
                       <Button color="primary" tag={Link} to="/register-participant">APPLY FOR HACKATHON COMPETITION</Button>
