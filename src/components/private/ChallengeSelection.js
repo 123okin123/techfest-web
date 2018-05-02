@@ -266,7 +266,7 @@ const LoaderContainer = styled.div`
 `;
 
 function mapStateToProps(state, ownProps) {
-    const {response, isFetching} = state.pages['2211'] || {response: {content: {rendered: ''}}, isFetching: true};
+    const {response, isFetching} = state.pages['2211'] || {response: {content: {rendered: ''}}, isFetching: false};
     return {
         response,
         isFetching
