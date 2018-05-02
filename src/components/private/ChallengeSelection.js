@@ -24,13 +24,37 @@ type Props = {
         secondChoice: ?string,
         thirdChoice: ?string
     },
+    fetchPage: ()=>Promise<void>,
+    response: {
+        acf?: {
+            preference_options?: Array<{option: string}>,
+            challenge_descriptions?: Array<{
+                track_title?: string,
+                challenges: Array<{
+                    challenge_title?: string,
+                    challenge_company?: string,
+                    challenge_description?: string
+                }>
+            }>
+        }
+    }
 }
 
-class ChallengeSelection extends Component<Props> {
+type State = {
+    options: Array<string>,
+    userChallenges: {
+        dontCare: ?boolean,
+        firstChoice: ?string,
+        secondChoice: ?string,
+        thirdChoice: ?string
+    }
+}
+
+class ChallengeSelection extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
-        this.onChange = this.onChange.bind(this);
-        this.switchChanged = this.switchChanged.bind(this);
+        (this: any).onChange = this.onChange.bind(this);
+        (this: any).switchChanged = this.switchChanged.bind(this);
         const userChallenges = this.props.userChallenges || {
             dontCare: false,
             firstChoice: '',

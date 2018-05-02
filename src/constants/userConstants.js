@@ -66,6 +66,7 @@ export const roles = {
 };
 
 export const allPartnerRoles = [
+    roles.PARTNER_ROLE,
     roles.CHALLENGE_PARTNER_ROLE,
     roles.ECOSYSTEM_PARTNER_ROLE,
     roles.TECHNOLOGY_PARTNER_ROLE,
@@ -79,7 +80,13 @@ export type User = {
     lastName: string,
     email: string,
     password?: string,
-    token?: string
+    token?: string,
+    partnerFields?: {
+        company: string
+    },
+    participantFields?: {},
+    startupFields?: {},
+    applicantFields?: {},
 }
 
 

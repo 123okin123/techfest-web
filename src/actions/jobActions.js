@@ -1,6 +1,6 @@
 //@flow
 
-import {type Dispatch, jobConstants} from "../constants";
+import {type Dispatch, jobConstants, type Job} from "../constants";
 import {type JobsState} from "../reducers/jobsReducer";
 import jobServices from '../services/jobServices';
 
@@ -12,7 +12,7 @@ export const jobActions = {
 };
 
 function fetchJobsIfNeeded() {
-    return (dispatch: Dispatch, getState: () => JobsState) => {
+    return (dispatch: Dispatch, getState: () => JobsState): Promise<void> => {
         if (shouldFetchJobs(getState())) {
             return dispatch(fetchJobs())
         } else {
@@ -52,12 +52,12 @@ function shouldFetchJobs(state: JobsState) :boolean {
 }
 
 
-function saveJob(job: {}) {
+function saveJob(job: Job) {
     return (dispatch: Dispatch) => {
         dispatch(request());
         return jobServices.saveJob(job)
           .then(
-            (newJob) => {
+            (newJob: JSON) => {
                 dispatch(success(newJob));
                 return Promise.resolve(newJob);
             },
@@ -71,7 +71,7 @@ function saveJob(job: {}) {
     function failure(error) {return {type: jobConstants.SAVE_JOB_FAILURE, error}}
 }
 
-function updateJob(job: {}) {
+function updateJob(job: Job) {
     return (dispatch: Dispatch) => {
         dispatch(request(job));
         return jobServices.updateJob(job._id, job)

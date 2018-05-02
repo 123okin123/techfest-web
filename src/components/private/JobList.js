@@ -10,9 +10,9 @@ import {getCookie} from '../../helpers/session';
 
 type Props = {
     showJobsOfCompany?: string,
-    fetchJobs: ()=>void,
+    +fetchJobs: ()=>void,
     editable?: boolean,
-    jobs: Array<{
+    +jobs: Array<{
         _id: string,
         title: string,
         description: string,
@@ -68,6 +68,7 @@ class JobList extends Component<Props,State> {
         }
         return (
       <div>
+          {jobs.length === 0 && <div>No jobs yet</div>}
           <ul className="list-unstyled">
               {jobs.map((job, index)=> {
               if (job.editable) {

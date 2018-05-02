@@ -20,17 +20,21 @@ export const jobConstants = {
 
 export type JobAction =
   | { type: 'GET_JOBS_REQUEST' }
-  | { type: 'GET_JOBS_SUCCESS', jobs: Array<{}> }
+  | { type: 'GET_JOBS_SUCCESS', jobs: Array<Job> }
   | { type: 'GET_JOBS_FAILURE', error: string }
   | { type: 'SAVE_JOB_REQUEST' }
-  | { type: 'SAVE_JOB_SUCCESS', job: {} }
+  | { type: 'SAVE_JOB_SUCCESS', job: Job }
   | { type: 'SAVE_JOB_FAILURE', error: string }
-  | { type: 'UPDATE_JOB_REQUEST', job: {} }
-  | { type: 'UPDATE_JOB_SUCCESS', job: {} }
-  | { type: 'UPDATE_JOB_FAILURE', job: {}, error: string }
+  | { type: 'UPDATE_JOB_REQUEST', job: Job }
+  | { type: 'UPDATE_JOB_SUCCESS', job: Job }
+  | { type: 'UPDATE_JOB_FAILURE', job: Job, error: string }
   | { type: 'DELETE_JOB_REQUEST', id: string }
   | { type: 'DELETE_JOB_SUCCESS', id: string }
   | { type: 'DELETE_JOB_FAILURE', id: string, error: string }
 
-
+export type Job = {
+    +_id: string,
+    +updating?: ?boolean,
+    +deleting?: ?boolean
+}
 

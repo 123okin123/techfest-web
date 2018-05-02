@@ -13,7 +13,7 @@ const PrivateNavItem = ({ title,  permittedRoles, to, isLogin, ...rest }) => {
     }
     return (
     rest.loggedIn && roleAllowed ?
-      <Route path={to} children={(match)=> {console.log(title, match);return (
+      <Route path={to} children={(match)=> {return (
         <StyledNavItem isLogin={isLogin} className={match ? "active" : ""}>
             <StyledNavLink isLogin={isLogin} to={to}  {...rest} >{title}</StyledNavLink>
         </StyledNavItem>

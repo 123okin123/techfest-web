@@ -33,7 +33,7 @@ class Navigation extends Component<Props, State> {
 
 
     render() {
-        const logo = <img className="d-none d-lg-block" src={require('../../assets/TF_logoNEW_ square_black.png')} height="40" alt="techfest-logo"/>;
+        const logo = <img src={require('../../assets/TF_logoNEW_ square_black.png')} height="40" alt="techfest-logo"/>;
         const LoginComponent = (this.props.loggedIn) ?
           <PrivateNavItem title="Logout" to="/" onClick={this.props.logout} isLogin/> :
           <PrivateNavItem title="Login" to="/private" isLogin />;
