@@ -1,6 +1,9 @@
 
 import {countryList} from "../../../helpers/index";
 
+
+
+
 const schema = {
     type: "object",
     required: ["firstName", "lastName", "email", "emailConfirmation", "participantsFields"],
@@ -70,8 +73,8 @@ const schema = {
                 jobSeeking: {type: "boolean", title: "Are you looking for a job?"},
                 informEvents: {type: "boolean", title: "Please inform me, if there are any events coming up. To do so I permit the use of my submitted personal data by UnternehmerTUM."},
                 howHearAbout: {type: "string", title: "How did you hear about TECHFEST?",
-                    enum: ["techfestFB", "utumFB", "uni", "friends_family", "other"],
-                    enumNames: ["TECHFEST facebook", "UnternehmerTUM facebook", "University", "Friends & Family", "other"]
+                    enum: ["techfestFB", "utumFB", "uni", "friends_family", "TFpromotionAktion", "print", "other"],
+                    enumNames: ["TECHFEST facebook", "UnternehmerTUM facebook", "University", "Friends & Family", "TECHFEST Promotion Aktion", "Printwerbung", "other"]
                 },
                 acknowledgement: {type: "boolean", title: " ", description: " "},
 
@@ -159,7 +162,7 @@ const schema = {
                 howHearAbout: {
                     oneOf: [
                         {
-                            properties: {howHearAbout: {enum: ["techfestFB", "utumFB", "uni", "friends_family"]}}
+                            properties: {howHearAbout: {enum: ["techfestFB", "utumFB", "uni", "friends_family", "TFpromotionAktion", "print", ]}}
                         },
                         {
                             properties: {howHearAbout: {enum: ["other"]},
@@ -168,6 +171,23 @@ const schema = {
                         }
                     ]
                 }
+            }
+        },
+        applicantFields: {
+            type: "object",
+            title: "Challenge Preferences",
+            properties: {
+                userChallenges: {
+                    type: "object",
+                    title: "",
+                    required: ["dontCare", "firstChoice", "secondChoice", "thirdChoice"],
+                    properties: {
+                        dontCare: {type: "boolean", title: "I do not care - I am ready to hack any challenge"},
+                        firstChoice: {type: "string", title: "First Choice", enum: [""]},
+                        secondChoice: {type: "string", title: "Second Choice", enum: [""]},
+                        thirdChoice: {type: "string", title: "Third Choice",enum: [""]}
+                    }
+                },
             }
         }
     }

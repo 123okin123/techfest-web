@@ -15,7 +15,8 @@ const uiSchema =  {
             email: {sm: 6},
             emailConfirmation: {sm: 6}
         },{
-            participantsFields: {sm: 12}
+            participantsFields: {sm: 12},
+            applicantFields: {sm : 12}
         }
     ],
     participantsFields: {
@@ -106,6 +107,28 @@ const uiSchema =  {
             ]
         }
     },
+    applicantFields: {
+        'ui:field': 'layout',
+        'ui:layout': [
+            {
+                userChallenges: {sm: 12 }
+            }
+        ],
+        userChallenges: {
+            'ui:field': 'layout',
+            'ui:layout': [
+                {
+                    dontCare: {sm: 12},
+                },{
+                    firstChoice: {sm: 6},
+                },{
+                    secondChoice: {sm: 6 }
+                },{
+                    thirdChoice: {sm: 6 }
+                }
+            ],
+        }
+    }
 
 };
 

@@ -18,7 +18,7 @@ type Props = {
     isFetching: ?boolean,
     onChange: ({})=>void,
     loading: ?boolean,
-    userChallenges: {
+    userChallenges?: {
         dontCare: ?boolean,
         firstChoice: ?string,
         secondChoice: ?string,

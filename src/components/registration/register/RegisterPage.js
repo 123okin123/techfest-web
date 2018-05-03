@@ -10,6 +10,8 @@ import { ScaleLoader } from 'react-spinners';
 import schema from './registrationSchema';
 import uiSchema from './registrationUISchema';
 import {uploadFiles} from './registrationWidgets';
+import {pageActions} from "../../../actions/pageActions";
+import {challengeOptions} from "./registrationSchema";
 
 //$FlowFixMe
 
@@ -74,7 +76,19 @@ class RegisterPage extends Component<Props,State> {
         (this: any).transformErrors = this.transformErrors.bind(this);
     }
 
-
+    componentDidMount() {
+        this.props.fetchPage()
+          .then(()=>{
+              if (this.props.response && this.props.response.acf && this.props.response.acf.preference_options) {
+                  this.setState({options: this.props.response.acf.preference_options.map(e=> e.option)},()=>{
+                      this.state.form.schema.properties.applicantFields.properties.userChallenges.properties.firstChoice.enum  = this.state.options.filter(op=>op!==" ");
+                      this.state.form.schema.properties.applicantFields.properties.userChallenges.properties.secondChoice.enum  = this.state.options.filter(op=>op!==" ");
+                      this.state.form.schema.properties.applicantFields.properties.userChallenges.properties.thirdChoice.enum  = this.state.options.filter(op=>op!==" ");
+                      this.forceUpdate();
+                  })
+              }
+          }).catch(err=>console.log(err));
+    }
 
     onSubmit(form) {
         if (this.props.registering || this.props.uploading) {return}
@@ -143,10 +157,14 @@ class RegisterPage extends Component<Props,State> {
             delete formData.participantsFields.needsTransport;
             delete schema.properties.participantsFields.properties.needsTransport;
         }
-
     }
 
     render() {
+        if (this.state.options) {
+            this.state.form.schema.properties.applicantFields.properties.userChallenges.properties.firstChoice.enum = this.state.options.filter(op => op !== " ");
+            this.state.form.schema.properties.applicantFields.properties.userChallenges.properties.secondChoice.enum = this.state.options.filter(op => op !== " ");
+            this.state.form.schema.properties.applicantFields.properties.userChallenges.properties.thirdChoice.enum = this.state.options.filter(op => op !== " ");
+        }
         return (
                 <StyledContainer className="p-md-5">
                     <h1>BE PART OF TECHFEST</h1>
@@ -155,7 +173,7 @@ class RegisterPage extends Component<Props,State> {
                           uiSchema={this.state.form.uiSchema}
                           onChange={this.handleChange}
                           onSubmit={this.onSubmit}
-                          onError={(errors)=>this.setState({errors})}
+                          onError={(errors)=>{console.log(errors);this.setState({errors})}}
                           formData={this.state.form.formData}
                           showErrorList={false}
                           validate={this.validate}
@@ -209,6 +227,7 @@ const StyledContainer = styled(Container)`
 
 
 const mapStateToProps = (state) => {
+    const {response, isFetching} = state.pages['2211'] || {response: {content: {rendered: ''}}, isFetching: false};
     const { registering, registrationSuccess, error } = state.registration;
     const { uploading, uploadingSuccess } = state.upload;
     return {
@@ -216,7 +235,9 @@ const mapStateToProps = (state) => {
         registering,
         registrationSuccess,
         uploading,
-        uploadingSuccess
+        uploadingSuccess,
+        response,
+        isFetching
     };
 };
 
@@ -224,6 +245,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         uploadAndRegister: (formData, uploadFiles) => {
             return dispatch(userActions.uploadFileAndRegister(formData, uploadFiles))
+        },
+        fetchPage: () => {
+            return dispatch(pageActions.fetchPageIfNeeded('2211'))
         }
     }
 };
