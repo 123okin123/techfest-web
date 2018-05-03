@@ -69,6 +69,8 @@ const uiSchema =  {
             'ui:field': 'layout',
             'ui:layout': [
                 {
+                    startupName: {sm: 12}
+                }, {
                     numberOfMembers: {sm: 12}
                 },{
                     firstName1: {sm: 4},

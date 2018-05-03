@@ -41,8 +41,9 @@ const schema = {
                 startup: {
                     type: "object",
                     title: "START-UP",
-                    required: ["numberOfMembers"],
+                    required: ["numberOfMembers", "startupName"],
                     properties: {
+                        startupName: {type: "string", title: "Name of your Start-up"},
                         numberOfMembers: {
                             type: "string", title: "Total number of start-up members that will join TECHFEST?",
                             enum: ["2", "3", "4", "5", "6"]
