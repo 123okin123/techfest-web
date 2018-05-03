@@ -62,7 +62,7 @@ class AddGuest extends Component<Props> {
                       <option value={3}>3</option>
                   </AvField>
 
-                  <Button type="submit">Save</Button>
+                  <Button color="primary" type="submit">Save</Button>
               </AvForm>
           </div>
         )
