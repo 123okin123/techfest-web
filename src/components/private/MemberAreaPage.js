@@ -14,7 +14,7 @@ class MemberAreaPage extends Component<Props> {
         return (
           <div>
           {this.props.role && allPartnerRoles.includes(this.props.role) && <Redirect to='/private/partner' />}
-          {this.props.role && [roles.PARTICIPANT_ROLE, roles.ADMIN_ROLE].includes(this.props.role) && <Redirect to='/private/pre-event' />}
+          {this.props.role && [roles.PARTICIPANT_ROLE, roles.ADMIN_ROLE].includes(this.props.role) && <Redirect to='/private/member-area' />}
           </div>
         )
     }
