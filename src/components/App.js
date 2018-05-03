@@ -38,7 +38,7 @@ class App extends Component<{}> {
           <div style={{marginTop: '5em', minHeight: '100vh'}}>
               <Switch>
                   <PrivateRoute exact path="/private" component={MemberAreaPage}/>
-                  <PrivateRoute path="/private/pre-event" permittedRoles={[roles.ADMIN_ROLE, roles.PARTICIPANT_ROLE]} component={PreEventPage}/>
+                  <PrivateRoute path="/private/member-area" permittedRoles={[roles.ADMIN_ROLE, roles.PARTICIPANT_ROLE]} component={PreEventPage}/>
                   <PrivateRoute path="/private/partner" permittedRoles={[roles.ADMIN_ROLE].concat(allPartnerRoles)} component={PartnerPage}/>
                   <PrivateRoute path="/private/jobs" permittedRoles={Object.values(roles)} component={JobPage}/>
 
