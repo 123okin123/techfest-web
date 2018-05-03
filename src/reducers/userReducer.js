@@ -1,29 +1,36 @@
 //@flow
 
 import { userConstants, type Action } from '../constants';
+import {type User} from "../constants/userConstants";
 
-type State = {
-    +loading?: boolean,
-    +updating?: boolean,
-    +data?: {},
-    +updateSuccess?: boolean,
-    +error?: string
+export type UserState = {
+    +data?: User,
+    +fetchingState: {
+        +fetching?: boolean,
+        +fetchError?: string,
+        +fetchSuccess?: boolean
+    },
+    +updatingState: {
+        +updateError?: string,
+        +updating?: boolean,
+        +updateSuccess?: boolean
+    }
 }
 
-export function user(state: State = {}, action: Action):State {
+export function user(state: UserState = {fetchingState: {}, updatingState: {}}, action: Action):UserState {
     switch (action.type) {
         case userConstants.GET_INFO_REQUEST:
-            return { loading: true };
+            return { fetchingState: {fetching: true }, updatingState: {}};
         case userConstants.GET_INFO_SUCCESS:
-            return {data: action.user};
+            return { data: action.user, fetchingState: {fetchSuccess: true }, updatingState: {}};
         case userConstants.GET_INFO_FAILURE:
-            return {error: action.error};
+            return { fetchingState: {fetchError: action.error}, updatingState: {}};
         case userConstants.UPDATE_INFO_REQUEST:
-            return {data: state.data, updating: true };
+            return {data: state.data, updatingState: { updating: true }, fetchingState: {}};
         case userConstants.UPDATE_INFO_SUCCESS:
-            return {data: action.user, updateSuccess: true};
+            return {data: action.user, updatingState: { updateSuccess: true }, fetchingState: {}};
         case userConstants.UPDATE_INFO_FAILURE:
-            return {error: action.error};
+            return {updatingState: { updateError: action.error }, fetchingState: {}};
         default:
             return state
     }

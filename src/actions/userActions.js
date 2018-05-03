@@ -3,6 +3,8 @@ import {userConstants, type User} from '../constants';
 import userService from '../services/userServices';
 //import { history } from '../helpers/history';
 import { uploadActions} from './uploadActions';
+import type {Dispatch} from "../constants";
+import type {UserState} from "../reducers/userReducer";
 
 export const userActions = {
     register,
@@ -10,7 +12,8 @@ export const userActions = {
     login,
     logout,
     update,
-    getInfo
+    getInfo,
+    fetchInfoIfNeeded
 };
 
 
@@ -31,7 +34,7 @@ function register(user: User) :(any)=>void {
 }
 
 function uploadFileAndRegister(user: User, uploadFiles: Array<any>) {
-    return (dispatch, getState) => {
+    return (dispatch: Dispatch, getState) => {
         return dispatch(uploadActions.uploadMulti(uploadFiles)).then(()=>{
             const keys = getState().upload.keys.map((e, i)=> {
                 return {[`upload-${i}`]: e}
@@ -62,7 +65,7 @@ function login(email: string, password: string) {
             );
     };
 
-    function request(user) { return { type: userConstants.LOGIN_REQUEST } }
+    function request() { return { type: userConstants.LOGIN_REQUEST } }
     function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
     function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
 }
@@ -92,6 +95,26 @@ function update(user: {}) {
     function request(user) { return { type: userConstants.UPDATE_INFO_REQUEST, user } }
     function success(user) { return { type: userConstants.UPDATE_INFO_SUCCESS, user } }
     function failure(error) { return { type: userConstants.UPDATE_INFO_FAILURE, error } }
+}
+
+function fetchInfoIfNeeded() {
+    return (dispatch: Dispatch, getState: () => UserState): Promise<void> => {
+        if (shouldFetchInfo(getState())) {
+            return dispatch(getInfo())
+        } else {
+            return Promise.resolve();
+        }
+    }
+}
+function shouldFetchInfo(state: UserState) :boolean {
+    const user = state.data;
+    if (!user) {
+        return true
+    } else if (state.fetchingState.fetching) {
+        return false
+    } else {
+        return false
+    }
 }
 
 function getInfo() {

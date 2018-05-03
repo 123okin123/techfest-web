@@ -2,14 +2,14 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {Button, Container,  Alert} from 'reactstrap';
-import {userActions} from "../../actions/index";
+import {userActions} from "../../../actions/index";
 import Form from "react-jsonschema-form";
 import LayoutField  from 'react-jsonschema-form-layout';
 import styled from 'styled-components';
 import { ScaleLoader } from 'react-spinners';
-import schema from './registrationSchema';
-import uiSchema from './registrationUISchema';
-import {uploadFiles} from './registrationWidgets';
+import schema from './registerStartupSchema';
+import uiSchema from './registerStartupUISchema';
+import {uploadFiles} from '../register/registrationWidgets';
 
 //$FlowFixMe
 
@@ -53,7 +53,7 @@ Object.byString = function(o, s) {
     return o;
 };
 
-class RegisterPage extends Component<Props,State> {
+class RegisterStartupPage extends Component<Props,State> {
     constructor(props: Props) {
         super(props);
         this.state = {
@@ -64,7 +64,7 @@ class RegisterPage extends Component<Props,State> {
                 idSchema: {}
             },
             touchedFields: [],
-            submitTried: false
+            submitTried: false,
         };
         (this: any).onSubmit = this.onSubmit.bind(this);
         (this: any).handleChange = this.handleChange.bind(this);
@@ -74,15 +74,29 @@ class RegisterPage extends Component<Props,State> {
         (this: any).transformErrors = this.transformErrors.bind(this);
     }
 
+    componentDidMount() {
+        const search = this.props.location.search;
+        const params = new URLSearchParams(search);
+        const inviteCode = params.get('invite');
+        this.setState({
+            form: {
+              ...this.state.form,
+                formData: {
+                  ...this.state.form.formData,
+                    inviteCode
+                }
+            }
+        });
+    }
 
 
     onSubmit(form) {
         if (this.props.registering || this.props.uploading) {return}
         // recaptchaInstance.execute();
-        this.setState({...this.state, errors: []});
         this.props.uploadAndRegister(this.state.form.formData, uploadFiles).then(()=>{
             window.scroll(0, 0);
         });
+        this.setState({...this.state, errors: []});
         form.formData = this.state.form.formData
     }
 
@@ -98,8 +112,8 @@ class RegisterPage extends Component<Props,State> {
         if (formData.email !== formData.emailConfirmation) {
             errors.emailConfirmation.addError("Emails don't match");
         }
-        if (formData.participantsFields.acknowledgement !== true) {
-            errors.participantsFields.acknowledgement.addError("Please accept the terms and conditions.");
+        if (formData.startupFields.acknowledgement !== true) {
+            errors.startupFields.acknowledgement.addError("Please accept the terms and conditions.");
         }
         return errors;
     }
@@ -128,28 +142,51 @@ class RegisterPage extends Component<Props,State> {
         this.setState({form});
         const {formData} = form;
         let schema = {...this.state.form.schema};
-        if (formData.participantsFields.residence.city !== "munich"
-            && formData.participantsFields.residence.city !== "Munich"
-            && formData.participantsFields.residence.city !== "München"
-            && formData.participantsFields.residence.city !== "münchen") {
-            schema.properties.participantsFields.properties = Object.assign(schema.properties.participantsFields.properties, {
+        if (formData.startupFields.residence.city !== "munich"
+            && formData.startupFields.residence.city !== "Munich"
+            && formData.startupFields.residence.city !== "München"
+            && formData.startupFields.residence.city !== "münchen") {
+            schema.properties.startupFields.properties = {...schema.properties.startupFields.properties,
                 needsTransport: {
-                    type: "boolean",
-                    title: "I am not from Munich and want to arrive by Flixbus (please be aware of Flixbus routes)."
+                    type: "string",
+                    title: "We are not from Munich and want to arrive by Flixbus (please be aware of Flixbus routes).",
+                    enum: ["yes", "no"]
                 },
-            })
-        } else {
-            schema.properties.participantsFields.properties = Object.assign({},schema.properties.participantsFields.properties);
-            delete formData.participantsFields.needsTransport;
-            delete schema.properties.participantsFields.properties.needsTransport;
-        }
+            };
+            schema.properties.startupFields.dependencies = {
+              ...schema.properties.startupFields.dependencies,
+                needsTransport: {
+                    oneOf: [
+                        {
+                            properties: {needsTransport: {enum: ["no"]}}
+                        },
+                        {
+                            properties: {needsTransport: {enum: ["yes"]},
+                                numberOfTransport: {
+                                    type: "string",
+                                    title: "Number of start-up members that want to arrive by Flixbus?",
+                                    enum: ["1", "2", "3", "4", "5", "6"]
+                                },
+                            }
+                        }
+                    ]
+                }
+            };
 
+        } else {
+            schema.properties.startupFields.properties = Object.assign({},schema.properties.startupFields.properties);
+            delete formData.startupFields.needsTransport;
+            delete formData.startupFields.numberOfTransport;
+
+            delete schema.properties.startupFields.properties.needsTransport;
+            delete schema.properties.startupFields.dependencies.numberOfTransport;
+        }
     }
 
     render() {
         return (
                 <StyledContainer className="p-md-5">
-                    <h1>BE PART OF TECHFEST</h1>
+                    <h1>APPLY AS START-UP</h1>
                     {!((this.props.registrationSuccess === true) && (this.props.uploadingSuccess === true)) &&
                     <Form schema={this.state.form.schema}
                           uiSchema={this.state.form.uiSchema}
@@ -187,7 +224,7 @@ class RegisterPage extends Component<Props,State> {
                         </Alert>
                     }
                     {(!this.props.uploading && !this.props.registering) &&
-                    (typeof this.state.errors !== 'undefined' && this.state.errors.length > 0)  &&
+                        (typeof this.state.errors !== 'undefined' && this.state.errors.length > 0)  &&
                     <Alert className="mt-3" color="danger">
                         Please check the registration from.
                     </Alert>
@@ -229,4 +266,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(RegisterPage);
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterStartupPage);

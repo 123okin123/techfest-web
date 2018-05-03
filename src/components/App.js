@@ -4,19 +4,19 @@ import React, { Component } from 'react';
 import Navigation from './other/Navigation';
 import MemberNavigation from './other/MemberNavigation';
 import HomePage from './home/HomePage'
-import RegisterPage from './register/RegisterPage'
+import RegisterPage from './registration/register/RegisterPage'
 import {Route, Switch} from 'react-router-dom'
 import Footer from './other/Footer'
 import NotFoundPage from "./other/NotFoundPage";
 import Page from './Page';
-import PartnerRegistration from './PartnerRegistration';
+import PartnerRegistration from './registration/PartnerRegistration';
 import PressMediaPage from './PressMediaPage';
 import VerifyNewsletterPage from './VerifyNewsletterPage';
 import styled from 'styled-components';
 import LoginPage from './LoginPage';
 import PrivateRoute from "./other/PrivateRoute";
-import RegisterStartupPage from "./register-startup/RegisterStartupPage";
-import RegisterStartPage from "./RegisterStartPage";
+import RegisterStartupPage from "./registration/register-startup/RegisterStartupPage";
+import RegisterStartPage from "./registration/RegisterStartPage";
 import PreEventPage from './private/PreEventPage';
 import VerifyRegistrationPage from "./VerifyRegistrationPage";
 import {roles, allPartnerRoles} from '../constants/userConstants';

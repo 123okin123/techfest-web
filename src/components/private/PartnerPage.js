@@ -8,16 +8,18 @@ import AddJob from './AddJob';
 import JobList from './JobList';
 import {userActions} from "../../actions";
 import {type User} from "../../constants/userConstants";
+import PartnerGuestRegistration from './PartnerGuestRegistration'
+
 
 type Props = {
-    +fetchInfo: ()=>Promise<void>,
+    +fetchInfoIfNeeded: ()=>Promise<void>,
     +userData: User
 }
 
 class PartnerPage extends Component<Props> {
 
     componentDidMount() {
-        this.props.fetchInfo()
+        this.props.fetchInfoIfNeeded()
     }
 
     render() {
@@ -26,6 +28,11 @@ class PartnerPage extends Component<Props> {
           <Container className="pt-5">
               <h1>PARTNER AREA</h1>
               <h2 className="mb-5">Welcome {this.props.userData.firstName} {company && <span>{'(' + company + ')'}</span>}</h2>
+              <Row className="mb-5">
+                  <Col md="6">
+                      <PartnerGuestRegistration/>
+                  </Col>
+              </Row>
               <Row>
                   <Col md="6">
                       <h4>Add Job</h4>
@@ -49,8 +56,8 @@ const mapStateToProps = (state, ownProps) => {
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        fetchInfo: () => {
-            return dispatch(userActions.getInfo())
+        fetchInfoIfNeeded: () => {
+            return dispatch(userActions.fetchInfoIfNeeded())
         }
     }
 };

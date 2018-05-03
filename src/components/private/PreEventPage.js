@@ -8,14 +8,21 @@ import PreEventInfo from './PreEventInfo';
 import styled from 'styled-components'
 
 type Props = {
-    updateSuccess?: boolean,
-    updating?: boolean,
-    loading?: boolean,
     data: {
         applicantFields?: {
             userChallenges?: {},
             preEvent?: boolean
         }
+    },
+    +fetchingState: {
+        +fetching?: boolean,
+        +fetchError?: string,
+        +fetchSuccess?: boolean
+    },
+    +updatingState: {
+        +updateError?: string,
+        +updating?: boolean,
+        +updateSuccess?: boolean
     },
     getInfo: ()=>void,
     update: ({})=>void
@@ -64,7 +71,7 @@ class PreEventPage extends Component<Props,State> {
     }
 
     componentWillReceiveProps(nextProps) {
-        if ((!nextProps.updating) && nextProps.updateSuccess) {
+        if (nextProps.updatingState.updateSuccess) {
             const timer = setInterval(()=>{this.setState({showAlert: false});clearInterval(this.state.timer)}, 3000);
             this.setState({showAlert: true, timer});
         }
@@ -87,13 +94,12 @@ class PreEventPage extends Component<Props,State> {
                       <ChallengeSelection
                         userChallenges={this.props.data.applicantFields.userChallenges}
                         onChange={(userChallenges) => this.challengeSelectionChanged(userChallenges)}
-                        loading={this.props.updating}
-                        updateSuccess={this.props.updateSuccess}
+                        loading={this.props.updatingState.updating}
                       />
                         <PreEventInfo
                         onChange={this.preEventChanged}
                         preEvent={this.props.data.applicantFields.preEvent}
-                        loading={this.props.updating}/>
+                        loading={this.props.updatingState.updating}/>
                     </div>
                   }
 
@@ -113,12 +119,11 @@ const StyledAlert = styled(Alert)`
 `;
 
 const mapStateToProps = (state, ownProps) => {
-    const {loading, updating, updateSuccess} = state.user;
+    const {fetchingState, updatingState} = state.user;
     const data = state.user.data || {};
     return {
-        updateSuccess,
-        updating,
-        loading,
+        updatingState,
+        fetchingState,
         data
     }
 };

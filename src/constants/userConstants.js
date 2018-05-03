@@ -26,26 +26,26 @@ export const userConstants = {
 
 
 export type UserAction =
-  | { type: 'USERS_REGISTER_REQUEST', user: {} }
-  | { type: 'USERS_REGISTER_SUCCESS', user: {} }
+  | { type: 'USERS_REGISTER_REQUEST', user: User }
+  | { type: 'USERS_REGISTER_SUCCESS', user: User }
   | { type: 'USERS_REGISTER_FAILURE', error: string }
 
-  | { type: 'UPLOAD_USERS_REGISTER_REQUEST', user: {} }
-  | { type: 'UPLOAD_USERS_REGISTER_SUCCESS', user: {} }
+  | { type: 'UPLOAD_USERS_REGISTER_REQUEST', user: User }
+  | { type: 'UPLOAD_USERS_REGISTER_SUCCESS', user: User }
   | { type: 'UPLOAD_USERS_REGISTER_FAILURE', error: string }
   
   | { type: 'USERS_LOGIN_REQUEST' }
-  | { type: 'USERS_LOGIN_SUCCESS', user: {} }
+  | { type: 'USERS_LOGIN_SUCCESS', user: User }
   | { type: 'USERS_LOGIN_FAILURE', error: string }
   
   | { type: 'USERS_LOGOUT' }
 
   | { type: 'GET_INFO_REQUEST' }
-  | { type: 'GET_INFO_SUCCESS', user: {} }
+  | { type: 'GET_INFO_SUCCESS', user: User }
   | { type: 'GET_INFO_FAILURE', error: string }
 
   | { type: 'UPDATE_INFO_REQUEST' }
-  | { type: 'UPDATE_INFO_SUCCESS', user: {} }
+  | { type: 'UPDATE_INFO_SUCCESS', user: User }
   | { type: 'UPDATE_INFO_FAILURE', error: string }
   
 
@@ -81,8 +81,15 @@ export type User = {
     email: string,
     password?: string,
     token?: string,
+    role: string,
     partnerFields?: {
-        company: string
+        company: string,
+        guests?: Array<{
+            firstName: string,
+            lastName: string,
+            email: string,
+            numberOfDays: number
+        }>
     },
     participantFields?: {},
     startupFields?: {},

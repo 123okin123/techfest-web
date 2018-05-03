@@ -8,7 +8,7 @@ import { ScaleLoader } from 'react-spinners';
 import {Alert, Button} from 'reactstrap';
 import LayoutField from "react-jsonschema-form-layout";
 import {connect} from "react-redux";
-import {userActions} from "../actions/index";
+import {userActions} from "../../actions/index";
 import {TextWidget} from "./register/registrationWidgets";
 
 const schema = {
@@ -18,7 +18,7 @@ const schema = {
         firstName: {type: "string", title: "First Name"},
         lastName: {type: "string", title: "Last Name"},
         email: {type: "string", title: "How can we reach you by mail?", format: "email"},
-        partnerFields: {
+        applyingPartnerFields: {
             type: "object",
             required: ["company", "purpose", "hasBeenInTouch"],
             title: "",
@@ -63,10 +63,10 @@ const uiSchema = {
             email: {sm: 4}
         },
         {
-            partnerFields: {sm: 12}
+            applyingPartnerFields: {sm: 12}
         }
     ],
-    partnerFields: {
+    applyingPartnerFields: {
         hasBeenInTouch: {"ui:widget": "radio"},
         'ui:field': 'layout',
         'ui:layout': [

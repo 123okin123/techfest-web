@@ -1,5 +1,5 @@
 
-import {countryList} from "../../helpers";
+import {countryList} from "../../../helpers/index";
 
 const schema = {
     title: "CONTACT PERSON OF YOUR STARTUP",
