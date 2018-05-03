@@ -24,7 +24,9 @@ class AddGuest extends Component<Props> {
     onValidSubmit(event, values) {
         values.numberOfDays = parseInt(values.numberOfDays);
         if ((this.getNumberOfDayTicketsUsed() < this.allowedNumberOfDayTickets())) {
-            this.props.add(values, this.props.userData)
+            this.props.add(values, this.props.userData).then(()=>{
+                (this: any).form && (this: any).form.reset();
+            })
         }
     }
 
@@ -33,7 +35,6 @@ class AddGuest extends Component<Props> {
         const guests = ((this.props.userData.partnerFields || {}).guests || []);
         const numberOfDaysArray = guests.map(guest=> guest.numberOfDays);
          return (numberOfDaysArray.length <= 0) ? 0 : numberOfDaysArray.reduce((acc, val) => (acc + val))
-
     }
 
     allowedNumberOfDayTickets() :number {
@@ -55,6 +56,7 @@ class AddGuest extends Component<Props> {
                   <AvField name="lastName" label="Last Name" required/>
                   <AvField name="email" label="Email" type="email" required/>
                   <AvField type="select" name="numberOfDays" label="Number of Day Tickets" required>
+                      <option/>
                       <option value={1}>1</option>
                       <option value={2}>2</option>
                       <option value={3}>3</option>

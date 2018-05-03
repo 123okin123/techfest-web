@@ -7,17 +7,21 @@ import {AvForm, AvField} from "availity-reactstrap-validation";
 import {Button} from 'reactstrap';
 import styled from 'styled-components';
 import {getCookie} from '../../helpers/session';
+import {type Job} from '../../constants';
 
 type Props = {
     showJobsOfCompany?: string,
-    +fetchJobs: ()=>void,
+    +fetchJobs: ()=>Promise<Array<Job>>,
     editable?: boolean,
     +jobs: Array<{
         _id: string,
         title: string,
         description: string,
         company: string
-    }>
+    }>,
+    fetching?: boolean,
+    deleteJob: (string)=>Promise<string>,
+    updateJob: (Job)=>Promise<Job>,
 }
 
 type State = {

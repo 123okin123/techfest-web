@@ -45,7 +45,7 @@ class Navigation extends Component<Props, State> {
                   <Collapse isOpen={this.state.isOpen} navbar>
                       <Nav className="ml-auto" navbar>
                           <PrivateNavItem title="Pre-Event" to="/private/pre-event" permittedRoles={[roles.ADMIN_ROLE, roles.PARTICIPANT_ROLE]}/>
-                          {/*<PrivateNavItem title="Partner Area" to="/private/partner" permittedRoles={[roles.ADMIN_ROLE].concat(allPartnerRoles)}/>*/}
+                          <PrivateNavItem title="Partner Area" to="/private/partner" permittedRoles={[roles.ADMIN_ROLE].concat(allPartnerRoles)}/>
                           {/*<PrivateNavItem title="Jobs" to="/private/jobs" permittedRoles={Object.values(roles)}/>*/}
                           {LoginComponent}
                       </Nav>

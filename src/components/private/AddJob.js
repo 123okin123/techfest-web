@@ -8,7 +8,7 @@ import DropzoneS3Uploader from 'react-dropzone-s3-uploader'
 import {getCookie} from "../../helpers/session";
 import {ScaleLoader} from 'react-spinners';
 import styled from "styled-components";
-
+import {type Job} from "../../constants";
 
 type Props = {
     className: string,
@@ -19,9 +19,10 @@ type Props = {
     },
     +saveJob: ({})=>Promise<{}>,
     +getInfo: ()=>Promise<{}>,
-    +userData?: {
+    +userData: {
         partnerFields?: {company: string}
-    }
+    },
+    jobs: Array<Job>
 }
 type State = {
     uploadOptions?: {},
@@ -45,25 +46,27 @@ class AddJob extends Component<Props, State> {
     }
 
     handleValidSubmit(event, values) {
-    if (!this.props.userData) {
-        this.props.getInfo().then(()=>{
+        const company = (this.props.userData.partnerFields || {}).company;
+        if (this.props.jobs.filter(job=>job.company === company).length >= 15) {return}
+        if (!this.props.userData) {
+            this.props.getInfo().then(()=>{
+                const newJob = {...values,
+                    company: ((this.props.userData || {}).partnerFields || {}).company,
+                    fileURL: this.state.fileURL
+                };
+                return this.props.saveJob(newJob)
+            }).then((job)=>{
+                (this: any).form && (this: any).form.reset();
+            }).catch(err=>console.log(err))
+        } else {
             const newJob = {...values,
                 company: ((this.props.userData || {}).partnerFields || {}).company,
                 fileURL: this.state.fileURL
             };
-            return this.props.saveJob(newJob)
-        }).then((job)=>{
-            (this: any).form && (this: any).form.reset();
-        }).catch(err=>console.log(err))
-    } else {
-        const newJob = {...values,
-            company: ((this.props.userData || {}).partnerFields || {}).company,
-            fileURL: this.state.fileURL
-        };
-        this.props.saveJob(newJob).then(job=>{
-            (this: any).from && (this: any).form.reset();
-        })
-    }
+            this.props.saveJob(newJob).then(job=>{
+                (this: any).from && (this: any).form.reset();
+            })
+        }
     }
     handleFinishedUpload = info => {
         this.setState({
@@ -86,9 +89,11 @@ class AddJob extends Component<Props, State> {
 
     render() {
         const {className} = this.props;
+        const company = (this.props.userData.partnerFields || {}).company;
         return (
       <div className={className}>
-      <AvForm id="add-job-form" onValidSubmit={this.handleValidSubmit} ref={c => ((this: any).form = c)}>
+          <p>Jobs: {this.props.jobs.filter(job=>job.company === company).length}/15</p>
+          <AvForm id="add-job-form" onValidSubmit={this.handleValidSubmit} ref={c => ((this: any).form = c)}>
           <AvField name="title" label="Title" required />
           <AvField type="textarea" rows="8" name="description" label="Description" required />
 
@@ -158,9 +163,9 @@ const LoaderContainer = styled.div`
 
 
 const mapStateToProps = (state, ownProps) => {
-    const {savingState} = state.jobs;
+    const {savingState, items} = state.jobs;
     const {data} = state.user;
-    return {savingState, userData: data}
+    return {savingState, userData: (data || {}), jobs: (items || []),}
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {

@@ -21,7 +21,8 @@ export const jobConstants = {
 export type Job = {
     +_id: string,
     +updating?: ?boolean,
-    +deleting?: ?boolean
+    +deleting?: ?boolean,
+    +company: string,
 }
 
 export type JobAction =

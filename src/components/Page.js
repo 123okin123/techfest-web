@@ -9,7 +9,11 @@ import styled from 'styled-components';
 type Props = {
     +id: string,
     +title?: string,
-    +response: {},
+    +response?: {
+        content?: {
+            rendered?: string
+        }
+    },
     +isFetching: true,
     +fetchPage: ()=>void
 }
@@ -28,9 +32,8 @@ class Page extends Component<Props> {
             <Container className="container pt-5">
                 <h1>{this.props.title}</h1>
                 <LoaderContainer><ScaleLoader loading={this.props.isFetching} height={20} width={2} /></LoaderContainer>
-                {this.props.response &&
+                {this.props.response && this.props.response.content &&
                 <div className="pt-3" dangerouslySetInnerHTML={{__html: this.props.response.content.rendered}}/>
-
                 }
             </Container>
         )

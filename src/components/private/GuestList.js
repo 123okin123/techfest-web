@@ -4,8 +4,9 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {type User} from "../../constants";
 import {AvField, AvForm} from 'availity-reactstrap-validation';
-import {Button} from 'reactstrap';
+import {Button, Table} from 'reactstrap';
 import {userActions} from "../../actions";
+import styled from 'styled-components';
 
 type Props = {
     userData: User,
@@ -49,10 +50,6 @@ class Template extends Component<Props, State> {
 
     handleValidSubmit(event, values, guest) {
         values.numberOfDays = parseInt(values.numberOfDays);
-        // this.props.updateJob({...job, ...values}).then(updateJob=>{
-        //     console.log(updateJob);
-        //     this.setState({jobs: this.state.jobs.map(jobInState=> jobInState._id === updateJob._id ? {...updateJob, editable: false} : jobInState)});
-        // });
     }
 
     onDelete(guest) {
@@ -63,7 +60,8 @@ class Template extends Component<Props, State> {
         return (
           <div>
               {this.state.guests.length === 0 && <div>No guests yet</div>}
-              <ul>
+              <StyledTable>
+                  <tbody>
                   {this.state.guests.map((guest, index)=> {
                       if (guest.editable) {
                           return (
@@ -85,21 +83,28 @@ class Template extends Component<Props, State> {
                             </li>)
                       } else {
                           return (
-                            <li className="border-bottom border-dark p-4" key={index.toString()}>
-                                <p className="mb-0">{guest.firstName}</p>
-                                <p className="mb-0">{guest.lastName}</p>
-                                <p className="mb-0">{guest.email}</p>
-                                <p className="mb-0">{guest.numberOfDays}</p>
-                                <Button color="info" className="float-right" onClick={()=>this.onDelete(guest)}>Delete</Button>
+                            <tr className="" key={index.toString()}>
+                                <td className="mb-0">{guest.firstName}</td>
+                                <td className="mb-0">{guest.lastName}</td>
+                                <td className="mb-0">{guest.email}</td>
+                                <td className="mb-0">Number of day tickets: {guest.numberOfDays}</td>
+                                <td><Button color="info" onClick={()=>this.onDelete(guest)}>Delete</Button></td>
                                 {/*<Button color="info" className="float-right" onClick={()=>this.setState({guests: this.state.guests.map(guestInState=>guestInState._id === guest._id ? {...guest, editable: true}:guestInState)})}>Edit</Button>*/}
-                            </li>)
+                            </tr>)
                       }
                   })}
-              </ul>
+                  </tbody>
+              </StyledTable>
           </div>
         )
     }
 }
+
+const StyledTable = styled(Table)`
+&>tbody>tr>td {
+border-top: 1px solid #000;
+}
+`;
 
 const mapStateToProps = (state, ownProps) => {
     const {data} = state.user;
