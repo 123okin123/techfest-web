@@ -1,7 +1,16 @@
 
 import {countryList} from "../../../helpers/index";
 
-
+export const trackOptions = [
+    "German quality tools in a smart and connected future - Smart Automation Wave",
+    "Food and Baverage - Smart Automation Wave",
+    "Future Hydraulics - Smart Automation Wave",
+    "Countering drones - Build your SKY-PROTECTOR - Quantified Earth",
+    "Sense the World! - Future Mobility",
+    "Audi Autonomous Fleet Experience - Future Mobility",
+    "Shape energy efficient rail transportation - Future Mobility",
+    "Wild Track and Smart City - Wild Track and Smart City"
+];
 
 
 const schema = {
@@ -183,9 +192,9 @@ const schema = {
                     required: ["dontCare", "firstChoice", "secondChoice", "thirdChoice"],
                     properties: {
                         dontCare: {type: "boolean", title: "I do not care - I am ready to hack any challenge"},
-                        firstChoice: {type: "string", title: "First Choice", enum: [""]},
-                        secondChoice: {type: "string", title: "Second Choice", enum: [""]},
-                        thirdChoice: {type: "string", title: "Third Choice",enum: [""]}
+                        firstChoice: {type: "string", title: "First Choice", enum: trackOptions},
+                        secondChoice: {type: "string", title: "Second Choice", enum: trackOptions},
+                        thirdChoice: {type: "string", title: "Third Choice",enum: trackOptions}
                     }
                 },
             }

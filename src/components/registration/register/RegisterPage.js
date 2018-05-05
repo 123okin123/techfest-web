@@ -11,7 +11,7 @@ import schema from './registrationSchema';
 import uiSchema from './registrationUISchema';
 import {uploadFiles} from './registrationWidgets';
 import {pageActions} from "../../../actions/pageActions";
-import {challengeOptions} from "./registrationSchema";
+import {trackOptions} from "./registrationSchema";
 
 //$FlowFixMe
 
@@ -80,12 +80,7 @@ class RegisterPage extends Component<Props,State> {
         this.props.fetchPage()
           .then(()=>{
               if (this.props.response && this.props.response.acf && this.props.response.acf.preference_options) {
-                  this.setState({options: this.props.response.acf.preference_options.map(e=> e.option)},()=>{
-                      this.state.form.schema.properties.applicantFields.properties.userChallenges.properties.firstChoice.enum  = this.state.options.filter(op=>op!==" ");
-                      this.state.form.schema.properties.applicantFields.properties.userChallenges.properties.secondChoice.enum  = this.state.options.filter(op=>op!==" ");
-                      this.state.form.schema.properties.applicantFields.properties.userChallenges.properties.thirdChoice.enum  = this.state.options.filter(op=>op!==" ");
-                      this.forceUpdate();
-                  })
+                  this.setState({options: this.props.response.acf.preference_options.map(e=> e.option)},)
               }
           }).catch(err=>console.log(err));
     }
@@ -138,6 +133,7 @@ class RegisterPage extends Component<Props,State> {
     }
 
     handleChange(form) {
+        console.log(form);
         this.setState({...this.state, errors: []});
         this.setState({form});
         const {formData} = form;
@@ -157,10 +153,29 @@ class RegisterPage extends Component<Props,State> {
             delete formData.participantsFields.needsTransport;
             delete schema.properties.participantsFields.properties.needsTransport;
         }
+        if (formData.applicantFields.userChallenges.dontCare === true) {
+            schema.properties.applicantFields.properties.userChallenges.properties = Object.assign({},schema.properties.applicantFields.properties.userChallenges.properties);
+            delete formData.applicantFields.userChallenges.firstChoice;
+            delete formData.applicantFields.userChallenges.secondChoice;
+            delete formData.applicantFields.userChallenges.thirdChoice;
+            delete schema.properties.applicantFields.properties.userChallenges.properties.firstChoice;
+            delete schema.properties.applicantFields.properties.userChallenges.properties.secondChoice;
+            delete schema.properties.applicantFields.properties.userChallenges.properties.thirdChoice;
+        } else {
+            schema.properties.applicantFields.properties.userChallenges.properties = Object.assign(schema.properties.applicantFields.properties.userChallenges.properties, {
+                firstChoice: {type: "string", title: "First Choice", enum: trackOptions},
+                secondChoice: {type: "string", title: "Second Choice", enum: trackOptions},
+                thirdChoice: {type: "string", title: "Third Choice",enum: trackOptions}
+            })
+        }
+console.log(form);
     }
 
     render() {
-        if (this.state.options) {
+        if (this.state.options
+          && this.state.form.schema.properties.applicantFields.properties.userChallenges.properties.firstChoice
+          && this.state.form.schema.properties.applicantFields.properties.userChallenges.properties.secondChoice
+          && this.state.form.schema.properties.applicantFields.properties.userChallenges.properties.thirdChoice) {
             this.state.form.schema.properties.applicantFields.properties.userChallenges.properties.firstChoice.enum = this.state.options.filter(op => op !== " ");
             this.state.form.schema.properties.applicantFields.properties.userChallenges.properties.secondChoice.enum = this.state.options.filter(op => op !== " ");
             this.state.form.schema.properties.applicantFields.properties.userChallenges.properties.thirdChoice.enum = this.state.options.filter(op => op !== " ");

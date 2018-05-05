@@ -5,6 +5,7 @@ import Navigation from './other/Navigation';
 import MemberNavigation from './other/MemberNavigation';
 import HomePage from './home/HomePage'
 import RegisterPage from './registration/register/RegisterPage'
+import ParticipantRegistration from './registration/register/ParticipantRegistration'
 import {Route, Switch} from 'react-router-dom'
 import Footer from './other/Footer'
 import NotFoundPage from "./other/NotFoundPage";
@@ -48,7 +49,7 @@ class App extends Component<{}> {
                   <Route path="/privacy-policy" render={() => (<Page title="Privacy Policy" id='121'/>)}/>
                   <Route path="/terms-conditions" render={() => (<Page title="Terms & Conditions" id='211'/>)}/>
                   <Route path="/register" component={RegisterStartPage}/>
-                  <Route path="/register-participant" component={RegisterPage}/>
+                  <Route path="/register-participant" component={ParticipantRegistration}/>
                   <Route path="/register-startup" component={RegisterStartupPage}/>
                   <Route path="/register-partner" component={PartnerRegistration}/>
                   <Route path="/press-media" component={PressMediaPage}/>

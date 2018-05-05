@@ -26,8 +26,8 @@ export const userConstants = {
 
 
 export type UserAction =
-  | { type: 'USERS_REGISTER_REQUEST', user: User }
-  | { type: 'USERS_REGISTER_SUCCESS', user: User }
+  | { type: 'USERS_REGISTER_REQUEST' }
+  | { type: 'USERS_REGISTER_SUCCESS' }
   | { type: 'USERS_REGISTER_FAILURE', error: string }
 
   | { type: 'UPLOAD_USERS_REGISTER_REQUEST', user: User }

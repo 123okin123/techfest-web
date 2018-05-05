@@ -17,15 +17,18 @@ export const userActions = {
 };
 
 
-function register(user: User) :(any)=>void {
-    return (dispatch: any) => {
+function register(user: User) {
+    return (dispatch: Dispatch) => {
         dispatch(request());
         return userService.register(user)
             .then( r => {
-                dispatch(success())},
+                dispatch(success());
+                return Promise.resolve();
+              },
                 error => {
                 dispatch(failure(error));
-                    throw error}
+                return Promise.reject(error);
+                }
             );
     };
     function request() { return { type: userConstants.REGISTER_REQUEST } }

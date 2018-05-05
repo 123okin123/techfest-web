@@ -71,7 +71,7 @@ class AddJob extends Component<Props, State> {
     handleFinishedUpload = info => {
         this.setState({
           ...this.state,
-            fileURL: '/api/s3/img/' + info.filename,
+            fileURL: '/api/job-upload/s3/img/' + info.filename,
             uploadState: {isUploadSuccess: true}
         });
     };
@@ -80,7 +80,7 @@ class AddJob extends Component<Props, State> {
         this.setState({
           ...this.state,
             uploadOptions: {
-                signingUrl: "/api/s3/sign",
+                signingUrl: "/api/job-upload/s3/sign",
                 signingUrlQueryParams: {uploadType: 'avatar', token: getCookie("jwt")},
                 signingUrlWithCredentials: true
             },
