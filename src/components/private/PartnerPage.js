@@ -38,7 +38,7 @@ class PartnerPage extends Component<Props> {
         return (
           <Container className="pt-5">
               <h1>PARTNER AREA</h1>
-              <h2 className="mb-5">Welcome {this.props.userData.firstName} {company && <span>{'(' + company + ')'}</span>}</h2>
+              <h2 className="mb-5">Welcome {this.props.userData.firstName} {company && <span>{'[' + company + ']'}</span>}</h2>
 
               <Row className="mb-5">
                   <Col md="6">
