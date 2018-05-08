@@ -68,6 +68,7 @@ class TracksContainer extends Component<Props, State> {
     }
 
     render() {
+        console.log((this.props.trackResponse.acf || {}).challenge_descriptions);
         return (
     <Container>
         {/*<Row className="my-5">*/}
@@ -138,10 +139,11 @@ class TracksContainer extends Component<Props, State> {
                                 <Col sm="12">
                                     {this.props.trackResponse && this.props.trackResponse.acf && this.props.trackResponse.acf.challenge_descriptions &&
                                     <div>
-                                        {this.props.trackResponse.acf.challenge_descriptions.filter(track=>track.track_title === 'SMART AUTOMATION WAVE').map((track, index) =>
-                                          <div key={index.toString()}>
-                                              <h4 className="mt-5">{track.track_title}</h4>
-                                              {track.challenges && track.challenges.map((challenge, index) =>
+                                        {this.props.trackResponse.acf.challenge_descriptions[0] &&
+                                          <div>
+                                              <h4 className="mt-5">{this.props.trackResponse.acf.challenge_descriptions[0].track_title}</h4>
+                                              {this.props.trackResponse.acf.challenge_descriptions[0].challenges &&
+                                              this.props.trackResponse.acf.challenge_descriptions[0].challenges.map((challenge, index) =>
                                                 <div key={index.toString()}>
                                                     <h5 className="mt-4">{challenge.challenge_title}</h5>
                                                     <p className="mb-0"><strong>{challenge.challenge_company}</strong></p>
@@ -149,7 +151,7 @@ class TracksContainer extends Component<Props, State> {
                                                 </div>
                                               )}
                                           </div>
-                                        )}
+                                        }
                                     </div>
                                     }
                                     {this.props.isTrackFetching &&
@@ -163,10 +165,11 @@ class TracksContainer extends Component<Props, State> {
                                 <Col sm="12">
                                     {this.props.trackResponse && this.props.trackResponse.acf && this.props.trackResponse.acf.challenge_descriptions &&
                                     <div>
-                                        {this.props.trackResponse.acf.challenge_descriptions.filter(track=>track.track_title === 'QUANTIFIED EARTH').map((track, index) =>
-                                          <div key={index.toString()}>
-                                              <h4 className="mt-5">{track.track_title}</h4>
-                                              {track.challenges && track.challenges.map((challenge, index) =>
+                                        {this.props.trackResponse.acf.challenge_descriptions[1] &&
+                                          <div>
+                                              <h4 className="mt-5">{this.props.trackResponse.acf.challenge_descriptions[1].track_title}</h4>
+                                              {this.props.trackResponse.acf.challenge_descriptions[1].challenges &&
+                                              this.props.trackResponse.acf.challenge_descriptions[1].challenges.map((challenge, index) =>
                                                 <div key={index.toString()}>
                                                     <h5 className="mt-4">{challenge.challenge_title}</h5>
                                                     <p className="mb-0"><strong>{challenge.challenge_company}</strong></p>
@@ -174,7 +177,7 @@ class TracksContainer extends Component<Props, State> {
                                                 </div>
                                               )}
                                           </div>
-                                        )}
+                                        }
                                     </div>
                                     }
                                     {this.props.isTrackFetching &&
@@ -188,10 +191,11 @@ class TracksContainer extends Component<Props, State> {
                                 <Col sm="12">
                                     {this.props.trackResponse && this.props.trackResponse.acf && this.props.trackResponse.acf.challenge_descriptions &&
                                     <div>
-                                        {this.props.trackResponse.acf.challenge_descriptions.filter(track=>track.track_title === 'FUTURE MOBILITY').map((track, index) =>
-                                          <div key={index.toString()}>
-                                              <h4 className="mt-5">{track.track_title}</h4>
-                                              {track.challenges && track.challenges.map((challenge, index) =>
+                                        {this.props.trackResponse.acf.challenge_descriptions[2] &&
+                                          <div>
+                                              <h4 className="mt-5">{this.props.trackResponse.acf.challenge_descriptions[2].track_title}</h4>
+                                              {this.props.trackResponse.acf.challenge_descriptions[2].challenges &&
+                                              this.props.trackResponse.acf.challenge_descriptions[2].challenges.map((challenge, index) =>
                                                 <div key={index.toString()}>
                                                     <h5 className="mt-4">{challenge.challenge_title}</h5>
                                                     <p className="mb-0"><strong>{challenge.challenge_company}</strong></p>
@@ -199,7 +203,7 @@ class TracksContainer extends Component<Props, State> {
                                                 </div>
                                               )}
                                           </div>
-                                        )}
+                                        }
                                     </div>
                                     }
                                     {this.props.isTrackFetching &&
