@@ -1,13 +1,74 @@
 //@flow
 import React, {Component} from 'react'
 import styled from 'styled-components'
-import {Container, Row, Col} from 'reactstrap'
+import {Container, Row, Col, Button, Collapse, Nav, NavLink, NavItem, TabContent, TabPane} from 'reactstrap'
 import {Bracket} from '../common'
 import {connect} from "react-redux";
+import {pageActions} from "../../actions/pageActions";
+import {ScaleLoader} from 'react-spinners';
 
-class TracksContainer extends Component {
+
+type Props = {
+    response?: {
+        acf?: {
+            tracks?: Array<{
+                icon: string,
+                description: string,
+                title: string
+            }>
+        }
+    },
+    trackResponse: {
+        acf?: {
+        challenge_descriptions?: Array<{
+            track_title?: string,
+            challenges?: Array<{
+                challenge_title?: string,
+                challenge_company?: string,
+                challenge_description?: string
+            }>
+            }>
+        }
+    },
+    isTrackFetching?: boolean,
+    fetchTracks: ()=>Promise<void>
+}
+
+type State = {
+    fadeIn: boolean,
+    activeTab: string
+}
+
+class TracksContainer extends Component<Props, State> {
+    constructor(props: Props) {
+        super(props);
+        this.state = {
+            fadeIn: false,
+            activeTab: '1'
+        };
+        (this :any).toggle = this.toggle.bind(this);
+        (this :any).toggleTab = this.toggleTab.bind(this);
+    }
+
+    componentDidMount() {
+        this.props.fetchTracks();
+    }
+    toggle() {
+        this.setState({
+            fadeIn: !this.state.fadeIn
+        });
+    }
+
+    toggleTab(tab) {
+        if (this.state.activeTab !== tab) {
+            this.setState({
+                activeTab: tab
+            });
+        }
+    }
+
     render() {
-
+        console.log((this.props.trackResponse.acf || {}).challenge_descriptions);
         return (
     <Container>
         {/*<Row className="my-5">*/}
@@ -40,7 +101,126 @@ class TracksContainer extends Component {
               )
             }
         </Row>
-        <Row><Col className="text-center"><strong>MORE TRACKS TO BE ANNOUNCED SOON</strong></Col></Row>
+
+
+        <Row>
+            <Col xs="12">
+                <Collapse isOpen={this.state.fadeIn}>
+                    <Nav tabs className="border-0">
+                        <StyledNavItem className="text-center">
+                            <StyledNavLink
+                              className={this.state.activeTab === '1' ? 'active' : '' }
+                              onClick={() => { this.toggleTab('1'); }}
+                            >
+                                TRACK 1
+                            </StyledNavLink>
+                        </StyledNavItem>
+                        <StyledNavItem className="text-center">
+                            <StyledNavLink
+                              className={this.state.activeTab === '2' ? 'active' : '' }
+                              onClick={() => { this.toggleTab('2'); }}
+                            >
+                                TRACK 2
+                            </StyledNavLink>
+                        </StyledNavItem>
+                        <StyledNavItem className="text-center">
+                            <StyledNavLink
+                              className={this.state.activeTab === '3' ? 'active' : '' }
+                              onClick={() => { this.toggleTab('3'); }}
+                            >
+                                TRACK 3
+                            </StyledNavLink>
+                        </StyledNavItem>
+                    </Nav>
+
+                    <StyledTabContent activeTab={this.state.activeTab}>
+                        <TabPane tabId="1">
+                            <Row>
+                                <Col sm="12">
+                                    {this.props.trackResponse && this.props.trackResponse.acf && this.props.trackResponse.acf.challenge_descriptions &&
+                                    <div>
+                                        {this.props.trackResponse.acf.challenge_descriptions[0] &&
+                                          <div>
+                                              <h4 className="mt-5">{this.props.trackResponse.acf.challenge_descriptions[0].track_title}</h4>
+                                              {this.props.trackResponse.acf.challenge_descriptions[0].challenges &&
+                                              this.props.trackResponse.acf.challenge_descriptions[0].challenges.map((challenge, index) =>
+                                                <div key={index.toString()}>
+                                                    <h5 className="mt-4">{challenge.challenge_title}</h5>
+                                                    <p className="mb-0"><strong>{challenge.challenge_company}</strong></p>
+                                                    <div dangerouslySetInnerHTML={{__html: challenge.challenge_description}}/>
+                                                </div>
+                                              )}
+                                          </div>
+                                        }
+                                    </div>
+                                    }
+                                    {this.props.isTrackFetching &&
+                                        <LoaderContainer><ScaleLoader loading={this.props.isTrackFetching} height={20} width={2}/></LoaderContainer>
+                                    }
+                                </Col>
+                            </Row>
+                        </TabPane>
+                        <TabPane tabId="2">
+                            <Row>
+                                <Col sm="12">
+                                    {this.props.trackResponse && this.props.trackResponse.acf && this.props.trackResponse.acf.challenge_descriptions &&
+                                    <div>
+                                        {this.props.trackResponse.acf.challenge_descriptions[1] &&
+                                          <div>
+                                              <h4 className="mt-5">{this.props.trackResponse.acf.challenge_descriptions[1].track_title}</h4>
+                                              {this.props.trackResponse.acf.challenge_descriptions[1].challenges &&
+                                              this.props.trackResponse.acf.challenge_descriptions[1].challenges.map((challenge, index) =>
+                                                <div key={index.toString()}>
+                                                    <h5 className="mt-4">{challenge.challenge_title}</h5>
+                                                    <p className="mb-0"><strong>{challenge.challenge_company}</strong></p>
+                                                    <div dangerouslySetInnerHTML={{__html: challenge.challenge_description}}/>
+                                                </div>
+                                              )}
+                                          </div>
+                                        }
+                                    </div>
+                                    }
+                                    {this.props.isTrackFetching &&
+                                    <LoaderContainer><ScaleLoader loading={this.props.isTrackFetching} height={20} width={2}/></LoaderContainer>
+                                    }
+                                </Col>
+                            </Row>
+                        </TabPane>
+                        <TabPane tabId="3">
+                            <Row>
+                                <Col sm="12">
+                                    {this.props.trackResponse && this.props.trackResponse.acf && this.props.trackResponse.acf.challenge_descriptions &&
+                                    <div>
+                                        {this.props.trackResponse.acf.challenge_descriptions[2] &&
+                                          <div>
+                                              <h4 className="mt-5">{this.props.trackResponse.acf.challenge_descriptions[2].track_title}</h4>
+                                              {this.props.trackResponse.acf.challenge_descriptions[2].challenges &&
+                                              this.props.trackResponse.acf.challenge_descriptions[2].challenges.map((challenge, index) =>
+                                                <div key={index.toString()}>
+                                                    <h5 className="mt-4">{challenge.challenge_title}</h5>
+                                                    <p className="mb-0"><strong>{challenge.challenge_company}</strong></p>
+                                                    <div dangerouslySetInnerHTML={{__html: challenge.challenge_description}}/>
+                                                </div>
+                                              )}
+                                          </div>
+                                        }
+                                    </div>
+                                    }
+                                    {this.props.isTrackFetching &&
+                                    <LoaderContainer><ScaleLoader loading={this.props.isTrackFetching} height={20} width={2}/></LoaderContainer>
+                                    }
+                                </Col>
+                            </Row>
+                        </TabPane>
+                    </StyledTabContent>
+                </Collapse>
+            </Col>
+            <Col xs="12" className="text-center">
+                <Button className="mt-4 " onClick={this.toggle}>{this.state.fadeIn ? 'HIDE CHALLENGES' : 'SHOW CHALLENGES'}</Button>
+            </Col>
+        </Row>
+
+
         <Row className="my-5">
             <LineCol xs="12" lg="3" className="border-bottom border-dark"><LineColText>TECHFEST TECHNOLOGIES</LineColText></LineCol>
             <IndustryCol xs="12" lg="auto" className="p-0">
@@ -72,6 +252,31 @@ class TracksContainer extends Component {
     </Container>
 );}
 }
+const StyledNavItem = styled(NavItem)`
+  width: 33.3333333333%;
+`;
+const StyledNavLink = styled(NavLink)`
+    font-weight: 600;
+    font-size: 1.1em;
+    color: #000 !important;
+&.active, &:focus, &:hover {
+    color: #000 !important;
+    background-color: #e4d041 !important;
+    border-color: #e4d041 !important;
+}
+`;
+const StyledTabContent = styled(TabContent)`
+  background-color: #e4d141;
+  border-radius: 0 0 3px 3px;
+  padding: 0 3em 3em 3em;
+`;
+const LoaderContainer = styled.div`
+  padding-top: 100px;
+  margin: auto;
+  text-align: center;
+  width: 100px;
+`;
+
 const IndustryCol = styled(Col)`
   min-width: 110px;
 `;
@@ -117,11 +322,24 @@ const ColText = styled.p`
 
 const mapStateToProps = (state) => {
     const {response, isFetching} = state.pages['241'] || {isFetching: true};
+    const trackResponse = (state.pages['2211'] || {}).response ||  {content: {rendered: ''}};
+    const isTrackFetching = (state.pages['2211'] || {}).isFetching;
+
     return {
+        trackResponse,
+        isTrackFetching,
         response,
         isFetching
     }
 };
 
-export default connect(mapStateToProps)(TracksContainer);
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        fetchTracks: () => {
+            return dispatch(pageActions.fetchPageIfNeeded('2211'))
+        }
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TracksContainer);
 
