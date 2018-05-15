@@ -89,11 +89,28 @@ export type User = {
             lastName: string,
             email: string,
             numberOfDays: number
-        }>
+        }>,
+        launchPadGuests?: Array<{
+            firstName: string,
+            lastName: string,
+            email: string,
+            numberOfDays: number
+        }>,
+        advisors: Array<{
+            firstName: string,
+            lastName: string,
+            email: string,
+            numberOfDays: number
+        }>,
     },
     participantFields?: {},
     startupFields?: {},
-    applicantFields?: {},
+    applicantFields?: {
+        preEvent?: boolean,
+        preEventCount?: number,
+        userChallenges?: {
+        }
+    },
 }
 
 

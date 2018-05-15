@@ -3,17 +3,13 @@ import React, {Component} from 'react'
 import {Container, Row, Col, Alert} from 'reactstrap'
 import ChallengeSelection from './ChallengeSelection'
 import {connect} from "react-redux";
-import {userActions} from "../../actions/index";
+import {userActions} from "../../../actions/index";
 import PreEventInfo from './PreEventInfo';
 import styled from 'styled-components'
+import {type User, roles} from '../../../constants'
 
 type Props = {
-    data: {
-        applicantFields?: {
-            userChallenges?: {},
-            preEvent?: boolean
-        }
-    },
+    data: User,
     +fetchingState: {
         +fetching?: boolean,
         +fetchError?: string,
@@ -59,13 +55,13 @@ class PreEventPage extends Component<Props,State> {
         });
     }
 
-    preEventChanged(preEvent: ?boolean) {
+    preEventChanged(preEventInfo: {preEvent?: boolean, preEventCount?: number}) {
         if (!this.props.data) {return}
         this.props.update({
             ...this.props.data,
             applicantFields: {
                 ...this.props.data.applicantFields,
-                preEvent
+              ...preEventInfo
             }
         });
     }
@@ -91,14 +87,16 @@ class PreEventPage extends Component<Props,State> {
               <Col>
                   {this.props.data.applicantFields &&
                     <div>
-                      <ChallengeSelection
-                        userChallenges={this.props.data.applicantFields.userChallenges}
-                        onChange={(userChallenges) => this.challengeSelectionChanged(userChallenges)}
-                        loading={this.props.updatingState.updating}
-                      />
+                        {this.props.data.role !== roles.STARTUP_ROLE &&
+                          <ChallengeSelection
+                            userChallenges={this.props.data.applicantFields.userChallenges}
+                            onChange={(userChallenges) => this.challengeSelectionChanged(userChallenges)}
+                            loading={this.props.updatingState.updating}
+                          />
+                        }
                         <PreEventInfo
                         onChange={this.preEventChanged}
-                        preEvent={this.props.data.applicantFields.preEvent}
+                        userData={this.props.data}
                         loading={this.props.updatingState.updating}/>
                     </div>
                   }

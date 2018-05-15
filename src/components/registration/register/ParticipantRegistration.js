@@ -3,7 +3,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {AvForm, AvField, AvRadioGroup, AvRadio, AvInput, AvGroup} from 'availity-reactstrap-validation';
-import {Label, Container, Row, Col, Button, Alert} from 'reactstrap'
+import {Label, Container, Row, Col, Button, Alert, FormGroup} from 'reactstrap'
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 //$FlowFixMe
@@ -28,18 +28,29 @@ type State = {
             residence?: {}
         },
         applicantFields?: {
-            userChallenges?: {}
+            userChallenges?: {
+                dontCare?: boolean,
+                firstChoice?: string,
+                secondChoice?: string,
+                thirdChoice?: string
+            }
         }
     },
     uploadOptions?: {},
     s3Url: string,
     fileKeys: Array<string>,
-    uploadState: {
+    uploadStateCV: {
         isUploadSuccess?: boolean,
         isUploadError?: boolean,
         isUploading?: boolean
     },
-    fileFormError?: ?string
+    uploadStateArtist: {
+        isUploadSuccess?: boolean,
+        isUploadError?: boolean,
+        isUploading?: boolean
+    },
+    fileFormError?: ?string,
+    submitError?: ?boolean
 }
 
 const trackOptions = [
@@ -59,11 +70,14 @@ class ParticipantRegistration extends Component<Props, State> {
         super(props);
         (this: any).onFormChange = this.onFormChange.bind(this);
         (this: any).onValidSubmit = this.onValidSubmit.bind(this);
+        (this: any).handleFinishedUpload = this.handleFinishedUpload.bind(this);
+        (this: any).onSubmit = this.onSubmit.bind(this);
         this.state = {
             fileKeys: [],
             formData: {},
             s3Url: 'https://techfest-uploads.s3.amazonaws.com',
-            uploadState: {}
+            uploadStateCV: {},
+            uploadStateArtist: {}
         };
     }
 
@@ -77,14 +91,20 @@ class ParticipantRegistration extends Component<Props, State> {
             },
         })
     }
-    handleFinishedUpload = info => {
-        console.log(info);
-        this.setState({
-            ...this.state,
-            fileKeys: [...this.state.fileKeys, info.fileKey],
-            //fileURL: '/api/public/apply-upload/s3/img/' + info.filename,
-            uploadState: {isUploadSuccess: true}
-        });
+    handleFinishedUpload = (info: {fileKey: string}, type: string) => {
+        if (type === 'cv') {
+            this.setState({
+                ...this.state,
+                fileKeys: [...this.state.fileKeys, info.fileKey],
+                uploadStateCV: {isUploadSuccess: true}
+            });
+        } else if (type === 'artist') {
+            this.setState({
+                ...this.state,
+                fileKeys: [...this.state.fileKeys, info.fileKey],
+                uploadStateArtist: {isUploadSuccess: true}
+            });
+        }
     };
 
     onFormChange(e) {
@@ -155,7 +175,7 @@ class ParticipantRegistration extends Component<Props, State> {
 
 
     onValidSubmit(event, values) {
-        this.setState({...this.state, fileFormError: undefined});
+        this.setState({...this.state, fileFormError: undefined, submitError: undefined});
         if (this.state.fileKeys.length === 0) {
             this.setState({...this.state, fileFormError: "Application file(s) missing. Please select file(s)."});
             return
@@ -163,12 +183,13 @@ class ParticipantRegistration extends Component<Props, State> {
         const keys = this.state.fileKeys.map((e, i)=> {
             return {[`upload-${i}`]: e}
         });
-        console.log({...this.state.formData, keys});
         this.props.register({...this.state.formData, keys})
-          .then(()=>console.log('done'))
           .catch(e=>console.log(e))
     }
 
+    onSubmit(event, errors, values) {
+       errors ? this.setState({...this.state, submitError: true}) : this.setState({...this.state, submitError: undefined})
+    }
 
 
     render() {
@@ -176,14 +197,14 @@ class ParticipantRegistration extends Component<Props, State> {
           <StyledContainer className="p-md-5">
           <h1>BE PART OF TECHFEST</h1>
           {!(this.props.registrationSuccess === true) &&
-          <AvForm onChange={this.onFormChange} onValidSubmit={this.onValidSubmit}>
+          <AvForm onChange={this.onFormChange} onValidSubmit={this.onValidSubmit} onSubmit={this.onSubmit}>
               <Row>
-                  <Col sm={6}><AvField label="First Name*" name="firstName" required/></Col>
-                  <Col sm={6}><AvField label="Last Name*" name="lastName" required/></Col>
+                  <Col sm={6}><AvField label="First Name*" name="firstName" autoComplete='given-name' required/></Col>
+                  <Col sm={6}><AvField label="Last Name*" name="lastName" autoComplete='family-name' required/></Col>
               </Row>
               <Row>
-                  <Col sm={6}><AvField label="Email*" name="email" required/></Col>
-                  <Col sm={6}><AvField label="Email Confirmation*" name="emailConfirmation" validate={{match:{value:'email'}}} required/></Col>
+                  <Col sm={6}><AvField label="Email*" name="email" type='email' autoComplete='email' required/></Col>
+                  <Col sm={6}><AvField label="Email Confirmation*" name="emailConfirmation" type='email' autoComplete='email' validate={{match:{value:'email'}}} required/></Col>
               </Row>
               <Row>
                   <Col sm={6}><AvField label="Nationality*" name="participantsFields.nationality" type="select" required>
@@ -192,7 +213,7 @@ class ParticipantRegistration extends Component<Props, State> {
                         <option key={index.toString()}>{option}</option>
                       )}
                   </AvField></Col>
-                  <Col sm={6}><AvField label="Phone" name="participantsFields.phone"/></Col>
+                  <Col sm={6}><AvField label="Phone" autoComplete='tel' name="participantsFields.phone"/></Col>
               </Row>
               <Row>
                   <Col sm={4}><AvField label="Date of Birth*" name="participantsFields.dateOfBirth" type="date" required/></Col>
@@ -213,12 +234,12 @@ class ParticipantRegistration extends Component<Props, State> {
 
               <StyledLabel>PLACE OF RESIDENCE</StyledLabel>
               <Row>
-                  <Col sm={6}><AvField label="Street, house number*" name="participantsFields.residence.address" required/></Col>
-                  <Col sm={6}><AvField label="City*" name="participantsFields.residence.city" required/></Col>
+                  <Col sm={6}><AvField label="Street, house number*" name="participantsFields.residence.address" autoComplete='address-line1' required/></Col>
+                  <Col sm={6}><AvField label="City*" name="participantsFields.residence.city" autoComplete='address-line2' required/></Col>
               </Row>
               <Row>
-                  <Col sm={6}><AvField label="Zip code*" name="participantsFields.residence.zipCode" required/></Col>
-                  <Col sm={6}><AvField label="Country*" name="participantsFields.residence.country" required/></Col>
+                  <Col sm={6}><AvField label="Zip code*" name="participantsFields.residence.zipCode" autoComplete='postal-code' required/></Col>
+                  <Col sm={6}><AvField label="Country*" name="participantsFields.residence.country" autoComplete='country-name' required/></Col>
               </Row>
               <Row>
                   {(((this.state.formData.participantsFields || {}).residence || {}).city !== "München" &&
@@ -227,8 +248,8 @@ class ParticipantRegistration extends Component<Props, State> {
                     ((this.state.formData.participantsFields || {}).residence || {}).city !== "munich"
                   ) &&
                   <Col sm={6}>
-                      <label>I am not from Munich and want to arrive by Flixbus (please be aware of <a target="_blank" href="https://www.flixbus.com/bus-routes?wt_eid=2152154974100568657&wt_t=1521722684528&_ga=2.252078351.780838453.1521722659-854922651.1521549741 ">Flixbus routes</a>).</label>
-                      <StyledAvRadioGroup label="" name="participantsFields.needsTransport">
+                      <label>I am not from Munich and want to arrive by Flixbus (please be aware of <a target="_blank" href="https://www.flixbus.com/bus-routes?wt_eid=2152154974100568657&wt_t=1521722684528&_ga=2.252078351.780838453.1521722659-854922651.1521549741 ">Flixbus routes</a>).*</label>
+                      <StyledAvRadioGroup label="" name="participantsFields.needsTransport" required>
                       <AvRadio label="Yes" value="true" />
                       <AvRadio label="No" value="false" />
                       </StyledAvRadioGroup>
@@ -242,7 +263,7 @@ class ParticipantRegistration extends Component<Props, State> {
                   </Col>
               </Row>
               <Row>
-                  <Col sm={4}>
+                  <Col xs='12' sm='4'>
                       <AvField label="What describes you best?*" name="participantsFields.bestDescription" type="select" required>
                           <option> </option>
                           <option value="hacker">Hacker</option>
@@ -253,7 +274,7 @@ class ParticipantRegistration extends Component<Props, State> {
                           <option value="unicorn">Unicorn</option>
                       </AvField>
                   </Col>
-                  <Col sm={4}>
+                  <Col xs='12' sm='4'>
                       <AvField label="Profession*" name="participantsFields.profession" type="select" required>
                           <option> </option>
                           <option value="student">Student</option>
@@ -261,11 +282,11 @@ class ParticipantRegistration extends Component<Props, State> {
                           <option value="employee">Employee</option>
                       </AvField>
                   </Col>
-                  <Col sm={4}>
                       {(this.state.formData.participantsFields || {}).profession === "student" &&
+                      <Col xs='12' sm='4'>
                         <AvField label="Uni*" name="participantsFields.uni" required/>
+                      </Col>
                       }
-                  </Col>
               </Row>
               <StyledAvRadioGroup label="You are the programming genius?*" name="participantsFields.isProgrammer" required>
                   <AvRadio label="Yes" value="true" />
@@ -292,19 +313,48 @@ class ParticipantRegistration extends Component<Props, State> {
                   <AvRadio label="Yes" value="true" />
                   <AvRadio label="No" value="false" />
               </StyledAvRadioGroup>
-              {(this.state.formData.participantsFields || {}).isMaker &&
-                <p>Please, upload a motivational letter (max. 1 page, max. 5MB, pdf format)</p>
+              {(this.state.formData.participantsFields || {}).isArtist &&
+                <div>
+                <label>Please, upload a motivational letter (max. 1 page, max. 5MB, pdf format)*</label>
+                <DropzoneS3Uploader
+                  className="mb-4"
+                  onFinish={(info)=>this.handleFinishedUpload(info, 'artist')}
+                  onProgress={()=>this.setState({...this.state, uploadStateArtist: {isUploading: true}})}
+                  onError={()=>this.setState({...this.state, uploadStateArtist: {isUploadError: true}})}
+                  s3Url={this.state.s3Url}
+                  accept="application/pdf"
+                  multiple={false}
+                  maxSize={1024 * 1024 * 5}
+                  style={{
+                  width: '100%', height: '80px', textAlign: 'center',
+                  border: 'dashed 2px #999',
+                  borderRadius: '5px',
+                  position: 'relative',
+                  cursor: 'pointer',
+                  overflow:'hidden',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center'
+              }}
+                  upload={this.state.uploadOptions}
+                  >
+                  <DropZoneChildComponent
+                  isUploadError={this.state.uploadStateArtist.isUploadError}
+                  isUploading={this.state.uploadStateArtist.isUploading}
+                  isUploadSuccess={this.state.uploadStateArtist.isUploadSuccess}/>
+                  </DropzoneS3Uploader>
+                </div>
               }
               <AvField label="Some types of other Superpowers?" name="participantsFields.otherSuperpowers" type="textarea"/>
               <AvField label="Why should we select you (max. 140 characters)?" name="participantsFields.whyChoose" type="textarea"/>
               <AvField label="Link of your LinkedIn/ Xing profil" name="participantsFields.socialProfileLink"/>
               <AvField label="Link to your github Profile?" name="participantsFields.gitHubLink"/>
-              <label>Show us your CV (max. 2 pages, max. 5MB, pdf format)</label>
+              <label>Show us your CV (max. 2 pages, max. 5MB, pdf format)*</label>
               <DropzoneS3Uploader
                 className="mb-4"
-                onFinish={this.handleFinishedUpload}
-                onProgress={()=>this.setState({...this.state, uploadState: {isUploading: true}})}
-                onError={()=>this.setState({...this.state, uploadState: {isUploadError: true}})}
+                onFinish={(info)=>this.handleFinishedUpload(info, 'cv')}
+                onProgress={()=>this.setState({...this.state, uploadStateCV: {isUploading: true}})}
+                onError={()=>this.setState({...this.state, uploadStateCV: {isUploadError: true}})}
                 s3Url={this.state.s3Url}
                 accept="application/pdf"
                 multiple={false}
@@ -323,9 +373,9 @@ class ParticipantRegistration extends Component<Props, State> {
                 upload={this.state.uploadOptions}
               >
                   <DropZoneChildComponent
-                    isUploadError={this.state.uploadState.isUploadError}
-                    isUploading={this.state.uploadState.isUploading}
-                    isUploadSuccess={this.state.uploadState.isUploadSuccess}/>
+                    isUploadError={this.state.uploadStateCV.isUploadError}
+                    isUploading={this.state.uploadStateCV.isUploading}
+                    isUploadSuccess={this.state.uploadStateCV.isUploadSuccess}/>
               </DropzoneS3Uploader>
               <Row>
                   <Col sm={6}>
@@ -335,7 +385,7 @@ class ParticipantRegistration extends Component<Props, State> {
                       </StyledAvRadioGroup>
                   </Col>
                   <Col sm={6}>
-                      <StyledAvRadioGroup label="Do you already have a team for TECHFEST?" name="participantsFields.hasTeam">
+                      <StyledAvRadioGroup label="Do you already have a team for TECHFEST?*" name="participantsFields.hasTeam" required>
                           <AvRadio label="Yes" value="true" />
                           <AvRadio label="No" value="false" />
                       </StyledAvRadioGroup>
@@ -345,13 +395,13 @@ class ParticipantRegistration extends Component<Props, State> {
               {(this.state.formData.participantsFields || {}).hasTeam &&
                 <Row>
                     <Col sm={6}>
-                      <StyledAvRadioGroup label="Would you also participate as a single person?" name="participantsFields.wouldDoAlone">
+                      <StyledAvRadioGroup label="Would you also participate as a single person?*" name="participantsFields.wouldDoAlone" required>
                           <AvRadio label="Yes" value="true" />
                           <AvRadio label="No" value="false" />
                       </StyledAvRadioGroup>
                     </Col>
                     <Col sm={6}>
-                        <AvField label="Please tell us your team mates mail adresses (same as in your team mates application!):" name="participantsFields.teamMatesEmails"/>
+                        <AvField label="Please tell us your team mates mail adresses (same as in your team mates application!):*" name="participantsFields.teamMatesEmails" required/>
                     </Col>
                 </Row>
               }
@@ -369,19 +419,25 @@ class ParticipantRegistration extends Component<Props, State> {
                       </StyledAvRadioGroup>
                   </Col>
               </Row>
-              <AvField label="How did you hear about TECHFEST?*" name="participantsFields.howHearAbout" type="select" required>
-                  <option> </option>
-                  <option value="techfestFB">TECHFEST facebook</option>
-                  <option value="utumFB">UnternehmerTUM facebook</option>
-                  <option value="uni">University</option>
-                  <option value="friends_family">Friends & Family</option>
-                  <option value="TFpromotionAktion">TECHFEST Promotion Aktion</option>
-                  <option value="print">Printwerbung</option>
-                  <option value="other">other</option>
-              </AvField>
+              <Row>
+                  <Col sm={4}>
+                      <AvField label="How did you hear about TECHFEST?*" name="participantsFields.howHearAbout" type="select" required>
+                          <option> </option>
+                          <option value="techfestFB">TECHFEST facebook</option>
+                          <option value="utumFB">UnternehmerTUM facebook</option>
+                          <option value="uni">University</option>
+                          <option value="friends_family">Friends & Family</option>
+                          <option value="TFpromotionAktion">TECHFEST Promotion Action</option>
+                          <option value="print">Print</option>
+                          <option value="other">other</option>
+                      </AvField>
+                  </Col>
               {(this.state.formData.participantsFields || {}).howHearAbout === "other"  &&
+                <Col sm={4}>
                  <AvField label="How did you hear about TECHFEST then?" name="howHearAboutOther"/>
+                </Col>
               }
+              </Row>
               <StyledLabel>CHALLENGE PREFERENCES</StyledLabel>
               <StyledAvRadioGroup label="I do not care - I am ready to hack any challenge*" name="applicantFields.userChallenges.dontCare" required>
                   <AvRadio label="Yes" value="true" />
@@ -390,17 +446,26 @@ class ParticipantRegistration extends Component<Props, State> {
               {(((this.state.formData.applicantFields || {}).userChallenges || {}).dontCare !== true) &&
               <div>
                   <AvField label="First Choice*" name="applicantFields.userChallenges.firstChoice" type="select" required>
-                      {trackOptions.map((option, index)=>
+                      {trackOptions.filter((option) =>
+                        option !== ((this.state.formData.applicantFields || {}).userChallenges || {}).secondChoice &&
+                        option !== ((this.state.formData.applicantFields || {}).userChallenges || {}).thirdChoice
+                      ).map((option, index)=>
                           <option key={index.toString()} value={option}>{option}</option>
                       )}
                   </AvField>
                   <AvField label="Second Choice*" name="applicantFields.userChallenges.secondChoice" type="select" required>
-                      {trackOptions.map((option, index)=>
+                      {trackOptions.filter((option) =>
+                        option !== ((this.state.formData.applicantFields || {}).userChallenges || {}).firstChoice &&
+                        option !== ((this.state.formData.applicantFields || {}).userChallenges || {}).thirdChoice
+                      ).map((option, index)=>
                         <option key={index.toString()} value={option}>{option}</option>
                       )}
                   </AvField>
                   <AvField label="Third Choice*" name="applicantFields.userChallenges.thirdChoice" type="select" required>
-                      {trackOptions.map((option, index)=>
+                      {trackOptions.filter((option) =>
+                        option !== ((this.state.formData.applicantFields || {}).userChallenges || {}).firstChoice &&
+                        option !== ((this.state.formData.applicantFields || {}).userChallenges || {}).secondChoice
+                      ).map((option, index)=>
                         <option key={index.toString()} value={option}>{option}</option>
                       )}
                   </AvField>
@@ -412,12 +477,12 @@ class ParticipantRegistration extends Component<Props, State> {
                       I hereby acknowledge that i have read and agreed to the TECHFEST <Link target="_blank" to="/terms-conditions">terms and conditions</Link>*
                   </Label>
               </AvGroup>
-              <div className="mt-4">
+              <FormGroup className="mt-4">
                   <Button disabled={this.props.registering === true} className={"d-flex align-items-center"} color="primary" type="submit">
                       <span className="mr-2">Submit</span>
                       <ScaleLoader color={'#ffffff'} loading={this.props.registering === true} height={20} width={2} />
                   </Button>
-              </div>
+              </FormGroup>
           </AvForm>
           }
               {!this.props.registering && (this.props.registrationSuccess === false) &&
@@ -425,6 +490,9 @@ class ParticipantRegistration extends Component<Props, State> {
               }
               {!this.props.registering && this.state.fileFormError &&
                 <Alert className="mt-3" color="danger">{this.state.fileFormError}</Alert>
+              }
+              {!this.props.registering && this.state.submitError &&
+              <Alert className="mt-3" color="danger">Registration form contains errors.</Alert>
               }
               {!this.props.registering && (this.props.registrationSuccess === true) &&
                 <Alert className="mt-3" color="success">Congratulations, registration was successfully sent.</Alert>

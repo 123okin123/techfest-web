@@ -6559,7 +6559,7 @@ input[type="radio"], input[type="checkbox"] {
 .custom-alt-date-widget > ul > li > .btn {
   display: none; }
 
-.av-invalid > .form-group > .invalid-feedback {
+.form-group > .invalid-feedback {
   display: block; }
 
 .custom-switch {

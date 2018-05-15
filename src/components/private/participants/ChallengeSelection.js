@@ -4,8 +4,8 @@ import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input, Col, Row } from 'reactstrap';
 import Switch from 'react-toggle-switch'
 
-import "../../../node_modules/react-toggle-switch/dist/css/switch.min.css"
-import {pageActions} from "../../actions/pageActions";
+import "../../../../node_modules/react-toggle-switch/dist/css/switch.min.css"
+import {pageActions} from "../../../actions/pageActions";
 import {connect} from "react-redux";
 import styled from 'styled-components';
 import {ScaleLoader} from 'react-spinners';

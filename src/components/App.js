@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import Navigation from './other/Navigation';
 import MemberNavigation from './other/MemberNavigation';
 import HomePage from './home/HomePage'
-import RegisterPage from './registration/register/RegisterPage'
 import ParticipantRegistration from './registration/register/ParticipantRegistration'
 import {Route, Switch} from 'react-router-dom'
 import Footer from './other/Footer'
@@ -18,12 +17,14 @@ import LoginPage from './LoginPage';
 import PrivateRoute from "./other/PrivateRoute";
 import RegisterStartupPage from "./registration/register-startup/RegisterStartupPage";
 import RegisterStartPage from "./registration/RegisterStartPage";
-import PreEventPage from './private/PreEventPage';
+import PreEventPage from './private/participants/PreEventPage';
 import VerifyRegistrationPage from "./VerifyRegistrationPage";
 import {roles, allPartnerRoles} from '../constants/userConstants';
-import PartnerPage from "./private/PartnerPage";
+import PartnerPage from "./private/partner/PartnerPage";
 import MemberAreaPage from './private/MemberAreaPage';
-import JobPage from './private/JobPage';
+import JobPage from './private/other/JobPage';
+import PostJobPage from './private/partner/PostJobPage';
+import AdvisorPage from './private/partner/AdvisorPage';
 
 
 
@@ -38,12 +39,21 @@ class App extends Component<{}> {
 
           <div style={{marginTop: '5em', minHeight: '100vh'}}>
               <Switch>
+                  {/*Private All*/}
                   <PrivateRoute exact path="/private" component={MemberAreaPage}/>
-                  <PrivateRoute path="/private/member-area" permittedRoles={[roles.ADMIN_ROLE, roles.PARTICIPANT_ROLE]} component={PreEventPage}/>
-                  <PrivateRoute path="/private/partner" permittedRoles={[roles.ADMIN_ROLE].concat(allPartnerRoles)} component={PartnerPage}/>
                   <PrivateRoute path="/private/jobs" permittedRoles={Object.values(roles)} component={JobPage}/>
 
+                  {/*Private Partner*/}
+                  <PrivateRoute path="/private/partner" permittedRoles={[roles.ADMIN_ROLE].concat(allPartnerRoles)} component={PartnerPage}/>
+                  <PrivateRoute path="/private/post-job" permittedRoles={[roles.ADMIN_ROLE, roles.TRACK_PARTNER_ROLE]} component={PostJobPage}/>
+                  <PrivateRoute path="/private/register-advisor" permittedRoles={[roles.ADMIN_ROLE, roles.CHALLENGE_PARTNER_ROLE, roles.TRACK_PARTNER_ROLE]} component={AdvisorPage}/>
 
+
+                  {/*Private Participants*/}
+                  <PrivateRoute path="/private/member-area" permittedRoles={[roles.ADMIN_ROLE, roles.PARTICIPANT_ROLE]} component={PreEventPage}/>
+
+
+                  {/*Public*/}
                   <Route exact path="/" component={HomePage}/>
                   <Route path="/imprint" render={() => (<Page title="Imprint" id='11'/>)}/>
                   <Route path="/privacy-policy" render={() => (<Page title="Privacy Policy" id='121'/>)}/>

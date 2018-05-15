@@ -2,12 +2,12 @@
 
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {jobActions} from "../../actions";
+import {jobActions} from "../../../actions/index";
 import {AvForm, AvField} from "availity-reactstrap-validation";
 import {Button} from 'reactstrap';
 import styled from 'styled-components';
-import {getCookie} from '../../helpers/session';
-import {type Job} from '../../constants';
+import {getCookie} from '../../../helpers/session';
+import {type Job} from '../../../constants/index';
 
 type Props = {
     showJobsOfCompany?: string,

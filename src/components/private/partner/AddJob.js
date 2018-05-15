@@ -3,12 +3,12 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {Button, Alert} from 'reactstrap';
 import {AvForm, AvField} from 'availity-reactstrap-validation';
-import {jobActions, userActions} from "../../actions";
+import {jobActions, userActions} from "../../../actions/index";
 import DropzoneS3Uploader from 'react-dropzone-s3-uploader'
-import {getCookie} from "../../helpers/session";
+import {getCookie} from "../../../helpers/session";
 import {ScaleLoader} from 'react-spinners';
 import styled from "styled-components";
-import {type Job} from "../../constants";
+import {type Job} from "../../../constants/index";
 
 type Props = {
     className: string,
