@@ -13,13 +13,29 @@ import {getCookie} from "../../../helpers/session";
 import DropzoneS3Uploader from 'react-dropzone-s3-uploader'
 import {userActions} from '../../../actions'
 import {type User} from '../../../constants'
+import {pageActions} from "../../../actions/pageActions";
 
 
 
 type Props = {
     registering?: boolean,
     registrationSuccess?: boolean,
-    register: ({})=>Promise<void>
+    register: ({})=>Promise<void>,
+    isFetching: ?boolean,
+    fetchPage: ()=>Promise<void>,
+    response: {
+        acf?: {
+            preference_options?: Array<{option: string}>,
+            challenge_descriptions?: Array<{
+                track_title?: string,
+                challenges: Array<{
+                    challenge_title?: string,
+                    challenge_company?: string,
+                    challenge_description?: string
+                }>
+            }>
+        }
+    }
 };
 
 type State = {
@@ -50,20 +66,21 @@ type State = {
         isUploading?: boolean
     },
     fileFormError?: ?string,
-    submitError?: ?boolean
+    submitError?: ?boolean,
+    trackOptions: Array<string>
 }
 
-const trackOptions = [
-    " ",
-    "German quality tools in a smart and connected future - Smart Automation Wave",
-    "Food and Baverage - Smart Automation Wave",
-    "Future Hydraulics - Smart Automation Wave",
-    "Countering drones - Build your SKY-PROTECTOR - Quantified Earth",
-    "Sense the World! - Future Mobility",
-    "Audi Autonomous Fleet Experience - Future Mobility",
-    "Shape energy efficient rail transportation - Future Mobility",
-    "Wild Track and Smart City - Wild Track and Smart City"
-];
+// const trackOptions = [
+//     " ",
+//     "German quality tools in a smart and connected future - Smart Automation Wave",
+//     "Food and Baverage - Smart Automation Wave",
+//     "Future Hydraulics - Smart Automation Wave",
+//     "Countering drones - Build your SKY-PROTECTOR - Quantified Earth",
+//     "Sense the World! - Future Mobility",
+//     "Audi Autonomous Fleet Experience - Future Mobility",
+//     "Shape energy efficient rail transportation - Future Mobility",
+//     "Wild Track and Smart City - Wild Track and Smart City"
+// ];
 
 class ParticipantRegistration extends Component<Props, State> {
     constructor(props: Props) {
@@ -77,7 +94,8 @@ class ParticipantRegistration extends Component<Props, State> {
             formData: {},
             s3Url: 'https://techfest-uploads.s3.amazonaws.com',
             uploadStateCV: {},
-            uploadStateArtist: {}
+            uploadStateArtist: {},
+            trackOptions: [""]
         };
     }
 
@@ -89,8 +107,15 @@ class ParticipantRegistration extends Component<Props, State> {
                 signingUrlQueryParams: {uploadType: 'avatar'},
                 signingUrlWithCredentials: true
             },
-        })
+        });
+        this.props.fetchPage()
+          .then(()=>{
+              if (this.props.response && this.props.response.acf && this.props.response.acf.preference_options) {
+                  this.setState({trackOptions: this.props.response.acf.preference_options.map(e=> e.option)})
+              }
+          }).catch(err=>console.log(err))
     }
+
     handleFinishedUpload = (info: {fileKey: string}, type: string) => {
         if (type === 'cv') {
             this.setState({
@@ -193,6 +218,7 @@ class ParticipantRegistration extends Component<Props, State> {
 
 
     render() {
+        console.log(this.state);
         return (
           <StyledContainer className="p-md-5">
           <h1>BE PART OF TECHFEST</h1>
@@ -446,7 +472,8 @@ class ParticipantRegistration extends Component<Props, State> {
               {(((this.state.formData.applicantFields || {}).userChallenges || {}).dontCare !== true) &&
               <div>
                   <AvField label="First Choice*" name="applicantFields.userChallenges.firstChoice" type="select" required>
-                      {trackOptions.filter((option) =>
+                      <option/>
+                      {this.state.trackOptions.filter((option) =>
                         option !== ((this.state.formData.applicantFields || {}).userChallenges || {}).secondChoice &&
                         option !== ((this.state.formData.applicantFields || {}).userChallenges || {}).thirdChoice
                       ).map((option, index)=>
@@ -454,7 +481,8 @@ class ParticipantRegistration extends Component<Props, State> {
                       )}
                   </AvField>
                   <AvField label="Second Choice*" name="applicantFields.userChallenges.secondChoice" type="select" required>
-                      {trackOptions.filter((option) =>
+                      <option/>
+                      {this.state.trackOptions.filter((option) =>
                         option !== ((this.state.formData.applicantFields || {}).userChallenges || {}).firstChoice &&
                         option !== ((this.state.formData.applicantFields || {}).userChallenges || {}).thirdChoice
                       ).map((option, index)=>
@@ -462,7 +490,8 @@ class ParticipantRegistration extends Component<Props, State> {
                       )}
                   </AvField>
                   <AvField label="Third Choice*" name="applicantFields.userChallenges.thirdChoice" type="select" required>
-                      {trackOptions.filter((option) =>
+                      <option/>
+                      {this.state.trackOptions.filter((option) =>
                         option !== ((this.state.formData.applicantFields || {}).userChallenges || {}).firstChoice &&
                         option !== ((this.state.formData.applicantFields || {}).userChallenges || {}).secondChoice
                       ).map((option, index)=>
@@ -537,12 +566,16 @@ const DropZoneChildComponent = (props) => {
 
 const mapStateToProps = (state, ownProps) => {
     const {registering, registrationSuccess, error} = state.registration;
-    return {registering, registrationSuccess, registrationError: error}
+    const {response, isFetching} = state.pages['2211'] || {response: {content: {rendered: ''}}, isFetching: false};
+    return {registering, registrationSuccess, registrationError: error, response, isFetching}
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         register: (user) => {
             return dispatch(userActions.register(user))
+        },
+        fetchPage: () => {
+            return dispatch(pageActions.fetchPageIfNeeded('2211'))
         }
     }
 };
