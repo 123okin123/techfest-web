@@ -2,8 +2,15 @@
 import React, {Component} from 'react'
 import {Container, Alert} from 'reactstrap';
 
+type Props = {
+    location: {search: string}
+}
 
-class VerifyNewsletterPage extends Component {
+type State = {
+    verified?: boolean
+}
+
+class VerifyNewsletterPage extends Component<Props, State> {
     constructor() {
         super();
         this.state = {}

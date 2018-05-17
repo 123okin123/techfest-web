@@ -25,6 +25,8 @@ import MemberAreaPage from './private/MemberAreaPage';
 import JobPage from './private/other/JobPage';
 import PostJobPage from './private/partner/PostJobPage';
 import AdvisorPage from './private/partner/AdvisorPage';
+import ForgotPassword from './ForgotPassword';
+import ResetPassword from './ResetPassword'
 
 
 
@@ -65,6 +67,9 @@ class App extends Component<{}> {
                   <Route path="/press-media" component={PressMediaPage}/>
                   <Route path="/verify-newsletter" component={VerifyNewsletterPage}/>
                   <Route path="/verify-register" component={VerifyRegistrationPage}/>
+                  <Route path="/forgot-password" component={ForgotPassword}/>
+                  <Route path="/reset-password" component={ResetPassword}/>
+
 
                   <Route path="/login" component={LoginPage}/>
                   <Route component={NotFoundPage}/>

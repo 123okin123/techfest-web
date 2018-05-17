@@ -6,18 +6,21 @@ import { userActions } from '../actions/index';
 import {Col, Row, Container, Button, Alert} from 'reactstrap';
 import {AvForm, AvField} from 'availity-reactstrap-validation'
 import { Redirect } from 'react-router-dom';
+import {Link} from 'react-router-dom'
 
 
 type State = {
     email: string,
     password: string,
-    submitted: boolean
+    submitted: boolean,
+    redirectToReferrer?: boolean
 }
 type Props = {
     loggingIn: boolean,
     logout: ()=>void,
-    login: (string, string)=>void,
-    loginFailure: boolean
+    login: (string, string)=>Promise<void>,
+    loginFailure: boolean,
+    location: {state?: {from: { pathname: string}}}
 }
 
 class LoginPage extends Component<Props, State> {
@@ -37,6 +40,7 @@ class LoginPage extends Component<Props, State> {
         });
     }
 
+
     render() {
         const { from } = this.props.location.state || { from: { pathname: "/private" } };
         const { redirectToReferrer } = this.state;
@@ -54,6 +58,7 @@ class LoginPage extends Component<Props, State> {
                             <AvField name="password" label="Password" type="password" autoComplete="current-password" required />
                             <Button disabled={this.props.loggingIn} color="primary">Login</Button>
                         </AvForm>
+                        <Button tag={Link} to="/forgot-password" className="float-right" color="link">Forgot Password?</Button>
                         {this.props.loginFailure &&
                         <Alert className="mt-3" color="danger">
                             Sorry, login was not successful.
