@@ -50,7 +50,7 @@ class App extends Component<{}> {
 
 
                   {/*Private Participants*/}
-                  <PrivateRoute path="/private/member-area" permittedRoles={[roles.ADMIN_ROLE, roles.PARTICIPANT_ROLE]} component={PreEventPage}/>
+                  <PrivateRoute path="/private/member-area" permittedRoles={[roles.ADMIN_ROLE, roles.STARTUP_ROLE, roles.PARTICIPANT_ROLE]} component={PreEventPage}/>
 
 
                   {/*Public*/}
