@@ -59,7 +59,7 @@ class VerifyRegistrationPage extends Component<Props,State> {
                   <Col sm="4">
                       {!(this.state.verified === true) &&
                       <div className="py-2">
-                          <p>By setting your password your registration for TECHFEST MUNICH 2018 is set. You can register until May 6th. Please, be aware if you do not register until that date, your place will be offered to other applicants.</p>
+                          <p>By setting your password your registration for TECHFEST MUNICH 2018 is set. You can register until May 27th. Please, be aware if you do not register until that date, your place will be offered to other applicants.</p>
                           <AvForm onValidSubmit={this.confirmRegistration}>
                               <AvField name="password" label="Password" type="password" required minLength={6}
                                        helpMessage="Min length 6 characters"/>
