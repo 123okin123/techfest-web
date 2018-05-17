@@ -52,7 +52,7 @@ class PreEventInfo extends Component<Props, State> {
                                 && this.state.preEvent)  &&
                               <FormGroup row style={{padding: '10px 35px', alignItems: 'baseline'}}>
                                   <Label  for="preEventCount">Number of persons</Label>
-                                  <Col xs={2}><Input type="number" min="0" name="preEventCount" value={this.state.preEventCount} onChange={(e)=>this.setState({preEventCount:e.target.value})}/></Col>
+                                  <Col xs={2}><Input type="number" min="0" max="6" name="preEventCount" value={this.state.preEventCount} onChange={(e)=>this.setState({preEventCount:e.target.value})}/></Col>
                               </FormGroup>
                               }
                               <FormGroup check>

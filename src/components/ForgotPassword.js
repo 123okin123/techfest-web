@@ -4,7 +4,6 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {Container, Row, Col, Alert, Button} from "reactstrap";
 import {AvForm, AvField} from 'availity-reactstrap-validation'
-import {Link} from "react-router-dom";
 
 type Props = {}
 
