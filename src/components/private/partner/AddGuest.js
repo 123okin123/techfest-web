@@ -4,8 +4,8 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {AvField, AvForm} from 'availity-reactstrap-validation';
 import {Button} from 'reactstrap';
-import {userActions} from "../../actions";
-import {type User, roles} from '../../constants';
+import {userActions} from "../../../actions/index";
+import {type User, roles} from '../../../constants/index';
 
 type Props = {
     userData: User,
@@ -22,7 +22,7 @@ class AddGuest extends Component<Props> {
 
 
     onValidSubmit(event, values) {
-        values.numberOfDays = parseInt(values.numberOfDays);
+        values.numberOfDays = parseInt(values.numberOfDays, 10);
         if ((this.getNumberOfDayTicketsUsed() < this.allowedNumberOfDayTickets())) {
             this.props.add(values, this.props.userData).then(()=>{
                 (this: any).form && (this: any).form.reset();

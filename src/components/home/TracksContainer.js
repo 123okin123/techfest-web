@@ -131,6 +131,14 @@ class TracksContainer extends Component<Props, State> {
                                 TRACK 3
                             </StyledNavLink>
                         </StyledNavItem>
+                        <StyledNavItem className="text-center">
+                            <StyledNavLink
+                              className={this.state.activeTab === '4' ? 'active' : '' }
+                              onClick={() => { this.toggleTab('4'); }}
+                            >
+                                WILD TRACK
+                            </StyledNavLink>
+                        </StyledNavItem>
                     </Nav>
 
                     <StyledTabContent activeTab={this.state.activeTab}>
@@ -212,6 +220,32 @@ class TracksContainer extends Component<Props, State> {
                                 </Col>
                             </Row>
                         </TabPane>
+                        <TabPane tabId="4">
+                            <Row>
+                                <Col sm="12">
+                                    {this.props.trackResponse && this.props.trackResponse.acf && this.props.trackResponse.acf.challenge_descriptions &&
+                                    <div>
+                                        {this.props.trackResponse.acf.challenge_descriptions[3] &&
+                                        <div>
+                                            <h4 className="mt-5">{this.props.trackResponse.acf.challenge_descriptions[3].track_title}</h4>
+                                            {this.props.trackResponse.acf.challenge_descriptions[3].challenges &&
+                                            this.props.trackResponse.acf.challenge_descriptions[3].challenges.map((challenge, index) =>
+                                              <div key={index.toString()}>
+                                                  <h5 className="mt-4">{challenge.challenge_title}</h5>
+                                                  <p className="mb-0"><strong>{challenge.challenge_company}</strong></p>
+                                                  <div dangerouslySetInnerHTML={{__html: challenge.challenge_description}}/>
+                                              </div>
+                                            )}
+                                        </div>
+                                        }
+                                    </div>
+                                    }
+                                    {this.props.isTrackFetching &&
+                                    <LoaderContainer><ScaleLoader loading={this.props.isTrackFetching} height={20} width={2}/></LoaderContainer>
+                                    }
+                                </Col>
+                            </Row>
+                        </TabPane>
                     </StyledTabContent>
                 </Collapse>
             </Col>
@@ -253,7 +287,7 @@ class TracksContainer extends Component<Props, State> {
 );}
 }
 const StyledNavItem = styled(NavItem)`
-  width: 33.3333333333%;
+  width: 25%;
 `;
 const StyledNavLink = styled(NavLink)`
     font-weight: 600;

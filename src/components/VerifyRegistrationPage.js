@@ -4,19 +4,21 @@ import {Link} from 'react-router-dom'
 import {Container, Alert, Row, Col, Button} from 'reactstrap';
 import {AvForm, AvField} from 'availity-reactstrap-validation'
 
-
+type Props = {
+    location: {search: string}
+}
 
 type State = {
     confirming: boolean,
-    token: ?string,
-    verified: ?boolean,
-    error: ?string
+    token?: string,
+    verified?: boolean,
+    error?: string
 }
 
 
-class VerifyRegistrationPage extends Component<{},State> {
-    constructor() {
-        super();
+class VerifyRegistrationPage extends Component<Props,State> {
+    constructor(props: Props) {
+        super(props);
         (this: any).confirmRegistration = this.confirmRegistration.bind(this);
         this.state = {
             confirming: false,
@@ -27,11 +29,9 @@ class VerifyRegistrationPage extends Component<{},State> {
         const params = new URLSearchParams(search);
         const token = params.get('token');
         this.setState({token: token});
-
-
     }
 
-    confirmRegistration(event: SyntheticEvent<HTMLButtonElement>, values) {
+    confirmRegistration(event: SyntheticEvent<HTMLButtonElement>, values: {password: string}) {
         const requestOptions = {
             method: 'POST',
             headers: {
@@ -73,9 +73,10 @@ class VerifyRegistrationPage extends Component<{},State> {
                           <Alert className="mt-3" color="success">
                               Thanks for confirming your registration.
                           </Alert>
-                            <p>You can now login to your member account <Link to='/login'>here...</Link></p>
+                            <p>You can now login to your member account.</p>
+                            <Button tag={Link} to='/login'>Member Area</Button>
                         </div>
-                      }
+                       }
                       {(this.state.verified === false) &&
                       <Alert className="mt-3" color="danger">
                           Ops, something bad happened. {this.state.error}

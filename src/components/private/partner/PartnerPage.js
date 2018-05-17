@@ -4,14 +4,16 @@ import * as React from 'react';
 import {Component} from 'react'
 import {Container, Row, Col} from 'reactstrap'
 import {connect} from "react-redux";
-import AddJob from './AddJob';
-import JobList from './JobList';
-import {userActions, pageActions} from "../../actions";
-import {type User, roles} from "../../constants";
+import AddAdvisor from './AddAdvisor';
+import AdvisorList from './AdvisorList';
+import {userActions, pageActions} from "../../../actions/index";
+import {type User, roles} from "../../../constants/index";
 import AddGuest from './AddGuest';
 import GuestList from './GuestList';
 import styled from "styled-components";
 import {ScaleLoader} from 'react-spinners';
+import AddLaunchPadGuest from './AddLaunchPadGuest';
+import LaunchPadGuestList from './LaunchPadGuestList';
 
 
 type Props = {
@@ -57,32 +59,27 @@ class PartnerPage extends Component<Props> {
                       <AddGuest/>
                   </Col>
               </Row>
-
               <Row className="mb-5">
                   <Col>
                       <h4>Registered Guests</h4>
                       <GuestList/>
                   </Col>
               </Row>
-              {((this.props.userData.role === roles.TRACK_PARTNER_ROLE) ||
-                (this.props.userData.role === roles.ADMIN_ROLE) ||
-              (this.props.userData.partnerFields && this.props.userData.partnerFields.company === "Stihl")) &&
-                <div>
-                  <Row className="mb-5">
-                      <Col md="6">
-                          <h3>Post Job</h3>
-                          <AddJob/>
-                      </Col>
-                  </Row>
 
-                  <Row className="mb-5">
-                      <Col>
-                          <h4>Published Jobs</h4>
-                          <JobList showJobsOfCompany={company} editable/>
-                      </Col>
-                  </Row>
-                </div>
-              }
+              <Row className="my-5">
+                  <Col>
+                      <h3>Launchpad Day Guests Registration</h3>
+                      <AddLaunchPadGuest/>
+                  </Col>
+              </Row>
+              <Row className="mb-5">
+                  <Col>
+                      <h4>Registered Launchpad Day Guests</h4>
+                      <LaunchPadGuestList/>
+                  </Col>
+              </Row>
+
+
           </Container>
         )}
 }

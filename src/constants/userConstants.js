@@ -26,8 +26,8 @@ export const userConstants = {
 
 
 export type UserAction =
-  | { type: 'USERS_REGISTER_REQUEST', user: User }
-  | { type: 'USERS_REGISTER_SUCCESS', user: User }
+  | { type: 'USERS_REGISTER_REQUEST' }
+  | { type: 'USERS_REGISTER_SUCCESS' }
   | { type: 'USERS_REGISTER_FAILURE', error: string }
 
   | { type: 'UPLOAD_USERS_REGISTER_REQUEST', user: User }
@@ -89,11 +89,28 @@ export type User = {
             lastName: string,
             email: string,
             numberOfDays: number
-        }>
+        }>,
+        launchPadGuests?: Array<{
+            firstName: string,
+            lastName: string,
+            email: string,
+            numberOfDays: number
+        }>,
+        advisors: Array<{
+            firstName: string,
+            lastName: string,
+            email: string,
+            numberOfDays: number
+        }>,
     },
     participantFields?: {},
     startupFields?: {},
-    applicantFields?: {},
+    applicantFields?: {
+        preEvent?: boolean,
+        preEventCount?: number,
+        userChallenges?: {
+        }
+    },
 }
 
 

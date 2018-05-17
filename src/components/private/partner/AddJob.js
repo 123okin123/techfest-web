@@ -3,12 +3,12 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {Button, Alert} from 'reactstrap';
 import {AvForm, AvField} from 'availity-reactstrap-validation';
-import {jobActions, userActions} from "../../actions";
+import {jobActions, userActions} from "../../../actions/index";
 import DropzoneS3Uploader from 'react-dropzone-s3-uploader'
-import {getCookie} from "../../helpers/session";
+import {getCookie} from "../../../helpers/session";
 import {ScaleLoader} from 'react-spinners';
 import styled from "styled-components";
-import {type Job} from "../../constants";
+import {type Job} from "../../../constants/index";
 
 type Props = {
     className: string,
@@ -71,7 +71,7 @@ class AddJob extends Component<Props, State> {
     handleFinishedUpload = info => {
         this.setState({
           ...this.state,
-            fileURL: '/api/s3/img/' + info.filename,
+            fileURL: '/api/job-upload/s3/img/' + info.filename,
             uploadState: {isUploadSuccess: true}
         });
     };
@@ -80,7 +80,7 @@ class AddJob extends Component<Props, State> {
         this.setState({
           ...this.state,
             uploadOptions: {
-                signingUrl: "/api/s3/sign",
+                signingUrl: "/api/job-upload/s3/sign",
                 signingUrlQueryParams: {uploadType: 'avatar', token: getCookie("jwt")},
                 signingUrlWithCredentials: true
             },

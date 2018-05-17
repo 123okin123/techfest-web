@@ -2,7 +2,7 @@
 
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import JobList from './JobList';
+import JobList from '../common/JobList';
 import {Container} from 'reactstrap';
 
 type Props = {}

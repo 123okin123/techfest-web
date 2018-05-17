@@ -2,10 +2,10 @@
 
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {type User} from "../../constants";
+import {type User} from "../../../constants/index";
 import {AvField, AvForm} from 'availity-reactstrap-validation';
 import {Button, Table} from 'reactstrap';
-import {userActions} from "../../actions";
+import {userActions} from "../../../actions/index";
 import styled from 'styled-components';
 
 type Props = {
@@ -23,7 +23,7 @@ type State = {
     }>
 }
 
-class Template extends Component<Props, State> {
+class GuestList extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
         (this: any).handleValidSubmit = this.handleValidSubmit.bind(this);
@@ -128,4 +128,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Template);
+export default connect(mapStateToProps, mapDispatchToProps)(GuestList);

@@ -13,7 +13,6 @@ export default function configureStore(initialState = {}, history) {
     let middlewares = [
         thunkMiddleware
     ];
-    console.log(process.env.NODE_ENV);
     if (process.env.NODE_ENV === 'development') {
         middlewares = [
           ...middlewares,
