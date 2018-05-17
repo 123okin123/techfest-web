@@ -44,7 +44,7 @@ function shouldFetchMentors(state: MentorsState) :boolean {
     const mentors = state.items;
     if (!mentors) {
         return true
-    } else if (state.fetching) {
+    } else if (state.fetchingState.fetching) {
         return false
     } else {
         return false
@@ -67,7 +67,7 @@ function saveMentor(mentor: Mentor) {
             })
     };
     function request() {return {type: mentorConstants.SAVE_MENTOR_REQUEST }}
-    function success(mentor) {return {type: mentorConstants.SAVE_MENTOR_SUCCESS, mentor }}
+    function success(mentor: Mentor) {return {type: mentorConstants.SAVE_MENTOR_SUCCESS, mentor }}
     function failure(error) {return {type: mentorConstants.SAVE_MENTOR_FAILURE, error}}
 }
 
@@ -85,8 +85,8 @@ function updateMentor(mentor: Mentor) {
                 return Promise.reject(error);
             })
     };
-    function request(mentor) {return {type: mentorConstants.UPDATE_MENTOR_REQUEST, mentor }}
-    function success(mentor) {return {type: mentorConstants.UPDATE_MENTOR_SUCCESS, mentor }}
+    function request(mentor: Mentor) {return {type: mentorConstants.UPDATE_MENTOR_REQUEST, mentor }}
+    function success(mentor: Mentor) {return {type: mentorConstants.UPDATE_MENTOR_SUCCESS, mentor }}
     function failure(mentor,error) {return {type: mentorConstants.UPDATE_MENTOR_FAILURE, mentor, error}}
 }
 

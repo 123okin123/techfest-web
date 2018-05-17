@@ -37,7 +37,7 @@ function register(user: User) {
 }
 
 function uploadFileAndRegister(user: User, uploadFiles: Array<any>) {
-    return (dispatch: Dispatch, getState) => {
+    return (dispatch: Dispatch, getState: ()=>{}) => {
         return dispatch(uploadActions.uploadMulti(uploadFiles)).then(()=>{
             const keys = getState().upload.keys.map((e, i)=> {
                 return {[`upload-${i}`]: e}
