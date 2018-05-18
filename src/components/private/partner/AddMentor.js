@@ -82,6 +82,7 @@ class AddMentor extends Component<Props, State> {
         this.props.addMentor(newMentor)
           .then(()=> {
               this.setState({...this.state, currentSkill: '', skills: [], preview: ''});
+              //$FlowFixMe
               if (this.form) {this.form.reset()}
           }).catch(err=>console.log(err))
     }
@@ -200,7 +201,7 @@ const DropZoneChildComponent = (props) => {
     if (props.isUploadSuccess) {
         return (<PreviewImage preview={props.preview}/>);
     }
-    return (<div>Drop file here (max size: 5mb | format: jpg/png)</div>);
+    return (<div>Drop file here (max size: 2mb | format: jpg/png)</div>);
 };
 
 const mapStateToProps = (state, ownProps) => {

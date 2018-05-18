@@ -38,7 +38,7 @@ class PartnerPage extends Component<Props> {
     render() {
         const company = (this.props.userData.partnerFields || {}).company;
         return (
-          <Container className="pt-5">
+          <Container>
               <h1>PARTNER AREA</h1>
               <h2 className="mb-5">Welcome {this.props.userData.firstName} {company && <span>{'[' + company + ']'}</span>}</h2>
 

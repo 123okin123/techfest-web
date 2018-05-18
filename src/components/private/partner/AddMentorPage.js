@@ -25,11 +25,12 @@ class AddMentorPage extends Component<Props> {
           <Container>
               <Row>
                   <Col md={6}>
-                      <h1>REGISTER YOUR MENTORS</h1>
+                      <h1 className="mt-md-5 pt-md-5">REGISTER YOUR MENTORS</h1>
                       <h2>Add new Mentors here.</h2>
                   </Col>
                   <Col md={6} className="text-center"><AddMentor userData={this.props.userData}/></Col>
               </Row>
+              <h2 className="mt-5">Your Mentors</h2>
               <MentorList className="mt-5" userData={this.props.userData}/>
           </Container>
         )

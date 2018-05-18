@@ -3,6 +3,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import styled from 'styled-components'
+import {Button} from 'reactstrap'
 import {type Mentor, type User} from '../../../constants'
 import {mentorActions} from "../../../actions";
 import {getCookie} from '../../../helpers/session';
@@ -11,24 +12,31 @@ type Props = {
     className: string,
     userData: User,
     mentors: Array<Mentor>,
-    fetchMentorsIfNeeded: ()=>Promise<void>
+    fetchMentorsIfNeeded: ()=>Promise<void>,
+    deleteMentor: (string)=>Promise<void>
 }
 
 class MentorList extends Component<Props> {
     constructor(props: Props) {
-        super(props)
+        super(props);
+        (this: any).deleteMentor = this.deleteMentor.bind(this);
     }
 
     componentDidMount() {
         this.props.fetchMentorsIfNeeded()
     }
 
+    deleteMentor(mentor: Mentor) {
+        this.props.deleteMentor(mentor._id);
+    }
+
     render() {
         const company = (this.props.userData.partnerFields || {}).company;
         return (
-          <div className={this.props.className}>
+          <MentorCollection className={this.props.className}>
               {this.props.mentors.filter((e)=>e.company === company).map((mentor: Mentor, index: number)=>
                 <MentorContainer key={index.toString()}>
+                    <Button className="float-right" onClick={()=>this.deleteMentor(mentor)}>Delete</Button>
                     <ImageContainer image={mentor.imageURL}/>
                     <h3>{mentor.firstName} {mentor.lastName}</h3>
                     <SkillContainer>
@@ -38,10 +46,18 @@ class MentorList extends Component<Props> {
                     </SkillContainer>
                 </MentorContainer>
               )}
-          </div>
+              {this.props.mentors.length === 0 &&
+              <p>No mentors yet.</p>
+              }
+          </MentorCollection>
         )
     }
 }
+const MentorCollection = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+`;
+
 const MentorContainer = styled.div`
     background-color: #fff;
     border-radius: 5px;
@@ -51,6 +67,7 @@ const MentorContainer = styled.div`
     overflow: auto;
     margin: 20px;
     text-align: center;
+    width: 300px;
 `;
 
 const ImageContainer = styled.div`
@@ -58,8 +75,9 @@ const ImageContainer = styled.div`
     background-size: cover;
     height: 180px;
     width: 180px;
-    margin: 0 auto 20px;
+    margin: 20px auto 20px;
     border-radius: 50%;
+    background-color: #e9ecef;
 `;
 const Skill = styled.span`
     background-color: #e9ecef;
@@ -86,6 +104,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         fetchMentorsIfNeeded: () => {
             return dispatch(mentorActions.fetchMentorsIfNeeded())
+        },
+        deleteMentor: (index: string) => {
+            return dispatch(mentorActions.deleteMentor(index))
         }
     }
 };
