@@ -27,7 +27,7 @@ import PostJobPage from './private/partner/PostJobPage';
 import AdvisorPage from './private/partner/AdvisorPage';
 import ForgotPassword from './ForgotPassword';
 import ResetPassword from './ResetPassword'
-
+import AddMentorPage from './private/partner/AddMentorPage'
 
 
 class App extends Component<{}> {
@@ -49,6 +49,8 @@ class App extends Component<{}> {
                   <PrivateRoute path="/private/partner" permittedRoles={[roles.ADMIN_ROLE].concat(allPartnerRoles)} component={PartnerPage}/>
                   <PrivateRoute path="/private/post-job" permittedRoles={[roles.ADMIN_ROLE, roles.TRACK_PARTNER_ROLE]} component={PostJobPage}/>
                   <PrivateRoute path="/private/register-advisor" permittedRoles={[roles.ADMIN_ROLE, roles.CHALLENGE_PARTNER_ROLE, roles.TRACK_PARTNER_ROLE]} component={AdvisorPage}/>
+                  <PrivateRoute path="/private/register-mentor" permittedRoles={[roles.ADMIN_ROLE, roles.CHALLENGE_PARTNER_ROLE, roles.TRACK_PARTNER_ROLE]} component={AddMentorPage}/>
+
 
 
                   {/*Private Participants*/}

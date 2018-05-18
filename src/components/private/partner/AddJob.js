@@ -9,6 +9,7 @@ import {getCookie} from "../../../helpers/session";
 import {ScaleLoader} from 'react-spinners';
 import styled from "styled-components";
 import {type Job} from "../../../constants/index";
+import {DropZoneChildComponent} from "../../common";
 
 type Props = {
     className: string,
@@ -39,6 +40,7 @@ class AddJob extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
         (this: any).handleValidSubmit = this.handleValidSubmit.bind(this);
+        (this: any).handleFinishedUpload = this.handleFinishedUpload.bind(this);
         this.state = {
             s3Url: 'https://techfest-job-uploads.s3.amazonaws.com',
             uploadState: {}
@@ -68,6 +70,7 @@ class AddJob extends Component<Props, State> {
             })
         }
     }
+
     handleFinishedUpload = info => {
         this.setState({
           ...this.state,
@@ -140,18 +143,7 @@ class AddJob extends Component<Props, State> {
 }
 
 
-const DropZoneChildComponent = (props) => {
-    if (props.isUploading) {
-        return (<div><strong>uploading...</strong></div>);
-    }
-    if (props.isUploadError) {
-        return (<div className="text-danger"><strong>error</strong></div>)
-    }
-    if (props.isUploadSuccess) {
-        return (<div className="text-success"><strong>success</strong></div>);
-    }
-    return (<div>Drop file here (max size: 5mb | format: pdf)</div>);
-};
+
 
 const LoaderContainer = styled.div`
   padding-top: 3em;
