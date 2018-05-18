@@ -2,22 +2,26 @@
 
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {Button, Input} from 'reactstrap'
+import {Button, Input, Col, Row} from 'reactstrap'
 import {AvForm, AvField} from 'availity-reactstrap-validation'
 import {mentorActions} from "../../../actions";
 import styled from 'styled-components'
-import {DropZoneChildComponent} from '../../common'
 import {getCookie} from "../../../helpers/session";
 import DropzoneS3Uploader from 'react-dropzone-s3-uploader'
+import {type Mentor, type User} from '../../../constants'
 
 
-
-type Props = {}
+type Props = {
+    +addMentor: (Mentor)=>Promise<void>,
+    +userData: User,
+}
 
 type State = {
     skills: Array<string>,
     currentSkill?: string,
+    skillError?: boolean,
 
+    preview?: string,
     uploadOptions?: {},
     s3Url: string,
     fileURL?: string,
@@ -34,6 +38,7 @@ class AddMentor extends Component<Props, State> {
         super(props);
         (this: any).onValidSubmit = this.onValidSubmit.bind(this);
         (this: any).addSkill = this.addSkill.bind(this);
+        (this: any).removeSkill = this.removeSkill.bind(this);
         this.state = {
             skills: [],
             currentSkill: '',
@@ -54,20 +59,45 @@ class AddMentor extends Component<Props, State> {
     }
 
     handleFinishedUpload = info => {
+        console.log(info);
         this.setState({
             ...this.state,
-            fileURL: '/api/job-upload/s3/img/' + info.filename,
+            preview: info.file.preview,
+            fileURL: '/api/mentor-upload/s3/img/' + info.filename,
             uploadState: {isUploadSuccess: true}
         });
     };
 
     onValidSubmit(event, values) {
+        if (this.state.skills.length === 0) {
+            this.setState({skillError: true});
+            return}
+        let newMentor :Mentor = {
+          ...values,
+            imageURL: this.state.fileURL,
+            skills: this.state.skills,
+            company: (this.props.userData.partnerFields || {}).company
+          };
 
+        this.props.addMentor(newMentor)
+          .then(()=> {
+              this.setState({...this.state, currentSkill: '', skills: [], preview: ''});
+              if (this.form) {this.form.reset()}
+          }).catch(err=>console.log(err))
     }
 
     addSkill() {
         if (!this.state.currentSkill) {return}
-        this.setState({skills: [...this.state.skills, this.state.currentSkill], currentSkill: ''})
+        this.setState({
+            ...this.state,
+            skills: [...this.state.skills, this.state.currentSkill],
+            currentSkill: '',
+            skillError: false
+        })
+    }
+
+    removeSkill(index: number) {
+        this.setState({...this.state, skills: this.state.skills.filter((e,i)=>i !== index)});
     }
 
     render() {
@@ -75,13 +105,14 @@ class AddMentor extends Component<Props, State> {
           <div>
               <AddMentorContainer>
                   <DropzoneS3Uploader
+                    className="mb-3"
                     onFinish={this.handleFinishedUpload}
                     onProgress={()=>this.setState({...this.state, uploadState: {isUploading: true}})}
                     onError={()=>this.setState({...this.state, uploadState: {isUploadError: true}})}
                     s3Url={this.state.s3Url}
                     accept="image/*"
                     multiple={false}
-                    maxSize={1024 * 1024 * 5}
+                    maxSize={1024 * 1024 * 2}
                     style={{
                         width: '180px', height: '180px', textAlign: 'center', margin: 'auto',
                         border: 'dashed 2px #999',
@@ -99,20 +130,22 @@ class AddMentor extends Component<Props, State> {
                         isUploadError={this.state.uploadState.isUploadError}
                         isUploading={this.state.uploadState.isUploading}
                         isUploadSuccess={this.state.uploadState.isUploadSuccess}
-                        hint="Drop file here (max size: 5mb | format: png/jpg)"
+                        preview={this.state.preview}
                       />
                   </DropzoneS3Uploader>
-              <AvForm onValidSubmit={this.onValidSubmit}>
-                  <AvField name="firstName" label="First Name" required />
-                  <AvField name="lastName" label="Last Name" required />
-                  <Input name="skills" value={this.state.currentSkill} onChange={(e)=>this.setState({currentSkill: e.target.value})}/>
-                  <Button className="d-inline" disabled={!this.state.currentSkill} onClick={this.addSkill}>Add Skill</Button>
-                  <SkillContainer>
+              <AvForm onValidSubmit={this.onValidSubmit} ref={c => (this.form = c)}>
+                  <StyledAvField name="firstName" label="" placeholder="First Name" required />
+                  <StyledAvField name="lastName" label="" placeholder="Last Name" required />
+                  <Row>
+                  <Col sm={8}><StyledInput error={this.state.skillError} placeholder="Skill" name="skills" value={this.state.currentSkill} onChange={(e)=>this.setState({...this.state, currentSkill: e.target.value})}/></Col>
+                  <Col sm={2}><Button className="d-inline" disabled={!this.state.currentSkill} onClick={this.addSkill}>Add Skill</Button></Col>
+                  </Row>
+                      <SkillContainer>
                       {this.state.skills.map((skill, index)=>
-                        <Skill key={index.toString()}>#{skill}</Skill>
+                        <Skill onClick={()=>this.removeSkill(index)} key={index.toString()}>#{skill}</Skill>
                       )}
                   </SkillContainer>
-                  <Button type="submit">Add Mentor</Button>
+                  <Button className="float-right mt-4" type="submit">Add Mentor</Button>
               </AvForm>
               </AddMentorContainer>
           </div>
@@ -122,10 +155,21 @@ class AddMentor extends Component<Props, State> {
 
 const AddMentorContainer = styled.div`
     background-color: #fff;
-    border-radius: 3px;
+    border-radius: 5px;
     padding: 1em;
     box-shadow: 0 0 10px #0006;
+    max-width: 350px;
+    overflow: auto;
+    margin: auto;
 `;
+const StyledAvField = styled(AvField)`
+  border-bottom: 2px dashed #999 !important;
+`;
+const StyledInput = styled(({ error, ...rest }) => <Input {...rest} />)`
+  border-bottom: 2px dashed ${(props)=>props.error ? '#dc3545' : '#999'} !important;
+  
+`;
+
 const Skill = styled.span`
     background-color: #e9ecef;
     padding: 2px 4px;
@@ -138,7 +182,26 @@ const SkillContainer = styled.div`
   display: flex;
   width: 100%;
   flex-wrap: wrap;
+  margin-top: 20px;
 `;
+const PreviewImage = styled.div`
+background: url(${(props)=> props.preview}) no-repeat center;
+background-size: cover;
+height: 100%;
+width: 100%;
+`;
+const DropZoneChildComponent = (props) => {
+    if (props.isUploading) {
+        return (<div><strong>uploading...</strong></div>);
+    }
+    if (props.isUploadError) {
+        return (<div className="text-danger"><strong>error</strong></div>)
+    }
+    if (props.isUploadSuccess) {
+        return (<PreviewImage preview={props.preview}/>);
+    }
+    return (<div>Drop file here (max size: 5mb | format: jpg/png)</div>);
+};
 
 const mapStateToProps = (state, ownProps) => {
     return {}

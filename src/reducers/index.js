@@ -7,6 +7,7 @@ import {upload} from './uploadReducer';
 import {contact} from "./contactReducer";
 import {user} from "./userReducer";
 import {jobs} from "./jobsReducer";
+import {mentors} from "./mentorsReducer";
 
 const rootReducer = combineReducers({
     pages,
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
     upload,
     contact,
     user,
-    jobs
+    jobs,
+    mentors
 });
 
 export default rootReducer;

@@ -87,7 +87,7 @@ class TracksContainer extends Component<Props, State> {
         <Row>
             {this.props.response && this.props.response.acf && this.props.response.acf.tracks &&
               this.props.response.acf.tracks.map((track, index) =>
-                <Col key={index} xs="12" lg="4">
+                <Col key={index} xs="12" lg="3">
                     <StyledImg src={track.icon}/>
                     <FlexContainer>
                         <Bracket/>
@@ -136,7 +136,7 @@ class TracksContainer extends Component<Props, State> {
                               className={this.state.activeTab === '4' ? 'active' : '' }
                               onClick={() => { this.toggleTab('4'); }}
                             >
-                                WILD TRACK
+                                FLEXIBLE TRACK
                             </StyledNavLink>
                         </StyledNavItem>
                     </Nav>

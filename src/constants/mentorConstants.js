@@ -28,8 +28,8 @@ export type Mentor = {
     +firstName: string,
     +lastName: string,
     +skills: Array<string>,
-    +description: string,
-    +company: string,
+    +description?: string,
+    +company?: string,
     +imageURL: string
 }
 
