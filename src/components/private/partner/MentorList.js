@@ -58,7 +58,7 @@ const ImageContainer = styled.div`
     background-size: cover;
     height: 180px;
     width: 180px;
-    margin: auto 20px;
+    margin: 0 auto 20px;
     border-radius: 50%;
 `;
 const Skill = styled.span`

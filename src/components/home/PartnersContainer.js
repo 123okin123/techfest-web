@@ -7,9 +7,20 @@ import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 
 
+type Props = {
+    response?: {
+        acf?: {
+            trackPartners: Array<{}>,
+            challengePartners: Array<{}>,
+            technologyPartners: Array<{}>,
+            ecosystemPartners: Array<{}>,
+            mediaPartners: Array<{}>,
+            supportPartners: Array<{}>
+        }
+    }
+}
 
-
-class PartnersContainer extends Component {
+class PartnersContainer extends Component<Props> {
     render() {return (
     <div>
     <FlexContainer>
@@ -39,6 +50,18 @@ class PartnersContainer extends Component {
         <div>
         <Container><PartnerSubTitle>Our ecosystem partners</PartnerSubTitle> </Container>
         <ImageGrid containImage leftRightInset="20px" imageWidth={'100%'} elementWidth={'190px'} elementHeight={'110px'} elementMargin={'20px 20px'} elements={this.props.response.acf.ecosystemPartners}/>
+        </div>}
+
+        {this.props.response && this.props.response.acf && this.props.response.acf.mediaPartners &&
+        <div>
+            <Container><PartnerSubTitle>Our media partners</PartnerSubTitle> </Container>
+            <ImageGrid containImage leftRightInset="20px" imageWidth={'100%'} elementWidth={'190px'} elementHeight={'110px'} elementMargin={'20px 20px'} elements={this.props.response.acf.mediaPartners}/>
+        </div>}
+
+        {this.props.response && this.props.response.acf && this.props.response.acf.supportPartners &&
+        <div>
+            <Container><PartnerSubTitle>Our support partners</PartnerSubTitle> </Container>
+            <ImageGrid containImage leftRightInset="20px" imageWidth={'100%'} elementWidth={'190px'} elementHeight={'110px'} elementMargin={'20px 20px'} elements={this.props.response.acf.supportPartners}/>
         </div>}
 
     </PartnerContainer>
