@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import {Row, Col, Container} from 'reactstrap'
 
 const LPDHowToParticipate = (props) =>
-  <div>
+  <StyledContainer>
       <Container>
           <h2 className="mb-5">HOW TO PARTICIPAT</h2>
       </Container>
@@ -41,9 +41,12 @@ const LPDHowToParticipate = (props) =>
           </FlexContainer>
       </Col>
   </StyledRow>
-  </div>
+  </StyledContainer>
 ;
 
+const StyledContainer = styled.div`
+margin-bottom: 8em;
+`;
 
 const StyledRow = styled(Row)`
   overflow: scroll;

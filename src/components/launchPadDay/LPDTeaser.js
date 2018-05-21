@@ -4,7 +4,7 @@ import {Bracket} from "../common";
 import {Container, Col, Row} from 'reactstrap'
 
 const LPDTeaser = (props) =>
-  <Container>
+  <StyledContainer>
       <Row className="justify-content-center">
           <Col md={10}>
       <FlexContainer>
@@ -26,7 +26,12 @@ const LPDTeaser = (props) =>
               </ul>
           </Col>
       </Row>
-</Container>;
+</StyledContainer>;
+
+
+const StyledContainer = styled(Container)`
+margin-bottom: 8em;
+`;
 
 const HeaderTitle = styled.h2`
   //font-size: 3em;

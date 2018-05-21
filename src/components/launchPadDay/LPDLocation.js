@@ -4,8 +4,8 @@ import styled from 'styled-components'
 import {Bracket} from "../common";
 
 const LPDLocation = (props) =>
-  <Container>
-      <h2>EXCLUSIVE LOCATION AT LAKE WÖRTHSEE</h2>
+  <StyledContainer>
+      <h2 className="mb-5">EXCLUSIVE LOCATION AT LAKE WÖRTHSEE</h2>
       <StyledActivities>[ MORE_FUN ] </StyledActivities>
       <StyledActivities>[ BARBECUE / PEDAL& ROWING BOATS / VOLLEYBALL / TRAMPOLINE / PING-PONG / SWIM ]</StyledActivities>
       <div className="d-flex text-center my-5 justify-content-center">
@@ -19,7 +19,11 @@ const LPDLocation = (props) =>
       </div>
       <Bracket right/>
       </div>
-  </Container>;
+  </StyledContainer>;
+
+const StyledContainer = styled(Container)`
+margin-bottom: 8em;
+`;
 
 
 const StyledActivities = styled.p`
