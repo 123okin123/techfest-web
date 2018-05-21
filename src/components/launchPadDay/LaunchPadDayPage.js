@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import LPDHeader from './LPDHeader'
 import LPDTeaser from './LPDTeaser'
 import LPDLocation from './LPDLocation'
+import LPDHowToParticipate from './LPDHowToParticipate'
 
 type Props = {}
 
@@ -19,6 +20,7 @@ class LaunchPadDayPage extends Component<Props> {
               <LPDHeader/>
               <LPDTeaser/>
               <LPDLocation/>
+              <LPDHowToParticipate/>
           </div>
         )
     }
