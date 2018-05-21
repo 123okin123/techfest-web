@@ -453,8 +453,8 @@ class ParticipantRegistration extends Component<Props, State> {
                           <option value="utumFB">UnternehmerTUM facebook</option>
                           <option value="uni">University</option>
                           <option value="friends_family">Friends & Family</option>
-                          <option value="TFpromotionAktion">TECHFEST Promotion Action</option>
-                          <option value="print">Print</option>
+                          <option value="TFpromotionAktion">TECHFEST Promotion</option>
+                          <option value="print">Print advertising</option>
                           <option value="other">other</option>
                       </AvField>
                   </Col>
@@ -498,6 +498,7 @@ class ParticipantRegistration extends Component<Props, State> {
                         <option key={index.toString()} value={option}>{option}</option>
                       )}
                   </AvField>
+                  <Button tag={Link} to="/#tracks" target="_blank">Find out about this year´s TECHFEST Challenges.</Button>
               </div>
               }
               <AvGroup className="mt-4" check>

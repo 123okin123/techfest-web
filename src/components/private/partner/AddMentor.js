@@ -14,6 +14,7 @@ import {type Mentor, type User} from '../../../constants'
 type Props = {
     +addMentor: (Mentor)=>Promise<void>,
     +userData: User,
+    allowedToAdd: boolean
 }
 
 type State = {
@@ -101,10 +102,14 @@ class AddMentor extends Component<Props, State> {
         this.setState({...this.state, skills: this.state.skills.filter((e,i)=>i !== index)});
     }
 
+
+
     render() {
         return (
           <div>
               <AddMentorContainer>
+                  {!this.props.allowedToAdd &&
+                  <Overlay/>}
                   <DropzoneS3Uploader
                     className="mb-3"
                     onFinish={this.handleFinishedUpload}
@@ -134,7 +139,9 @@ class AddMentor extends Component<Props, State> {
                         preview={this.state.preview}
                       />
                   </DropzoneS3Uploader>
-              <AvForm onValidSubmit={this.onValidSubmit} ref={c => (this.form = c)}>
+              <AvForm onValidSubmit={this.onValidSubmit} ref={c =>
+              {/*$FlowFixMe*/
+                   (this.form = c)}}>
                   <StyledAvField name="firstName" label="" placeholder="First Name" required />
                   <StyledAvField name="lastName" label="" placeholder="Last Name" required />
                   <Row>
@@ -153,7 +160,19 @@ class AddMentor extends Component<Props, State> {
         )
     }
 }
-
+const Overlay = styled.div`
+    width: calc(100% - 30px);
+    max-width: 350px;
+    margin: auto;
+    height: 100%;
+    top: 0;
+    position: absolute;
+    z-index: 100;
+    left: 0;
+    right: 0;
+    background-color: #ffffffd9;
+    border-radius: 5px;
+`;
 const AddMentorContainer = styled.div`
     background-color: #fff;
     border-radius: 5px;

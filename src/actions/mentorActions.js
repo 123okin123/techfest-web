@@ -3,6 +3,7 @@
 import {type Dispatch, mentorConstants, type Mentor} from "../constants";
 import {type MentorsState} from "../reducers/mentorsReducer";
 import mentorServices from '../services/mentorServices';
+import {type State} from '../reducers'
 
 export const mentorActions = {
     fetchMentorsIfNeeded,
@@ -12,8 +13,8 @@ export const mentorActions = {
 };
 
 function fetchMentorsIfNeeded() {
-    return (dispatch: Dispatch, getState: () => MentorsState): Promise<void> => {
-        if (shouldFetchMentors(getState())) {
+    return (dispatch: Dispatch, getState: () => State): Promise<void> => {
+        if (shouldFetchMentors(getState().mentors)) {
             return dispatch(fetchMentors())
         } else {
             return Promise.resolve();

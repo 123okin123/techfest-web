@@ -3,11 +3,13 @@ import { combineReducers } from 'redux';
 import { authentication } from './authenticationReducer';
 import { registration } from './registrationReducer';
 import {pages} from './pageReducer';
-import {upload} from './uploadReducer';
+import {upload, type UploadState} from './uploadReducer';
 import {contact} from "./contactReducer";
-import {user} from "./userReducer";
-import {jobs} from "./jobsReducer";
-import {mentors} from "./mentorsReducer";
+import {user, type UserState} from "./userReducer";
+import {jobs, type JobsState} from "./jobsReducer";
+import {mentors, type MentorsState} from "./mentorsReducer";
+
+
 
 const rootReducer = combineReducers({
     pages,
@@ -19,5 +21,16 @@ const rootReducer = combineReducers({
     jobs,
     mentors
 });
+
+export type State = {
+    pages: {},
+    authentication: {},
+    registration: {},
+    upload: UploadState,
+    contact: {},
+    user: UserState,
+    jobs: JobsState,
+    mentors: MentorsState,
+}
 
 export default rootReducer;

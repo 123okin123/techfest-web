@@ -3,7 +3,7 @@
 import {pageConstants} from '../constants'
 import pageServices from '../services/pageServices'
 import {type Pages} from '../reducers/pageReducer'
-
+import {type State} from '../reducers'
 
 
 export const pageActions = {
@@ -11,8 +11,8 @@ export const pageActions = {
 };
 
 function fetchPageIfNeeded(id: string) {
-    return (dispatch: any, getState: () => Pages) => {
-        if (shouldFetchPage(getState(), id)) {
+    return (dispatch: any, getState: () => State) => {
+        if (shouldFetchPage(getState().pages, id)) {
             return dispatch(fetchPage(id))
         } else {
             return Promise.resolve();
@@ -40,7 +40,7 @@ function fetchPage(id: string) {
 }
 
 function shouldFetchPage(state: Pages, id: string) :boolean {
-    const page = state.pages[id];
+    const page = state[id];
     if (!page) {
         return true
     } else if (page.isFetching) {

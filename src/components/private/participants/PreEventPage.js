@@ -128,7 +128,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         getInfo: () => {
-            return dispatch(userActions.getInfo())
+            return dispatch(userActions.fetchInfoIfNeeded())
         },
         update: (user) => {
             return dispatch(userActions.update(user))

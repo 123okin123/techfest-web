@@ -1,10 +1,10 @@
 //@flow
 import {userConstants, type User} from '../constants';
 import userService from '../services/userServices';
-//import { history } from '../helpers/history';
 import { uploadActions} from './uploadActions';
 import type {Dispatch} from "../constants";
 import type {UserState} from "../reducers/userReducer";
+import type {State} from '../reducers'
 
 export const userActions = {
     register,
@@ -37,7 +37,7 @@ function register(user: User) {
 }
 
 function uploadFileAndRegister(user: User, uploadFiles: Array<any>) {
-    return (dispatch: Dispatch, getState: ()=>{}) => {
+    return (dispatch: Dispatch, getState: ()=>State) => {
         return dispatch(uploadActions.uploadMulti(uploadFiles)).then(()=>{
             const keys = getState().upload.keys.map((e, i)=> {
                 return {[`upload-${i}`]: e}
@@ -101,8 +101,8 @@ function update(user: {}) {
 }
 
 function fetchInfoIfNeeded() {
-    return (dispatch: Dispatch, getState: () => UserState): Promise<void> => {
-        if (shouldFetchInfo(getState())) {
+    return (dispatch: Dispatch, getState: () => State): Promise<void> => {
+        if (shouldFetchInfo(getState().user)) {
             return dispatch(getInfo())
         } else {
             return Promise.resolve();
