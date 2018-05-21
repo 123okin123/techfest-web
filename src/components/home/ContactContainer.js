@@ -9,7 +9,8 @@ import styled from 'styled-components';
 
 type Props = {
     contacting: boolean,
-    contactSuccess: boolean
+    contactSuccess: boolean,
+    contact: ({})=>void
 }
 
 class ContactContainer extends Component<Props> {

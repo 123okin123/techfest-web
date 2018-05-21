@@ -7,6 +7,7 @@ import LPDTeaser from './LPDTeaser'
 import LPDLocation from './LPDLocation'
 import LPDHowToParticipate from './LPDHowToParticipate'
 import LPDTimeline from './LPDTimeline'
+import LPDDirections from './LPDDirections'
 
 type Props = {}
 
@@ -23,6 +24,7 @@ class LaunchPadDayPage extends Component<Props> {
               <LPDLocation/>
               <LPDHowToParticipate/>
               <LPDTimeline/>
+              <LPDDirections/>
           </div>
         )
     }
