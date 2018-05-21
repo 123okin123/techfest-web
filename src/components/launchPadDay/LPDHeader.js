@@ -28,21 +28,20 @@ class HomeHeader extends Component<{},State> {
     }
 
     render() { return (
-        <Header>
-            <Background imgURL={require('../../assets/TF_WebsiteHeader_opt.jpg')}/>
-            <LineOverlay yPosition={- this.state.scrollY * 0.6}/>
-            <Container>
-                <StyledRow className='align-items-center'>
-                    <Col>
-                        <img style={{maxWidth: '100%', marginTop: '3.5em'}} width="550px"  src={require('../../assets/TechFest-Logo_gelb-1024x384.png')} alt="Techfest Logo"/>
-                        <Headline>MORE_THAN A HACKATHON</Headline>
-                        <Date>June 14<sup>th</sup> - 17<sup>th</sup>, 2018</Date>
-                        <Button target="_blank" color="info" tag={Link} to="/register" className="rounded m-1">APPLY NOW</Button>
-                        <HashTag>#TECHFESTMUNICH</HashTag>
-                    </Col>
-                </StyledRow>
-            </Container>
-        </Header>
+      <Header>
+          <Background imgURL={require('../../assets/TF_WebsiteHeader_opt.jpg')}/>
+          <LineOverlay yPosition={- this.state.scrollY * 0.6}/>
+          <Container>
+              <StyledRow className='align-items-center'>
+                  <Col>
+                      <img style={{maxWidth: '100%', marginTop: '3.5em'}} width="550px"  src={require('../../assets/TechFest-Logo_gelb-1024x384.png')} alt="Techfest Logo"/>
+                      <Headline>UNTERNEHMERTUM LAUNCHPAD DAY</Headline>
+                      <Date>June 18<sup>th</sup>, 2018</Date>
+                      <HashTag>#TECHFESTMUNICH</HashTag>
+                  </Col>
+              </StyledRow>
+          </Container>
+      </Header>
     )}
 
 
@@ -105,19 +104,19 @@ const HashTag = styled.p`
 
 
 const LineOverlay = (props) => (
-    <LineContainer className="d-none d-lg-block" top={props.yPosition}>
-        <Line top="30" left="15"/>
-        <Line top="60" left="17"/>
-        <Line top="80" left="20" length="7"/>
-        <Line top="70" left="10" color="#fce200"/>
-        <Line top="15" left="10" length="7" color="#fce200"/>
-        <Line top="50" left="5" length="5"/>
-        <Line top="20" left="75"/>
-        <Line top="30" left="80" color="#fce200"/>
-        <Line top="60" left="85" length="7"/>
-        <Line top="50" left="90" color="#fce200"/>
-        <Line top="85" left="80" length="10" color="#fce200"/>
-    </LineContainer>
+  <LineContainer className="d-none d-lg-block" top={props.yPosition}>
+      <Line top="30" left="15"/>
+      <Line top="60" left="17"/>
+      <Line top="80" left="20" length="7"/>
+      <Line top="70" left="10" color="#fce200"/>
+      <Line top="15" left="10" length="7" color="#fce200"/>
+      <Line top="50" left="5" length="5"/>
+      <Line top="20" left="75"/>
+      <Line top="30" left="80" color="#fce200"/>
+      <Line top="60" left="85" length="7"/>
+      <Line top="50" left="90" color="#fce200"/>
+      <Line top="85" left="80" length="10" color="#fce200"/>
+  </LineContainer>
 );
 const LineContainer = styled.div`
   top: ${props => ((props.top*10)/10) + 'px'};

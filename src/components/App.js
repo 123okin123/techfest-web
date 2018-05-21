@@ -28,6 +28,7 @@ import AdvisorPage from './private/partner/AdvisorPage';
 import ForgotPassword from './ForgotPassword';
 import ResetPassword from './ResetPassword'
 import AddMentorPage from './private/partner/AddMentorPage'
+import LaunchPadDayPage from './launchPadDay/LaunchPadDayPage'
 
 
 class App extends Component<{}> {
@@ -35,6 +36,7 @@ class App extends Component<{}> {
       <RootComponent id="app-root">
           <Switch>
             <Route exact path="/" render={ () => <Navigation isFrontPage={true}/>}/>
+            <Route exact path="/launchpad-day" render={ () => <Navigation isFrontPage={true}/>}/>
             <PrivateRoute path="/private" component={MemberNavigation}/>
             <Route path="/" render={() =><Navigation isFrontPage={false}/>}/>
           </Switch>
@@ -71,6 +73,7 @@ class App extends Component<{}> {
                   <Route path="/verify-register" component={VerifyRegistrationPage}/>
                   <Route path="/forgot-password" component={ForgotPassword}/>
                   <Route path="/reset-password" component={ResetPassword}/>
+                  <Route path="/launchpad-day" component={LaunchPadDayPage}/>
 
 
                   <Route path="/login" component={LoginPage}/>
