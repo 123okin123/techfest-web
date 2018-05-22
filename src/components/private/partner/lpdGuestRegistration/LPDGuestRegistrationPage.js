@@ -30,9 +30,9 @@ class LPDGuestRegistrationPage extends Component<Props> {
     render() {
         return (
           <Container>
-              <h1>LAUNCHPAD DAY GUESTS REGISTRATION</h1>
               <Row className="mb-5">
                   <Col md="6">
+                      <h1 className="mt-md-5 pt-md-5 mb-5">LAUNCHPAD DAY GUESTS REGISTRATION</h1>
                       {this.props.isFetchingPage &&
                       <LoaderContainer><ScaleLoader loading={this.props.isFetchingPage} height={20} width={2}/></LoaderContainer>
                       }
@@ -40,9 +40,7 @@ class LPDGuestRegistrationPage extends Component<Props> {
                       <div dangerouslySetInnerHTML={{__html: this.props.response.content.rendered}}/>
                       }
                   </Col>
-              </Row>
-              <Row className="my-5">
-                  <Col>
+                  <Col md={6}>
                       <AddLaunchPadGuest/>
                   </Col>
               </Row>

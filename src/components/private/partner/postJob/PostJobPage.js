@@ -8,8 +8,8 @@ import JobList from '../../common/JobList';
 import AddJob from './AddJob';
 import {userActions} from "../../../../actions/index";
 import {pageActions} from "../../../../actions";
-import styled from "styled-components";
 import {ScaleLoader} from 'react-spinners';
+import {LoaderContainer} from "../../../common";
 
 
 type Props = {
@@ -71,11 +71,7 @@ class PostJobPage extends Component<Props> {
     }
 }
 
-const LoaderContainer = styled.div`
-  margin: auto;
-  text-align: center;
-  width: 100px;
-`;
+
 
 const mapStateToProps = (state, ownProps) => {
     const {data} = state.user;

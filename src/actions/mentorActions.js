@@ -43,10 +43,10 @@ function fetchMentors() {
 
 function shouldFetchMentors(state: MentorsState) :boolean {
     const mentors = state.items;
-    if (!mentors) {
-        return true
-    } else if (state.fetchingState.fetching) {
+    if (state.fetchingState.fetching) {
         return false
+    } else if (!mentors || mentors.length === 0) {
+        return true
     } else {
         return false
     }

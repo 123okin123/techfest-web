@@ -94,7 +94,8 @@ export type User = {
             firstName: string,
             lastName: string,
             email: string,
-            numberOfDays: number
+            numberOfDays: number,
+            imageURL: string
         }>,
         advisors: Array<{
             firstName: string,

@@ -9,6 +9,7 @@ import styled from 'styled-components'
 import {getCookie} from "../../../../helpers/session";
 import DropzoneS3Uploader from 'react-dropzone-s3-uploader'
 import {type Mentor, type User} from '../../../../constants/index'
+import {DropZoneImagePreview} from "../../../common";
 
 
 type Props = {
@@ -43,7 +44,7 @@ class AddMentor extends Component<Props, State> {
         this.state = {
             skills: [],
             currentSkill: '',
-            s3Url: 'https://techfest-job-uploads.s3.amazonaws.com',
+            s3Url: 'https://techfest-mentor-uploads.s3.amazonaws.com',
             uploadState: {}
         }
     }
@@ -132,7 +133,7 @@ class AddMentor extends Component<Props, State> {
                     }}
                     upload={this.state.uploadOptions}
                   >
-                      <DropZoneChildComponent
+                      <DropZoneImagePreview
                         isUploadError={this.state.uploadState.isUploadError}
                         isUploading={this.state.uploadState.isUploading}
                         isUploadSuccess={this.state.uploadState.isUploadSuccess}
@@ -204,24 +205,8 @@ const SkillContainer = styled.div`
   flex-wrap: wrap;
   margin-top: 20px;
 `;
-const PreviewImage = styled.div`
-background: url(${(props)=> props.preview}) no-repeat center;
-background-size: cover;
-height: 100%;
-width: 100%;
-`;
-const DropZoneChildComponent = (props) => {
-    if (props.isUploading) {
-        return (<div><strong>uploading...</strong></div>);
-    }
-    if (props.isUploadError) {
-        return (<div className="text-danger"><strong>error</strong></div>)
-    }
-    if (props.isUploadSuccess) {
-        return (<PreviewImage preview={props.preview}/>);
-    }
-    return (<div>Drop file here (max size: 2mb | format: jpg/png)</div>);
-};
+
+
 
 const mapStateToProps = (state, ownProps) => {
     return {}

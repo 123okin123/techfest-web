@@ -7,8 +7,11 @@ import {AvField, AvForm} from 'availity-reactstrap-validation';
 import {Button, Table} from 'reactstrap';
 import {userActions} from "../../../../actions/index";
 import styled from 'styled-components';
+import type {Mentor} from "../../../../constants";
+import {getCookie} from "../../../../helpers/session";
 
 type Props = {
+    className?: string,
     userData: User,
     +fetchInfoIfNeeded: ()=>Promise<void>,
     +deleteGuest: ({}, User)=>Promise<User>
@@ -19,6 +22,7 @@ type State = {
         firstName: string,
         lastName: string,
         email: string,
+        imageURL: string,
         numberOfDays: number
     }>
 }
@@ -58,50 +62,50 @@ class LaunchPadGuestList extends Component<Props, State> {
 
     render() {
         return (
-          <div>
-              {this.state.launchPadGuests.length === 0 && <div>No guests yet</div>}
-              <StyledTable>
-                  <tbody>
-                  {this.state.launchPadGuests.map((guest, index)=> {
-                      if (guest.editable) {
-                          return (
-                            <li className="border-bottom border-dark p-4" key={index.toString()}>
-                                <AvForm onValidSubmit={(event, values)=>this.handleValidSubmit(event, values, guest)}
-                                        model={{
-                                            firstName: guest.firstName,
-                                            lastName: guest.lastName,
-                                            email: guest.email,
-                                        }}>
-                                    <AvField name="firstName" required />
-                                    <AvField name="lastName" required />
-                                    <AvField name="email" required />
-                                    {/*<Button onClick={()=>this.setState({guests: this.state.guests.map(guestInState=> guestInState._id === job._id ? {...job, editable: false} : jobInState)})} className="float-right" color="info" >Cancel</Button>*/}
-                                    {/*<Button type="submit" className="float-right" color="info" >Save</Button>*/}
-                                </AvForm>
-                            </li>)
-                      } else {
-                          return (
-                            <tr className="" key={index.toString()}>
-                                <td className="mb-0">{guest.firstName}</td>
-                                <td className="mb-0">{guest.lastName}</td>
-                                <td className="mb-0">{guest.email}</td>
-                                <td><Button color="info" onClick={()=>this.onDelete(guest)}>Delete</Button></td>
-                                {/*<Button color="info" className="float-right" onClick={()=>this.setState({guests: this.state.guests.map(guestInState=>guestInState._id === guest._id ? {...guest, editable: true}:guestInState)})}>Edit</Button>*/}
-                            </tr>)
-                      }
-                  })}
-                  </tbody>
-              </StyledTable>
-          </div>
+          <GuestCollection className={this.props.className}>
+              {this.state.launchPadGuests.map((guest, index: number)=>
+                <GuestContainer key={index.toString()}>
+                    <Button className="float-right" onClick={()=>this.onDelete(guest)}>Delete</Button>
+                    <ImageContainer image={guest.imageURL}/>
+                    <h3>{guest.firstName} {guest.lastName}</h3>
+                    <h4>{guest.email}</h4>
+                </GuestContainer>
+              )}
+              {this.state.launchPadGuests.length === 0 &&
+              <p>No mentors yet.</p>
+              }
+          </GuestCollection>
         )
     }
 }
 
-const StyledTable = styled(Table)`
-&>tbody>tr>td {
-border-top: 1px solid #000;
-}
+const GuestCollection = styled.div`
+    display: flex;
+    flex-wrap: wrap;
 `;
+
+const GuestContainer = styled.div`
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 1em;
+    box-shadow: 0 0 10px #0006;
+    max-width: 350px;
+    overflow: auto;
+    margin: 20px;
+    text-align: center;
+    width: 300px;
+`;
+
+const ImageContainer = styled.div`
+    background: url(${(props)=> props.image + '?token=' + getCookie("jwt")}) no-repeat center;
+    background-size: cover;
+    height: 180px;
+    width: 180px;
+    margin: 20px auto 20px;
+    border-radius: 50%;
+    background-color: #e9ecef;
+`;
+
 
 const mapStateToProps = (state, ownProps) => {
     const {data} = state.user;
