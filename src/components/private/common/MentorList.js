@@ -4,8 +4,8 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import styled from 'styled-components'
 import {Button} from 'reactstrap'
-import {type Mentor, type User} from '../../../constants'
-import {mentorActions} from "../../../actions";
+import {type Mentor, type User} from '../../../constants/index'
+import {mentorActions} from "../../../actions/index";
 import {getCookie} from '../../../helpers/session';
 
 type Props = {

@@ -2,19 +2,19 @@
 
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {type User} from "../../../constants/index";
+import {type User} from "../../../../constants/index";
 import {AvField, AvForm} from 'availity-reactstrap-validation';
 import {Button, Table} from 'reactstrap';
-import {userActions} from "../../../actions/index";
+import {userActions} from "../../../../actions/index";
 import styled from 'styled-components';
 
 type Props = {
     userData: User,
     +fetchInfoIfNeeded: ()=>Promise<void>,
-    +deleteAdvisor: ({}, User)=>Promise<User>
+    +deleteGuest: ({}, User)=>Promise<User>
 };
 type State = {
-    advisors: Array<{
+    launchPadGuests: Array<{
         editable?: boolean,
         firstName: string,
         lastName: string,
@@ -23,14 +23,14 @@ type State = {
     }>
 }
 
-class AdvisorList extends Component<Props, State> {
+class LaunchPadGuestList extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
         (this: any).handleValidSubmit = this.handleValidSubmit.bind(this);
         (this: any).onDelete = this.onDelete.bind(this);
-        const advisors = ((props.userData.partnerFields || {}).advisors || []).map(guest=>{return{...guest, editable: false}});
+        const launchPadGuests = ((props.userData.partnerFields || {}).launchPadGuests || []).map(guest=>{return{...guest, editable: false}});
         this.state = {
-            advisors: advisors
+            launchPadGuests: launchPadGuests
         }
     }
 
@@ -41,9 +41,9 @@ class AdvisorList extends Component<Props, State> {
     }
 
     componentWillReceiveProps(nextProps) {
-        const advisors = ((nextProps.userData.partnerFields || {}).advisors || []).map(guest=>{return{...guest, editable: false}});
+        const launchPadGuests = ((nextProps.userData.partnerFields || {}).launchPadGuests || []).map(guest=>{return{...guest, editable: false}});
         this.state = {
-            advisors: advisors
+            launchPadGuests: launchPadGuests
         }
     }
 
@@ -53,16 +53,16 @@ class AdvisorList extends Component<Props, State> {
     }
 
     onDelete(guest) {
-        this.props.deleteAdvisor(guest, this.props.userData)
+        this.props.deleteGuest(guest, this.props.userData)
     }
 
     render() {
         return (
           <div>
-              {this.state.advisors.length === 0 && <div>No advisors yet</div>}
+              {this.state.launchPadGuests.length === 0 && <div>No guests yet</div>}
               <StyledTable>
                   <tbody>
-                  {this.state.advisors.map((guest, index)=> {
+                  {this.state.launchPadGuests.map((guest, index)=> {
                       if (guest.editable) {
                           return (
                             <li className="border-bottom border-dark p-4" key={index.toString()}>
@@ -112,12 +112,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         fetchInfoIfNeeded: () => {
             return dispatch(userActions.fetchInfoIfNeeded())
         },
-        deleteAdvisor: (guestToDelete, user) => {
+        deleteGuest: (guestToDelete, user) => {
             const updatedUser = {
                 ...user,
                 partnerFields: {
                     ...user.partnerFields,
-                    advisors: ((user.partnerFields || {}).advisors || []).filter(guest=>guest.email !== guestToDelete.email)
+                    launchPadGuests: ((user.partnerFields || {}).launchPadGuests || []).filter(guest=>guest.email !== guestToDelete.email)
                 }
             };
             return dispatch(userActions.update(updatedUser))
@@ -125,4 +125,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AdvisorList);
+export default connect(mapStateToProps, mapDispatchToProps)(LaunchPadGuestList);

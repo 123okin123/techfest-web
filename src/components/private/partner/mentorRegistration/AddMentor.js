@@ -4,11 +4,11 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {Button, Input, Col, Row} from 'reactstrap'
 import {AvForm, AvField} from 'availity-reactstrap-validation'
-import {mentorActions} from "../../../actions";
+import {mentorActions} from "../../../../actions/index";
 import styled from 'styled-components'
-import {getCookie} from "../../../helpers/session";
+import {getCookie} from "../../../../helpers/session";
 import DropzoneS3Uploader from 'react-dropzone-s3-uploader'
-import {type Mentor, type User} from '../../../constants'
+import {type Mentor, type User} from '../../../../constants/index'
 
 
 type Props = {

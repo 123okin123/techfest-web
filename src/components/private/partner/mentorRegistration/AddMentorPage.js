@@ -4,9 +4,9 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {Container, Row, Col} from 'reactstrap'
 import AddMentor from './AddMentor'
-import {mentorActions, userActions} from "../../../actions";
-import MentorList from './MentorList'
-import {type User, type Mentor} from '../../../constants'
+import {mentorActions, userActions} from "../../../../actions/index";
+import MentorList from '../../common/MentorList'
+import {type User, type Mentor} from '../../../../constants/index'
 
 type Props = {
     userData: User,

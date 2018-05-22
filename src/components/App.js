@@ -22,13 +22,17 @@ import VerifyRegistrationPage from "./VerifyRegistrationPage";
 import {roles, allPartnerRoles} from '../constants/userConstants';
 import PartnerPage from "./private/partner/PartnerPage";
 import MemberAreaPage from './private/MemberAreaPage';
-import JobPage from './private/other/JobPage';
-import PostJobPage from './private/partner/PostJobPage';
-import AdvisorPage from './private/partner/AdvisorPage';
+import JobPage from './private/participants/JobPage';
+import PostJobPage from './private/partner/postJob/PostJobPage';
+import AdvisorPage from './private/partner/advisorRegistration/AdvisorPage';
 import ForgotPassword from './ForgotPassword';
 import ResetPassword from './ResetPassword'
-import AddMentorPage from './private/partner/AddMentorPage'
+import AddMentorPage from './private/partner/mentorRegistration/AddMentorPage'
+import GuestRegistrationPage from './private/partner/guestRegistration/GuestRegistrationPage'
 import LaunchPadDayPage from './launchPadDay/LaunchPadDayPage'
+import LPDGuestRegistrationPage from './private/partner/lpdGuestRegistration/LPDGuestRegistrationPage'
+
+
 
 
 class App extends Component<{}> {
@@ -52,7 +56,8 @@ class App extends Component<{}> {
                   <PrivateRoute path="/private/post-job" permittedRoles={[roles.ADMIN_ROLE, roles.TRACK_PARTNER_ROLE]} component={PostJobPage}/>
                   <PrivateRoute path="/private/register-advisor" permittedRoles={[roles.ADMIN_ROLE, roles.CHALLENGE_PARTNER_ROLE, roles.TRACK_PARTNER_ROLE]} component={AdvisorPage}/>
                   <PrivateRoute path="/private/register-mentor" permittedRoles={[roles.ADMIN_ROLE, ...allPartnerRoles]} component={AddMentorPage}/>
-
+                  <PrivateRoute path="/private/register-guest" permittedRoles={[roles.ADMIN_ROLE, ...allPartnerRoles]} component={GuestRegistrationPage}/>
+                  <PrivateRoute path="/private/register-lpd-guest" permittedRoles={[roles.ADMIN_ROLE, ...allPartnerRoles]} component={LPDGuestRegistrationPage}/>
 
 
                   {/*Private Participants*/}
