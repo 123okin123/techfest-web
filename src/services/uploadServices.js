@@ -13,7 +13,7 @@ type SignedRequest = {
     key: string
 };
 
-function uploadMultiToS3(files): Promise<string[]> {
+function uploadMultiToS3(files: Array<{}>): Promise<Array<string>> {
     let uploads = files.map(file=>uploadToS3(file));
     return Promise.all(uploads)
 }

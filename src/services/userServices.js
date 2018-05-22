@@ -68,14 +68,14 @@ function getById(id) {
     return fetch('/api/users/' + id, requestOptions).then(handleResponse);
 }
 
-function getMe() {
+function getMe(): Promise<{}> {
     const requestOptions = {
         method: 'GET',
     };
     return fetch('/api/users/me?token=' + getCookie("jwt") , requestOptions).then(handleResponse);
 }
 
-function register(user: User) :Promise<JSON> {
+function register(user: User) :Promise<{}> {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

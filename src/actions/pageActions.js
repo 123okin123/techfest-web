@@ -13,14 +13,13 @@ export const pageActions = {
 function fetchPageIfNeeded(id: string) {
     return (dispatch: any, getState: () => State) => {
         if (shouldFetchPage(getState().pages, id)) {
-            return dispatch(fetchPage(id))
-        } else {
-            return Promise.resolve();
+             dispatch(fetchPage(id));
         }
+        return Promise.resolve();
     }
 }
 
-function fetchPage(id: string) {
+function fetchPage(id: string) :()=>Promise<void> {
     return (dispatch: any) => {
         dispatch(request(id));
         return pageServices.fetchPage(id)

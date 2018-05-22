@@ -7,6 +7,6 @@ export const uploadConstants = {
 };
 
 export type UploadAction =
-  | { type: 'UPLOAD_REQUEST' }
-  | { type: 'UPLOAD_SUCCESS', key: string }
+   { type: 'UPLOAD_REQUEST' }
+  | { type: 'UPLOAD_SUCCESS', keys: Array<string> }
   | { type: 'UPLOAD_FAILURE', error: string }

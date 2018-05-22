@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 
-import { authentication } from './authenticationReducer';
+import { authentication, type AuthState } from './authenticationReducer';
 import { registration } from './registrationReducer';
 import {pages} from './pageReducer';
 import {upload, type UploadState} from './uploadReducer';
-import {contact} from "./contactReducer";
+import {contact, type ContactState} from "./contactReducer";
 import {user, type UserState} from "./userReducer";
 import {jobs, type JobsState} from "./jobsReducer";
 import {mentors, type MentorsState} from "./mentorsReducer";
@@ -24,10 +24,10 @@ const rootReducer = combineReducers({
 
 export type State = {
     pages: {},
-    authentication: {},
+    authentication: AuthState,
     registration: {},
     upload: UploadState,
-    contact: {},
+    contact: ContactState,
     user: UserState,
     jobs: JobsState,
     mentors: MentorsState,

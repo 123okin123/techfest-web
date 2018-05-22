@@ -2,12 +2,12 @@
 
 import { contactConstants, type Action } from '../constants';
 
-type State = {
+export type ContactState = {
     +contacting?: boolean,
     +contactSuccess?: boolean,
 }
 
-export function contact(state: State = {}, action: Action):State {
+export function contact(state: ContactState = {}, action: Action):ContactState {
     switch (action.type) {
         case contactConstants.CONTACT_REQUEST:
             return { contacting: true };

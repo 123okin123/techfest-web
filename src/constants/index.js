@@ -14,7 +14,7 @@ export * from './jobConstants';
 export * from './mentorConstants';
 
 export type Action =
-    | UserAction
+     UserAction
     | PageAction
     | UploadAction
     | ContactAction

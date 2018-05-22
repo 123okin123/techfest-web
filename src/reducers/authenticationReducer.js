@@ -1,10 +1,18 @@
+//@flow
+
 import {userConstants, type Action} from '../constants';
 
 
 // let user = (typeof localStorage === 'undefined') ? undefined : JSON.parse(localStorage.getItem('user'));
 // const initialState = user ? { loggedIn: true, user } : {};
 
-export function authentication(state = {}, action: Action) {
+export type AuthState = {
+    loggingIn?: boolean,
+    role?: string,
+    loginFailure?: boolean,
+}
+
+export function authentication(state: AuthState = {}, action: Action) {
     switch (action.type) {
         case userConstants.LOGIN_REQUEST:
             return {

@@ -9,7 +9,7 @@ export const uploadActions = {
     uploadMulti
 };
 
-function uploadMulti(files) {
+function uploadMulti(files: Array<{}>) {
     return (dispatch: any) => {
         dispatch(request());
         return uploadServices.uploadMultiToS3(files)

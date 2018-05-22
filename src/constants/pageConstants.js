@@ -7,7 +7,7 @@
 };
 
 export type PageAction =
-  | { type: 'PAGE_REQUEST', id: string }
+   { type: 'PAGE_REQUEST', id: string }
   | { type: 'PAGE_SUCCESS', id: string, response: string }
   | { type: 'PAGE_FAILURE', id: string, error: string }
 

@@ -22,7 +22,7 @@ function fetchJobsIfNeeded() {
     }
 }
 
-function fetchJobs() {
+function fetchJobs()  {
     return (dispatch: Dispatch) => {
         dispatch(request());
         return jobServices.fetchJobs()
@@ -58,7 +58,7 @@ function saveJob(job: Job) {
         dispatch(request());
         return jobServices.saveJob(job)
           .then(
-            (newJob: JSON) => {
+            (newJob: Job) => {
                 dispatch(success(newJob));
                 return Promise.resolve(newJob);
             },
