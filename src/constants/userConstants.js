@@ -22,6 +22,10 @@ export const userConstants = {
     UPDATE_INFO_REQUEST: 'UPDATE_INFO_REQUEST',
     UPDATE_INFO_SUCCESS: 'UPDATE_INFO_SUCCESS',
     UPDATE_INFO_FAILURE: 'UPDATE_INFO_FAILURE',
+
+    GET_USERS_REQUEST: 'GET_USERS_REQUEST',
+    GET_USERS_SUCCESS: 'GET_USERS_SUCCESS',
+    GET_USERS_FAILURE: 'GET_USERS_FAILURE',
 };
 
 
@@ -47,6 +51,11 @@ export type UserAction =
   | { type: 'UPDATE_INFO_REQUEST' }
   | { type: 'UPDATE_INFO_SUCCESS', user: User }
   | { type: 'UPDATE_INFO_FAILURE', error: string }
+
+  | { type: 'GET_USERS_REQUEST' }
+  | { type: 'GET_USERS_SUCCESS', users: Array<User> }
+  | { type: 'GET_USERS_FAILURE', error: string }
+
   
 
 
@@ -105,7 +114,7 @@ export type User = {
         }>,
         numberOfMentorsAllowed: number
     },
-    participantFields?: {},
+    participantsFields?: {},
     startupFields?: {},
     applicantFields?: {
         preEvent?: boolean,

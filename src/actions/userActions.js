@@ -13,7 +13,8 @@ export const userActions = {
     logout,
     update,
     getInfo,
-    fetchInfoIfNeeded
+    fetchInfoIfNeeded,
+    getUsers
 };
 
 
@@ -136,8 +137,30 @@ function getInfo() {
           );
     };
 
-    function request(user) { return { type: userConstants.GET_INFO_REQUEST } }
+    function request() { return { type: userConstants.GET_INFO_REQUEST } }
     function success(user) { return { type: userConstants.GET_INFO_SUCCESS, user } }
     function failure(error) { return { type: userConstants.GET_INFO_FAILURE, error } }
 }
 
+
+
+function getUsers(page: number = 1) :()=>Promise<Array<User>> {
+    return (dispatch: any) => {
+        dispatch(request());
+        return userService.getUsers(page)
+          .then(
+            (result: {users: Array<User>, current: number, pages: number}) => {
+                dispatch(success(result.users));
+                return Promise.resolve(result)
+            },
+            error => {
+                dispatch(failure(error));
+                return Promise.reject(error)
+            }
+          );
+    };
+
+    function request() { return { type: userConstants.GET_USERS_REQUEST } }
+    function success(users: Array<User>) { return { type: userConstants.GET_USERS_SUCCESS, users } }
+    function failure(error) { return { type: userConstants.GET_USERS_FAILURE, error } }
+}

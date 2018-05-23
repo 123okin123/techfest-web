@@ -31,7 +31,8 @@ import AddMentorPage from './private/partner/mentorRegistration/AddMentorPage'
 import GuestRegistrationPage from './private/partner/guestRegistration/GuestRegistrationPage'
 import LaunchPadDayPage from './launchPadDay/LaunchPadDayPage'
 import LPDGuestRegistrationPage from './private/partner/lpdGuestRegistration/LPDGuestRegistrationPage'
-
+import ChallengePage from './private/partner/challenge/ChallengePage'
+import MyChallengePage from './private/participants/MyChallengePage'
 
 
 
@@ -51,6 +52,7 @@ class App extends Component<{}> {
                   <PrivateRoute exact path="/private" component={MemberAreaPage}/>
                   <PrivateRoute path="/private/jobs" permittedRoles={Object.values(roles)} component={JobPage}/>
 
+
                   {/*Private Partner*/}
                   <PrivateRoute path="/private/partner" permittedRoles={[roles.ADMIN_ROLE].concat(allPartnerRoles)} component={PartnerPage}/>
                   <PrivateRoute path="/private/post-job" permittedRoles={[roles.ADMIN_ROLE, roles.TRACK_PARTNER_ROLE]} component={PostJobPage}/>
@@ -58,10 +60,14 @@ class App extends Component<{}> {
                   <PrivateRoute path="/private/register-mentor" permittedRoles={[roles.ADMIN_ROLE, ...allPartnerRoles]} component={AddMentorPage}/>
                   <PrivateRoute path="/private/register-guest" permittedRoles={[roles.ADMIN_ROLE, ...allPartnerRoles]} component={GuestRegistrationPage}/>
                   <PrivateRoute path="/private/register-lpd-guest" permittedRoles={[roles.ADMIN_ROLE, ...allPartnerRoles]} component={LPDGuestRegistrationPage}/>
+                  <PrivateRoute path="/private/partner-challenge" permittedRoles={[roles.ADMIN_ROLE, roles.TRACK_PARTNER_ROLE, roles.CHALLENGE_PARTNER_ROLE]} component={ChallengePage}/>
 
 
                   {/*Private Participants*/}
                   <PrivateRoute path="/private/member-area" permittedRoles={[roles.ADMIN_ROLE, roles.STARTUP_ROLE, roles.PARTICIPANT_ROLE]} component={PreEventPage}/>
+                  <PrivateRoute path="/private/my-challenge" permittedRoles={[roles.ADMIN_ROLE, roles.PARTICIPANT_ROLE]} component={MyChallengePage}/>
+
+
 
 
                   {/*Public*/}

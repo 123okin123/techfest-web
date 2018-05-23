@@ -5,6 +5,7 @@ import {type User} from "../constants/userConstants";
 
 export type UserState = {
     +data?: User,
+    +users?: Array<User>,
     +fetchingState: {
         +fetching?: boolean,
         +fetchError?: string,
@@ -14,23 +15,36 @@ export type UserState = {
         +updateError?: string,
         +updating?: boolean,
         +updateSuccess?: boolean
+    },
+    +usersFetchingState: {
+        +fetching?: boolean,
+        +fetchError?: string,
+        +fetchSuccess?: boolean
     }
 }
 
-export function user(state: UserState = {fetchingState: {}, updatingState: {}}, action: Action):UserState {
+export function user(state: UserState = {fetchingState: {}, updatingState: {}, usersFetchingState: {}}, action: Action):UserState {
     switch (action.type) {
         case userConstants.GET_INFO_REQUEST:
-            return { fetchingState: {fetching: true }, updatingState: {}};
+            return { ...state, fetchingState: {fetching: true } };
         case userConstants.GET_INFO_SUCCESS:
-            return { data: action.user, fetchingState: {fetchSuccess: true }, updatingState: {}};
+            return { ...state, data: action.user, fetchingState: {fetchSuccess: true }};
         case userConstants.GET_INFO_FAILURE:
-            return { fetchingState: {fetchError: action.error}, updatingState: {}};
+            return { ...state, fetchingState: {fetchError: action.error}};
+
         case userConstants.UPDATE_INFO_REQUEST:
-            return {data: state.data, updatingState: { updating: true }, fetchingState: {}};
+            return {...state, updatingState: { updating: true }};
         case userConstants.UPDATE_INFO_SUCCESS:
-            return {data: action.user, updatingState: { updateSuccess: true }, fetchingState: {}};
+            return {...state, data: action.user, updatingState: { updateSuccess: true }};
         case userConstants.UPDATE_INFO_FAILURE:
-            return {updatingState: { updateError: action.error }, fetchingState: {}};
+            return {...state, updatingState: { updateError: action.error }};
+
+        case userConstants.GET_USERS_REQUEST:
+            return {...state, usersFetchingState: {fetching: true}};
+        case userConstants.GET_USERS_SUCCESS:
+            return {...state, users: action.users, usersFetchingState: { fetchSuccess: true }};
+        case userConstants.GET_USERS_FAILURE:
+            return {...state, usersFetchingState: { fetchError: action.error }};
         default:
             return state
     }
