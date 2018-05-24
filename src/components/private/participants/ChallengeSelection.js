@@ -114,16 +114,17 @@ class ChallengeSelection extends Component<Props, State> {
         return (
           <div className="mt-5">
               <h2>Challenge Preference</h2>
-              <p>Please choose your three prefered challenges <strong>until May 6th</strong> (1 -  first preference, 2 - second preference, 3 - third preference). In the next couple of weeks we will assign you to one challenge and inform you about our decision as soon as possible. Of course, we try to consider your preferences as far as possible.</p>
+              <p>Please choose your three prefered challenges <strong>until May 31st</strong> (1 -  first preference, 2 - second preference, 3 - third preference). In the next couple of weeks we will assign you to one challenge and inform you about our decision as soon as possible. Of course, we try to consider your preferences as far as possible.</p>
               <p className="d-block mb-5">You find a detailed challenge description below...</p>
-              <Switch className="custom-switch" onClick={this.switchChanged} on={this.state.userChallenges.dontCare}/>
+              <p><strong>Caution: Selection can not be changed!</strong></p>
+              <Switch enabled={!this.props.userChallenges} className="custom-switch" onClick={this.switchChanged} on={this.state.userChallenges.dontCare}/>
               <span>I do not care - I am ready to hack any challenge</span>
                   <Row>
                       <Col md='4'>
                           <Form className="pt-3" onSubmit={(e)=>{e.preventDefault();this.props.onChange(this.state.userChallenges)}}>
                               <FormGroup>
                                   <Label for="firstChoice">First Preference</Label>
-                                  <Input className="mb-2" disabled={this.state.userChallenges.dontCare} value={this.state.userChallenges.firstChoice} onChange={(e)=>this.onChange({firstChoice: e.target.value})} type="select" name="select" id="firstChoice">
+                                  <Input className="mb-2" disabled={(this.state.userChallenges.dontCare || (this.props.userChallenges || {}).firstChoice)} value={this.state.userChallenges.firstChoice} onChange={(e)=>this.onChange({firstChoice: e.target.value})} type="select" name="select" id="firstChoice">
                                       {this.state.options.filter((option) =>
                                         option !== this.state.userChallenges.secondChoice &&
                                         option !== this.state.userChallenges.thirdChoice
@@ -132,7 +133,7 @@ class ChallengeSelection extends Component<Props, State> {
                                       ))}
                                   </Input>
                                   <Label for="secondChoice">Second Preference</Label>
-                                  <Input className="mb-2" disabled={this.state.userChallenges.dontCare} value={this.state.userChallenges.secondChoice} onChange={(e)=>this.onChange({secondChoice: e.target.value})} type="select" name="select" id="secondChoice">
+                                  <Input className="mb-2" disabled={(this.state.userChallenges.dontCare || (this.props.userChallenges || {}).secondChoice)} value={this.state.userChallenges.secondChoice} onChange={(e)=>this.onChange({secondChoice: e.target.value})} type="select" name="select" id="secondChoice">
                                       {this.state.options.filter((option) =>
                                         option !== this.state.userChallenges.firstChoice &&
                                         option !== this.state.userChallenges.thirdChoice
@@ -141,7 +142,7 @@ class ChallengeSelection extends Component<Props, State> {
                                       ))}
                                   </Input>
                                   <Label for="thirdChoice">Third Preference</Label>
-                                  <Input className="mb-2" disabled={this.state.userChallenges.dontCare} value={this.state.userChallenges.thirdChoice} onChange={(e)=>this.onChange({thirdChoice: e.target.value})} type="select" name="select" id="thirdChoice">
+                                  <Input className="mb-2" disabled={(this.state.userChallenges.dontCare || (this.props.userChallenges || {}).thirdChoice)} value={this.state.userChallenges.thirdChoice} onChange={(e)=>this.onChange({thirdChoice: e.target.value})} type="select" name="select" id="thirdChoice">
                                       {this.state.options.filter((option) =>
                                         option !== this.state.userChallenges.firstChoice &&
                                         option !== this.state.userChallenges.secondChoice
@@ -177,83 +178,20 @@ class ChallengeSelection extends Component<Props, State> {
                        }
 
 
-
-
-
-
-                      {/*<h4 className="mt-5">SMART AUTOMATION WAVE</h4>*/}
-                      {/*<h5 className="mt-4">German quality tools in a smart and connected future</h5>*/}
-                      {/*<p className="mb-0"><strong>Stihl</strong></p>*/}
-                      {/*<p>*/}
-                          {/*German quality tools in a smart and connected future:*/}
-                          {/*How can smart connected tools enable the future of environmental landscaping?*/}
-                          {/*Smart supporting tools that support landscape architects to design the landscape of tomorrow (e.g. landscape generator app, smart lawn mower, drones)*/}
-                          {/*How can data, collected by smart tools be leveraged for value based services?*/}
-                          {/*How can digital processes/products bring more efficiency to landscape management?*/}
-                      {/*</p>*/}
-
-                      {/*<h5 className="mt-5">Food and Baverage</h5>*/}
-                      {/*<p className="mb-0"><strong>Siemens</strong></p>*/}
-                      {/*<p>comming soon...</p>*/}
-
-                      {/*<h5 className="mt-5">Future Hydraulics</h5>*/}
-                      {/*<p className="mb-0"><strong>Hawe</strong></p>*/}
-                      {/*<p>*/}
-                          {/*Smart Hydraulics: A Future of intelligent and autonomous hydraulic Systems: Hack a crawler lift with a 35m boom and make it smart by employing the latest sensor technology!*/}
-                          {/*How will a future hydraulic system look like by using IoT and machine learning?*/}
-                          {/*How can future services and products in a digitalized hydraulics industry look like?*/}
-                      {/*</p>*/}
-
-                      {/*<h4 className="mt-5">QUANTIFIED EARTH</h4>*/}
-                      {/*<h5 className="mt-4">Countering drones - Build your SKY-PROTECTOR</h5>*/}
-                      {/*<p className="mb-0"><strong>Rohde & Schwarz</strong></p>*/}
-                      {/*<p>*/}
-                          {/*Drones are easy-to-buy and easy-to-fly gadgets. They can be seen*/}
-                          {/*everywhere - In private and professional contexts. Develop your own*/}
-                          {/*“SKY-PROTECTOR” and help us to regain a safer airspace.*/}
-                          {/*While most drones are being used in a legal framework, new kinds of threats arises when drones do penetrate restricted airspaces. Innovative technical solutions are required in order to monitor critical areas and prevent drones from entering secured areas.*/}
-                      {/*</p>*/}
-
-                      {/*<h4 className="mt-5">FUTURE MOBILITY</h4>*/}
-                      {/*<h5 className="mt-4">Sense the World!</h5>*/}
-                      {/*<p className="mb-0"><strong>Magna</strong></p>*/}
-                      {/*<p>*/}
-                          {/*Today’s vehicles have over 100 sensors on board and are getting smarter with each vehicle generation. Invent new functionalities & features by using the sensor & connectivity landscape!*/}
-                          {/*Dive into the world of automotive sensors and their current functions, be creative, use sensor fusion to create new features with the existing sensor landscape! Show us your new and innovative ideas to transform the world of mobility: It’s about creating technology that is smarter, cleaner, safer, and lighter. For the automotive industry, our communities, and all who share the road. Drive the future of Mobility!*/}
-                      {/*</p>*/}
-
-                      {/*<h5 className="mt-5">Audi Autonomous Fleet Experience</h5>*/}
-                      {/*<p className="mb-0"><strong>Audi</strong></p>*/}
-                      {/*<p>*/}
-                          {/*2025 – you just ordered your Audi urban mobility service, an autonomous driving car which interior is perfectly adjusted to your current needs. You are challenged to develop a service creating the ultimate mobility experience resulting in a click dummy or prototype.*/}
-                          {/*Description:*/}
-                          {/*#Setting Imaging you are living in the year 2025 and you just 1-click ordered your Audi urban*/}
-                          {/*mobility service. Your car is part within a fleet. While the external design of your car is fixed, the*/}
-                          {/*internal design is adjusted to your current needs. It is your choice if you want company during*/}
-                          {/*your ride or not.*/}
-                          {/*#Outcome We want you to design a service that creates the ultimate mobility experience*/}
-                          {/*covering the whole customer journey. Develop a prototype (e.g., a click-dummy or proof of*/}
-                          {/*concept) for one or more customer touchpoints such as AI, PA, mobile devices, in-car*/}
-                          {/*entertainment, etc.*/}
-                          {/*#Input We provide you a specific GUI and customer insights.*/}
-                      {/*</p>*/}
-
-                      {/*<h5 className="mt-5">Shape energy efficient rail transportation</h5>*/}
-                      {/*<p className="mb-0"><strong>Knorr bremse</strong></p>*/}
-                      {/*<p>*/}
-                          {/*Reducing energy consumption while creating the ground for autonomous rail transport*/}
-                          {/*Today, Driver Advisory Systems support train operators to save energy by optimizing the driving style of their drivers. Driver Advisory Systems are utilizing various data, e.g. vehicle dynamics, time tables and track maps. These driver advisory systems are the basis for the upcoming autonomous train operation. In this challenge: take the real field-data to further enhance the advisory algorithms, expand the senses of the train to get more insights and develop ways of more accurate mapping and quantifying trains' environments. Short, whatever helps to further reduce energy consumption of trains.*/}
-                      {/*</p>*/}
-
-                      {/*<h4 className="mt-5">WILD TRACK AND SMART CITY</h4>*/}
-                      {/*<h5 className="mt-4">Wild Track and Smart City</h5>*/}
-                      {/*<p className="mb-0"><strong>LH München</strong></p>*/}
-                      {/*<p>Get wild and crazy!</p>*/}
-
                   </Col>
               </Row>
           </div>
         );
+    }
+}
+
+function shouldBeDisabled(userChallenges?: {firstChoice: ?string, dontCare: ?boolean}): boolean {
+    if (userChallenges) {
+        console.log(userChallenges.firstChoice !== "")
+        return userChallenges.firstChoice !== ""
+    } else {
+        console.log(false);
+        return false
     }
 }
 
