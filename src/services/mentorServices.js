@@ -4,7 +4,8 @@
 import fetch from "cross-fetch";
 import {getCookie} from "../helpers/session";
 import {authHeader} from "../helpers";
-import {type Mentor} from '../constants'
+import {type Mentor} from '../constants';
+import {handleResponse} from "../helpers";
 
 const mentorServices = {
     fetchMentors,
@@ -48,16 +49,6 @@ function deleteMentor(id: string): Promise<JSON> {
         headers: authHeader()
     };
     return fetch('/api/mentors/' + id + '?token=' + getCookie("jwt"), requestOptions).then(handleResponse);
-}
-
-
-function handleResponse(response) :Promise<JSON> {
-    if (!response.ok) {
-        return response.json().then(
-          json=> Promise.reject(json.error + ' ' + json.reason)
-          , err => Promise.reject('An error occurred.'));
-    }
-    return response.json();
 }
 
 

@@ -121,7 +121,7 @@ function shouldFetchInfo(state: UserState) :boolean {
     }
 }
 
-function getInfo() {
+function getInfo() : ()=>Promise<void> {
     return (dispatch: any) => {
         dispatch(request());
         return userService.getMe()

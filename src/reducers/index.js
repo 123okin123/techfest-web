@@ -8,7 +8,7 @@ import {contact, type ContactState} from "./contactReducer";
 import {user, type UserState} from "./userReducer";
 import {jobs, type JobsState} from "./jobsReducer";
 import {mentors, type MentorsState} from "./mentorsReducer";
-
+import {team, type TeamState} from "./teamReducer";
 
 
 const rootReducer = combineReducers({
@@ -19,7 +19,8 @@ const rootReducer = combineReducers({
     contact,
     user,
     jobs,
-    mentors
+    mentors,
+    team
 });
 
 export type State = {
@@ -31,6 +32,7 @@ export type State = {
     user: UserState,
     jobs: JobsState,
     mentors: MentorsState,
+    team: TeamState
 }
 
 export default rootReducer;

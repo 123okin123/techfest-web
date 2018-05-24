@@ -85,6 +85,7 @@ export const allPartnerRoles = [
 
 
 export type User = {
+    _id: string,
     firstName: string,
     lastName: string,
     email: string,
@@ -92,6 +93,7 @@ export type User = {
     token?: string,
     role: string,
     partnerFields?: {
+        challengeId?: string,
         company: string,
         guests?: Array<{
             firstName: string,
@@ -114,7 +116,9 @@ export type User = {
         }>,
         numberOfMentorsAllowed: number
     },
-    participantsFields?: {},
+    participantsFields?: {
+        challengeId?: string
+    },
     startupFields?: {},
     applicantFields?: {
         preEvent?: boolean,
