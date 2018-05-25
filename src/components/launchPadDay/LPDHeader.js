@@ -29,15 +29,14 @@ class HomeHeader extends Component<{},State> {
 
     render() { return (
       <Header>
-          <Background imgURL={require('../../assets/TF_WebsiteHeader_opt.jpg')}/>
+          <Background imgURL={require('../../assets/lpd_header.jpg')}/>
           <LineOverlay yPosition={- this.state.scrollY * 0.6}/>
           <Container>
               <StyledRow className='align-items-center'>
                   <Col>
                       <img style={{maxWidth: '100%', marginTop: '3.5em'}} width="550px"  src={require('../../assets/TechFest-Logo_gelb-1024x384.png')} alt="Techfest Logo"/>
-                      <Headline>UNTERNEHMERTUM LAUNCHPAD DAY</Headline>
-                      <Date>June 18<sup>th</sup>, 2018</Date>
-                      <HashTag>#TECHFESTMUNICH</HashTag>
+                      <Date>Monday, June 18<sup>th</sup>, 2018</Date>
+                      <HashTag>AT LAKE WÖRTHSEE</HashTag>
                   </Col>
               </StyledRow>
           </Container>
@@ -82,14 +81,7 @@ const Header = styled.div`
 const StyledRow = styled(Row)`
   min-height: 100vh;
 `;
-const Headline = styled.h1`
-  font-size: 1.8em;
-  font-weight: 900;
-  color: ${props => props.theme.secondary};
-  -webkit-text-fill-color: rgba(255,255,255,0); /* Will override color (regardless of order) */
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: ${props => props.theme.secondary};
-`;
+
 const Date = styled.p`
   font-size: 3.6em;
   margin-bottom: 0;

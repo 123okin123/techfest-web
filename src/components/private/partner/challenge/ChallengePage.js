@@ -3,12 +3,17 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {Container} from 'reactstrap'
-import {pageActions} from "../../../../actions";
+import {pageActions, userActions} from "../../../../actions";
 import {LoaderContainer} from "../../../common";
 import {ScaleLoader} from 'react-spinners';
+import {type User} from '../../../../constants'
+import type {Team} from "../../../../constants";
 
 type Props = {
+    userData: User,
+    getTeamsOfPartner: (user: User)=>Promise<Array<Team>>,
     fetchPageIfNeeded: ()=>Promise<void>,
+    getInfo: ()=>Promise<void>,
     isFetchingPage?: boolean,
     response?: {content?: {rendered?: string}}
 }
@@ -47,6 +52,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         fetchPageIfNeeded: () => {
             return dispatch(pageActions.fetchPageIfNeeded("3101"))
+        },
+        getInfo: ()=> {
+            return dispatch(userActions.fetchInfoIfNeeded())
+        },
+        getTeamsOfPartner: (user: User) => {
+            return dispatch(pageActions.getTeamsOfPartner(user))
         }
     }
 };

@@ -17,7 +17,7 @@ import LoginPage from './LoginPage';
 import PrivateRoute from "./other/PrivateRoute";
 import RegisterStartupPage from "./registration/register-startup/RegisterStartupPage";
 import RegisterStartPage from "./registration/RegisterStartPage";
-import PreEventPage from './private/participants/PreEventPage';
+import PreEventPage from './private/participants/ParticipantPage';
 import VerifyRegistrationPage from "./VerifyRegistrationPage";
 import {roles, allPartnerRoles} from '../constants/userConstants';
 import PartnerPage from "./private/partner/PartnerPage";
@@ -32,7 +32,7 @@ import GuestRegistrationPage from './private/partner/guestRegistration/GuestRegi
 import LaunchPadDayPage from './launchPadDay/LaunchPadDayPage'
 import LPDGuestRegistrationPage from './private/partner/lpdGuestRegistration/LPDGuestRegistrationPage'
 import ChallengePage from './private/partner/challenge/ChallengePage'
-import MyChallengePage from './private/participants/MyChallengePage'
+import MyChallengePage from './private/participants/MyChallenge/MyChallengePage'
 
 
 

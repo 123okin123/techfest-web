@@ -29,7 +29,7 @@ type State = {
     timer: any,
 }
 
-class PreEventPage extends Component<Props,State> {
+class ParticipantPage extends Component<Props,State> {
     constructor(props) {
         super(props);
         (this: any).challengeSelectionChanged = this.challengeSelectionChanged.bind(this);
@@ -136,4 +136,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PreEventPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ParticipantPage);
