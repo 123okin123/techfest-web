@@ -29,7 +29,7 @@ class HomeHeader extends Component<{},State> {
 
     render() { return (
       <Header>
-          <Background imgURL={require('../../assets/TF_WebsiteHeader_opt.jpg')}/>
+          <Background imgURL={require('../../assets/lpd_header.jpg')}/>
           <LineOverlay yPosition={- this.state.scrollY * 0.6}/>
           <Container>
               <StyledRow className='align-items-center'>

@@ -182,7 +182,7 @@ class CreateTeam extends Component<Props, State> {
                     multiple={false}
                     maxSize={1024 * 1024 * 2}
                     style={{
-                        width: '100%', height: '180px', textAlign: 'center', margin: 'auto',
+                        width: '100%', height: '200px', textAlign: 'center', margin: 'auto',
                         backgroundColor: '#e6e6e6',
                         borderRadius: '5px',
                         position: 'relative',
