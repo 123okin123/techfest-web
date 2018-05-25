@@ -19,7 +19,7 @@ class ResetPassword extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
         (this: any).handleValidSubmit = this.handleValidSubmit.bind(this);
-
+        this.state = {}
     }
 
     componentDidMount() {
