@@ -205,7 +205,10 @@ class CreateTeam extends Component<Props, State> {
 
                   <AvForm onValidSubmit={this.saveTeam}>
                       <StyledAvField placeholder="Team name" name="name" value={(this.state.team || {}).name} required/>
-                      <p className="mt-3">Team Members:</p>
+                      <Row>
+                      <Col xs={5}><p className="mt-3">Team Members:</p></Col>
+                      <Col xs={7}><p>Could come to Launchpad Day.</p></Col>
+                      </Row>
                       {usersOfTeam.map((user: User, index)=>
                         <Row key={index.toString()}>
                             <Col xs={5}><p>{user.firstName} {user.lastName}</p></Col>
@@ -214,7 +217,7 @@ class CreateTeam extends Component<Props, State> {
                                     <Input type="checkbox"
                                            checked={((this.state.team || {}).LPDParticipantIds || []).includes(user._id)}
                                             onChange={(e)=> this.onlpdChange(user, e)}/>
-                                    {' '}Could come to Launchpad Day.</Label>
+                                    {' '}</Label>
                             </FormGroup></Col>
                         </Row>
                   )}

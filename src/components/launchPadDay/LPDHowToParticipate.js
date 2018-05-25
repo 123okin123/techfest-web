@@ -12,7 +12,7 @@ const LPDHowToParticipate = (props) =>
       </p>
       </Container>
   <StyledRow className="mx-0">
-      <Col className="px-0 text-center pt-3">
+      <Col xs={12} lg={3} className="px-0 text-center pt-3">
           <span className="p-2">TEAM REGISTRATION</span>
           <FlexContainer className="mt-3">
           <ArrowLeft/>
@@ -20,7 +20,7 @@ const LPDHowToParticipate = (props) =>
           <ArrowRight/>
           </FlexContainer>
       </Col>
-      <Col className="px-0 text-center pt-3">
+      <Col xs={12} lg={3} className="px-0 text-center pt-3">
           <span className="p-2">TECHFEST PERFORMANCE</span>
           <FlexContainer className="mt-3">
           <ArrowLeft/>
@@ -28,7 +28,7 @@ const LPDHowToParticipate = (props) =>
           <ArrowRight/>
           </FlexContainer>
       </Col>
-      <Col className="px-0 text-center pt-3">
+      <Col xs={12} lg={3} className="px-0 text-center pt-3">
           <span className="p-2">INVITATIONS</span>
           <FlexContainer className="mt-3">
           <ArrowLeft/>
@@ -36,7 +36,7 @@ const LPDHowToParticipate = (props) =>
           <ArrowRight/>
           </FlexContainer>
       </Col>
-      <Col className="text-center pt-3">
+      <Col xs={12} lg={3} className="text-center pt-3">
           <StyledImg src={require('../../assets/icons/icon_launchpad-rocket_black-white.png')}/>
           <p>UNTERNEHMERTUM LAUNCHPAD DAY ON JUNE, 18TH</p>
       </Col>
@@ -52,8 +52,7 @@ const StyledImg = styled.img`
     margin-bottom: 10px;
 `;
 const StyledRow = styled(Row)`
-  overflow: scroll;
-  flex-wrap: nowrap !important;
+
 `;
 
 const FlexContainer = styled.div`
@@ -64,7 +63,7 @@ const FlexContainer = styled.div`
 const Box = styled.div`
   background-color: black;
   color: ${(props)=> props.theme.background};
-  padding: 1em;
+  padding: 0.8em;
   width: 200px;
   height: 120px;
 `;
