@@ -127,7 +127,7 @@ class TracksContainer extends Component<Props, State> {
                     <StyledTabContent activeTab={this.state.activeTab}>
                         {this.props.trackResponse && this.props.trackResponse.acf && this.props.trackResponse.acf.challenge_descriptions &&
                         this.props.trackResponse.acf.challenge_descriptions.map((track, index) =>
-                        <TabPane tabId={(index + 1).toString()}>
+                        <TabPane key={index.toString()} tabId={(index + 1).toString()}>
                             <Row>
                                 <Col sm="12">
                                     <div>

@@ -23,7 +23,11 @@ export type UserState = {
     }
 }
 
-export function user(state: UserState = {fetchingState: {}, updatingState: {}, usersFetchingState: {}}, action: Action):UserState {
+const initialState = {
+    fetchingState: {}, updatingState: {}, usersFetchingState: {}
+};
+
+export function user(state: UserState = initialState, action: Action):UserState {
     switch (action.type) {
         case userConstants.GET_INFO_REQUEST:
             return { ...state, fetchingState: {fetching: true } };
@@ -45,6 +49,9 @@ export function user(state: UserState = {fetchingState: {}, updatingState: {}, u
             return {...state, users: action.users, usersFetchingState: { fetchSuccess: true }};
         case userConstants.GET_USERS_FAILURE:
             return {...state, usersFetchingState: { fetchError: action.error }};
+
+        case userConstants.LOGOUT:
+            return initialState;
         default:
             return state
     }

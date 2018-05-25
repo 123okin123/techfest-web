@@ -60,7 +60,7 @@ class LoginPage extends Component<Props, State> {
                         </AvForm>
                         <Button tag={Link} to="/forgot-password" className="float-right" color="link">Forgot Password?</Button>
                         {this.props.loginFailure &&
-                        <Alert className="mt-3" color="danger">
+                        <Alert className="mt-5" color="danger">
                             Sorry, login was not successful.
                         </Alert>
                         }

@@ -8,9 +8,11 @@ import LaunchPadGuestList from './LaunchPadGuestList'
 import {pageActions, userActions} from "../../../../actions";
 import styled from "styled-components";
 import {ScaleLoader} from 'react-spinners';
+import {roles, type User} from "../../../../constants";
+
 
 type Props = {
-    userData: {},
+    userData: User,
     fetchInfoIfNeeded: ()=>Promise<void>,
     fetchPageIfNeeded: ()=>Promise<void>,
     isFetchingPage?: boolean,
@@ -27,12 +29,22 @@ class LPDGuestRegistrationPage extends Component<Props> {
         this.props.fetchPageIfNeeded()
     }
 
+    allowedNumberOfDayTickets() :number {
+        let allowedNumber = 0;
+        switch (this.props.userData.role) {
+            case roles.TRACK_PARTNER_ROLE: allowedNumber = 3; break;
+            default: allowedNumber = 2;
+        }
+        return allowedNumber
+    }
+
     render() {
         return (
           <Container>
               <Row className="mb-5">
                   <Col md="6">
-                      <h1 className="mt-md-5 pt-md-5 mb-5">LAUNCHPAD DAY GUESTS REGISTRATION</h1>
+                      <h1 className="mt-md-5 pt-md-5">LAUNCHPAD DAY GUESTS REGISTRATION</h1>
+                      <h2 className="mb-5">Add up to {this.allowedNumberOfDayTickets()} Launchpad day guests here.</h2>
                       {this.props.isFetchingPage &&
                       <LoaderContainer><ScaleLoader loading={this.props.isFetchingPage} height={20} width={2}/></LoaderContainer>
                       }
