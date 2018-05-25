@@ -10,14 +10,13 @@ const LPDHowToParticipate = (props) =>
       <p className="mb-5">TRACK & CHALLENGE PARTNERS AND UNTERNEHMERTUM INVITE MOST PROMISING
           TEAMS AND START-UPS TO LAUNCHPAD DAY - SO HACK AS HARD AS YOU CAN AND STAND OUT BY CREATING THE UNTHINKABLE!
       </p>
-      </Container>
   <StyledRow className="mx-0">
       <Col xs={12} lg={3} className="px-0 text-center pt-3">
-          <span className="p-2">TEAM REGISTRATION</span>
+          <span  className="p-2">TEAM REGISTRATION</span>
           <FlexContainer className="mt-3">
           <ArrowLeft/>
           <Box>REGISTER YOUR TEAM FOR LAUNCHPAD DAY ON FRIDAY, JUNE 15TH</Box>
-          <ArrowRight/>
+          <ArrowRight style={{marginRight: '-30px'}}/>
           </FlexContainer>
       </Col>
       <Col xs={12} lg={3} className="px-0 text-center pt-3">
@@ -25,22 +24,23 @@ const LPDHowToParticipate = (props) =>
           <FlexContainer className="mt-3">
           <ArrowLeft/>
           <Box>CONVINCE PARTNERS OF YOU & YOUR IDEA’S IMPACT</Box>
-          <ArrowRight/>
+          <ArrowRight style={{marginRight: '-30px'}}/>
           </FlexContainer>
       </Col>
       <Col xs={12} lg={3} className="px-0 text-center pt-3">
-          <span className="p-2">INVITATIONS</span>
+          <span  className="p-2">INVITATIONS</span>
           <FlexContainer className="mt-3">
           <ArrowLeft/>
           <Box>SELECTED TEAMS ANNOUNCED ON SUNDAY, JUNE 17TH</Box>
-          <ArrowRight/>
+          <ArrowRight style={{marginRight: '-30px'}}/>
           </FlexContainer>
       </Col>
       <Col xs={12} lg={3} className="text-center pt-3">
           <StyledImg src={require('../../assets/icons/icon_launchpad-rocket_black-white.png')}/>
-          <p>UNTERNEHMERTUM LAUNCHPAD DAY ON JUNE, 18TH</p>
+          <p><strong>UNTERNEHMERTUM</strong> LAUNCHPAD DAY ON JUNE, 18TH</p>
       </Col>
   </StyledRow>
+      </Container>
   </StyledContainer>
 ;
 
@@ -63,7 +63,7 @@ const FlexContainer = styled.div`
 const Box = styled.div`
   background-color: black;
   color: ${(props)=> props.theme.background};
-  padding: 0.8em;
+  padding: 0.6em;
   width: 200px;
   height: 120px;
 `;

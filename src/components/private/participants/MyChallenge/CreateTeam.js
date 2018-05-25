@@ -207,18 +207,17 @@ class CreateTeam extends Component<Props, State> {
                       <StyledAvField placeholder="Team name" name="name" value={(this.state.team || {}).name} required/>
                       <Row>
                       <Col xs={5}><p className="mt-3">Team Members:</p></Col>
-                      <Col xs={7}><p>Could come to Launchpad Day.</p></Col>
+                      <Col xs={4}>{usersOfTeam && <p className="mt-3 text-center">Could come to Launchpad Day.</p>}</Col>
                       </Row>
                       {usersOfTeam.map((user: User, index)=>
                         <Row key={index.toString()}>
                             <Col xs={5}><p>{user.firstName} {user.lastName}</p></Col>
-                            <Col xs={7}><FormGroup check>
-                                <Label check>
-                                    <Input type="checkbox"
-                                           checked={((this.state.team || {}).LPDParticipantIds || []).includes(user._id)}
-                                            onChange={(e)=> this.onlpdChange(user, e)}/>
-                                    {' '}</Label>
+                            <Col xs={4}><FormGroup check className="float-right">
+                                <Input type="checkbox"
+                                       checked={((this.state.team || {}).LPDParticipantIds || []).includes(user._id)}
+                                       onChange={(e)=> this.onlpdChange(user, e)}/>
                             </FormGroup></Col>
+                            <Col xs={3}><Button>Remove</Button></Col>
                         </Row>
                   )}
                       {usersOfTeam.length === 0 &&
