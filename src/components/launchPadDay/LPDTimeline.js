@@ -1,52 +1,60 @@
 import React from 'react'
-import {Container, Row, Col} from 'reactstrap'
+import {Container, Row, Col, Table} from 'reactstrap'
 import styled from 'styled-components'
+import {Heading} from '../common'
 
 const LPDTimeline = (props) =>
   <StyledContainer>
-      <h2 className="mb-5">TIMELINE LAUNCHPAD DAY 2018</h2>
-      <Row>
-          <Col md={4} className="p-5 text-center">
-              <div className="border-light border p-3">
-              <DayTime>MORNING</DayTime>
-              <p>Keynote & Start-up insight</p><Dot/>
-              <p>Offerings & Goals</p><Dot/>
-              <p>Get to know each other</p>
-              </div>
-          </Col>
-          <Col md={4} className="p-5 text-center">
-              <div className="border-light border p-3">
-              <DayTime>LUNCHTIME</DayTime>
-              <p>Barbecue by the Lake</p><Dot/>
-              <p>Networking</p><Dot/>
-              <p>Partnerships & Business opportunities</p>
-              </div>
-          </Col>
-          <Col md={4} className="p-5 text-center">
-              <div className="border-light border p-3">
-              <DayTime>AFTERNOON</DayTime>
-              <p>Commitments</p><Dot/>
-              <p>Outlook</p><Dot/>
-              <p>Enjoy Lake Wörthsee</p>
-              </div>
+      <Heading title="AGENDA LAUNCHPAD DAY 2018" subtitle="A DAY TO START FUTURE TECH BUSINESS TOGETHER" className="mb-5"/>
+      <Row className="justify-content-center">
+          <Col md={10}>
+      <StyledTable className="text-center table-responsive-lg">
+          <thead>
+          <tr>
+              <TimelineHead scope="col">MORNING</TimelineHead>
+              <TimelineHead scope="col">LUNCHTIME</TimelineHead>
+              <TimelineHead scope="col">AFTERNOON</TimelineHead>
+          </tr>
+          </thead>
+          <tbody>
+          <tr className="border-bottom border-dark">
+              <td>KEYNOTES FROM BÜLENT ALTAN & LIN KAYSER</td>
+              <td>BARBECUE</td>
+              <td>START-UP INSIGHTS</td>
+          </tr>
+          <tr className="border-bottom border-dark">
+              <td>OFFERINGS & GOALS</td>
+              <td>NETWORKING</td>
+              <td>OUTLOOK & COMMITMENTS</td>
+          </tr>
+          <tr className="border-bottom border-dark">
+              <td>GET TO KNOW EACH OTHER</td>
+              <td>COOPERATION & BUSINESS POSSIBILITIES</td>
+              <td>ENJOY LAKE WÖRTHSEE</td>
+          </tr>
+          </tbody>
+      </StyledTable>
           </Col>
       </Row>
+
   </StyledContainer>;
 
 const StyledContainer = styled(Container)`
 margin-bottom: 8em;
 `;
 
-const DayTime = styled.p`
-  font-size: 1.4em;
+const TimelineHead = styled.th`
+font-weight: 900;
+font-size: 1.8em;
+border: none !important;
 `;
-const Dot = styled.div`
-  width: 6px;
-    height: 6px;
-    margin: auto;
-    border-radius: 50%;
-    background-color: black;
-    margin-bottom: 0.6em;
+const StyledTable = styled(Table)`
+ > tbody > tr > td {
+ border: none;
+ font-weight: 700;
+ width: 200px;
+}
 `;
+
 
 export default LPDTimeline;

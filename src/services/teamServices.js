@@ -37,6 +37,6 @@ function updateTeam(id: string, team: Team) :Promise<Team> {
         headers: { ...authHeader(), 'Content-Type': 'application/json' },
         body: JSON.stringify(team)
     };
-    return fetch('/api/teams'+ id +'?token=' + getCookie("jwt"), requestOptions)
+    return fetch('/api/teams/'+ id +'?token=' + getCookie("jwt"), requestOptions)
       .then(handleResponse).then(response=>Promise.resolve(response.team));
 }

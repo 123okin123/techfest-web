@@ -47,7 +47,7 @@ function saveTeam(team: Team): ()=>Promise<Team> {
 
 function updateTeam(team: Team): ()=>Promise<Team> {
     return (dispatch: Dispatch) => {
-        dispatch(request());
+        dispatch(request(team));
         return teamServices.updateTeam(team._id ,team)
           .then(
             team => {
@@ -55,11 +55,11 @@ function updateTeam(team: Team): ()=>Promise<Team> {
                 return Promise.resolve(team);
             },
             error => {
-                dispatch(failure(error));
+                dispatch(failure(team, error));
                 return Promise.reject(error);
             })
     };
-    function request() {return {type: teamConstants.UPDATE_TEAM_REQUEST }}
+    function request(team) {return {type: teamConstants.UPDATE_TEAM_REQUEST, team }}
     function success(team: Team) {return {type: teamConstants.UPDATE_TEAM_SUCCESS, team}}
-    function failure(error) {return {type: teamConstants.UPDATE_TEAM_FAILURE, error}}
+    function failure(team, error) {return {type: teamConstants.UPDATE_TEAM_FAILURE, team, error}}
 }

@@ -27,7 +27,10 @@ export type Team = {
     +created_at: Date,
     +updated_at: Date,
     +participantIds: Array<string>,
-    +challengeId: string
+    +LPDParticipantIds?: Array<string>,
+    +challengeId: string,
+
+    +imageURL?: string
 }
 
 export type TeamFilter = {

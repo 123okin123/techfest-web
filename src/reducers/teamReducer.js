@@ -3,7 +3,7 @@ import {teamConstants} from "../constants";
 
 export type TeamState = {
     +teams: Array<Team>,
-    +savingState?: {
+    +savingState: {
         +saveError?: string,
         +saving?: boolean,
         +savingSuccess?: boolean
