@@ -111,7 +111,9 @@ class ParticipantRegistration extends Component<Props, State> {
         this.props.fetchPage()
           .then(()=>{
               if (this.props.response && this.props.response.acf && this.props.response.acf.preference_options) {
-                  this.setState({trackOptions: this.props.response.acf.preference_options.map(e=> e.option)})
+                  this.setState({
+                      trackOptions: this.props.response.acf.preference_options.map(e=> e.option)
+                  })
               }
           }).catch(err=>console.log(err))
     }
@@ -218,10 +220,10 @@ class ParticipantRegistration extends Component<Props, State> {
 
 
     render() {
-        console.log(this.state);
         return (
           <StyledContainer className="p-md-5">
-          <h1>BE PART OF TECHFEST</h1>
+          <h1>OFFICIAL APPLICATION PERIOD HAS ENDED!</h1>
+          <h3 className="mb-5">We only except applications for Osram Challenge, till Monday 28.05.</h3>
           {!(this.props.registrationSuccess === true) &&
           <AvForm onChange={this.onFormChange} onValidSubmit={this.onValidSubmit} onSubmit={this.onSubmit}>
               <Row>
@@ -473,30 +475,33 @@ class ParticipantRegistration extends Component<Props, State> {
               <div>
                   <AvField label="First Choice*" name="applicantFields.userChallenges.firstChoice" type="select" required>
                       <option/>
-                      {this.state.trackOptions.filter((option) =>
-                        option !== ((this.state.formData.applicantFields || {}).userChallenges || {}).secondChoice &&
-                        option !== ((this.state.formData.applicantFields || {}).userChallenges || {}).thirdChoice
-                      ).map((option, index)=>
-                          <option key={index.toString()} value={option}>{option}</option>
-                      )}
+                      <option value="The intelligent building - Quantified Earth">The intelligent building - Quantified Earth</option>
+                      {/*{this.state.trackOptions.filter((option) =>*/}
+                        {/*option !== ((this.state.formData.applicantFields || {}).userChallenges || {}).secondChoice &&*/}
+                        {/*option !== ((this.state.formData.applicantFields || {}).userChallenges || {}).thirdChoice*/}
+                      {/*).map((option, index)=>*/}
+                          {/*<option key={index.toString()} value={option}>{option}</option>*/}
+                      {/*)}*/}
                   </AvField>
                   <AvField label="Second Choice*" name="applicantFields.userChallenges.secondChoice" type="select" required>
                       <option/>
-                      {this.state.trackOptions.filter((option) =>
-                        option !== ((this.state.formData.applicantFields || {}).userChallenges || {}).firstChoice &&
-                        option !== ((this.state.formData.applicantFields || {}).userChallenges || {}).thirdChoice
-                      ).map((option, index)=>
-                        <option key={index.toString()} value={option}>{option}</option>
-                      )}
+                      <option value="The intelligent building - Quantified Earth">The intelligent building - Quantified Earth</option>
+                      {/*{this.state.trackOptions.filter((option) =>*/}
+                        {/*option !== ((this.state.formData.applicantFields || {}).userChallenges || {}).firstChoice &&*/}
+                        {/*option !== ((this.state.formData.applicantFields || {}).userChallenges || {}).thirdChoice*/}
+                      {/*).map((option, index)=>*/}
+                        {/*<option key={index.toString()} value={option}>{option}</option>*/}
+                      {/*)}*/}
                   </AvField>
                   <AvField label="Third Choice*" name="applicantFields.userChallenges.thirdChoice" type="select" required>
                       <option/>
-                      {this.state.trackOptions.filter((option) =>
-                        option !== ((this.state.formData.applicantFields || {}).userChallenges || {}).firstChoice &&
-                        option !== ((this.state.formData.applicantFields || {}).userChallenges || {}).secondChoice
-                      ).map((option, index)=>
-                        <option key={index.toString()} value={option}>{option}</option>
-                      )}
+                      <option value="The intelligent building - Quantified Earth">The intelligent building - Quantified Earth</option>
+                      {/*{this.state.trackOptions.filter((option) =>*/}
+                        {/*option !== ((this.state.formData.applicantFields || {}).userChallenges || {}).firstChoice &&*/}
+                        {/*option !== ((this.state.formData.applicantFields || {}).userChallenges || {}).secondChoice*/}
+                      {/*).map((option, index)=>*/}
+                        {/*<option key={index.toString()} value={option}>{option}</option>*/}
+                      {/*)}*/}
                   </AvField>
                   <Button tag={Link} to="/#tracks" target="_blank">Find out about this year´s TECHFEST Challenges.</Button>
               </div>
