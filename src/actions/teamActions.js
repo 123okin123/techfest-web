@@ -2,15 +2,35 @@ import {teamConstants, type User, type Team, type Dispatch} from '../constants'
 import {teamServices} from "../services/teamServices";
 
 export const teamActions = {
-    getTeamOfUser,
+    getTeamOfParticipant,
+    getTeamsOfPartner,
     saveTeam,
     updateTeam
 };
 
-function getTeamOfUser(user: User): ()=>Promise<Array<Team>> {
+function getTeamOfParticipant(user: User): ()=>Promise<Array<Team>> {
     return (dispatch: Dispatch) => {
         dispatch(request());
         return teamServices.fetchTeamsWithFilter({userId: user._id, challengeId: (user.participantsFields || {}).challengeId})
+          .then(
+            teams => {
+                dispatch(success(teams));
+                return Promise.resolve(teams);
+            },
+            error => {
+                dispatch(failure(error));
+                return Promise.reject(error);
+            })
+    };
+    function request() {return {type: teamConstants.GET_TEAMS_REQUEST }}
+    function success(teams: Array<Team>) {return {type: teamConstants.GET_TEAMS_SUCCESS, teams}}
+    function failure(error) {return {type: teamConstants.GET_TEAMS_FAILURE, error}}
+}
+
+function getTeamsOfPartner(user: User): ()=>Promise<Array<Team>> {
+    return (dispatch: Dispatch) => {
+        dispatch(request());
+        return teamServices.fetchTeamsWithFilter({challengeId: (user.participantsFields || {}).challengeId})
           .then(
             teams => {
                 dispatch(success(teams));

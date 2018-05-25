@@ -51,6 +51,7 @@ class CreateTeam extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
         (this: any).addMember = this.addMember.bind(this);
+        (this: any).removeMember = this.removeMember.bind(this);
         (this :any).onlpdChange = this.onlpdChange.bind(this);
         (this: any).saveTeam = this.saveTeam.bind(this);
         this.state = {
@@ -115,6 +116,16 @@ class CreateTeam extends Component<Props, State> {
             team: {
                 ...this.state.team,
                 participantIds: [...((this.state.team || {}).participantIds || []), user._id]
+            }
+        })
+    }
+    removeMember(user: User) {
+        this.setState({
+            ...this.state,
+            team: {
+                ...this.state.team,
+                participantIds: ((this.state.team || {}).participantIds || []).filter(id=>id !== user._id),
+                LPDParticipantIds: ((this.state.team || {}).LPDParticipantIds || []).filter(id=>id !== user._id)
             }
         })
     }
@@ -207,17 +218,17 @@ class CreateTeam extends Component<Props, State> {
                       <StyledAvField placeholder="Team name" name="name" value={(this.state.team || {}).name} required/>
                       <Row>
                       <Col xs={5}><p className="mt-3">Team Members:</p></Col>
-                      <Col xs={4}>{usersOfTeam && <p className="mt-3 text-center">Could come to Launchpad Day.</p>}</Col>
+                      <Col xs={4}>{usersOfTeam.length !== 0 && <p className="mt-3 text-center">Could come to Launchpad Day.</p>}</Col>
                       </Row>
                       {usersOfTeam.map((user: User, index)=>
                         <Row key={index.toString()}>
                             <Col xs={5}><p>{user.firstName} {user.lastName}</p></Col>
-                            <Col xs={4}><FormGroup check className="float-right">
+                            <Col xs={4}><FormGroup check>
                                 <Input type="checkbox"
                                        checked={((this.state.team || {}).LPDParticipantIds || []).includes(user._id)}
                                        onChange={(e)=> this.onlpdChange(user, e)}/>
                             </FormGroup></Col>
-                            <Col xs={3}><Button>Remove</Button></Col>
+                            <Col xs={3}><Button onClick={()=>this.removeMember(user)}>Remove</Button></Col>
                         </Row>
                   )}
                       {usersOfTeam.length === 0 &&
@@ -316,7 +327,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             return dispatch(userActions.fetchInfoIfNeeded())
         },
         getTeamOfUser: (user: User)=> {
-            return dispatch(teamActions.getTeamOfUser(user))
+            return dispatch(teamActions.getTeamOfParticipant(user))
         },
         saveTeam: (team: Team) => {
             return dispatch(teamActions.saveTeam(team))
