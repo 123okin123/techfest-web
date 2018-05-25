@@ -6,8 +6,7 @@ import {Container} from 'reactstrap'
 import {pageActions, userActions} from "../../../../actions";
 import {LoaderContainer} from "../../../common";
 import {ScaleLoader} from 'react-spinners';
-import {type User} from '../../../../constants'
-import type {Team} from "../../../../constants";
+import type {User, Team} from "../../../../constants";
 
 type Props = {
     userData: User,
@@ -15,6 +14,7 @@ type Props = {
     fetchPageIfNeeded: ()=>Promise<void>,
     getInfo: ()=>Promise<void>,
     isFetchingPage?: boolean,
+    teams: Array<Team>,
     response?: {content?: {rendered?: string}}
 }
 
@@ -25,6 +25,10 @@ class ChallengePage extends Component<Props> {
 
     componentDidMount() {
         this.props.fetchPageIfNeeded();
+        this.props.getInfo()
+          .then(()=>this.props.getTeamsOfPartner(this.props.userData))
+          .catch(err=>console.log(err))
+
     }
 
     render() {
@@ -36,6 +40,9 @@ class ChallengePage extends Component<Props> {
               {this.props.response && this.props.response.content &&
               <div dangerouslySetInnerHTML={{__html: this.props.response.content.rendered}}/>
               }
+
+
+
           </Container>
         )
     }
@@ -44,6 +51,8 @@ class ChallengePage extends Component<Props> {
 const mapStateToProps = (state, ownProps) => {
     const {response, isFetching} = state.pages['3101'] || {response: {content: {rendered: ''}}, isFetching: true};
     return {
+        team: state.team.teams,
+        userData: state.user.data || {},
         isFetchingPage: isFetching,
         response
     }
