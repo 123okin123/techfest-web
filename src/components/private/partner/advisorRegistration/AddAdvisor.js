@@ -4,8 +4,8 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {AvField, AvForm} from 'availity-reactstrap-validation';
 import {Button, Row, Col} from 'reactstrap';
-import {userActions} from "../../../actions/index";
-import {type User, roles} from '../../../constants/index';
+import {userActions} from "../../../../actions/index";
+import {type User, roles} from '../../../../constants/index';
 
 type Props = {
     userData: User,

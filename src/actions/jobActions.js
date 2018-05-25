@@ -3,6 +3,7 @@
 import {type Dispatch, jobConstants, type Job} from "../constants";
 import {type JobsState} from "../reducers/jobsReducer";
 import jobServices from '../services/jobServices';
+import {type State} from '../reducers'
 
 export const jobActions = {
     fetchJobsIfNeeded,
@@ -12,8 +13,8 @@ export const jobActions = {
 };
 
 function fetchJobsIfNeeded() {
-    return (dispatch: Dispatch, getState: () => JobsState): Promise<void> => {
-        if (shouldFetchJobs(getState())) {
+    return (dispatch: Dispatch, getState: () => State): Promise<void> => {
+        if (shouldFetchJobs(getState().jobs)) {
             return dispatch(fetchJobs())
         } else {
             return Promise.resolve();
@@ -21,7 +22,7 @@ function fetchJobsIfNeeded() {
     }
 }
 
-function fetchJobs() {
+function fetchJobs()  {
     return (dispatch: Dispatch) => {
         dispatch(request());
         return jobServices.fetchJobs()
@@ -57,7 +58,7 @@ function saveJob(job: Job) {
         dispatch(request());
         return jobServices.saveJob(job)
           .then(
-            (newJob: JSON) => {
+            (newJob: Job) => {
                 dispatch(success(newJob));
                 return Promise.resolve(newJob);
             },

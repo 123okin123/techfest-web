@@ -120,3 +120,9 @@ input[type="radio"], input[type="checkbox"] {
   -webkit-box-shadow: 1px 1px 1px #343a40;
   box-shadow: 1px 1px 1px #343a40;
 }
+
+
+input[type="checkbox"] {
+  margin-left: -20px!important;
+  margin-top: 2px!important;
+}

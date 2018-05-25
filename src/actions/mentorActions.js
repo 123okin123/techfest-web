@@ -3,6 +3,7 @@
 import {type Dispatch, mentorConstants, type Mentor} from "../constants";
 import {type MentorsState} from "../reducers/mentorsReducer";
 import mentorServices from '../services/mentorServices';
+import {type State} from '../reducers'
 
 export const mentorActions = {
     fetchMentorsIfNeeded,
@@ -12,8 +13,8 @@ export const mentorActions = {
 };
 
 function fetchMentorsIfNeeded() {
-    return (dispatch: Dispatch, getState: () => MentorsState): Promise<void> => {
-        if (shouldFetchMentors(getState())) {
+    return (dispatch: Dispatch, getState: () => State): Promise<void> => {
+        if (shouldFetchMentors(getState().mentors)) {
             return dispatch(fetchMentors())
         } else {
             return Promise.resolve();
@@ -42,10 +43,10 @@ function fetchMentors() {
 
 function shouldFetchMentors(state: MentorsState) :boolean {
     const mentors = state.items;
-    if (!mentors) {
-        return true
-    } else if (state.fetchingState.fetching) {
+    if (state.fetchingState.fetching) {
         return false
+    } else if (!mentors || mentors.length === 0) {
+        return true
     } else {
         return false
     }
@@ -57,7 +58,7 @@ function saveMentor(mentor: Mentor) {
         dispatch(request());
         return mentorServices.saveMentor(mentor)
           .then(
-            (newMentor: JSON) => {
+            (newMentor: Mentor) => {
                 dispatch(success(newMentor));
                 return Promise.resolve(newMentor);
             },
@@ -67,7 +68,7 @@ function saveMentor(mentor: Mentor) {
             })
     };
     function request() {return {type: mentorConstants.SAVE_MENTOR_REQUEST }}
-    function success(mentor: Mentor) {return {type: mentorConstants.SAVE_MENTOR_SUCCESS, mentor }}
+    function success(mentor) {return {type: mentorConstants.SAVE_MENTOR_SUCCESS, mentor }}
     function failure(error) {return {type: mentorConstants.SAVE_MENTOR_FAILURE, error}}
 }
 

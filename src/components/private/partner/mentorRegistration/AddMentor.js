@@ -4,16 +4,18 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {Button, Input, Col, Row} from 'reactstrap'
 import {AvForm, AvField} from 'availity-reactstrap-validation'
-import {mentorActions} from "../../../actions";
+import {mentorActions} from "../../../../actions/index";
 import styled from 'styled-components'
-import {getCookie} from "../../../helpers/session";
+import {getCookie} from "../../../../helpers/session";
 import DropzoneS3Uploader from 'react-dropzone-s3-uploader'
-import {type Mentor, type User} from '../../../constants'
+import {type Mentor, type User} from '../../../../constants/index'
+import {DropZoneImagePreview} from "../../../common";
 
 
 type Props = {
     +addMentor: (Mentor)=>Promise<void>,
     +userData: User,
+    allowedToAdd: boolean
 }
 
 type State = {
@@ -42,7 +44,7 @@ class AddMentor extends Component<Props, State> {
         this.state = {
             skills: [],
             currentSkill: '',
-            s3Url: 'https://techfest-job-uploads.s3.amazonaws.com',
+            s3Url: 'https://techfest-mentor-uploads.s3.amazonaws.com',
             uploadState: {}
         }
     }
@@ -82,6 +84,7 @@ class AddMentor extends Component<Props, State> {
         this.props.addMentor(newMentor)
           .then(()=> {
               this.setState({...this.state, currentSkill: '', skills: [], preview: ''});
+              //$FlowFixMe
               if (this.form) {this.form.reset()}
           }).catch(err=>console.log(err))
     }
@@ -100,10 +103,14 @@ class AddMentor extends Component<Props, State> {
         this.setState({...this.state, skills: this.state.skills.filter((e,i)=>i !== index)});
     }
 
+
+
     render() {
         return (
           <div>
               <AddMentorContainer>
+                  {!this.props.allowedToAdd &&
+                  <Overlay/>}
                   <DropzoneS3Uploader
                     className="mb-3"
                     onFinish={this.handleFinishedUpload}
@@ -126,14 +133,16 @@ class AddMentor extends Component<Props, State> {
                     }}
                     upload={this.state.uploadOptions}
                   >
-                      <DropZoneChildComponent
+                      <DropZoneImagePreview
                         isUploadError={this.state.uploadState.isUploadError}
                         isUploading={this.state.uploadState.isUploading}
                         isUploadSuccess={this.state.uploadState.isUploadSuccess}
                         preview={this.state.preview}
                       />
                   </DropzoneS3Uploader>
-              <AvForm onValidSubmit={this.onValidSubmit} ref={c => (this.form = c)}>
+              <AvForm onValidSubmit={this.onValidSubmit} ref={c =>
+              {/*$FlowFixMe*/
+                   (this.form = c)}}>
                   <StyledAvField name="firstName" label="" placeholder="First Name" required />
                   <StyledAvField name="lastName" label="" placeholder="Last Name" required />
                   <Row>
@@ -152,7 +161,19 @@ class AddMentor extends Component<Props, State> {
         )
     }
 }
-
+const Overlay = styled.div`
+    width: calc(100% - 30px);
+    max-width: 350px;
+    margin: auto;
+    height: 100%;
+    top: 0;
+    position: absolute;
+    z-index: 100;
+    left: 0;
+    right: 0;
+    background-color: #ffffffd9;
+    border-radius: 5px;
+`;
 const AddMentorContainer = styled.div`
     background-color: #fff;
     border-radius: 5px;
@@ -184,24 +205,8 @@ const SkillContainer = styled.div`
   flex-wrap: wrap;
   margin-top: 20px;
 `;
-const PreviewImage = styled.div`
-background: url(${(props)=> props.preview}) no-repeat center;
-background-size: cover;
-height: 100%;
-width: 100%;
-`;
-const DropZoneChildComponent = (props) => {
-    if (props.isUploading) {
-        return (<div><strong>uploading...</strong></div>);
-    }
-    if (props.isUploadError) {
-        return (<div className="text-danger"><strong>error</strong></div>)
-    }
-    if (props.isUploadSuccess) {
-        return (<PreviewImage preview={props.preview}/>);
-    }
-    return (<div>Drop file here (max size: 5mb | format: jpg/png)</div>);
-};
+
+
 
 const mapStateToProps = (state, ownProps) => {
     return {}

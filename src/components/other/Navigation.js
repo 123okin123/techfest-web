@@ -15,7 +15,8 @@ type State = {
 type Props = {
     toggle?: () => void,
     isFrontPage: boolean,
-    loggedIn: boolean
+    loggedIn: boolean,
+    logout: ()=>void
 }
 
 class Navigation extends Component<Props, State> {
@@ -90,8 +91,11 @@ class Navigation extends Component<Props, State> {
                             <StyledNavItem>
                                 <StyledNavLink scroll={(el)=> el.scrollIntoView({ behavior: 'smooth', block: 'start'})} to="/#faqs"  isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >FAQs</StyledNavLink>
                             </StyledNavItem>
+                            <StyledNavItem>
+                                <StyledNavLink to="/press-media" isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Press & Media</StyledNavLink>
+                            </StyledNavItem>
                             {/*<StyledNavItem>*/}
-                                {/*<StyledNavLink to="/press-media" isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Press & Media</StyledNavLink>*/}
+                                {/*<StyledNavLink to="/launchpad-day" isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Launchpad Day</StyledNavLink>*/}
                             {/*</StyledNavItem>*/}
                             <StyledNavItem>
                                 <StyledNavLink target="_blank" to="/register" isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Apply now</StyledNavLink>

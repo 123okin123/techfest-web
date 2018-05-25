@@ -4,6 +4,8 @@
 import fetch from "cross-fetch";
 import {getCookie} from "../helpers/session";
 import {authHeader} from "../helpers";
+import {type Mentor} from '../constants';
+import {handleResponse} from "../helpers";
 
 const mentorServices = {
     fetchMentors,
@@ -12,7 +14,7 @@ const mentorServices = {
     deleteMentor
 };
 
-function fetchMentors() {
+function fetchMentors(): Promise<Array<Mentor>> {
     const requestOptions = {
         method: 'GET'
     };
@@ -21,7 +23,7 @@ function fetchMentors() {
       .then(response=>Promise.resolve(response.mentors));
 }
 
-function saveMentor(mentor: {}) :Promise<JSON> {
+function saveMentor(mentor: {}) :Promise<Mentor> {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -31,7 +33,7 @@ function saveMentor(mentor: {}) :Promise<JSON> {
       .then(handleResponse).then(response=>Promise.resolve(response.mentor));
 }
 
-function updateMentor(id: string, mentor: {}) {
+function updateMentor(id: string, mentor: Mentor) :Promise<Mentor> {
     const requestOptions = {
         method: 'PUT',
         headers: { ...authHeader(), 'Content-Type': 'application/json' },
@@ -41,22 +43,12 @@ function updateMentor(id: string, mentor: {}) {
       .then(handleResponse).then(response=>Promise.resolve(response.mentor));
 }
 
-function deleteMentor(id: string) {
+function deleteMentor(id: string): Promise<JSON> {
     const requestOptions = {
         method: 'DELETE',
         headers: authHeader()
     };
     return fetch('/api/mentors/' + id + '?token=' + getCookie("jwt"), requestOptions).then(handleResponse);
-}
-
-
-function handleResponse(response) :Promise<JSON> {
-    if (!response.ok) {
-        return response.json().then(
-          json=> Promise.reject(json.error + ' ' + json.reason)
-          , err => Promise.reject('An error occurred.'));
-    }
-    return response.json();
 }
 
 

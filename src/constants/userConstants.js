@@ -22,11 +22,15 @@ export const userConstants = {
     UPDATE_INFO_REQUEST: 'UPDATE_INFO_REQUEST',
     UPDATE_INFO_SUCCESS: 'UPDATE_INFO_SUCCESS',
     UPDATE_INFO_FAILURE: 'UPDATE_INFO_FAILURE',
+
+    GET_USERS_REQUEST: 'GET_USERS_REQUEST',
+    GET_USERS_SUCCESS: 'GET_USERS_SUCCESS',
+    GET_USERS_FAILURE: 'GET_USERS_FAILURE',
 };
 
 
 export type UserAction =
-  | { type: 'USERS_REGISTER_REQUEST' }
+   { type: 'USERS_REGISTER_REQUEST' }
   | { type: 'USERS_REGISTER_SUCCESS' }
   | { type: 'USERS_REGISTER_FAILURE', error: string }
 
@@ -47,6 +51,11 @@ export type UserAction =
   | { type: 'UPDATE_INFO_REQUEST' }
   | { type: 'UPDATE_INFO_SUCCESS', user: User }
   | { type: 'UPDATE_INFO_FAILURE', error: string }
+
+  | { type: 'GET_USERS_REQUEST' }
+  | { type: 'GET_USERS_SUCCESS', users: Array<User> }
+  | { type: 'GET_USERS_FAILURE', error: string }
+
   
 
 
@@ -76,6 +85,7 @@ export const allPartnerRoles = [
 
 
 export type User = {
+    _id: string,
     firstName: string,
     lastName: string,
     email: string,
@@ -83,6 +93,7 @@ export type User = {
     token?: string,
     role: string,
     partnerFields?: {
+        challengeId?: string,
         company: string,
         guests?: Array<{
             firstName: string,
@@ -94,7 +105,8 @@ export type User = {
             firstName: string,
             lastName: string,
             email: string,
-            numberOfDays: number
+            numberOfDays: number,
+            imageURL: string
         }>,
         advisors: Array<{
             firstName: string,
@@ -102,8 +114,11 @@ export type User = {
             email: string,
             numberOfDays: number
         }>,
+        numberOfMentorsAllowed: number
     },
-    participantFields?: {},
+    participantsFields?: {
+        challengeId?: string
+    },
     startupFields?: {},
     applicantFields?: {
         preEvent?: boolean,

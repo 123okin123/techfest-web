@@ -1,10 +1,10 @@
 //@flow
 import {userConstants, type User} from '../constants';
 import userService from '../services/userServices';
-//import { history } from '../helpers/history';
 import { uploadActions} from './uploadActions';
 import type {Dispatch} from "../constants";
 import type {UserState} from "../reducers/userReducer";
+import type {State} from '../reducers'
 
 export const userActions = {
     register,
@@ -13,7 +13,8 @@ export const userActions = {
     logout,
     update,
     getInfo,
-    fetchInfoIfNeeded
+    fetchInfoIfNeeded,
+    getUsers
 };
 
 
@@ -37,7 +38,7 @@ function register(user: User) {
 }
 
 function uploadFileAndRegister(user: User, uploadFiles: Array<any>) {
-    return (dispatch: Dispatch, getState: ()=>{}) => {
+    return (dispatch: Dispatch, getState: ()=>State) => {
         return dispatch(uploadActions.uploadMulti(uploadFiles)).then(()=>{
             const keys = getState().upload.keys.map((e, i)=> {
                 return {[`upload-${i}`]: e}
@@ -101,8 +102,8 @@ function update(user: {}) {
 }
 
 function fetchInfoIfNeeded() {
-    return (dispatch: Dispatch, getState: () => UserState): Promise<void> => {
-        if (shouldFetchInfo(getState())) {
+    return (dispatch: Dispatch, getState: () => State): Promise<void> => {
+        if (shouldFetchInfo(getState().user)) {
             return dispatch(getInfo())
         } else {
             return Promise.resolve();
@@ -120,7 +121,7 @@ function shouldFetchInfo(state: UserState) :boolean {
     }
 }
 
-function getInfo() {
+function getInfo() : ()=>Promise<void> {
     return (dispatch: any) => {
         dispatch(request());
         return userService.getMe()
@@ -136,8 +137,30 @@ function getInfo() {
           );
     };
 
-    function request(user) { return { type: userConstants.GET_INFO_REQUEST } }
+    function request() { return { type: userConstants.GET_INFO_REQUEST } }
     function success(user) { return { type: userConstants.GET_INFO_SUCCESS, user } }
     function failure(error) { return { type: userConstants.GET_INFO_FAILURE, error } }
 }
 
+
+
+function getUsers(page: number = 1) :()=>Promise<Array<User>> {
+    return (dispatch: any) => {
+        dispatch(request());
+        return userService.getUsers(page)
+          .then(
+            (result: {users: Array<User>, current: number, pages: number}) => {
+                dispatch(success(result.users));
+                return Promise.resolve(result)
+            },
+            error => {
+                dispatch(failure(error));
+                return Promise.reject(error)
+            }
+          );
+    };
+
+    function request() { return { type: userConstants.GET_USERS_REQUEST } }
+    function success(users: Array<User>) { return { type: userConstants.GET_USERS_SUCCESS, users } }
+    function failure(error) { return { type: userConstants.GET_USERS_FAILURE, error } }
+}

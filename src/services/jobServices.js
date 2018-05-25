@@ -4,6 +4,7 @@
 import fetch from "cross-fetch";
 import {getCookie} from "../helpers/session";
 import {authHeader} from "../helpers";
+import {type Job} from '../constants'
 
 const jobServices = {
     fetchJobs,
@@ -12,7 +13,7 @@ const jobServices = {
     deleteJob
 };
 
-function fetchJobs() {
+function fetchJobs() :Promise<Array<Job>> {
     const requestOptions = {
         method: 'GET'
     };
@@ -21,7 +22,7 @@ function fetchJobs() {
       .then(response=>Promise.resolve(response.jobs));
 }
 
-function saveJob(job: {}) :Promise<JSON> {
+function saveJob(job: Job) :Promise<Job> {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -31,7 +32,7 @@ function saveJob(job: {}) :Promise<JSON> {
       .then(handleResponse).then(response=>Promise.resolve(response.job));
 }
 
-function updateJob(id: string, job: {}) {
+function updateJob(id: string, job: Job): Promise<Job> {
     const requestOptions = {
         method: 'PUT',
         headers: { ...authHeader(), 'Content-Type': 'application/json' },
@@ -41,7 +42,7 @@ function updateJob(id: string, job: {}) {
       .then(handleResponse).then(response=>Promise.resolve(response.job));
 }
 
-function deleteJob(id: string) {
+function deleteJob(id: string): Promise<JSON> {
     const requestOptions = {
         method: 'DELETE',
         headers: authHeader()

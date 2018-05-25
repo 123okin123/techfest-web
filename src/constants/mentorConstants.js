@@ -34,7 +34,7 @@ export type Mentor = {
 }
 
 export type MentorAction =
-  | { type: 'GET_MENTORS_REQUEST' }
+   { type: 'GET_MENTORS_REQUEST' }
   | { type: 'GET_MENTORS_SUCCESS', mentors: Array<Mentor> }
   | { type: 'GET_MENTORS_FAILURE', error: string }
   | { type: 'SAVE_MENTOR_REQUEST' }

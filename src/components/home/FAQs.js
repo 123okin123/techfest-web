@@ -7,11 +7,24 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import { faAngleUp, faAngleDown } from '@fortawesome/fontawesome-free-solid'
 import {connect} from "react-redux";
 
+type Props = {
+    response?: {
+        acf?: {
+            faqs?: Array<{
+                title?: string,
+                body?: string
+            }>
+        }
+    }
+}
+type State = {
 
-class FAQs extends Component {
+}
+
+class FAQs extends Component<Props,State> {
     constructor(props) {
         super(props);
-        this.toggle = this.toggle.bind(this);
+        (this: any).toggle = this.toggle.bind(this);
         this.state = {}
     }
     toggle(i) {

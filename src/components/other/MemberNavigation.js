@@ -46,13 +46,16 @@ class Navigation extends Component<Props, State> {
                       <Nav className="ml-auto" navbar>
                           {/*Participants*/}
                           <PrivateNavItem title="Member Area" to="/private/member-area" permittedRoles={[roles.ADMIN_ROLE, roles.PARTICIPANT_ROLE, roles.STARTUP_ROLE]}/>
+                          {/*<PrivateNavItem title="My Challenge" to="/private/my-challenge" permittedRoles={[roles.ADMIN_ROLE, roles.PARTICIPANT_ROLE]}/>*/}
 
                           {/*Partners*/}
-                          <PrivateNavItem title="Partner Area" to="/private/partner" permittedRoles={[roles.ADMIN_ROLE].concat(allPartnerRoles)}/>
+                          <PrivateNavItem title="Home" to="/private/partner" permittedRoles={[roles.ADMIN_ROLE].concat(allPartnerRoles)}/>
                           <PrivateNavItem title="Post Job" to="/private/post-job" permittedRoles={[roles.ADMIN_ROLE, roles.TRACK_PARTNER_ROLE]}/>
-{/*
-                          <PrivateNavItem title="Mentors" to="/private/register-mentor" permittedRoles={[roles.ADMIN_ROLE, roles.TRACK_PARTNER_ROLE]}/>
-*/}
+                          <PrivateNavItem title="Mentors" to="/private/register-mentor" permittedRoles={[roles.ADMIN_ROLE, ...allPartnerRoles]}/>
+                          <PrivateNavItem title="Guest Registration" to="/private/register-guest" permittedRoles={[roles.ADMIN_ROLE, ...allPartnerRoles]}/>
+                          <PrivateNavItem title="Launchpad Day Registration" to="/private/register-lpd-guest" permittedRoles={[roles.ADMIN_ROLE, ...allPartnerRoles]}/>
+                          {/*<PrivateNavItem title="Challenge" to="/private/partner-challenge" permittedRoles={[roles.ADMIN_ROLE, roles.CHALLENGE_PARTNER_ROLE, roles.TRACK_PARTNER_ROLE]}/>*/}
+
 
                           {/*<PrivateNavItem title="Advisors" to="/private/register-advisor" permittedRoles={[roles.ADMIN_ROLE, roles.TRACK_PARTNER_ROLE, roles.CHALLENGE_PARTNER_ROLE]}/>*/}
 

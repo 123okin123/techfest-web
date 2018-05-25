@@ -7,8 +7,17 @@ import {Container, Col, Row} from 'reactstrap'
 
 
 type Props = {
-    response: {},
-    isFetching: boolean
+    response?: {
+        acf?: {
+            gallery?: Array<{
+                image?: string,
+                width?: string,
+                height?: string
+            }>
+        }
+    },
+    isFetching: boolean,
+    fetchPage: ()=>Promise<void>,
 }
 class GalleryContainer extends Component<Props> {
     componentDidMount() {
@@ -65,7 +74,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         fetchPage: () => {
-            dispatch(pageActions.fetchPageIfNeeded('241'));
+            return dispatch(pageActions.fetchPageIfNeeded('241'));
         }
     }
 };

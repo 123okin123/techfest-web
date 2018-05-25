@@ -4,9 +4,19 @@ import styled from 'styled-components'
 import {Container, Row, Col } from 'reactstrap'
 import {Bracket} from '../common'
 
-class USPContainer extends Component {
-    constructor() {
-        super();
+type Props = {
+
+}
+
+type State = {
+    popoverOpen1: boolean,
+    popoverOpen2: boolean,
+    popoverOpen3: boolean,
+}
+
+class USPContainer extends Component<Props, State> {
+    constructor(props: Props) {
+        super(props);
 
         (this: any).toggle = this.toggle.bind(this);
         this.state = {

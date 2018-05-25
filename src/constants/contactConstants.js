@@ -7,7 +7,7 @@ export const contactConstants = {
 };
 
 export type ContactAction =
-| {type: 'CONTACT_REQUEST'}
+ {type: 'CONTACT_REQUEST'}
 | {type: 'CONTACT_SUCCESS'}
 | {type: 'CONTACT_FAILURE', error: string}
 

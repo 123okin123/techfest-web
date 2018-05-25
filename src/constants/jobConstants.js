@@ -26,7 +26,7 @@ export type Job = {
 }
 
 export type JobAction =
-  | { type: 'GET_JOBS_REQUEST' }
+   { type: 'GET_JOBS_REQUEST' }
   | { type: 'GET_JOBS_SUCCESS', jobs: Array<Job> }
   | { type: 'GET_JOBS_FAILURE', error: string }
   | { type: 'SAVE_JOB_REQUEST' }

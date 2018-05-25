@@ -12,8 +12,18 @@ import {Bracket} from "./common";
 const PAGE_ID = '1681';
 
 type Props = {
-    response: {},
-    isFetching: boolean
+    response: {
+        content?: {rendered?: string},
+        acf?: {
+            uploads?:
+              Array<{
+                file: string,
+                name: string,
+                preview?: string
+            }>}
+    },
+    isFetching: boolean,
+    fetchPage: ()=>Promise<void>
 }
 
 class PressMediaPage extends Component<Props> {
@@ -29,7 +39,7 @@ class PressMediaPage extends Component<Props> {
           <Container className="container pt-5">
               <h1>Press & Media</h1>
               <LoaderContainer><ScaleLoader loading={this.props.isFetching} height={20} width={2} /></LoaderContainer>
-              {this.props.response &&
+              {this.props.response && this.props.response.content &&
               <div className="pt-5 my-5 text-center" dangerouslySetInnerHTML={{__html: this.props.response.content.rendered}}/>
               }
               <Row className="mt-5 justify-content-center">
@@ -38,7 +48,9 @@ class PressMediaPage extends Component<Props> {
                     <ElementContainer xs="6" md="3" key={i} className="text-center mb-3">
                         <Bracket/>
                           <Link className="pt-3" target="_blank" href={e.file}>
-                              <FontAwesomeIcon size="4x" icon={faCloudDownloadAlt}/>
+                              {e.preview ?
+                                <img style={{maxWidth: '100%', maxHeight: '100px'}} src={e.preview}/> :
+                                <FontAwesomeIcon size="4x" icon={faCloudDownloadAlt}/>}
                               <p className="mt-3">{e.name}</p>
                           </Link>
                         <Bracket right/>
@@ -77,7 +89,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         fetchPage: () => {
-            dispatch(pageActions.fetchPageIfNeeded(PAGE_ID))
+            return dispatch(pageActions.fetchPageIfNeeded(PAGE_ID))
         }
     }
 };

@@ -6,8 +6,15 @@ import {Container} from 'reactstrap'
 import {Bracket} from "../common";
 import {connect} from "react-redux";
 
+type Props = {
+  response?: {
+    acf?: {
+      summarytext?: string
+    }
+  }
+}
 
-class SummaryContainer extends Component {
+class SummaryContainer extends Component<Props> {
   render() {
     return (
       <Container>

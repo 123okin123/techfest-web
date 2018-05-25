@@ -10,7 +10,7 @@ const userService = {
     register,
     getById,
     getMe,
-    getAll,
+    getUsers,
     update,
     delete: _delete
 };
@@ -50,13 +50,13 @@ function logout() {
     // remove user from local storage to log user out
 }
 
-function getAll() {
+function getUsers() :Promise<{users: Array<User>, current: number, pages: number}>{
     const requestOptions = {
         method: 'GET',
         headers: authHeader()
     };
 
-    return fetch('/users', requestOptions).then(handleResponse);
+    return fetch('/api/users?token=' + getCookie("jwt") + '&type=participants', requestOptions).then(handleResponse);
 }
 
 function getById(id) {
@@ -68,14 +68,14 @@ function getById(id) {
     return fetch('/api/users/' + id, requestOptions).then(handleResponse);
 }
 
-function getMe() {
+function getMe(): Promise<{}> {
     const requestOptions = {
         method: 'GET',
     };
     return fetch('/api/users/me?token=' + getCookie("jwt") , requestOptions).then(handleResponse);
 }
 
-function register(user: User) :Promise<JSON> {
+function register(user: User) :Promise<{}> {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

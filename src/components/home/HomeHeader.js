@@ -11,7 +11,7 @@ type State = {
 class HomeHeader extends Component<{},State> {
     constructor() {
         super();
-        this.onScroll = this.onScroll.bind(this);
+        (this: any).onScroll = this.onScroll.bind(this);
         this.state = {
             scrollY: 0
         }

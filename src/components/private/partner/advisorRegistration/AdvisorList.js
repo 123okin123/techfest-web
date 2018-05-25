@@ -2,19 +2,19 @@
 
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {type User} from "../../../constants/index";
+import {type User} from "../../../../constants/index";
 import {AvField, AvForm} from 'availity-reactstrap-validation';
 import {Button, Table} from 'reactstrap';
-import {userActions} from "../../../actions/index";
+import {userActions} from "../../../../actions/index";
 import styled from 'styled-components';
 
 type Props = {
     userData: User,
     +fetchInfoIfNeeded: ()=>Promise<void>,
-    +deleteGuest: ({}, User)=>Promise<User>
+    +deleteAdvisor: ({}, User)=>Promise<User>
 };
 type State = {
-    guests: Array<{
+    advisors: Array<{
         editable?: boolean,
         firstName: string,
         lastName: string,
@@ -23,14 +23,14 @@ type State = {
     }>
 }
 
-class GuestList extends Component<Props, State> {
+class AdvisorList extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
         (this: any).handleValidSubmit = this.handleValidSubmit.bind(this);
         (this: any).onDelete = this.onDelete.bind(this);
-        const guests = ((props.userData.partnerFields || {}).guests || []).map(guest=>{return{...guest, editable: false}});
+        const advisors = ((props.userData.partnerFields || {}).advisors || []).map(guest=>{return{...guest, editable: false}});
         this.state = {
-            guests: guests
+            advisors: advisors
         }
     }
 
@@ -41,28 +41,28 @@ class GuestList extends Component<Props, State> {
     }
 
     componentWillReceiveProps(nextProps) {
-        const guests = ((nextProps.userData.partnerFields || {}).guests || []).map(guest=>{return{...guest, editable: false}});
+        const advisors = ((nextProps.userData.partnerFields || {}).advisors || []).map(guest=>{return{...guest, editable: false}});
         this.state = {
-            guests: guests
+            advisors: advisors
         }
     }
 
 
     handleValidSubmit(event, values, guest) {
-        values.numberOfDays = parseInt(values.numberOfDays);
+        values.numberOfDays = 1;
     }
 
     onDelete(guest) {
-        this.props.deleteGuest(guest, this.props.userData)
+        this.props.deleteAdvisor(guest, this.props.userData)
     }
 
     render() {
         return (
           <div>
-              {this.state.guests.length === 0 && <div>No guests yet</div>}
+              {this.state.advisors.length === 0 && <div>No advisors yet</div>}
               <StyledTable>
                   <tbody>
-                  {this.state.guests.map((guest, index)=> {
+                  {this.state.advisors.map((guest, index)=> {
                       if (guest.editable) {
                           return (
                             <li className="border-bottom border-dark p-4" key={index.toString()}>
@@ -71,12 +71,10 @@ class GuestList extends Component<Props, State> {
                                             firstName: guest.firstName,
                                             lastName: guest.lastName,
                                             email: guest.email,
-                                            numberOfDays: guest.numberOfDays
                                         }}>
                                     <AvField name="firstName" required />
                                     <AvField name="lastName" required />
                                     <AvField name="email" required />
-                                    <AvField name="numberOfDays" required />
                                     {/*<Button onClick={()=>this.setState({guests: this.state.guests.map(guestInState=> guestInState._id === job._id ? {...job, editable: false} : jobInState)})} className="float-right" color="info" >Cancel</Button>*/}
                                     {/*<Button type="submit" className="float-right" color="info" >Save</Button>*/}
                                 </AvForm>
@@ -87,7 +85,6 @@ class GuestList extends Component<Props, State> {
                                 <td className="mb-0">{guest.firstName}</td>
                                 <td className="mb-0">{guest.lastName}</td>
                                 <td className="mb-0">{guest.email}</td>
-                                <td className="mb-0">Number of day tickets: {guest.numberOfDays}</td>
                                 <td><Button color="info" onClick={()=>this.onDelete(guest)}>Delete</Button></td>
                                 {/*<Button color="info" className="float-right" onClick={()=>this.setState({guests: this.state.guests.map(guestInState=>guestInState._id === guest._id ? {...guest, editable: true}:guestInState)})}>Edit</Button>*/}
                             </tr>)
@@ -115,12 +112,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         fetchInfoIfNeeded: () => {
             return dispatch(userActions.fetchInfoIfNeeded())
         },
-        deleteGuest: (guestToDelete, user) => {
+        deleteAdvisor: (guestToDelete, user) => {
             const updatedUser = {
                 ...user,
                 partnerFields: {
                     ...user.partnerFields,
-                    guests: ((user.partnerFields || {}).guests || []).filter(guest=>guest.email !== guestToDelete.email)
+                    advisors: ((user.partnerFields || {}).advisors || []).filter(guest=>guest.email !== guestToDelete.email)
                 }
             };
             return dispatch(userActions.update(updatedUser))
@@ -128,4 +125,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(GuestList);
+export default connect(mapStateToProps, mapDispatchToProps)(AdvisorList);
