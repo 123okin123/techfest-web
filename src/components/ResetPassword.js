@@ -18,7 +18,6 @@ type State = {
 class ResetPassword extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
-        this.state = {resetPasswordSuccess: true};
         (this: any).handleValidSubmit = this.handleValidSubmit.bind(this);
 
     }
