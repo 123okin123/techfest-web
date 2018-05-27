@@ -1,5 +1,6 @@
 import {authHeader} from "../helpers";
 import {getCookie} from "../helpers/session";
+import {Challenge} from "../constants";
 
 export const challengeServices = {
     getChallenges,
@@ -15,10 +16,11 @@ function getChallenges() {
     return fetch('/api/challenges/'+'?token=' + getCookie("jwt"), requestOptions).then(handleResponse);
 }
 
-function updateChallenge(id: string) {
+function updateChallenge(id: string, challenge: Challenge) {
     const requestOptions = {
         method: 'PUT',
-        headers: authHeader()
+        headers: { ...authHeader(), 'Content-Type': 'application/json' },
+        body: JSON.stringify(challenge)
     };
     return fetch('/api/challenges/' + id +'?token=' + getCookie("jwt"), requestOptions).then(handleResponse);
 }

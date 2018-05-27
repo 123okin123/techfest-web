@@ -188,6 +188,7 @@ class CreateTeam extends Component<Props, State> {
         return (
 
           <div>
+              <h3>{this.props.team ? 'Your': 'Create'} Team</h3>
               <TeamContainer>
                   {((!this.state.readyState.ready || (this.props.team || {}).updating === true) || (this.props.savingState.saving === true)) &&
                   <Overlay/>}

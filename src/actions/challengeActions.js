@@ -7,7 +7,8 @@ import {type ChallengeState} from '../reducers/challengeReducer';
 
 export const challengeActions = {
     getChallenges,
-    getChallengesIfNeeded
+    getChallengesIfNeeded,
+    updateChallenge
 };
 
 function getChallengesIfNeeded() {
@@ -47,4 +48,23 @@ function getChallenges(): (Dispatch)=>Promise<Array<Challenge>> {
     function request() {return {type: challengeConstants.GET_CHALLENGES_REQUEST }}
     function success(challenges: Array<Challenge>) {return {type: challengeConstants.GET_CHALLENGES_SUCCESS, challenges}}
     function failure(error) {return {type: challengeConstants.GET_CHALLENGES_FAILURE, error}}
+}
+
+function updateChallenge(challenge: Challenge): (Dispatch)=>Promise<Challenge> {
+    return (dispatch: Dispatch) => {
+        dispatch(request(challenge));
+        return challengeServices.updateChallenge(challenge._id ,challenge)
+          .then(
+            response => {
+                dispatch(success(response.challenge));
+                return Promise.resolve(response.challenge);
+            },
+            error => {
+                dispatch(failure(challenge, error));
+                return Promise.reject(error);
+            })
+    };
+    function request(challenge: Challenge) {return {type: challengeConstants.UPDATE_CHALLENGE_REQUEST, challenge }}
+    function success(challenge: Challenge) {return {type: challengeConstants.UPDATE_CHALLENGE_SUCCESS, challenge}}
+    function failure(challenge: Challenge, error: string) {return {type: challengeConstants.UPDATE_CHALLENGE_FAILURE, challenge, error}}
 }
