@@ -30,7 +30,7 @@ function getTeamOfParticipant(user: User): ()=>Promise<Array<Team>> {
 function getTeamsOfPartner(user: User): ()=>Promise<Array<Team>> {
     return (dispatch: Dispatch) => {
         dispatch(request());
-        return teamServices.fetchTeamsWithFilter({challengeId: (user.participantsFields || {}).challengeId})
+        return teamServices.fetchTeamsWithFilter({challengeId: (user.partnerFields || {}).challengeId})
           .then(
             teams => {
                 dispatch(success(teams));

@@ -54,6 +54,7 @@ class CreateTeam extends Component<Props, State> {
         (this: any).removeMember = this.removeMember.bind(this);
         (this :any).onlpdChange = this.onlpdChange.bind(this);
         (this: any).saveTeam = this.saveTeam.bind(this);
+        (this: any).getFilteredUsers = this.getFilteredUsers.bind(this);
         this.state = {
             filter: "",
             team: this.props.team,
@@ -130,6 +131,13 @@ class CreateTeam extends Component<Props, State> {
         })
     }
 
+    getFilteredUsers(users: Array<User>): Array<User> {
+        const filteredUsers = users.filter(user=>(user.firstName + user.lastName).toLowerCase().search(this.state.filter) !== -1);
+        const filteredUsersWithOutMe = filteredUsers.filter(user=>user._id !== this.props.userData._id);
+        const filteredUsersWithOutMeAndTeamUsers = filteredUsersWithOutMe.filter(user=> !((this.state.team || {}).participantIds || []).includes(user._id));
+        return filteredUsersWithOutMeAndTeamUsers.filter(user=>(user.participantsFields || {}).challengeId === (this.props.userData.participantsFields || {}).challengeId)
+    }
+
     onlpdChange(user: User, e) {
         let lpdParticipantIdsCopy = ((this.state.team || {}).LPDParticipantIds || []).slice();
         if (e.target.checked) {
@@ -173,9 +181,9 @@ class CreateTeam extends Component<Props, State> {
     render() {
         console.log((this.props.team || {}).updating);
         console.log(this.props.savingState.saving);
-        const filteredUsers = this.props.users.filter(user=>(user.firstName + user.lastName).toLowerCase().search(this.state.filter) !== -1);
-        const filteredUserWithOutMe = filteredUsers.filter(user=>user._id !== this.props.userData._id);
-        const filteredUserWithOutMeAndTeamUsers = filteredUserWithOutMe.filter(user=> !((this.state.team || {}).participantIds || []).includes(user._id));
+
+
+
         const usersOfTeam = this.props.users.filter(user=> ((this.state.team || {}).participantIds || []).includes(user._id));
         return (
 
@@ -237,8 +245,8 @@ class CreateTeam extends Component<Props, State> {
 
                   <p className="mt-3">Add Team Member</p>
                   <StyledInput disabled={usersOfTeam.length > 5} placeholder="team member" name="members" onChange={(e)=>this.setState({filter: e.target.value})}/>
-                      {filteredUserWithOutMeAndTeamUsers.length < 5 &&
-                      filteredUserWithOutMeAndTeamUsers.map((user: User, index: number)=>
+                      {this.getFilteredUsers(this.props.users).length < 5 &&
+                      this.getFilteredUsers(this.props.users).map((user: User, index: number)=>
                             <Row className="" key={index.toString()}>
                                 <Col xs={8}><p className="mb-0">{user.firstName} {user.lastName}</p></Col>
                                 <Col xs={4}><Button className="float-right" onClick={()=>this.addMember(user)}>Add to Team</Button></Col>
@@ -255,6 +263,10 @@ class CreateTeam extends Component<Props, State> {
         )
     }
 }
+
+
+
+
 
 const TeamContainer = styled.div`
     background-color: #fff;
@@ -296,7 +308,10 @@ const DropZoneImagePreview = (props) => {
     if (props.isUploadSuccess) {
         return (<PreviewImage preview={props.preview}/>);
     }
-    return (<div>Drop file here (max size: 2mb | format: jpg/png)</div>);
+    return (
+      <div><p><strong>Drop team image here</strong></p>
+        <p>(max size: 2mb | format: jpg/png)</p>
+      </div>);
 };
 
 const PreviewImage = styled.div`
@@ -321,7 +336,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         getUsers: ()=> {
-            return dispatch(userActions.getUsers())
+            return dispatch(userActions.getUsersIfNeeded())
         },
         getInfo: ()=> {
             return dispatch(userActions.fetchInfoIfNeeded())

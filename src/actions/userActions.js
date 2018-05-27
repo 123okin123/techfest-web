@@ -5,6 +5,7 @@ import { uploadActions} from './uploadActions';
 import type {Dispatch} from "../constants";
 import type {UserState} from "../reducers/userReducer";
 import type {State} from '../reducers'
+import type {ChallengeState} from "../reducers/challengeReducer";
 
 export const userActions = {
     register,
@@ -14,7 +15,8 @@ export const userActions = {
     update,
     getInfo,
     fetchInfoIfNeeded,
-    getUsers
+    getUsers,
+    getUsersIfNeeded
 };
 
 
@@ -151,7 +153,7 @@ function getUsers(page: number = 1) :()=>Promise<Array<User>> {
           .then(
             (result: {users: Array<User>, current: number, pages: number}) => {
                 dispatch(success(result.users));
-                return Promise.resolve(result)
+                return Promise.resolve(result.users)
             },
             error => {
                 dispatch(failure(error));
@@ -163,4 +165,25 @@ function getUsers(page: number = 1) :()=>Promise<Array<User>> {
     function request() { return { type: userConstants.GET_USERS_REQUEST } }
     function success(users: Array<User>) { return { type: userConstants.GET_USERS_SUCCESS, users } }
     function failure(error) { return { type: userConstants.GET_USERS_FAILURE, error } }
+}
+
+
+function getUsersIfNeeded() {
+    return (dispatch: any, getState: ()=>{user: UserState}) => {
+        if (shouldFetchUsersChallenges(getState())) {
+            dispatch(getUsers());
+        }
+        //$FlowFixMe
+        return Promise.resolve();
+    }
+}
+
+function shouldFetchUsersChallenges(state) :boolean {
+    if (!state.user.users) {
+        return true
+    } else if (state.user.fetchingState.fetching) {
+        return false
+    } else {
+        return false
+    }
 }
