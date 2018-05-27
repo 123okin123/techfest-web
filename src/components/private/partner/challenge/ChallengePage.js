@@ -22,6 +22,7 @@ type Props = {
     teams: ?Array<Team>,
 
     getChallenge: ()=>Promise<Challenge>,
+    updateChallenge: (Challenge)=>Promise<Challenge>,
     challenge: ?Challenge,
 
     getUsers: ()=>Promise<Array<User>>,
@@ -29,9 +30,18 @@ type Props = {
 
 }
 
-class ChallengePage extends Component<Props> {
+type State = {
+    text: string
+}
+
+class ChallengePage extends Component<Props, State> {
     constructor(props: Props) {
-        super(props)
+        super(props);
+        (this: any).onTextSubmit = this.onTextSubmit.bind(this);
+        this.state = {
+            text: (this.props.challenge || {}).text || ''
+        }
+
     }
 
     componentDidMount() {
@@ -43,6 +53,13 @@ class ChallengePage extends Component<Props> {
           .catch(err=>console.log(err))
 
     }
+
+    onTextSubmit(event) {
+        if (!this.props.challenge) {return}
+        event.preventDefault();
+        this.props.updateChallenge({...this.props.challenge, text: this.state.text})
+    }
+
 
     render() {
         return (
@@ -60,8 +77,8 @@ class ChallengePage extends Component<Props> {
               <h3 className="mt-5">Your Uploads</h3>
               <Row>
                   <Col className="mb-3" md={6}>
-                      <Form onSumit={()=>}>
-                          <Input placeholder='Input will be visible to teams on their "My Challenge" Page' type="textarea" rows="8"/>
+                      <Form onSubmit={this.onTextSubmit}>
+                          <Input onChange={(event)=>this.setState({...this.state, text: event.target.value})} value={this.props.challenge && this.props.challenge.text} placeholder='Input will be visible to teams on their "My Challenge" Page' type="textarea" rows="8"/>
                           <Button className="float-right mt-3" type="submit">Save</Button>
                       </Form>
                   </Col>
