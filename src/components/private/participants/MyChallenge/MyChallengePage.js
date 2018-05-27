@@ -8,6 +8,8 @@ import type {Challenge} from "../../../../constants";
 import {challengeActions, pageActions} from "../../../../actions";
 import {LoaderContainer} from "../../../common";
 import {ScaleLoader} from 'react-spinners';
+import MentorList from '../../common/MentorList';
+import Card from '../../common/Card';
 
 type Props = {
     getChallenge: ()=>Promise<Challenge>,
@@ -46,8 +48,28 @@ class MyChallengePage extends Component<Props> {
               {this.props.response && this.props.response.content && <div dangerouslySetInnerHTML={{__html: this.props.response.content.rendered}}/>}
 
               <Row className="mt-5">
-                  <Col xs={12} md={6}><CreateTeam/></Col>
+                  <Col xs={12} md={6} className="mb-3"><CreateTeam/></Col>
                   <Col xs={12} md={6}><h3>Your Uploads</h3></Col>
+              </Row>
+
+              <Row className="mt-5">
+                  <Col>
+                      <h3>Challenge Supervisors</h3>
+                      <div className="d-flex flex-wrap">
+                          {this.props.challenge && (this.props.challenge.supervisors || []).map((supervisor, index)=>
+                          <Card key={index.toString()}
+                                title={supervisor.firstName +' '+supervisor.lastName}
+                                imageURL={supervisor.imageURL}/>
+                          )}
+                      </div>
+                  </Col>
+              </Row>
+
+              <Row className="mt-5">
+                  <Col>
+                      <h3>Challenge Mentors</h3>
+                      <MentorList companyFilter={(this.props.challenge || {}).company}/>
+                  </Col>
               </Row>
           </Container>
         )

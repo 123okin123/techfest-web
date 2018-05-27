@@ -19,6 +19,12 @@ export type Challenge = {
     +description: string,
     +uploads?: Array<{url: string, name: string}>,
     +text?: string,
+    +supervisors?: Array<{
+        firstName: string,
+        lastName: string,
+        imageURL?: string
+    }>,
+    company: string,
 
     updating?: boolean,
     updateError?: string

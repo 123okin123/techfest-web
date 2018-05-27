@@ -78,8 +78,8 @@ class ChallengePage extends Component<Props, State> {
               <Row>
                   <Col className="mb-3" md={6}>
                       <Form onSubmit={this.onTextSubmit}>
-                          <Input onChange={(event)=>this.setState({...this.state, text: event.target.value})} value={this.props.challenge && this.props.challenge.text} placeholder='Input will be visible to teams on their "My Challenge" Page' type="textarea" rows="8"/>
-                          <Button className="float-right mt-3" type="submit">Save</Button>
+                          <Input onChange={(event)=>this.setState({...this.state, text: event.target.value})} value={this.state.text} placeholder='Input will be visible to teams on their "My Challenge" Page' type="textarea" rows="8"/>
+                          <Button disabled={(this.props.challenge || {}).updating} className="float-right mt-3" type="submit">Save</Button>
                       </Form>
                   </Col>
                   <Col md={6}>
