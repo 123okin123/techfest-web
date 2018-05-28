@@ -179,11 +179,6 @@ class CreateTeam extends Component<Props, State> {
 
 
     render() {
-        console.log((this.props.team || {}).updating);
-        console.log(this.props.savingState.saving);
-
-
-
         const usersOfTeam = this.props.users.filter(user=> ((this.state.team || {}).participantIds || []).includes(user._id));
         return (
 
