@@ -15,7 +15,7 @@ const LPDHowToParticipate = (props) =>
           <span  className="p-2">TEAM REGISTRATION</span>
           <FlexContainer className="mt-3">
           <ArrowLeft/>
-          <Box>REGISTER YOUR TEAM FOR LAUNCHPAD DAY ON FRIDAY, JUNE 15TH</Box>
+              <Box><strong className="align-baseline">REGISTER YOUR TEAM FOR LAUNCHPAD DAY ON FRIDAY, JUNE 15TH</strong></Box>
           <ArrowRight style={{marginRight: '-30px'}}/>
           </FlexContainer>
       </Col>
@@ -23,7 +23,7 @@ const LPDHowToParticipate = (props) =>
           <span className="p-2">TECHFEST PERFORMANCE</span>
           <FlexContainer className="mt-3">
           <ArrowLeft/>
-          <Box>CONVINCE PARTNERS OF YOU & YOUR IDEA’S IMPACT</Box>
+              <Box className="pt-4"><strong className="align-baseline">CONVINCE PARTNERS OF YOU & YOUR IDEA’S IMPACT</strong></Box>
           <ArrowRight style={{marginRight: '-30px'}}/>
           </FlexContainer>
       </Col>
@@ -31,7 +31,7 @@ const LPDHowToParticipate = (props) =>
           <span  className="p-2">INVITATIONS</span>
           <FlexContainer className="mt-3">
           <ArrowLeft/>
-          <Box>SELECTED TEAMS ANNOUNCED ON SUNDAY, JUNE 17TH</Box>
+              <Box className="pt-4"><strong className="align-baseline">SELECTED TEAMS ANNOUNCED ON SUNDAY, JUNE 17TH</strong></Box>
           <ArrowRight style={{marginRight: '-30px'}}/>
           </FlexContainer>
       </Col>

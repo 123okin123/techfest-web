@@ -18,14 +18,14 @@ const LPDTimeline = (props) =>
           </thead>
           <tbody>
           <tr className="border-bottom border-dark">
-              <td>KEYNOTES FROM BÜLENT ALTAN & LIN KAYSER</td>
+              <td>KEYNOTES FROM BÜLENT ALTAN</td>
               <td>BARBECUE</td>
-              <td>START-UP INSIGHTS</td>
+              <td>COMMITMENTS</td>
           </tr>
           <tr className="border-bottom border-dark">
               <td>OFFERINGS & GOALS</td>
               <td>NETWORKING</td>
-              <td>OUTLOOK & COMMITMENTS</td>
+              <td>OUTLOOK</td>
           </tr>
           <tr className="border-bottom border-dark">
               <td>GET TO KNOW EACH OTHER</td>
