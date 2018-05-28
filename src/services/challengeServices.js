@@ -13,7 +13,7 @@ function getChallenges() {
         method: 'GET',
         headers: authHeader()
     };
-    return fetch('/api/challenges/'+'?token=' + getCookie("jwt"), requestOptions).then(handleResponse);
+    return fetch('/api/challenges'+'?token=' + getCookie("jwt"), requestOptions).then(handleResponse);
 }
 
 function updateChallenge(id: string, challenge: Challenge) {
@@ -22,7 +22,7 @@ function updateChallenge(id: string, challenge: Challenge) {
         headers: { ...authHeader(), 'Content-Type': 'application/json' },
         body: JSON.stringify(challenge)
     };
-    return fetch('/api/challenges/' + id +'?token=' + getCookie("jwt"), requestOptions).then(handleResponse);
+    return fetch('/api/challenges' + id +'?token=' + getCookie("jwt"), requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) :Promise<JSON> {
