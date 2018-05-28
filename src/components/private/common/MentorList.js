@@ -10,7 +10,7 @@ import {getCookie} from '../../../helpers/session';
 
 type Props = {
     className: string,
-    userData: User,
+    companyFilter?: string,
     mentors: Array<Mentor>,
     fetchMentorsIfNeeded: ()=>Promise<void>,
     deleteMentor: (string)=>Promise<void>
@@ -31,14 +31,13 @@ class MentorList extends Component<Props> {
     }
 
     render() {
-        const company = (this.props.userData.partnerFields || {}).company;
         return (
           <MentorCollection className={this.props.className}>
-              {this.props.mentors.filter((e)=>e.company === company).map((mentor: Mentor, index: number)=>
+              {this.props.mentors.filter((e)=>e.company === this.props.companyFilter).map((mentor: Mentor, index: number)=>
                 <MentorContainer key={index.toString()}>
                     <Button className="float-right" onClick={()=>this.deleteMentor(mentor)}>Delete</Button>
                     <ImageContainer image={mentor.imageURL}/>
-                    <h3>{mentor.firstName} {mentor.lastName}</h3>
+                    <h4>{mentor.firstName} {mentor.lastName}</h4>
                     <SkillContainer>
                         {mentor.skills.map((skill, index)=>
                           <Skill key={index.toString()}>#{skill}</Skill>

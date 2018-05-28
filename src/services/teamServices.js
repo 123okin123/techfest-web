@@ -16,7 +16,7 @@ function fetchTeamsWithFilter(filter: TeamFilter): Promise<Array<Team>> {
     const requestOptions = {
         method: 'GET'
     };
-    return fetch(`/api/teams?userId=${filter.userId || 'x'}&challengeId=${filter.challengeId || 'x'}&token=` + getCookie("jwt"), requestOptions)
+    return fetch(`/api/teams?userId=${filter.userId || ''}&challengeId=${filter.challengeId || ''}&token=` + getCookie("jwt"), requestOptions)
       .then(handleResponse)
       .then(response=>Promise.resolve(response.teams));
 }

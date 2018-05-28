@@ -7,7 +7,7 @@ import {Container, Col, Row} from 'reactstrap';
 import styled from 'styled-components';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import { faCloudDownloadAlt } from '@fortawesome/fontawesome-free-solid'
-import {Bracket} from "./common";
+import {Bracket, FileUpload} from "./common";
 
 const PAGE_ID = '1681';
 
@@ -42,35 +42,18 @@ class PressMediaPage extends Component<Props> {
               {this.props.response && this.props.response.content &&
               <div className="pt-5 my-5 text-center" dangerouslySetInnerHTML={{__html: this.props.response.content.rendered}}/>
               }
-              <Row className="mt-5 justify-content-center">
+              <div className="d-flex flex-wrap justify-content-center">
               {this.props.response && this.props.response.acf && this.props.response.acf.uploads &&
                   this.props.response.acf.uploads.map((e,i)=>
-                    <ElementContainer xs="6" md="3" key={i} className="text-center mb-3">
-                        <Bracket/>
-                          <Link className="pt-3" target="_blank" href={e.file}>
-                              {e.preview ?
-                                <img style={{maxWidth: '100%', maxHeight: '100px'}} src={e.preview}/> :
-                                <FontAwesomeIcon size="4x" icon={faCloudDownloadAlt}/>}
-                              <p className="mt-3">{e.name}</p>
-                          </Link>
-                        <Bracket right/>
-                    </ElementContainer>
+                    <FileUpload width='300px' key={i.toString()} upload={e}/>
                   )
               }
-              </Row>
+              </div>
           </Container>
         )
     }
 }
-const ElementContainer = styled(Col)`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-`;
-const Link = styled.a`
-color: #000;
-width: 90%;
-`;
+
 const LoaderContainer = styled.div`
   position: absolute;
   top: 50vh;

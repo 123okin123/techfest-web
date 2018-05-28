@@ -6,6 +6,7 @@ import {type ContactAction} from "./contactConstants";
 import {type JobAction} from "./jobConstants";
 import {type MentorAction} from "./mentorConstants";
 import type {TeamAction} from "./teamConstants";
+import {type ChallengeAction} from './challengeConstants';
 
 export * from './userConstants';
 export * from './pageConstants';
@@ -14,6 +15,7 @@ export * from './contactConstants';
 export * from './jobConstants';
 export * from './mentorConstants';
 export * from './teamConstants';
+export * from './challengeConstants';
 
 export type Action =
      UserAction
@@ -23,6 +25,9 @@ export type Action =
     | JobAction
     | MentorAction
     | TeamAction
+    | ChallengeAction
+
+
 
 export type Dispatch = (
   action: Action | ThunkAction | PromiseAction | Array<Action>

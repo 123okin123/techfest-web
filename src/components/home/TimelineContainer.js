@@ -1,6 +1,7 @@
 //@flow
 import React from 'react'
-import { Table} from 'reactstrap'
+import {Table, Button} from 'reactstrap'
+import {Link} from 'react-router-dom'
 import styled from 'styled-components'
 
 const TimelineContainer = () => (
@@ -21,7 +22,9 @@ const TimelineContainer = () => (
                 <td>PRESENTATION OF PARTNER CHALLENGES</td>
                 <td>PROJECTWORK & WORKSHOPS</td>
                 <td>PROJECTWORK SEMI FINALS</td>
-                <td>LAUNCHPAD DAY<br/>Exclusively for invited teams with most promising<br/> ideas for future business.</td>
+                <td>LAUNCHPAD DAY<br/>Exclusively for invited teams with most promising<br/> ideas for future business.
+                    <Button className="mt-2" color="primary" to="/launchpad-day" tag={Link}>See more information</Button>
+                </td>
             </tr>
             <tr><td/><td className="border-bottom border-dark" colSpan="3">LUNCH BREAK</td><td/></tr>
             <tr>

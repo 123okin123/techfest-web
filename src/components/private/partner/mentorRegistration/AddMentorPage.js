@@ -60,7 +60,7 @@ class AddMentorPage extends Component<Props> {
                   </Col>
               </Row>
               <h2 className="mt-5">Your Mentors</h2>
-              <MentorList className="mt-5" userData={this.props.userData}/>
+              <MentorList className="mt-5" companyFilter={(this.props.userData.partnerFields || {}).company}/>
           </Container>
         )
     }
