@@ -79,9 +79,7 @@ class ChallengeSelection extends Component<Props, State> {
     componentDidMount() {
         this.props.fetchPage()
           .then(()=>{
-            if (this.props.response && this.props.response.acf && this.props.response.acf.preference_options) {
-                this.setState({options: this.props.response.acf.preference_options.map(e=> e.option)})
-            }
+
         }).catch(err=>console.log(err))
     }
 
@@ -111,6 +109,11 @@ class ChallengeSelection extends Component<Props, State> {
     }
 
     render() {
+        console.log(this.state);
+        let options = [""];
+        if (this.props.response && this.props.response.acf && this.props.response.acf.preference_options) {
+            options = this.props.response.acf.preference_options.map(e=> e.option)
+        }
         return (
           <div className="mt-5">
               <h2>Challenge Preference</h2>
@@ -125,7 +128,7 @@ class ChallengeSelection extends Component<Props, State> {
                               <FormGroup>
                                   <Label for="firstChoice">First Preference</Label>
                                   <Input className="mb-2" disabled={(this.state.userChallenges.dontCare || (this.props.userChallenges || {}).firstChoice)} value={this.state.userChallenges.firstChoice} onChange={(e)=>this.onChange({firstChoice: e.target.value})} type="select" name="select" id="firstChoice">
-                                      {this.state.options.filter((option) =>
+                                      {options.filter((option) =>
                                         option !== this.state.userChallenges.secondChoice &&
                                         option !== this.state.userChallenges.thirdChoice
                                       ).map((option, index)=>(
@@ -134,7 +137,7 @@ class ChallengeSelection extends Component<Props, State> {
                                   </Input>
                                   <Label for="secondChoice">Second Preference</Label>
                                   <Input className="mb-2" disabled={(this.state.userChallenges.dontCare || (this.props.userChallenges || {}).secondChoice)} value={this.state.userChallenges.secondChoice} onChange={(e)=>this.onChange({secondChoice: e.target.value})} type="select" name="select" id="secondChoice">
-                                      {this.state.options.filter((option) =>
+                                      {options.filter((option) =>
                                         option !== this.state.userChallenges.firstChoice &&
                                         option !== this.state.userChallenges.thirdChoice
                                       ).map((option, index)=>(
@@ -143,7 +146,7 @@ class ChallengeSelection extends Component<Props, State> {
                                   </Input>
                                   <Label for="thirdChoice">Third Preference</Label>
                                   <Input className="mb-2" disabled={(this.state.userChallenges.dontCare || (this.props.userChallenges || {}).thirdChoice)} value={this.state.userChallenges.thirdChoice} onChange={(e)=>this.onChange({thirdChoice: e.target.value})} type="select" name="select" id="thirdChoice">
-                                      {this.state.options.filter((option) =>
+                                      {options.filter((option) =>
                                         option !== this.state.userChallenges.firstChoice &&
                                         option !== this.state.userChallenges.secondChoice
                                       ).map((option, index)=>(
