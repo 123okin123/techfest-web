@@ -19,7 +19,7 @@ export const teamConstants = {
 };
 
 export type Team = {
-    +_id?: string,
+    +_id: string,
     +updating?: ?boolean,
     +deleting?: ?boolean,
 
@@ -29,6 +29,7 @@ export type Team = {
     +participantIds: Array<string>,
     +LPDParticipantIds?: Array<string>,
     +challengeId: string,
+    +uploads?: Array<{name: string, url: string}>,
 
     +imageURL?: string
 }

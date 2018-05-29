@@ -4,16 +4,19 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import CreateTeam from './CreateTeam'
 import {Container, Row, Col} from 'reactstrap';
-import type {Challenge} from "../../../../constants";
+import type {Challenge, Team} from "../../../../constants";
 import {challengeActions, pageActions} from "../../../../actions";
 import {LoaderContainer} from "../../../common";
 import {ScaleLoader} from 'react-spinners';
 import MentorList from '../../common/MentorList';
 import Card from '../../common/Card';
+import TeamUpload from "./TeamUpload";
 
 type Props = {
     getChallenge: ()=>Promise<Challenge>,
     challenge: ?Challenge,
+
+    team?: Team,
 
     fetchPageIfNeeded: ()=>Promise<void>,
     isFetchingPage?: boolean,
@@ -49,7 +52,12 @@ class MyChallengePage extends Component<Props> {
 
               <Row className="mt-5">
                   <Col xs={12} md={6} className="mb-3"><CreateTeam/></Col>
-                  <Col xs={12} md={6}><h3>Your Uploads</h3></Col>
+                  {this.props.team &&
+                      <Col xs={12} md={6}>
+                          <h3>Your Uploads</h3>
+                          <TeamUpload/>
+                      </Col>
+                  }
               </Row>
 
               <Row className="mt-5">
@@ -78,11 +86,14 @@ class MyChallengePage extends Component<Props> {
 
 const mapStateToProps = (state, ownProps) => {
     const {response, isFetching} = state.pages['3241'] || {response: {content: {rendered: ''}}, isFetching: true};
-
+    const team = state.team.teams.find((team: Team)=> {
+        return team.participantIds.includes((state.user.data || {})._id)
+    });
     return {
         challenge: state.challenge.challenges.find(challenge=>challenge._id === ((state.user.data || {}).participantsFields || {}).challengeId),
         isFetchingPage: isFetching,
-        response
+        response,
+        team
     }
 };
 const mapDispatchToProps = (dispatch, ownProps) => {

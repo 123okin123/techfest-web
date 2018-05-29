@@ -109,7 +109,7 @@ class ChallengeUploads extends Component<Props, State> {
                        <FontAwesomeIcon size="2x" className="mr-2" icon={faCloudDownloadAlt}/>
                    </Col>
                     <Col xs={8} className="text-truncate">
-                        <a className="d-block pt-1" target="_blank" href={upload.url}>
+                        <a className="d-block pt-1" target="_blank" href={upload.url + '?token=' + getCookie("jwt")}>
                         {upload.name}</a>
                     </Col>
                     <Col xs={3}><Button onClick={()=>this.onDelete(upload)} color="info">Delete</Button></Col>
