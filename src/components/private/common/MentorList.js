@@ -38,6 +38,7 @@ class MentorList extends Component<Props> {
                     <Button className="float-right" onClick={()=>this.deleteMentor(mentor)}>Delete</Button>
                     <ImageContainer image={mentor.imageURL}/>
                     <h4>{mentor.firstName} {mentor.lastName}</h4>
+                    <h5>{mentor.email}</h5>
                     <SkillContainer>
                         {mentor.skills.map((skill, index)=>
                           <Skill key={index.toString()}>#{skill}</Skill>

@@ -148,6 +148,7 @@ class AddMentor extends Component<Props, State> {
                    (this.form = c)}}>
                   <StyledAvField name="firstName" label="" placeholder="First Name" required />
                   <StyledAvField name="lastName" label="" placeholder="Last Name" required />
+                  <StyledAvField name="email" label="" placeholder="Email" type="email" required />
                   <Row>
                   <Col sm={8}><StyledInput error={this.state.skillError} placeholder="Skill" name="skills" value={this.state.currentSkill} onChange={(e)=>this.setState({...this.state, currentSkill: e.target.value})}/></Col>
                   <Col sm={2}><Button className="d-inline" disabled={!this.state.currentSkill} onClick={this.addSkill}>Add Skill</Button></Col>
