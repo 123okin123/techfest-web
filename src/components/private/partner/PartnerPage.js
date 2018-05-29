@@ -5,7 +5,7 @@ import {Component} from 'react'
 import {Container, Row, Col} from 'reactstrap'
 import {connect} from "react-redux";
 import {userActions, pageActions} from "../../../actions/index";
-import {type User} from "../../../constants/index";
+import {type User, roles} from "../../../constants";
 import styled from "styled-components";
 import {ScaleLoader} from 'react-spinners';
 import {FileUpload, type Upload} from "../../common";
@@ -66,13 +66,13 @@ class PartnerPage extends Component<Props> {
                       </div>
                   </Col>
               </Row>
-
+              {(this.props.userData.role === roles.TRACK_PARTNER_ROLE || this.props.userData.role === roles.ADMIN_ROLE) &&
               <Row>
                   <Col md={4}>
                       <h3>TECHFEST 2018 Media - day 1</h3>
                       <div className="d-flex flex-wrap">
                           {Array.isArray(((this.props.response || {}).acf || {}).media_day_1) &&
-                          (((this.props.response || {}).acf || {}).media_day_1 || []).map((upload, index)=>
+                          (((this.props.response || {}).acf || {}).media_day_1 || []).map((upload, index) =>
                             <FileUpload key={index.toString()} upload={upload}/>
                           )}
                       </div>
@@ -81,7 +81,7 @@ class PartnerPage extends Component<Props> {
                       <h3>TECHFEST 2018 Media - day 2</h3>
                       <div className="d-flex flex-wrap">
                           {Array.isArray(((this.props.response || {}).acf || {}).media_day_2) &&
-                          (((this.props.response || {}).acf || {}).media_day_2 || []).map((upload, index)=>
+                          (((this.props.response || {}).acf || {}).media_day_2 || []).map((upload, index) =>
                             <FileUpload key={index.toString()} upload={upload}/>
                           )}
                       </div>
@@ -90,12 +90,13 @@ class PartnerPage extends Component<Props> {
                       <h3>TECHFEST 2018 Media - day 3</h3>
                       <div className="d-flex flex-wrap">
                           {Array.isArray(((this.props.response || {}).acf || {}).media_day_3) &&
-                          (((this.props.response || {}).acf || {}).media_day_3 || []).map((upload, index)=>
+                          (((this.props.response || {}).acf || {}).media_day_3 || []).map((upload, index) =>
                             <FileUpload key={index.toString()} upload={upload}/>
                           )}
                       </div>
                   </Col>
               </Row>
+              }
           </Container>
         )}
 }
