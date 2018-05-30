@@ -119,7 +119,9 @@ export type User = {
     participantsFields?: {
         challengeId?: string
     },
-    startupFields?: {},
+    startupFields?: {
+        track?: string
+    },
     applicantFields?: {
         preEvent?: boolean,
         preEventCount?: number,
