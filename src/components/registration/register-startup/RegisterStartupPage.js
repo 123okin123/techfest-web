@@ -203,10 +203,10 @@ class RegisterStartupPage extends Component<Props,State> {
                           liveValidate
                           className="p-lg-5"
                           transformErrors={this.transformErrors}>
-                        <Recaptcha
-                            ref={e => recaptchaInstance = e}
-                            sitekey="6LfxjUwUAAAAAHBDkBisDXbE1B8MBroWIEUVQa_B"
-                            verifyCallback={this.onCaptachVerification}/>
+                        {/*<Recaptcha*/}
+                            {/*ref={e => recaptchaInstance = e}*/}
+                            {/*sitekey="6LfxjUwUAAAAAHBDkBisDXbE1B8MBroWIEUVQa_B"*/}
+                            {/*verifyCallback={this.onCaptachVerification}/>*/}
                         <div className="mt-2">
                             <Button disabled={((this.props.uploading === true) || (this.props.registering === true))} onClick={() => this.setState({submitTried: true})} className={"d-flex align-items-center"} color="primary" type="submit">
                                 <span className="mr-2">Submit</span>
