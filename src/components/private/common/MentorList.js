@@ -47,7 +47,7 @@ class MentorList extends Component<Props> {
                     {this.props.editable && <Button className="float-right" onClick={()=>this.deleteMentor(mentor)}>Delete</Button>}
                     <ImageContainer image={mentor.imageURL}/>
                     <h4>{mentor.firstName} {mentor.lastName}</h4>
-                    <StyledEmail href={'mailto:'+mentor.email}>{mentor.email}</StyledEmail>
+                    {/*<StyledEmail href={'mailto:'+mentor.email}>{mentor.email}</StyledEmail>*/}
                     <h5>{mentor.company}</h5>
                     <SkillContainer>
                         {mentor.skills.map((skill, index)=>

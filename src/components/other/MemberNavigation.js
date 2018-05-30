@@ -44,9 +44,10 @@ class Navigation extends Component<Props, State> {
                   <NavbarToggler onClick={this.toggle} />
                   <Collapse isOpen={this.state.isOpen} navbar>
                       <Nav className="ml-auto" navbar>
-                          {/*Participants*/}
+                          {/*Participants & Start-ups*/}
                           <PrivateNavItem title="Member Area" to="/private/member-area" permittedRoles={[roles.ADMIN_ROLE, roles.PARTICIPANT_ROLE, roles.STARTUP_ROLE]}/>
                           <PrivateNavItem title="My Challenge" to="/private/my-challenge" permittedRoles={[roles.ADMIN_ROLE, roles.PARTICIPANT_ROLE]}/>
+                          <PrivateNavItem title="My Track" to="/private/my-track" permittedRoles={[roles.ADMIN_ROLE, roles.STARTUP_ROLE]}/>
                           <PrivateNavItem title="Mentors" to="/private/mentors" permittedRoles={[roles.ADMIN_ROLE, roles.PARTICIPANT_ROLE, roles.STARTUP_ROLE]}/>
 
 
