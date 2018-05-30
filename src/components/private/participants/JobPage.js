@@ -7,7 +7,7 @@ import {Container} from 'reactstrap';
 
 type Props = {}
 
-class Template extends Component<Props> {
+class JobPage extends Component<Props> {
 
     render() {
         return (
@@ -26,4 +26,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {}
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Template);
+export default connect(mapStateToProps, mapDispatchToProps)(JobPage);

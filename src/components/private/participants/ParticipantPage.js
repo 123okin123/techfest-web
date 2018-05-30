@@ -3,10 +3,12 @@ import React, {Component} from 'react'
 import {Container, Row, Col, Alert} from 'reactstrap'
 import ChallengeSelection from './ChallengeSelection'
 import {connect} from "react-redux";
-import {userActions} from "../../../actions/index";
+import {userActions, pageActions} from "../../../actions/index";
 import PreEventInfo from './PreEventInfo';
 import styled from 'styled-components'
 import {type User, roles} from '../../../constants'
+import {ScaleLoader} from 'react-spinners';
+import {LoaderContainer} from "../../common";
 
 type Props = {
     data: User,
@@ -20,6 +22,17 @@ type Props = {
         +updating?: boolean,
         +updateSuccess?: boolean
     },
+    isFetchingNews: boolean,
+    newsPage: {
+        content: {rendered: string},
+        acf?: {
+            news?: ?Array<{
+                title?: string,
+                message?: string
+            }>
+        }
+    },
+    getNews: ()=> Promise<void>,
     getInfo: ()=>void,
     update: ({})=>void
 }
@@ -41,7 +54,8 @@ class ParticipantPage extends Component<Props,State> {
     }
 
     componentDidMount() {
-        this.props.getInfo()
+        this.props.getInfo();
+        this.props.getNews();
     }
 
     challengeSelectionChanged(userChallenges: {}) {
@@ -77,12 +91,36 @@ class ParticipantPage extends Component<Props,State> {
 
     render() {
         return (
-      <Container className="pt-5">
+      <Container>
           {this.state.showAlert &&
           <StyledAlert className="mt-3 text-center" color="success">
               Saved
-          </StyledAlert>}
+          </StyledAlert>
+          }
           <h1>MEMBER AREA</h1>
+
+          <Row className="mt-5">
+              <Col>
+                  <h2>News</h2>
+                  {this.props.isFetchingNews &&
+                  <LoaderContainer><ScaleLoader loading={true} height={20} width={2}/></LoaderContainer>
+                  }
+                  {this.props.newsPage && this.props.newsPage.content && <div className="mb-5 mt-3" dangerouslySetInnerHTML={{__html: this.props.newsPage.content.rendered}}/>}
+                  <div>
+                      {((this.props.newsPage || {}).acf || {}).news &&
+                          Array.isArray(((this.props.newsPage || {}).acf || {}).news) &&
+                      (((this.props.newsPage || {}).acf || {}).news  || []).map((e, i)=>
+                          <div key={i.toString()} className="border-bottom border-dark p-3">
+                              <h5>{e.title}</h5>
+                              <p>{e.message}</p>
+                          </div>
+                      )
+                      }
+                  </div>
+              </Col>
+          </Row>
+
+
           <Row>
               <Col>
                   {this.props.data.applicantFields &&
@@ -117,12 +155,15 @@ const StyledAlert = styled(Alert)`
 `;
 
 const mapStateToProps = (state, ownProps) => {
+    const {response, isFetching} = state.pages['3981'] || {response: {content: {rendered: ''}}, isFetching: false};
     const {fetchingState, updatingState} = state.user;
     const data = state.user.data || {};
     return {
         updatingState,
         fetchingState,
-        data
+        data,
+        isFetchingNews: isFetching,
+        newsPage: response
     }
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -132,6 +173,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         },
         update: (user) => {
             return dispatch(userActions.update(user))
+        },
+        getNews: () => {
+            return dispatch(pageActions.fetchPageIfNeeded('3981'))
         }
     }
 };

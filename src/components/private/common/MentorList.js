@@ -4,13 +4,16 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import styled from 'styled-components'
 import {Button} from 'reactstrap'
-import {type Mentor, type User} from '../../../constants/index'
+import {type Mentor, type User, roles} from '../../../constants/'
 import {mentorActions} from "../../../actions/index";
 import {getCookie} from '../../../helpers/session';
 
 type Props = {
     className: string,
     companyFilter?: string,
+    noChallengeMentors?: boolean,
+    editable?: boolean,
+
     mentors: Array<Mentor>,
     fetchMentorsIfNeeded: ()=>Promise<void>,
     deleteMentor: (string)=>Promise<void>
@@ -31,13 +34,20 @@ class MentorList extends Component<Props> {
     }
 
     render() {
+        let filteredMentors = this.props.companyFilter ?
+          this.props.mentors.filter((e)=>e.company === this.props.companyFilter)
+          : this.props.mentors;
+        filteredMentors = this.props.noChallengeMentors ?
+          filteredMentors.filter((e)=> (e.partnerRole !== roles.TRACK_PARTNER_ROLE && e.partnerRole !== roles.CHALLENGE_PARTNER_ROLE))
+            : filteredMentors;
         return (
           <MentorCollection className={this.props.className}>
-              {this.props.mentors.filter((e)=>e.company === this.props.companyFilter).map((mentor: Mentor, index: number)=>
+              {filteredMentors.map((mentor: Mentor, index: number)=>
                 <MentorContainer key={index.toString()}>
-                    <Button className="float-right" onClick={()=>this.deleteMentor(mentor)}>Delete</Button>
+                    {this.props.editable && <Button className="float-right" onClick={()=>this.deleteMentor(mentor)}>Delete</Button>}
                     <ImageContainer image={mentor.imageURL}/>
                     <h4>{mentor.firstName} {mentor.lastName}</h4>
+                    <h5>{mentor.company}</h5>
                     <SkillContainer>
                         {mentor.skills.map((skill, index)=>
                           <Skill key={index.toString()}>#{skill}</Skill>
