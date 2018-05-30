@@ -40,7 +40,8 @@ class MyChallengePage extends Component<Props> {
               <h2>{this.props.challenge && this.props.challenge.name.toUpperCase()}</h2>
               <p>{this.props.challenge && this.props.challenge.description}</p>
 
-              <h3 className="mt-5">Challenge Info</h3>
+              {this.props.challenge && this.props.challenge.text &&
+              <h3 className="mt-5">Challenge Info</h3>}
               <p>{this.props.challenge && this.props.challenge.text}</p>
               {this.props.challenge && (this.props.challenge.uploads || []).map((upload, index)=>
                 <a key={index.toString()} className="d-block" target="_blank" href={upload.url}>{upload.name}</a>
@@ -50,35 +51,37 @@ class MyChallengePage extends Component<Props> {
               {this.props.isFetchingPage && <LoaderContainer><ScaleLoader loading={this.props.isFetchingPage} height={20} width={2}/></LoaderContainer>}
               {this.props.response && this.props.response.content && <div dangerouslySetInnerHTML={{__html: this.props.response.content.rendered}}/>}
 
-              <Row className="mt-5">
-                  <Col xs={12} md={6} className="mb-3"><CreateTeam/></Col>
-                  {this.props.team &&
-                      <Col xs={12} md={6}>
-                          <h3>Your Uploads</h3>
-                          <TeamUpload/>
-                      </Col>
-                  }
-              </Row>
+              {/*<Row className="mt-5">*/}
+                  {/*<Col xs={12} md={6} className="mb-3">*/}
+                      {/*<CreateTeam/>*/}
+                  {/*</Col>*/}
+                  {/*{this.props.team &&*/}
+                      {/*<Col xs={12} md={6}>*/}
+                          {/*<h3>Your Uploads</h3>*/}
+                          {/*<TeamUpload/>*/}
+                      {/*</Col>*/}
+                  {/*}*/}
+              {/*</Row>*/}
 
-              <Row className="mt-5">
-                  <Col>
-                      <h3>Challenge Supervisors</h3>
-                      <div className="d-flex flex-wrap">
-                          {this.props.challenge && (this.props.challenge.supervisors || []).map((supervisor, index)=>
-                          <Card key={index.toString()}
-                                title={supervisor.firstName +' '+supervisor.lastName}
-                                imageURL={supervisor.imageURL}/>
-                          )}
-                      </div>
-                  </Col>
-              </Row>
+              {/*<Row className="mt-5">*/}
+                  {/*<Col>*/}
+                      {/*<h3>Challenge Supervisors</h3>*/}
+                      {/*<div className="d-flex flex-wrap">*/}
+                          {/*{this.props.challenge && (this.props.challenge.supervisors || []).map((supervisor, index)=>*/}
+                          {/*<Card key={index.toString()}*/}
+                                {/*title={supervisor.firstName +' '+supervisor.lastName}*/}
+                                {/*imageURL={supervisor.imageURL}/>*/}
+                          {/*)}*/}
+                      {/*</div>*/}
+                  {/*</Col>*/}
+              {/*</Row>*/}
 
-              <Row className="mt-5">
-                  <Col>
-                      <h3>Challenge Mentors</h3>
-                      <MentorList companyFilter={(this.props.challenge || {}).company}/>
-                  </Col>
-              </Row>
+              {/*<Row className="mt-5">*/}
+                  {/*<Col>*/}
+                      {/*<h3>Challenge Mentors</h3>*/}
+                      {/*<MentorList companyFilter={(this.props.challenge || {}).company}/>*/}
+                  {/*</Col>*/}
+              {/*</Row>*/}
           </Container>
         )
     }
