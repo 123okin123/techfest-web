@@ -186,55 +186,55 @@ class RegisterStartupPage extends Component<Props,State> {
     render() {
         return (
                 <StyledContainer className="p-md-5">
-                    <h1 className="mt-5">OFFICIAL APPLICATION PERIOD HAS ENDED!</h1>
-                    {/*<h1>APPLY AS START-UP</h1>*/}
-                    {/*{!((this.props.registrationSuccess === true) && (this.props.uploadingSuccess === true)) &&*/}
-                    {/*<Form schema={this.state.form.schema}*/}
-                          {/*uiSchema={this.state.form.uiSchema}*/}
-                          {/*onChange={this.handleChange}*/}
-                          {/*onSubmit={this.onSubmit}*/}
-                          {/*onError={(errors)=>this.setState({errors})}*/}
-                          {/*formData={this.state.form.formData}*/}
-                          {/*showErrorList={false}*/}
-                          {/*validate={this.validate}*/}
-                          {/*onBlur={this.onBlur}*/}
-                          {/*fields={fields}*/}
-                          {/*noHtml5Validate*/}
-                          {/*liveValidate*/}
-                          {/*className="p-lg-5"*/}
-                          {/*transformErrors={this.transformErrors}>*/}
-                        {/*<Recaptcha*/}
-                            {/*ref={e => recaptchaInstance = e}*/}
-                            {/*sitekey="6LfxjUwUAAAAAHBDkBisDXbE1B8MBroWIEUVQa_B"*/}
-                            {/*verifyCallback={this.onCaptachVerification}/>*/}
-                        {/*<div className="mt-2">*/}
-                            {/*<Button disabled={((this.props.uploading === true) || (this.props.registering === true))} onClick={() => this.setState({submitTried: true})} className={"d-flex align-items-center"} color="primary" type="submit">*/}
-                                {/*<span className="mr-2">Submit</span>*/}
-                                {/*<ScaleLoader color={'#ffffff'} loading={((this.props.uploading === true) || (this.props.registering === true))} height={20} width={2} />*/}
-                            {/*</Button>*/}
-                        {/*</div>*/}
-                    {/*</Form>*/}
-                    {/*}*/}
+                    {/*<h1 className="mt-5">OFFICIAL APPLICATION PERIOD HAS ENDED!</h1>*/}
+                    <h1>APPLY AS START-UP</h1>
+                    {!((this.props.registrationSuccess === true) && (this.props.uploadingSuccess === true)) &&
+                    <Form schema={this.state.form.schema}
+                          uiSchema={this.state.form.uiSchema}
+                          onChange={this.handleChange}
+                          onSubmit={this.onSubmit}
+                          onError={(errors)=>this.setState({errors})}
+                          formData={this.state.form.formData}
+                          showErrorList={false}
+                          validate={this.validate}
+                          onBlur={this.onBlur}
+                          fields={fields}
+                          noHtml5Validate
+                          liveValidate
+                          className="p-lg-5"
+                          transformErrors={this.transformErrors}>
+                        <Recaptcha
+                            ref={e => recaptchaInstance = e}
+                            sitekey="6LfxjUwUAAAAAHBDkBisDXbE1B8MBroWIEUVQa_B"
+                            verifyCallback={this.onCaptachVerification}/>
+                        <div className="mt-2">
+                            <Button disabled={((this.props.uploading === true) || (this.props.registering === true))} onClick={() => this.setState({submitTried: true})} className={"d-flex align-items-center"} color="primary" type="submit">
+                                <span className="mr-2">Submit</span>
+                                <ScaleLoader color={'#ffffff'} loading={((this.props.uploading === true) || (this.props.registering === true))} height={20} width={2} />
+                            </Button>
+                        </div>
+                    </Form>
+                    }
 
-                    {/*{(!this.props.uploading && !this.props.registering) &&*/}
-                    {/*((this.props.registrationSuccess === false) || (this.props.uploadingSuccess === false)) &&*/}
-                        {/*<Alert className="mt-3" color="danger">*/}
-                            {/*Sorry, registration was not successful.*/}
-                            {/*{" "}{this.props.error}*/}
-                        {/*</Alert>*/}
-                    {/*}*/}
-                    {/*{(!this.props.uploading && !this.props.registering) &&*/}
-                        {/*(typeof this.state.errors !== 'undefined' && this.state.errors.length > 0)  &&*/}
-                    {/*<Alert className="mt-3" color="danger">*/}
-                        {/*Please check the registration from.*/}
-                    {/*</Alert>*/}
-                    {/*}*/}
-                    {/*{(!this.props.uploading && !this.props.registering) &&*/}
-                    {/*((this.props.registrationSuccess === true) && (this.props.uploadingSuccess === true)) &&*/}
-                        {/*<Alert className="mt-3" color="success">*/}
-                            {/*Congratulations, registration was successfully sent.*/}
-                        {/*</Alert>*/}
-                    {/*}*/}
+                    {(!this.props.uploading && !this.props.registering) &&
+                    ((this.props.registrationSuccess === false) || (this.props.uploadingSuccess === false)) &&
+                        <Alert className="mt-3" color="danger">
+                            Sorry, registration was not successful.
+                            {" "}{this.props.error}
+                        </Alert>
+                    }
+                    {(!this.props.uploading && !this.props.registering) &&
+                        (typeof this.state.errors !== 'undefined' && this.state.errors.length > 0)  &&
+                    <Alert className="mt-3" color="danger">
+                        Please check the registration from.
+                    </Alert>
+                    }
+                    {(!this.props.uploading && !this.props.registering) &&
+                    ((this.props.registrationSuccess === true) && (this.props.uploadingSuccess === true)) &&
+                        <Alert className="mt-3" color="success">
+                            Congratulations, registration was successfully sent.
+                        </Alert>
+                    }
                 </StyledContainer>
         );
     }
