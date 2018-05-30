@@ -27,12 +27,13 @@ export type Mentor = {
     +updated_at: Date,
     +firstName: string,
     +lastName: string,
-    +email?: string,
+    +email: string,
     +skills: Array<string>,
     +description?: string,
     +company?: string,
-    +imageURL: string
-}
+    +imageURL: string,
+    +partnerRole?: string
+};
 
 export type MentorAction =
    { type: 'GET_MENTORS_REQUEST' }

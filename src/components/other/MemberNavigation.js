@@ -47,6 +47,9 @@ class Navigation extends Component<Props, State> {
                           {/*Participants*/}
                           <PrivateNavItem title="Member Area" to="/private/member-area" permittedRoles={[roles.ADMIN_ROLE, roles.PARTICIPANT_ROLE, roles.STARTUP_ROLE]}/>
                           <PrivateNavItem title="My Challenge" to="/private/my-challenge" permittedRoles={[roles.ADMIN_ROLE, roles.PARTICIPANT_ROLE]}/>
+                          <PrivateNavItem title="Mentors" to="/private/mentors" permittedRoles={[roles.ADMIN_ROLE, roles.PARTICIPANT_ROLE, roles.STARTUP_ROLE]}/>
+
+
 
                           {/*Partners*/}
                           <PrivateNavItem title="Home" to="/private/partner" permittedRoles={[roles.ADMIN_ROLE].concat(allPartnerRoles)}/>
@@ -60,7 +63,7 @@ class Navigation extends Component<Props, State> {
                           {/*<PrivateNavItem title="Advisors" to="/private/register-advisor" permittedRoles={[roles.ADMIN_ROLE, roles.TRACK_PARTNER_ROLE, roles.CHALLENGE_PARTNER_ROLE]}/>*/}
 
                           {/*All*/}
-                          {/*<PrivateNavItem title="Jobs" to="/private/jobs" permittedRoles={Object.values(roles)}/>*/}
+                          <PrivateNavItem title="Jobs" to="/private/jobs" permittedRoles={Object.values(roles)}/>
                           {LoginComponent}
                       </Nav>
                   </Collapse>

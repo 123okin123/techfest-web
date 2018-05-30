@@ -33,6 +33,7 @@ import LaunchPadDayPage from './launchPadDay/LaunchPadDayPage'
 import LPDGuestRegistrationPage from './private/partner/lpdGuestRegistration/LPDGuestRegistrationPage'
 import ChallengePage from './private/partner/challenge/ChallengePage'
 import MyChallengePage from './private/participants/MyChallenge/MyChallengePage'
+import MentorPage from './private/participants/MentorPage'
 
 
 
@@ -66,6 +67,7 @@ class App extends Component<{}> {
                   {/*Private Participants*/}
                   <PrivateRoute path="/private/member-area" permittedRoles={[roles.ADMIN_ROLE, roles.STARTUP_ROLE, roles.PARTICIPANT_ROLE]} component={PreEventPage}/>
                   <PrivateRoute path="/private/my-challenge" permittedRoles={[roles.ADMIN_ROLE, roles.PARTICIPANT_ROLE]} component={MyChallengePage}/>
+                  <PrivateRoute path="/private/mentors" permittedRoles={[roles.ADMIN_ROLE, roles.STARTUP_ROLE, roles.PARTICIPANT_ROLE]} component={MentorPage}/>
 
 
 
