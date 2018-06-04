@@ -56,7 +56,7 @@ class MentorList extends Component<Props> {
                     </SkillContainer>
                 </MentorContainer>
               )}
-              {this.props.mentors.length === 0 &&
+              {filteredMentors.length === 0 &&
               <p>No mentors yet.</p>
               }
           </MentorCollection>
