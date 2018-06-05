@@ -221,13 +221,13 @@ class CreateTeam extends Component<Props, State> {
                   <AvForm onValidSubmit={this.saveTeam}>
                       <StyledAvField placeholder="Team name" name="name" value={(this.state.team || {}).name} required/>
                       <Row>
-                      <Col xs={5}><p className="mt-3">Team Members:</p></Col>
-                      <Col xs={4}>{usersOfTeam.length !== 0 && <p className="mt-3 text-center">Could come to Launchpad Day.</p>}</Col>
+                          <Col xs={6}><p className="mt-3"><strong>Team Members:</strong></p></Col>
+                      <Col xs={3}>{usersOfTeam.length !== 0 && <StyledP className="mt-3 text-center">Could come to Launchpad Day.</StyledP>}</Col>
                       </Row>
                       {usersOfTeam.map((user: User, index)=>
                         <Row key={index.toString()}>
-                            <Col xs={5}><p>{user.firstName} {user.lastName}</p></Col>
-                            <Col xs={4}><FormGroup check>
+                            <Col xs={6}><p>{user.firstName} {user.lastName}</p></Col>
+                            <Col className='text-center' xs={3}><FormGroup check>
                                 <Input type="checkbox"
                                        checked={((this.state.team || {}).LPDParticipantIds || []).includes(user._id)}
                                        onChange={(e)=> this.onlpdChange(user, e)}/>
@@ -239,7 +239,7 @@ class CreateTeam extends Component<Props, State> {
                       <p className="text-muted">No team members yet</p>
                       }
 
-                  <p className="mt-3">Add Team Member</p>
+                      <p className="mt-3"><strong>Add Team Member</strong></p>
                   <StyledInput disabled={usersOfTeam.length > 5} placeholder="team member" name="members" onChange={(e)=>this.setState({filter: e.target.value})}/>
                       {this.getFilteredUsers(this.props.users).length < 5 &&
                       this.getFilteredUsers(this.props.users).map((user: User, index: number)=>
@@ -292,7 +292,9 @@ const StyledInput = styled(Input)`
   border-bottom: 2px dashed #999 !important;
   margin-bottom: 10px;
 `;
-
+const StyledP = styled.p`
+font-size: 0.7em;
+`;
 
 const DropZoneImagePreview = (props) => {
     if (props.isUploading) {
