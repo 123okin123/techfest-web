@@ -11,7 +11,7 @@ export const DropZoneImagePreview = (props) => {
     if (props.isUploadSuccess) {
         return (<PreviewImage preview={props.preview}/>);
     }
-    return (<div>Drop file here (max size: 2mb | format: jpg/png)</div>);
+    return (<div>Drop file here (max size: 1mb | format: jpg/png)</div>);
 };
 
 const PreviewImage = styled.div`

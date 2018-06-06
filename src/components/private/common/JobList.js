@@ -13,26 +13,14 @@ type Props = {
     showJobsOfCompany?: string,
     +fetchJobs: ()=>Promise<Array<Job>>,
     editable?: boolean,
-    +jobs: Array<{
-        _id: string,
-        title: string,
-        description: string,
-        company: string
-    }>,
+    +jobs: Array<Job>,
     fetching?: boolean,
     deleteJob: (string)=>Promise<string>,
     updateJob: (Job)=>Promise<Job>,
 }
 
 type State = {
-    jobs: Array<{
-        _id: string,
-        title: string,
-        description: string,
-        company: string,
-        editable?: boolean,
-        fileURL: string,
-    }>
+    jobs: Array<Job>
 }
 
 class JobList extends Component<Props,State> {
@@ -51,6 +39,7 @@ class JobList extends Component<Props,State> {
             this.setState({jobs: this.props.jobs})
         })
     }
+
 
     handleValidSubmit(event, values, job) {
         this.props.updateJob({...job, ...values}).then(updateJob=>{

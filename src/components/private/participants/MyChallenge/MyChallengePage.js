@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import CreateTeam from './CreateTeam'
 import {Container, Row, Col} from 'reactstrap';
 import type {Challenge, Team} from "../../../../constants";
-import {challengeActions, pageActions} from "../../../../actions";
+import {challengeActions, pageActions, userActions} from "../../../../actions";
 import {LoaderContainer} from "../../../common";
 import {ScaleLoader} from 'react-spinners';
 import MentorList from '../../common/MentorList';
@@ -18,6 +18,9 @@ type Props = {
 
     team?: Team,
 
+    getInfo: ()=>Promise<void>,
+
+
     fetchPageIfNeeded: ()=>Promise<void>,
     isFetchingPage?: boolean,
     response?: {content?: {rendered?: string}},
@@ -29,8 +32,8 @@ class MyChallengePage extends Component<Props> {
     }
 
     componentDidMount() {
-        this.props.getChallenge();
         this.props.fetchPageIfNeeded();
+        this.props.getInfo().then(()=>this.props.getChallenge());
     }
 
     render() {
@@ -51,30 +54,30 @@ class MyChallengePage extends Component<Props> {
               {this.props.isFetchingPage && <LoaderContainer><ScaleLoader loading={this.props.isFetchingPage} height={20} width={2}/></LoaderContainer>}
               {this.props.response && this.props.response.content && <div dangerouslySetInnerHTML={{__html: this.props.response.content.rendered}}/>}
 
-              <Row className="mt-5">
-                  <Col xs={12} md={6} className="mb-3">
-                      <CreateTeam/>
-                  </Col>
-                  {this.props.team &&
-                      <Col xs={12} md={6}>
-                          <h3>Your Uploads</h3>
-                          <TeamUpload/>
-                      </Col>
-                  }
-              </Row>
+              {/*<Row className="mt-5">*/}
+                  {/*<Col xs={12} md={6} className="mb-3">*/}
+                      {/*<CreateTeam/>*/}
+                  {/*</Col>*/}
+                  {/*{this.props.team &&*/}
+                      {/*<Col xs={12} md={6}>*/}
+                          {/*<h3>Your Uploads</h3>*/}
+                          {/*<TeamUpload/>*/}
+                      {/*</Col>*/}
+                  {/*}*/}
+              {/*</Row>*/}
 
-              <Row className="mt-5">
-                  <Col>
-                      <h3>Challenge Supervisors</h3>
-                      <div className="d-flex flex-wrap">
-                          {this.props.challenge && (this.props.challenge.supervisors || []).map((supervisor, index)=>
-                          <Card key={index.toString()}
-                                title={supervisor.firstName +' '+supervisor.lastName}
-                                imageURL={supervisor.imageURL}/>
-                          )}
-                      </div>
-                  </Col>
-              </Row>
+              {/*<Row className="mt-5">*/}
+                  {/*<Col>*/}
+                      {/*<h3>Challenge Supervisors</h3>*/}
+                      {/*<div className="d-flex flex-wrap">*/}
+                          {/*{this.props.challenge && (this.props.challenge.supervisors || []).map((supervisor, index)=>*/}
+                          {/*<Card key={index.toString()}*/}
+                                {/*title={supervisor.firstName +' '+supervisor.lastName}*/}
+                                {/*imageURL={supervisor.imageURL}/>*/}
+                          {/*)}*/}
+                      {/*</div>*/}
+                  {/*</Col>*/}
+              {/*</Row>*/}
 
               <Row className="mt-5">
                   <Col>
@@ -106,6 +109,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         },
         fetchPageIfNeeded: () => {
             return dispatch(pageActions.fetchPageIfNeeded("3241"))
+        },
+        getInfo: ()=> {
+            return dispatch(userActions.fetchInfoIfNeeded())
         },
     }
 };

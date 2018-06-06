@@ -195,7 +195,7 @@ class CreateTeam extends Component<Props, State> {
                     s3Url={this.state.s3Url}
                     accept="image/*"
                     multiple={false}
-                    maxSize={1024 * 1024 * 2}
+                    maxSize={1024 * 1024 * 1}
                     style={{
                         width: '100%', height: '200px', textAlign: 'center', margin: 'auto',
                         backgroundColor: '#e6e6e6',

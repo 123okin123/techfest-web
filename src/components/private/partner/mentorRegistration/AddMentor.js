@@ -120,7 +120,7 @@ class AddMentor extends Component<Props, State> {
                     s3Url={this.state.s3Url}
                     accept="image/*"
                     multiple={false}
-                    maxSize={1024 * 1024 * 2}
+                    maxSize={1024 * 1024 * 1}
                     style={{
                         width: '180px', height: '180px', textAlign: 'center', margin: 'auto',
                         border: 'dashed 2px #999',
@@ -150,6 +150,7 @@ class AddMentor extends Component<Props, State> {
                   <StyledAvField name="firstName" label="" placeholder="First Name" required />
                   <StyledAvField name="lastName" label="" placeholder="Last Name" required />
                   <StyledAvField name="email" label="" placeholder="Email" required />
+                  <StyledAvField placeholder="Slack" label="" name="slack" />
                   <Row>
                   <Col sm={8}><StyledInput error={this.state.skillError} placeholder="Skill" name="skills" value={this.state.currentSkill} onChange={(e)=>this.setState({...this.state, currentSkill: e.target.value})}/></Col>
                   <Col sm={2}><Button className="d-inline" disabled={!this.state.currentSkill} onClick={this.addSkill}>Add Skill</Button></Col>

@@ -125,13 +125,13 @@ class ParticipantPage extends Component<Props,State> {
               <Col>
                   {this.props.data.applicantFields &&
                     <div>
-                        {this.props.data.role !== roles.STARTUP_ROLE &&
-                          <ChallengeSelection
-                            userChallenges={this.props.data.applicantFields.userChallenges}
-                            onChange={(userChallenges) => this.challengeSelectionChanged(userChallenges)}
-                            loading={this.props.updatingState.updating}
-                          />
-                        }
+                        {/*{this.props.data.role !== roles.STARTUP_ROLE &&*/}
+                          {/*<ChallengeSelection*/}
+                            {/*userChallenges={this.props.data.applicantFields.userChallenges}*/}
+                            {/*onChange={(userChallenges) => this.challengeSelectionChanged(userChallenges)}*/}
+                            {/*loading={this.props.updatingState.updating}*/}
+                          {/*/>*/}
+                        {/*}*/}
                         <PreEventInfo
                         onChange={this.preEventChanged}
                         userData={this.props.data}

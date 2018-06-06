@@ -22,6 +22,9 @@ export type Mentor = {
     +_id: string,
     +updating?: ?boolean,
     +deleting?: ?boolean,
+    //Not in DB
+    +editable?: ?boolean,
+    slack?: string,
 
     +created_at: Date,
     +updated_at: Date,

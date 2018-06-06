@@ -103,7 +103,7 @@ class AddLaunchPadGuest extends Component<Props, State> {
                   s3Url={this.state.s3Url}
                   accept="image/*"
                   multiple={false}
-                  maxSize={1024 * 1024 * 2}
+                  maxSize={1024 * 1024 * 1}
                   style={{
                       width: '180px', height: '180px', textAlign: 'center', margin: 'auto',
                       border: 'dashed 2px #999',

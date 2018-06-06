@@ -23,6 +23,13 @@ export type Job = {
     +updating?: ?boolean,
     +deleting?: ?boolean,
     +company: string,
+
+    title: string,
+    description: string,
+    //Not in DB
+    editable?: boolean,
+
+    fileURL: string,
 }
 
 export type JobAction =
