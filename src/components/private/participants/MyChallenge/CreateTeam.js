@@ -132,10 +132,10 @@ class CreateTeam extends Component<Props, State> {
     }
 
     getFilteredUsers(users: Array<User>): Array<User> {
-        const filteredUsers = users.filter(user=>(user.firstName + user.lastName).toLowerCase().search(this.state.filter) !== -1);
+        const filteredUsers = users.filter(user=>(user.firstName + user.lastName).toLowerCase().replace(/ /g,'').search(this.state.filter.toLowerCase().replace(/ /g,'')) !== -1);
         const filteredUsersWithOutMe = filteredUsers.filter(user=>user._id !== this.props.userData._id);
         const filteredUsersWithOutMeAndTeamUsers = filteredUsersWithOutMe.filter(user=> !((this.state.team || {}).participantIds || []).includes(user._id));
-        return filteredUsersWithOutMeAndTeamUsers.filter(user=>(user.participantsFields || {}).challengeId === (this.props.userData.participantsFields || {}).challengeId)
+        return filteredUsersWithOutMeAndTeamUsers.filter(user=>{console.log(user); return (user.participantsFields || {}).challengeId === (this.props.userData.participantsFields || {}).challengeId});
     }
 
     onlpdChange(user: User, e) {

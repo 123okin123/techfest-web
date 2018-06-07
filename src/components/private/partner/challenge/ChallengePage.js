@@ -104,7 +104,7 @@ const mapStateToProps = (state, ownProps) => {
 
     return {
         challenge: state.challenge.challenges.find(challenge=>challenge._id === ((state.user.data || {}).partnerFields || {}).challengeId),
-        teams: state.team.teams,
+        teams: state.team.teams.filter(team=> team.challengeId === ((state.user.data || {}).partnerFields || {}).challengeId),
         userData: state.user.data || {},
         users: state.user.users || [],
         isFetchingPage: isFetching,

@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import type {Team, User} from '../../../../constants'
 import {getCookie} from "../../../../helpers/session";
 import styled from "styled-components";
+import {Button} from 'reactstrap'
 
 type Props = {
     teams: Array<Team>,
@@ -26,6 +27,9 @@ class TeamList extends Component<Props> {
                     <h3>{team.name}</h3>
                     {this.props.users.filter(user=> team.participantIds.includes(user._id)).map((user, index)=>
                       <p key={index.toString()} className="mb-1">{user.firstName} {user.lastName}</p>
+                    )}
+                    {(team.uploads || []).map((upload, index)=>
+                      <Button target='_blank' tag={'a'} href={upload.url + '?token=' + getCookie('jwt')} color="link">Upload {index + 1}</Button>
                     )}
                 </TeamContainer>
               )}
