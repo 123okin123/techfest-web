@@ -11,6 +11,7 @@ import {ScaleLoader} from 'react-spinners';
 import MentorList from '../../common/MentorList';
 import Card from '../../common/Card';
 import TeamUpload from "./TeamUpload";
+import {getCookie} from "../../../../helpers/session";
 
 type Props = {
     getChallenge: ()=>Promise<Challenge>,
@@ -47,7 +48,7 @@ class MyChallengePage extends Component<Props> {
               <h3 className="mt-5">Challenge Info</h3>}
               <p>{this.props.challenge && this.props.challenge.text}</p>
               {this.props.challenge && (this.props.challenge.uploads || []).map((upload, index)=>
-                <a key={index.toString()} className="d-block" target="_blank" href={upload.url}>{upload.name}</a>
+                <a key={index.toString()} className="d-block" target="_blank" href={upload.url + '?token=' + getCookie('jwt')}>{upload.name}</a>
               )}
 
               <h3 className="mt-5">How to</h3>
