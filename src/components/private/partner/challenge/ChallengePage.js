@@ -9,6 +9,8 @@ import {ScaleLoader} from 'react-spinners';
 import type {User, Team, Challenge} from "../../../../constants";
 import TeamList from './TeamList'
 import ChallengeUploads from './ChallengeUploads'
+import StartupList from "./StartupList";
+import {roles} from '../../../../constants'
 
 type Props = {
     getInfo: ()=>Promise<void>,
@@ -60,6 +62,9 @@ class ChallengePage extends Component<Props, State> {
         this.props.updateChallenge({...this.props.challenge, text: this.state.text})
     }
 
+    modifyTrackName(track: string = ''): string {
+        return (track.charAt(0).toLowerCase() + track.slice(1)).replace(/ /g,'')
+    }
 
     render() {
         return (
@@ -91,8 +96,8 @@ class ChallengePage extends Component<Props, State> {
               <TeamList users={this.props.users} teams={this.props.teams}/>
 
 
-
-
+              <h3>Your Startup Teams</h3>
+              <StartupList startUps={this.props.users.filter(user=>user.role === roles.STARTUP_ROLE).filter(startup=>((startup.startupFields || {}).talent || {}).track === this.modifyTrackName((this.props.challenge || {}).track))}/>
 
           </Container>
         )

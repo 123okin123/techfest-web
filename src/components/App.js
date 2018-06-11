@@ -33,7 +33,7 @@ import LaunchPadDayPage from './launchPadDay/LaunchPadDayPage'
 import LPDGuestRegistrationPage from './private/partner/lpdGuestRegistration/LPDGuestRegistrationPage'
 import ChallengePage from './private/partner/challenge/ChallengePage'
 import MyChallengePage from './private/participants/MyChallenge/MyChallengePage'
-import MyTrackPage from './private/participants/MyTrackPage'
+import MyTrackPage from './private/participants/MyTrack/MyTrackPage'
 import MentorPage from './private/participants/MentorPage'
 
 

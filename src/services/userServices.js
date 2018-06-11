@@ -56,7 +56,7 @@ function getUsers() :Promise<{users: Array<User>, current: number, pages: number
         headers: authHeader()
     };
 
-    return fetch('/api/users?token=' + getCookie("jwt") + '&type=participants', requestOptions).then(handleResponse);
+    return fetch('/api/users?token=' + getCookie("jwt") , requestOptions).then(handleResponse);
 }
 
 function getById(id) {

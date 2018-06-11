@@ -123,7 +123,23 @@ export type User = {
         challengeId?: string
     },
     startupFields?: {
-        track?: string
+        talent: {track?: string},
+        trackUploads?: Array<{url: string, name: string}>,
+        trackComment?: string,
+        couldComeToLPD?: boolean,
+        startup: {
+            startupName: string,
+            firstName1?: string,
+            lastName1?: string,
+            firstName2?: string,
+            lastName2?: string,
+            firstName3?: string,
+            lastName3?: string,
+            firstName4?: string,
+            lastName4?: string,
+            firstName5?: string,
+            lastName5?: string,
+        }
     },
     applicantFields?: {
         preEvent?: boolean,
