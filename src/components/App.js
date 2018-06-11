@@ -35,7 +35,7 @@ import ChallengePage from './private/partner/challenge/ChallengePage'
 import MyChallengePage from './private/participants/MyChallenge/MyChallengePage'
 import MyTrackPage from './private/participants/MyTrack/MyTrackPage'
 import MentorPage from './private/participants/MentorPage'
-
+import SpecialTermsConditionPage from './SpecialTermsConditionPage'
 
 
 class App extends Component<{}> {
@@ -89,6 +89,8 @@ class App extends Component<{}> {
                   <Route path="/forgot-password" component={ForgotPassword}/>
                   <Route path="/reset-password" component={ResetPassword}/>
                   <Route path="/launchpad-day" component={LaunchPadDayPage}/>
+
+                  <Route path="/accept-terms-conditions" component={SpecialTermsConditionPage}/>
 
 
                   <Route path="/login" component={LoginPage}/>
