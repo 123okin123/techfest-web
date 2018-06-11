@@ -45,15 +45,15 @@ class Navigation extends Component<Props, State> {
                   <Collapse isOpen={this.state.isOpen} navbar>
                       <Nav className="ml-auto" navbar>
                           {/*Participants & Start-ups*/}
-                          <PrivateNavItem title="Member Area" to="/private/member-area" permittedRoles={[roles.ADMIN_ROLE, roles.PARTICIPANT_ROLE, roles.STARTUP_ROLE]}/>
+                          <PrivateNavItem title="Member Area" to="/private/member-area" permittedRoles={[roles.ADMIN_ROLE,roles.SUPERVISOR_ROLE, roles.MENTOR_ROLE, roles.PARTICIPANT_ROLE, roles.STARTUP_ROLE]}/>
                           <PrivateNavItem title="My Challenge" to="/private/my-challenge" permittedRoles={[roles.ADMIN_ROLE, roles.PARTICIPANT_ROLE]}/>
                           <PrivateNavItem title="My Track" to="/private/my-track" permittedRoles={[roles.ADMIN_ROLE, roles.STARTUP_ROLE]}/>
-                          <PrivateNavItem title="Mentors" to="/private/mentors" permittedRoles={[roles.ADMIN_ROLE, roles.PARTICIPANT_ROLE, roles.STARTUP_ROLE]}/>
+                          <PrivateNavItem title="Mentors" to="/private/mentors" permittedRoles={[roles.ADMIN_ROLE,roles.SUPERVISOR_ROLE, roles.MENTOR_ROLE, roles.PARTICIPANT_ROLE, roles.STARTUP_ROLE]}/>
 
 
 
                           {/*Partners*/}
-                          <PrivateNavItem title="Home" to="/private/partner" permittedRoles={[roles.ADMIN_ROLE].concat(allPartnerRoles)}/>
+                          <PrivateNavItem title="Home" to="/private/partner" permittedRoles={[roles.ADMIN_ROLE, roles.MENTOR_ROLE, roles.SUPERVISOR_ROLE].concat(allPartnerRoles)}/>
                           <PrivateNavItem title="Post Job" to="/private/post-job" permittedRoles={[roles.ADMIN_ROLE, roles.TRACK_PARTNER_ROLE]}/>
                           <PrivateNavItem title="Mentors" to="/private/register-mentor" permittedRoles={[roles.ADMIN_ROLE, ...allPartnerRoles]}/>
                           <PrivateNavItem title="Guest Registration" to="/private/register-guest" permittedRoles={[roles.ADMIN_ROLE, ...allPartnerRoles]}/>
