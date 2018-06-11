@@ -39,11 +39,16 @@ class AddGuest extends Component<Props> {
 
     allowedNumberOfDayTickets() :number {
         let allowedNumber = 10;
-        switch (this.props.userData.role) {
-            case roles.TRACK_PARTNER_ROLE: allowedNumber = 50; break;
-            case roles.CHALLENGE_PARTNER_ROLE: allowedNumber = 20; break;
-            default: allowedNumber = 10;
+        if ((this.props.userData.partnerFields || {}).numberOfGuestsAllowed) {
+            allowedNumber = (this.props.userData.partnerFields || {}).numberOfGuestsAllowed;
+        } else {
+            switch (this.props.userData.role) {
+                case roles.TRACK_PARTNER_ROLE: allowedNumber = 50; break;
+                case roles.CHALLENGE_PARTNER_ROLE: allowedNumber = 20; break;
+                default: allowedNumber = 10;
+            }
         }
+        //$FlowFixMe
         return allowedNumber
     }
 

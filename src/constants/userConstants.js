@@ -114,7 +114,8 @@ export type User = {
             email: string,
             numberOfDays: number
         }>,
-        numberOfMentorsAllowed: number
+        numberOfMentorsAllowed?: number,
+        numberOfGuestsAllowed?: number
     },
     participantsFields?: {
         challengeId?: string
