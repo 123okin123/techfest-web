@@ -56,11 +56,11 @@ class MyChallengePage extends Component<Props> {
               {this.props.response && this.props.response.content && <div dangerouslySetInnerHTML={{__html: this.props.response.content.rendered}}/>}
 
               <Row className="mt-5">
-                  <Col xs={12} md={6} className="mb-3">
+                  <Col xs={12} lg={6} className="mb-3">
                       <CreateTeam/>
                   </Col>
                   {this.props.team &&
-                      <Col xs={12} md={6}>
+                      <Col xs={12} lg={6}>
                           <h3>Your Uploads</h3>
                           <TeamUpload/>
                       </Col>

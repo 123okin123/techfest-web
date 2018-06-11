@@ -293,7 +293,7 @@ const StyledInput = styled(Input)`
   margin-bottom: 10px;
 `;
 const StyledP = styled.p`
-font-size: 0.7em;
+font-size: 0.8em;
 `;
 
 const DropZoneImagePreview = (props) => {

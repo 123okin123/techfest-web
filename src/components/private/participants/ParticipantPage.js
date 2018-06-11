@@ -23,7 +23,7 @@ type Props = {
         +updateSuccess?: boolean
     },
     isFetchingNews: boolean,
-    newsPage: {
+    newsPage?: {
         content: {rendered: string},
         acf?: {
             news?: ?Array<{
@@ -34,7 +34,14 @@ type Props = {
     },
     getNews: ()=> Promise<void>,
     getInfo: ()=>void,
-    update: ({})=>void
+    update: ({})=>void,
+
+    getEventInfo: ()=>Promise<void>,
+    isFetchingEventInfo?: boolean,
+    eventMap?: ?string,
+    agenda?: ?string
+
+
 }
 
 type State = {
@@ -56,6 +63,7 @@ class ParticipantPage extends Component<Props,State> {
     componentDidMount() {
         this.props.getInfo();
         this.props.getNews();
+        this.props.getEventInfo();
     }
 
     challengeSelectionChanged(userChallenges: {}) {
@@ -120,6 +128,26 @@ class ParticipantPage extends Component<Props,State> {
               </Col>
           </Row>
 
+          <Row className="mt-5">
+              <Col>
+                  <h2>Event Map</h2>
+                  {this.props.isFetchingEventInfo &&
+                  <LoaderContainer><ScaleLoader loading={true} height={20} width={2}/></LoaderContainer>
+                  }
+                  <EventMap src={this.props.eventMap}/>
+              </Col>
+          </Row>
+
+          <Row className="mt-5">
+              <Col>
+                  <h2>Agenda</h2>
+                  {this.props.isFetchingEventInfo &&
+                  <LoaderContainer><ScaleLoader loading={true} height={20} width={2}/></LoaderContainer>
+                  }
+                  <EventMap src={this.props.agenda}/>
+              </Col>
+          </Row>
+
 
           <Row>
               <Col>
@@ -153,9 +181,14 @@ const StyledAlert = styled(Alert)`
     max-width: 200px;
     box-shadow: 0px 7px 10px 0px #00000024;
 `;
+const EventMap = styled.img`
+  width: 100%;
+`;
+
 
 const mapStateToProps = (state, ownProps) => {
     const {response, isFetching} = state.pages['3981'] || {response: {content: {rendered: ''}}, isFetching: false};
+    const eventMap = (((state.pages['4241'] || {}).response || {}).acf || {}).event_map || '';
     const {fetchingState, updatingState} = state.user;
     const data = state.user.data || {};
     return {
@@ -163,7 +196,10 @@ const mapStateToProps = (state, ownProps) => {
         fetchingState,
         data,
         isFetchingNews: isFetching,
-        newsPage: response
+        newsPage: response,
+        eventMap: (((state.pages['4241'] || {}).response || {}).acf || {}).event_map || '',
+        isFetchingEventInfo: (state.pages['4241'] ||{}).isFetching,
+        agenda:  (((state.pages['4241'] || {}).response || {}).acf || {}).agenda || '',
     }
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -176,6 +212,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         },
         getNews: () => {
             return dispatch(pageActions.fetchPageIfNeeded('3981'))
+        },
+        getEventInfo: () => {
+            return dispatch(pageActions.fetchPageIfNeeded('4241'))
         }
     }
 };
