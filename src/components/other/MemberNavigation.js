@@ -54,7 +54,7 @@ class Navigation extends Component<Props, State> {
 
                           {/*Partners*/}
                           <PrivateNavItem title="Home" to="/private/partner" permittedRoles={[roles.ADMIN_ROLE, roles.MENTOR_ROLE, roles.SUPERVISOR_ROLE].concat(allPartnerRoles)}/>
-                          <PrivateNavItem title="Post Job" to="/private/post-job" permittedRoles={[roles.ADMIN_ROLE, roles.TRACK_PARTNER_ROLE]}/>
+                          <PrivateNavItem title="Post Job" to="/private/post-job" permittedRoles={[roles.ADMIN_ROLE, roles.TRACK_PARTNER_ROLE]} permittedEmails={["wuerth@techfestmunich.com"]} />
                           <PrivateNavItem title="Mentors" to="/private/register-mentor" permittedRoles={[roles.ADMIN_ROLE, ...allPartnerRoles]}/>
                           <PrivateNavItem title="Guest Registration" to="/private/register-guest" permittedRoles={[roles.ADMIN_ROLE, ...allPartnerRoles]}/>
                           <PrivateNavItem title="Launchpad Day Registration" to="/private/register-lpd-guest" permittedRoles={[roles.ADMIN_ROLE, ...allPartnerRoles]}/>

@@ -57,7 +57,7 @@ class App extends Component<{}> {
 
                   {/*Private Partner*/}
                   <PrivateRoute path="/private/partner" permittedRoles={[roles.ADMIN_ROLE, roles.MENTOR_ROLE, roles.SUPERVISOR_ROLE].concat(allPartnerRoles)} component={PartnerPage}/>
-                  <PrivateRoute path="/private/post-job" permittedRoles={[roles.ADMIN_ROLE, roles.TRACK_PARTNER_ROLE]} component={PostJobPage}/>
+                  <PrivateRoute path="/private/post-job" permittedRoles={[roles.ADMIN_ROLE, roles.TRACK_PARTNER_ROLE]} permittedEmails={["wuerth@techfestmunich.com"]} component={PostJobPage}/>
                   <PrivateRoute path="/private/register-advisor" permittedRoles={[roles.ADMIN_ROLE, roles.CHALLENGE_PARTNER_ROLE, roles.TRACK_PARTNER_ROLE]} component={AdvisorPage}/>
                   <PrivateRoute path="/private/register-mentor" permittedRoles={[roles.ADMIN_ROLE, ...allPartnerRoles]} component={AddMentorPage}/>
                   <PrivateRoute path="/private/register-guest" permittedRoles={[roles.ADMIN_ROLE, ...allPartnerRoles]} component={GuestRegistrationPage}/>

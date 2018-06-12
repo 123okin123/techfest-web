@@ -7,11 +7,14 @@ import {connect} from "react-redux";
 //let loggedIn = (typeof localStorage === 'undefined') ?  : localStorage.getItem('user');
 
 
-const PrivateRoute = ({ component: Component, render,  permittedRoles, ...rest }) => (
+const PrivateRoute = ({ component: Component, render,  permittedRoles, permittedEmails, ...rest }) => (
     <Route {...rest} render={props => {
         let roleAllowed = true;
         if (permittedRoles) {
             roleAllowed = permittedRoles.includes(rest.role)
+        }
+        if (permittedEmails) {
+            roleAllowed = permittedEmails.includes(rest.email)
         }
         if (rest.loggedIn && roleAllowed) {
             if (Component) {
@@ -24,10 +27,11 @@ const PrivateRoute = ({ component: Component, render,  permittedRoles, ...rest }
 );
 
 const mapStateToProps = (state) => {
-    const { loggedIn, role } = state.authentication;
+    const { loggedIn, role, email } = state.authentication;
     return {
         loggedIn,
-        role
+        role,
+        email
     };
 };
 const mapDispatchToProps = (dispatch, ownProps) => {

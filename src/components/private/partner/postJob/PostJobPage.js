@@ -37,8 +37,6 @@ class PostJobPage extends Component<Props> {
         const company = (this.props.userData.partnerFields || {}).company;
         return (
           <Container>
-              {((this.props.userData.role === roles.TRACK_PARTNER_ROLE) ||
-                (this.props.userData.role === roles.ADMIN_ROLE)) &&
               <div>
                   <h1>POST JOB</h1>
                   <Row className="mb-5">
@@ -65,7 +63,7 @@ class PostJobPage extends Component<Props> {
                       </Col>
                   </Row>
               </div>
-              }
+
           </Container>
         )
     }

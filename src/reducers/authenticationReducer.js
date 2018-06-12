@@ -10,6 +10,7 @@ export type AuthState = {
     loggingIn?: boolean,
     role?: string,
     loginFailure?: boolean,
+    email?: string
 }
 
 export function authentication(state: AuthState = {}, action: Action) {
@@ -21,7 +22,8 @@ export function authentication(state: AuthState = {}, action: Action) {
         case userConstants.LOGIN_SUCCESS:
             return {
                 loggedIn: true,
-                role: action.user.role
+                role: action.user.role,
+                email: action.user.email
             };
         case userConstants.LOGIN_FAILURE:
             return {loginFailure: true};

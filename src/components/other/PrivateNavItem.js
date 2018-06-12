@@ -6,10 +6,13 @@ import styled from 'styled-components'
 import { NavLink, Route } from 'react-router-dom';
 import { NavItem} from 'reactstrap';
 
-const PrivateNavItem = ({ title,  permittedRoles, to, isLogin, ...rest }) => {
+const PrivateNavItem = ({ title,  permittedRoles, to, isLogin, permittedEmails, ...rest }) => {
     let roleAllowed = true;
     if (permittedRoles) {
         roleAllowed = permittedRoles.includes(rest.role)
+    }
+    if (permittedEmails) {
+        roleAllowed = permittedEmails.includes(rest.email)
     }
     return (
     rest.loggedIn && roleAllowed ?
@@ -44,10 +47,11 @@ const StyledNavLink = styled(({isLogin, role, loggedIn, ...rest}) => {return (<N
 `;
 
 const mapStateToProps = (state) => {
-    const { loggedIn, role } = state.authentication;
+    const { loggedIn, role, email } = state.authentication;
     return {
         loggedIn,
-        role
+        role,
+        email
     };
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
