@@ -39,7 +39,7 @@ type Props = {
     getEventInfo: ()=>Promise<void>,
     isFetchingEventInfo?: boolean,
     eventMap?: ?string,
-    agendaImages?: ?Array<string>
+    agendaImages?: ?Array<{agenda:string}>
 
 }
 
@@ -143,8 +143,8 @@ class ParticipantPage extends Component<Props,State> {
                   {this.props.isFetchingEventInfo &&
                   <LoaderContainer><ScaleLoader loading={true} height={20} width={2}/></LoaderContainer>
                   }
-                  {Array.isArray(this.props.agendaImages) && this.props.agendaImages.map(image=>
-                    <EventMap src={image}/>
+                  {Array.isArray(this.props.agendaImages) && this.props.agendaImages.map(element=>
+                    <EventMap src={element.agenda}/>
                   )}
               </Col>
           </Row>
