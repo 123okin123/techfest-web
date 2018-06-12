@@ -39,8 +39,7 @@ type Props = {
     getEventInfo: ()=>Promise<void>,
     isFetchingEventInfo?: boolean,
     eventMap?: ?string,
-    agenda?: ?string
-
+    agendaImages?: ?Array<string>
 
 }
 
@@ -144,7 +143,9 @@ class ParticipantPage extends Component<Props,State> {
                   {this.props.isFetchingEventInfo &&
                   <LoaderContainer><ScaleLoader loading={true} height={20} width={2}/></LoaderContainer>
                   }
-                  <EventMap src={this.props.agenda}/>
+                  {Array.isArray(this.props.agendaImages) && this.props.agendaImages.map(image=>
+                    <EventMap src={image}/>
+                  )}
               </Col>
           </Row>
 
@@ -199,7 +200,7 @@ const mapStateToProps = (state, ownProps) => {
         newsPage: response,
         eventMap: (((state.pages['4241'] || {}).response || {}).acf || {}).event_map || '',
         isFetchingEventInfo: (state.pages['4241'] ||{}).isFetching,
-        agenda:  (((state.pages['4241'] || {}).response || {}).acf || {}).agenda || '',
+        agendaImages:  (((state.pages['4241'] || {}).response || {}).acf || {}).agenda_images ,
     }
 };
 const mapDispatchToProps = (dispatch, ownProps) => {
