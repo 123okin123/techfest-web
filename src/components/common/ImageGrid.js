@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import {Bracket} from './'
 
 type Props = {
+    justifyContent?: string,
+    backAndWhite?: boolean,
     elementHeight: string,
     elementWidth: string,
     imageWidth: string,
@@ -28,7 +30,7 @@ export const ImageGrid = (props: Props) => {
             {e.url ?
               <ElementImageLink width={props.imageWidth}  target="_blank" href={e.url}><ElementImage leftRightInset={props.leftRightInset} contain={props.containImage} imageURL={e.imageURL}/></ElementImageLink>
               :
-              <ElementImage leftRightInset={props.leftRightInset} contain={props.containImage} imageURL={e.imageURL} width={props.imageWidth}/>
+              <ElementImage backAndWhite={props.backAndWhite} leftRightInset={props.leftRightInset} contain={props.containImage} imageURL={e.imageURL} width={props.imageWidth}/>
             }
             <Bracket right/>
             {e.title &&
@@ -43,12 +45,12 @@ export const ImageGrid = (props: Props) => {
             }
         </Element>
     );
-    return (<ElementContainer>{elements}</ElementContainer>);
+    return (<ElementContainer justifyContent={props.justifyContent}>{elements}</ElementContainer>);
 };
 const ElementContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: ${props => props.justifyContent ? props.justifyContent : "center"};
 `;
 const Element = styled.div`
     max-width: 100%;
@@ -90,6 +92,7 @@ const ElementImage = styled.div`
     height: calc(100% - 10px);
     width: ${props => props.width};
     margin: 5px ${props => props.leftRightInset};
+    filter: ${props => props.backAndWhite ? 'grayscale(100%)' : ''};
 `;
 
 

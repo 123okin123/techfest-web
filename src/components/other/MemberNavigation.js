@@ -65,6 +65,7 @@ class Navigation extends Component<Props, State> {
 
                           {/*All*/}
                           <PrivateNavItem title="Jobs" to="/private/jobs" permittedRoles={Object.values(roles)}/>
+                          <PrivateNavItem title="Crew" to="/private/crew" permittedRoles={Object.values(roles)}/>
                           {LoginComponent}
                       </Nav>
                   </Collapse>

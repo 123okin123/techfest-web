@@ -12,8 +12,8 @@ import TimelineContainer from './TimelineContainer'
 import VideoContainer from './VideoContainer'
 import SummaryContainer from './SummaryContainer'
 import FAQs from './FAQs'
-
-
+import {ImageGrid} from "../common";
+import {speakers} from "../../helpers";
 
 
 class HomePage extends Component<{}> {
@@ -41,10 +41,6 @@ class HomePage extends Component<{}> {
                         <ChallengeContainer/>
                         </Container>
                     </section>
-                    {/*<section id="speakers">*/}
-                        {/*<Heading imageURL={require('../../assets/icons/icon_speakers-megafon_black.png')} title="OUR SPEAKERS" subtitle="TECH COMPETENCE - AT YOUR HANDS"/>*/}
-                        {/*<ImageGrid imageWidth={'180px'} elementWidth={'450px'} elementHeight={'180px'} elementMargin={'20px 0px'} elements={speakerElements} magnifierImg/>*/}
-                    {/*</section>*/}
                     <section id="partners">
                         <PartnersContainer/>
                     </section>
@@ -54,6 +50,12 @@ class HomePage extends Component<{}> {
                           <TimelineContainer/>
                       </Container>
                   </section>
+                  <section id="speakers">
+                      <Container>
+                      <Heading imageURL={require('../../assets/icons/icon_speakers-megafon_black.png')} title="OUR SPEAKERS" subtitle="TECH COMPETENCE - AT YOUR HANDS"/>
+                      <ImageGrid justifyContent="space-between" backAndWhite imageWidth={'180px'} elementWidth={'450px'} elementHeight={'180px'} elementMargin={'20px 0px'} elements={speakers}/>
+                      </Container>
+                    </section>
                     <section id="gallery">
                         <Container>
                             <Heading title="GALLERY" subtitle="SOME IMPRESSIONS OF THE TECHFEST MUNICH 2017"/>

@@ -67,6 +67,7 @@ class MentorList extends Component<Props, State> {
         let filteredMentors = this.props.companyFilter ?
           this.state.mentors.filter((e)=>e.company === this.props.companyFilter)
           : this.state.mentors;
+        console.log(filteredMentors);
         filteredMentors = this.props.noChallengeMentors ?
           filteredMentors.filter((e)=> (e.partnerRole !== roles.TRACK_PARTNER_ROLE && e.partnerRole !== roles.CHALLENGE_PARTNER_ROLE))
             : filteredMentors;

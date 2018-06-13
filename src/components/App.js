@@ -36,7 +36,7 @@ import MyChallengePage from './private/participants/MyChallenge/MyChallengePage'
 import MyTrackPage from './private/participants/MyTrack/MyTrackPage'
 import MentorPage from './private/participants/MentorPage'
 import SpecialTermsConditionPage from './SpecialTermsConditionPage'
-
+import CrewPage from './private/CrewPage'
 
 class App extends Component<{}> {
     render() { return (
@@ -53,6 +53,7 @@ class App extends Component<{}> {
                   {/*Private All*/}
                   <PrivateRoute exact path="/private" component={MemberAreaPage}/>
                   <PrivateRoute path="/private/jobs" permittedRoles={Object.values(roles)} component={JobPage}/>
+                  <PrivateRoute path="/private/crew" permittedRoles={Object.values(roles)} component={CrewPage}/>
 
 
                   {/*Private Partner*/}

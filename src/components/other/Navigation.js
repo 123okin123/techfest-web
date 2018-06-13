@@ -70,14 +70,14 @@ class Navigation extends Component<Props, State> {
                             <StyledNavItem>
                                 <StyledNavLink scroll={(el)=> el.scrollIntoView({ behavior: 'smooth', block: 'start'})} to="/#tracks" isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Tracks</StyledNavLink>
                             </StyledNavItem>
-                            {/*<StyledNavItem>*/}
-                            {/*<StyledNavLink smooth to="/#speakers"  isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Speakers</StyledNavLink>*/}
-                            {/*</StyledNavItem>*/}
                             <StyledNavItem>
                                 <StyledNavLink scroll={(el)=> el.scrollIntoView({ behavior: 'smooth', block: 'start'})} to="/#partners"  isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Partners</StyledNavLink>
                             </StyledNavItem>
                             <StyledNavItem>
                                 <StyledNavLink scroll={(el)=> el.scrollIntoView({ behavior: 'smooth', block: 'start'})} to="/#timeline"  isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Timeline 2018</StyledNavLink>
+                            </StyledNavItem>
+                            <StyledNavItem>
+                                <StyledNavLink smooth to="/#speakers"  isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Speakers</StyledNavLink>
                             </StyledNavItem>
                             <StyledNavItem>
                                 <StyledNavLink scroll={(el)=> el.scrollIntoView({ behavior: 'smooth', block: 'start'})} to="/#gallery"  isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Gallery</StyledNavLink>

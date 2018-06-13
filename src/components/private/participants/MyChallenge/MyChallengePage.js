@@ -12,6 +12,8 @@ import MentorList from '../../common/MentorList';
 import Card from '../../common/Card';
 import TeamUpload from "./TeamUpload";
 import {getCookie} from "../../../../helpers/session";
+import {supervisors} from "../../../../helpers";
+
 
 type Props = {
     getChallenge: ()=>Promise<Challenge>,
@@ -70,11 +72,19 @@ class MyChallengePage extends Component<Props> {
               <Row className="mt-5">
                   <Col>
                       <h3>Challenge Supervisors</h3>
-                      <div className="d-flex flex-wrap">
-                          {this.props.challenge && (this.props.challenge.supervisors || []).map((supervisor, index)=>
+                      <div className="d-flex flex-wrap justify-content-center">
+                          {supervisors.filter(supervisor=>{
+                              if (Array.isArray(supervisor.challenge)) {
+                                  return supervisor.challenge.includes((this.props.challenge || {}).company)
+                              } else {
+                                  return supervisor.challenge === (this.props.challenge || {}).company
+                              }
+                          }).map((supervisor, index)=>
                           <Card key={index.toString()}
                                 title={supervisor.firstName +' '+supervisor.lastName}
-                                imageURL={supervisor.imageURL}/>
+                                imageURL={supervisor.imageURL}
+                                skills={supervisor.skills}
+                                children={<p className="text-muted">{supervisor.email}</p>}/>
                           )}
                       </div>
                   </Col>
