@@ -40,3 +40,9 @@ export const crew = [{
     role: "moderator & pleasure manager",
     imageURL: require('../assets/crew/crew-5.jpg')
 }];
+
+export const max = [{
+    name: "Max Seeberger",
+    role: "lead project management",
+    imageURL: require('../../assets/crew/crew-10.jpeg')
+}];
