@@ -105,14 +105,16 @@ class ParticipantPage extends Component<Props,State> {
           </StyledAlert>
           }
           <h1>MEMBER AREA</h1>
-
+          {this.props.isFetchingNews &&
+          <LoaderContainer><ScaleLoader loading={true} height={20} width={2}/></LoaderContainer>
+          }
+          {this.props.newsPage && this.props.newsPage.content && <div className="mb-5 mt-3" dangerouslySetInnerHTML={{__html: this.props.newsPage.content.rendered}}/>}
           <Row className="mt-5">
               <Col>
                   <h2>News</h2>
                   {this.props.isFetchingNews &&
                   <LoaderContainer><ScaleLoader loading={true} height={20} width={2}/></LoaderContainer>
                   }
-                  {this.props.newsPage && this.props.newsPage.content && <div className="mb-5 mt-3" dangerouslySetInnerHTML={{__html: this.props.newsPage.content.rendered}}/>}
                   <div>
                       {((this.props.newsPage || {}).acf || {}).news &&
                           Array.isArray(((this.props.newsPage || {}).acf || {}).news) &&
@@ -143,8 +145,8 @@ class ParticipantPage extends Component<Props,State> {
                   {this.props.isFetchingEventInfo &&
                   <LoaderContainer><ScaleLoader loading={true} height={20} width={2}/></LoaderContainer>
                   }
-                  {Array.isArray(this.props.agendaImages) && this.props.agendaImages.map(element=>
-                    <EventMap src={element.agenda}/>
+                  {Array.isArray(this.props.agendaImages) && this.props.agendaImages.map((element, index)=>
+                    <EventMap key={index.toString()} src={element.agenda}/>
                   )}
               </Col>
           </Row>
