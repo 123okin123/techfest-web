@@ -44,5 +44,5 @@ export const crew = [{
 export const max = [{
     name: "Max Seeberger",
     role: "lead project management",
-    imageURL: require('../../assets/crew/crew-10.jpeg')
+    imageURL: require('../assets/crew/crew-10.jpeg')
 }];
