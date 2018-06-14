@@ -110,7 +110,7 @@ class ParticipantPage extends Component<Props,State> {
           }
           {this.props.newsPage && this.props.newsPage.content && <div className="mb-5 mt-3" dangerouslySetInnerHTML={{__html: this.props.newsPage.content.rendered}}/>}
           <Row className="mt-5">
-              <Col>
+              <Col className="mt-5">
                   <h2>News</h2>
                   {this.props.isFetchingNews &&
                   <LoaderContainer><ScaleLoader loading={true} height={20} width={2}/></LoaderContainer>
@@ -130,7 +130,7 @@ class ParticipantPage extends Component<Props,State> {
           </Row>
 
           <Row className="mt-5">
-              <Col>
+              <Col className="mt-5">
                   <h2>Event Map</h2>
                   {this.props.isFetchingEventInfo &&
                   <LoaderContainer><ScaleLoader loading={true} height={20} width={2}/></LoaderContainer>
@@ -140,7 +140,7 @@ class ParticipantPage extends Component<Props,State> {
           </Row>
 
           <Row className="mt-5">
-              <Col>
+              <Col className="mt-5">
                   <h2>Agenda</h2>
                   {this.props.isFetchingEventInfo &&
                   <LoaderContainer><ScaleLoader loading={true} height={20} width={2}/></LoaderContainer>
@@ -152,7 +152,7 @@ class ParticipantPage extends Component<Props,State> {
           </Row>
 
 
-          <Row>
+          <Row className="mt-5">
               <Col>
                   {this.props.data.applicantFields &&
                     <div>

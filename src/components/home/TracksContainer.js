@@ -68,7 +68,6 @@ class TracksContainer extends Component<Props, State> {
     }
 
     render() {
-        console.log((this.props.trackResponse.acf || {}).challenge_descriptions);
         return (
     <Container>
         {/*<Row className="my-5">*/}

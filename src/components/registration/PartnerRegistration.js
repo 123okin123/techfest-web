@@ -122,7 +122,6 @@ class PartnerRegistration extends Component<Props, State> {
 
     onSubmit(form) {
         if (this.props.registering) {return}
-        console.log("Data submitted: ",  form);
         this.props.register(this.state.form.formData);
         form.formData = this.state.form.formData
     }

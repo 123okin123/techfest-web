@@ -61,7 +61,6 @@ class AddMentor extends Component<Props, State> {
     }
 
     handleFinishedUpload = info => {
-        console.log(info);
         this.setState({
             ...this.state,
             preview: info.file.preview,

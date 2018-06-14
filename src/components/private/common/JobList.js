@@ -46,7 +46,6 @@ class JobList extends Component<Props,State> {
 
     handleValidSubmit(event, values, job) {
         this.props.updateJob({...job, ...values}).then(updateJob=>{
-            console.log(updateJob);
             this.setState({jobs: this.state.jobs.map(jobInState=> jobInState._id === updateJob._id ? {...updateJob, editable: false} : jobInState)});
         });
     }

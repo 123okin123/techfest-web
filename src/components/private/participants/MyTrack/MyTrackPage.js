@@ -83,8 +83,7 @@ class MyTrackPage extends Component<Props, State> {
     render() {
         const dbTrackName1 = ((((this.props.userData || {}).startupFields || {}).talent || {}).track || '');
         const dbTrackName2 = (((this.props.userData || {}).startupFields || {}).track || '');
-console.log(dbTrackName1);
-console.log(dbTrackName2);
+
         //$FlowFixMe
         const trackName :string = Object.values(tracks).find((track)=>
           ((track: string).replace(/ /g,'') === dbTrackName1.toUpperCase().replace(/ /g,'')) ||

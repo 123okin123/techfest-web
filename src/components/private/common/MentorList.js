@@ -56,7 +56,6 @@ class MentorList extends Component<Props, State> {
 
     handleValidSubmit(event, values, mentor) {
         this.props.updateMentor({...mentor, ...values}).then(updateMentor=>{
-            console.log(updateMentor);
             this.setState({mentors: this.state.mentors.map(mentorInState=> mentorInState._id === updateMentor._id ? {...updateMentor, editable: false} : mentorInState)});
         });
     }

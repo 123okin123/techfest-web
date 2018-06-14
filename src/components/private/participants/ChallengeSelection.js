@@ -109,7 +109,6 @@ class ChallengeSelection extends Component<Props, State> {
     }
 
     render() {
-        console.log(this.state);
         let options = [""];
         if (this.props.response && this.props.response.acf && this.props.response.acf.preference_options) {
             options = this.props.response.acf.preference_options.map(e=> e.option)
@@ -190,10 +189,8 @@ class ChallengeSelection extends Component<Props, State> {
 
 function shouldBeDisabled(userChallenges?: {firstChoice: ?string, dontCare: ?boolean}): boolean {
     if (userChallenges) {
-        console.log(userChallenges.firstChoice !== "")
         return userChallenges.firstChoice !== ""
     } else {
-        console.log(false);
         return false
     }
 }
