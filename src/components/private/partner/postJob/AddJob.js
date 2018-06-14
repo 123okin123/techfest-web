@@ -49,7 +49,7 @@ class AddJob extends Component<Props, State> {
 
     handleValidSubmit(event, values) {
         const company = (this.props.userData.partnerFields || {}).company;
-        if (this.props.jobs.filter(job=>job.company === company).length >= 15) {return}
+        if (this.props.jobs.filter(job=>job.company === company).length >= 20) {return}
         if (!this.props.userData) {
             this.props.getInfo().then(()=>{
                 const newJob = {...values,

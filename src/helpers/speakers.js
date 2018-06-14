@@ -9,7 +9,7 @@ export const speakers = [{
 },{
     imageURL: require('../assets/speakers/speaker-0.jpg'),
     title: "Bülent Altan",
-// },{
-//     imageURL: require('../assets/speakers/speaker-0.jpg'),
-//     title: "Sonja Stucktei",
+},{
+    imageURL: require('../assets/speakers/speaker-7.jpg'),
+    title: "Sonja Stucktei",
 }];

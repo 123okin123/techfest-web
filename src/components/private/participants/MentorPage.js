@@ -16,7 +16,7 @@ class MentorPage extends Component<Props> {
         return (
           <Container>
               <h1>MENTORS</h1>
-              <MentorList className="mt-5" noChallengeMentors/>
+              <MentorList className="mt-5" searchable noChallengeMentors/>
           </Container>
         )
     }

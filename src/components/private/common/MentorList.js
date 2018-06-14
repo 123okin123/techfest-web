@@ -3,7 +3,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import styled from 'styled-components'
-import {Button} from 'reactstrap'
+import {Button, Input} from 'reactstrap'
 import {type Mentor, type User, roles} from '../../../constants/'
 import {mentorActions} from "../../../actions/index";
 import {getCookie} from '../../../helpers/session';
@@ -16,6 +16,7 @@ type Props = {
     companyFilter?: string,
     noChallengeMentors?: boolean,
 
+    searchable?: boolean,
     editable?: boolean,
 
     mentors: Array<Mentor>,
@@ -26,7 +27,8 @@ type Props = {
 
 
 type State = {
-    mentors: Array<Mentor>
+    mentors: Array<Mentor>,
+    searchFilter: string
 }
 
 class MentorList extends Component<Props, State> {
@@ -34,6 +36,7 @@ class MentorList extends Component<Props, State> {
         super(props);
         (this: any).deleteMentor = this.deleteMentor.bind(this);
         this.state = {
+            searchFilter: '',
             mentors: this.props.mentors
         }
     }
@@ -48,6 +51,8 @@ class MentorList extends Component<Props, State> {
             this.setState({mentors: this.props.mentors})
         })
     }
+
+
 
     handleValidSubmit(event, values, mentor) {
         this.props.updateMentor({...mentor, ...values}).then(updateMentor=>{
@@ -67,12 +72,16 @@ class MentorList extends Component<Props, State> {
         let filteredMentors = this.props.companyFilter ?
           this.state.mentors.filter((e)=>e.company === this.props.companyFilter)
           : this.state.mentors;
-        console.log(filteredMentors);
         filteredMentors = this.props.noChallengeMentors ?
           filteredMentors.filter((e)=> (e.partnerRole !== roles.TRACK_PARTNER_ROLE && e.partnerRole !== roles.CHALLENGE_PARTNER_ROLE))
             : filteredMentors;
+        filteredMentors = filteredMentors.filter((e) => (e.firstName + e.lastName + (e.company || '')).toLowerCase().includes(this.state.searchFilter.toLowerCase()));
 
         return (
+          <div>
+              {this.props.searchable &&
+              <div className="d-flex justify-content-end"><StyledInput placeholder="Search" onChange={(e)=>this.setState({searchFilter: e.target.value})}/></div>
+              }
           <MentorCollection className={this.props.className}>
               {filteredMentors.map((mentor: Mentor, index: number)=> {
                   if (mentor.editable) {
@@ -123,6 +132,7 @@ class MentorList extends Component<Props, State> {
               <p>No mentors yet.</p>
               }
           </MentorCollection>
+          </div>
         )
     }
 }
@@ -178,8 +188,14 @@ const SkillContainer = styled.div`
   flex-wrap: wrap;
   margin-top: 20px;
 `;
+
 const StyledEmail = styled.a`
 font-size: 0.8em;
+`;
+const StyledInput = styled(Input)`
+  @media (min-width: 700px) {
+    width: 200px !important;
+  }
 `;
 const mapStateToProps = (state, ownProps) => {
     const {items} = state.mentors;
