@@ -95,7 +95,7 @@ class AddJob extends Component<Props, State> {
         const company = (this.props.userData.partnerFields || {}).company;
         return (
       <div className={className}>
-          <p>Jobs: {this.props.jobs.filter(job=>job.company === company).length}/15</p>
+          <p>Jobs: {this.props.jobs.filter(job=>job.company === company).length}/20</p>
           <AvForm id="add-job-form" onValidSubmit={this.handleValidSubmit} ref={c => ((this: any).form = c)}>
           <AvField name="title" label="Title" required />
           <AvField type="textarea" rows="8" name="description" label="Description" required />

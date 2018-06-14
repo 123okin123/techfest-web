@@ -10,11 +10,12 @@ import {connect} from "react-redux";
 const PrivateRoute = ({ component: Component, render,  permittedRoles, permittedEmails, ...rest }) => (
     <Route {...rest} render={props => {
         let roleAllowed = true;
-        if (permittedRoles) {
-            roleAllowed = permittedRoles.includes(rest.role)
-        }
-        if (permittedEmails) {
+        if (permittedRoles && permittedEmails) {
+            roleAllowed = (permittedRoles.includes(rest.role) || permittedEmails.includes(rest.email))
+        } else if (permittedEmails) {
             roleAllowed = permittedEmails.includes(rest.email)
+        } else if (permittedRoles) {
+            roleAllowed = permittedRoles.includes(rest.role)
         }
         if (rest.loggedIn && roleAllowed) {
             if (Component) {

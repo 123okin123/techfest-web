@@ -8,11 +8,12 @@ import { NavItem} from 'reactstrap';
 
 const PrivateNavItem = ({ title,  permittedRoles, to, isLogin, permittedEmails, ...rest }) => {
     let roleAllowed = true;
-    if (permittedRoles) {
-        roleAllowed = permittedRoles.includes(rest.role)
-    }
-    if (permittedEmails) {
+    if (permittedRoles && permittedEmails) {
+        roleAllowed = (permittedRoles.includes(rest.role) || permittedEmails.includes(rest.email))
+    } else if (permittedEmails) {
         roleAllowed = permittedEmails.includes(rest.email)
+    } else if (permittedRoles) {
+        roleAllowed = permittedRoles.includes(rest.role)
     }
     return (
     rest.loggedIn && roleAllowed ?
