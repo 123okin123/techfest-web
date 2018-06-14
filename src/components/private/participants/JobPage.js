@@ -13,7 +13,7 @@ class JobPage extends Component<Props> {
         return (
           <Container>
               <h1>AVAILABLE JOBS</h1>
-              <JobList/>
+              <JobList searchable/>
           </Container>
         )
     }

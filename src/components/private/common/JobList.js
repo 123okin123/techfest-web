@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {jobActions} from "../../../actions/index";
 import {AvForm, AvField} from "availity-reactstrap-validation";
-import {Button} from 'reactstrap';
+import {Button, Input} from 'reactstrap';
 import styled from 'styled-components';
 import {getCookie} from '../../../helpers/session';
 import {type Job} from '../../../constants/index';
@@ -17,10 +17,12 @@ type Props = {
     fetching?: boolean,
     deleteJob: (string)=>Promise<string>,
     updateJob: (Job)=>Promise<Job>,
+    searchable?: boolean
 }
 
 type State = {
-    jobs: Array<Job>
+    jobs: Array<Job>,
+    searchFilter: string
 }
 
 class JobList extends Component<Props,State> {
@@ -29,7 +31,8 @@ class JobList extends Component<Props,State> {
         (this: any).handleValidSubmit = this.handleValidSubmit.bind(this);
         (this: any).onDelete = this.onDelete.bind(this);
         this.state = {
-            jobs: this.props.jobs
+            jobs: this.props.jobs,
+            searchFilter: ''
         }
     }
 
@@ -59,8 +62,13 @@ class JobList extends Component<Props,State> {
         if (this.props.showJobsOfCompany) {
             jobs = jobs.filter(job => job.company === this.props.showJobsOfCompany);
         }
+        jobs = jobs.filter(job=> (job.company + job.title + job.description).toLowerCase().includes(this.state.searchFilter.toLowerCase()));
+
         return (
       <div>
+          {this.props.searchable &&
+            <div className="d-flex justify-content-end"><StyledInput placeholder="Search" onChange={(e)=>this.setState({searchFilter: e.target.value})}/></div>
+          }
           {jobs.length === 0 && <div>No jobs yet</div>}
           <ul className="list-unstyled">
               {jobs.map((job, index)=> {
@@ -101,7 +109,11 @@ const StyledAvField = styled(AvField)`
   padding: 0!important;
   color: #212529!important;
 `;
-
+const StyledInput = styled(Input)`
+  @media (min-width: 700px) {
+    width: 200px !important;
+  }
+`;
 const mapStateToProps = (state, ownProps) => {
     const {items, fetching} = state.jobs;
     return {

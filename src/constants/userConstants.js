@@ -127,6 +127,7 @@ export type User = {
         trackUploads?: Array<{url: string, name: string}>,
         trackComment?: string,
         couldComeToLPD?: boolean,
+        track?: string,
         startup: {
             startupName: string,
             firstName1?: string,

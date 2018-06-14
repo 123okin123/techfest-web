@@ -81,9 +81,15 @@ class MyTrackPage extends Component<Props, State> {
     }
 
     render() {
-        const dbTrackName = ((((this.props.userData || {}).startupFields || {}).talent || {}).track || '');
+        const dbTrackName1 = ((((this.props.userData || {}).startupFields || {}).talent || {}).track || '');
+        const dbTrackName2 = (((this.props.userData || {}).startupFields || {}).track || '');
+console.log(dbTrackName1);
+console.log(dbTrackName2);
         //$FlowFixMe
-        const trackName :string = Object.values(tracks).find((track)=>(track: string).replace(/ /g,'') === dbTrackName.toUpperCase());
+        const trackName :string = Object.values(tracks).find((track)=>
+          ((track: string).replace(/ /g,'') === dbTrackName1.toUpperCase().replace(/ /g,'')) ||
+          ((track: string).replace(/ /g,'') === dbTrackName2.toUpperCase().replace(/ /g,''))
+        );
         return (
           <Container>
               <h1>YOUR TRACK</h1>
@@ -93,21 +99,19 @@ class MyTrackPage extends Component<Props, State> {
               <Row className="mt-5">
                   <Col xs={12} lg={6}>
                       <h3>Your Uploads</h3>
+                      <h4>[Submission Deadline Sun 10am]</h4>
                       <StartupUpload/>
                   </Col>
                   <Col xs={12} lg={6}>
-                      <h3>Your Comment</h3>
+                      <h3>Idea Description</h3>
+                      <h4>[Submission Deadline Fri 10pm]</h4>
                       <Form onSubmit={this.onTextSubmit}>
                           <Input onChange={(event)=>this.setState({...this.state, comment: event.target.value})} value={this.state.comment} placeholder='Input will be visible to track partner' type="textarea" rows="8"/>
                           <Button disabled={(this.props.updatingUserState || {}).updating} className="float-right mt-3" type="submit">Save</Button>
                       </Form>
-                  </Col>
-              </Row>
-              <Row>
-                  <Col>
-                      <FormGroup check>
+                      <FormGroup className="mt-5" check>
                           <Label className="h4" check>
-                            <Input type="checkbox" checked={((this.props.userData || {}).startupFields ||{}).couldComeToLPD || false} onChange={this.onLpdClicked}/>
+                              <Input type="checkbox" checked={((this.props.userData || {}).startupFields ||{}).couldComeToLPD || false} onChange={this.onLpdClicked}/>
                               We would come the Launch Pad Day.
                           </Label>
                       </FormGroup>
