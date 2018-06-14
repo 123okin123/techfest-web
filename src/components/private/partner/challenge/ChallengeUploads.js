@@ -81,7 +81,7 @@ class ChallengeUploads extends Component<Props, State> {
                 onError={()=>this.setState({...this.state, uploadState: {isUploadError: true}})}
                 s3Url={this.state.s3Url}
                 multiple={false}
-                maxSize={1024 * 1024 * 5}
+                maxSize={1024 * 1024 * 20}
                 style={{
                     width: '100%', height: '100px', textAlign: 'center', margin: 'auto',
                     border: 'dashed 2px #999',
@@ -99,7 +99,7 @@ class ChallengeUploads extends Component<Props, State> {
                     isUploadError={this.state.uploadState.isUploadError}
                     isUploading={this.state.uploadState.isUploading}
                     isUploadSuccess={this.state.uploadState.isUploadSuccess}
-                    hint="Drop file here (max size: 5mb)"
+                    hint="Drop file here (max size: 20mb)"
                   />
               </DropzoneS3Uploader>
 

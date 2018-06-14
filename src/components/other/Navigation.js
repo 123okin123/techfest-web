@@ -97,9 +97,11 @@ class Navigation extends Component<Props, State> {
                             <StyledNavItem>
                                 <StyledNavLink to="/launchpad-day" isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Launchpad Day</StyledNavLink>
                             </StyledNavItem>
+                            {!this.props.loggedIn &&
                             <StyledNavItem>
                                 <StyledNavLink target="_blank" to="/register" isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Apply now</StyledNavLink>
                             </StyledNavItem>
+                            }
                             {this.props.loggedIn &&
                             <StyledNavItem>
                                 <StyledNavLink to="/private" isFrontPage={this.props.isFrontPage} isTop={this.state.isTop} >Member Area</StyledNavLink>
