@@ -68,7 +68,7 @@ class LaunchPadGuestList extends Component<Props, State> {
                     <Button className="float-right" onClick={()=>this.onDelete(guest)}>Delete</Button>
                     <ImageContainer image={guest.imageURL}/>
                     <h3>{guest.firstName} {guest.lastName}</h3>
-                    <h4>{guest.email}</h4>
+                    <p className="text-muted">{guest.email}</p>
                 </GuestContainer>
               )}
               {this.state.launchPadGuests.length === 0 &&
