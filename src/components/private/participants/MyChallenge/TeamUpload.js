@@ -71,6 +71,7 @@ class TeamUpload extends Component<Props, State> {
     render() {
         return (
           <div>
+              <p>You can upload an unlimited number of files (any format | max 100mb per file) and also remove a file if necessary.</p>
               <DropzoneS3Uploader
                 className="mb-3"
                 onFinish={this.handleFinishedUpload}
@@ -78,7 +79,7 @@ class TeamUpload extends Component<Props, State> {
                 onError={()=>this.setState({...this.state, uploadState: {isUploadError: true}})}
                 s3Url={this.state.s3Url}
                 multiple={false}
-                maxSize={1024 * 1024 * 5}
+                maxSize={1024 * 1024 * 100}
                 style={{
                     width: '100%', height: '100px', textAlign: 'center', margin: 'auto',
                     border: 'dashed 2px #999',
@@ -96,7 +97,7 @@ class TeamUpload extends Component<Props, State> {
                     isUploadError={this.state.uploadState.isUploadError}
                     isUploading={this.state.uploadState.isUploading}
                     isUploadSuccess={this.state.uploadState.isUploadSuccess}
-                    hint="Drop file here (max size: 5mb)"
+                    hint="Drop file here (max size: 100mb)"
                   />
               </DropzoneS3Uploader>
 
