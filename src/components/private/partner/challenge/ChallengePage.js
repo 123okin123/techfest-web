@@ -63,10 +63,12 @@ class ChallengePage extends Component<Props, State> {
     }
 
     modifyTrackName(track: string = ''): string {
-        return (track.charAt(0).toLowerCase() + track.slice(1)).replace(/ /g,'')
+        return track.toLowerCase().replace(/ /g,'')
+        //(track.charAt(0).toLowerCase() + track.slice(1)).replace(/ /g,'')
     }
 
     render() {
+        console.log(this.props.users.filter(user=>user.role === roles.STARTUP_ROLE));
         return (
           <Container>
 
@@ -97,7 +99,11 @@ class ChallengePage extends Component<Props, State> {
 
 
               <h3>Your Startup Teams</h3>
-              <StartupList startUps={this.props.users.filter(user=>user.role === roles.STARTUP_ROLE).filter(startup=>((startup.startupFields || {}).talent || {}).track === this.modifyTrackName((this.props.challenge || {}).track))}/>
+              <StartupList startUps={this.props.users.filter(user=>user.role === roles.STARTUP_ROLE).filter(startup=>
+            //    this.modifyTrackName(((startup.startupFields || {}).talent || {}).track) === this.modifyTrackName((this.props.challenge || {}).track) ||
+              this.modifyTrackName((startup.startupFields || {}).track) === this.modifyTrackName((this.props.challenge || {}).track)
+              )
+              }/>
 
           </Container>
         )
