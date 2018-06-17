@@ -110,7 +110,7 @@ class MyTrackPage extends Component<Props, State> {
                       </Form>
                       <FormGroup className="mt-5" check>
                           <Label className="h4" check>
-                              <Input type="checkbox" checked={((this.props.userData || {}).startupFields ||{}).couldComeToLPD || false} onChange={this.onLpdClicked}/>
+                              <Input disabled type="checkbox" checked={((this.props.userData || {}).startupFields ||{}).couldComeToLPD || false} onChange={this.onLpdClicked}/>
                               We would come the Launch Pad Day.
                           </Label>
                       </FormGroup>
