@@ -105,7 +105,7 @@ class MyTrackPage extends Component<Props, State> {
                       <h3>Idea Description</h3>
                       <h4>[Submission Deadline Fri 10pm]</h4>
                       <Form onSubmit={this.onTextSubmit}>
-                          <Input onChange={(event)=>this.setState({...this.state, comment: event.target.value})} value={this.state.comment} placeholder='Input will be visible to track partner' type="textarea" rows="8"/>
+                          <Input disabled onChange={(event)=>this.setState({...this.state, comment: event.target.value})} value={this.state.comment} placeholder='Input will be visible to track partner' type="textarea" rows="8"/>
                           <Button disabled={(this.props.updatingUserState || {}).updating} className="float-right mt-3" type="submit">Save</Button>
                       </Form>
                       <FormGroup className="mt-5" check>
