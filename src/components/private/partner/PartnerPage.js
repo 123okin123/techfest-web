@@ -12,8 +12,8 @@ import {FileUpload, type Upload} from "../../common";
 
 
 type Props = {
-    +fetchInfoIfNeeded: ()=>Promise<void>,
-    +fetchPageIfNeeded: ()=>Promise<void>,
+    +fetchInfoIfNeeded: () => Promise<void>,
+    +fetchPageIfNeeded: () => Promise<void>,
     +userData: User,
     +isFetchingPage?: boolean,
     +response?: {
@@ -28,8 +28,6 @@ type Props = {
         }
     }
 }
-
-
 
 class PartnerPage extends Component<Props> {
 
@@ -66,7 +64,7 @@ class PartnerPage extends Component<Props> {
                       </div>
                   </Col>
               </Row>
-              {(this.props.userData.role === roles.TRACK_PARTNER_ROLE || this.props.userData.role === roles.TRACK_PARTNER_ROLE || this.props.userData.role === roles.ADMIN_ROLE) &&
+              {(this.props.userData.role === roles.TRACK_PARTNER_ROLE || this.props.userData.role === roles.CHALLENGE_PARTNER_ROLE || this.props.userData.role === roles.ADMIN_ROLE) &&
               <Row>
                   <Col md={4}>
                       <h3>TECHFEST 2018 Media - day 1</h3>

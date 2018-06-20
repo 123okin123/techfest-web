@@ -11,5 +11,5 @@ export const speakers = [{
     title: "Bülent Altan",
 },{
     imageURL: require('../assets/speakers/speaker-7.jpg'),
-    title: "Sonja Stucktei",
+    title: "Sonja Stuchtey",
 }];
