@@ -3,6 +3,7 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {Container, Alert, Row, Col, Button} from 'reactstrap';
 import {AvForm, AvField} from 'availity-reactstrap-validation'
+import URLSearchParams from 'url-search-params'
 
 type Props = {
     location: {search: string}

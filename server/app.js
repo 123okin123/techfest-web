@@ -9,7 +9,7 @@ const proxy = require('http-proxy-middleware');
 const app = express();
 
 
-let apiURI  = process.env.DEV_API_URI;
+let apiURI  = process.env.API_URI;
 if (process.env.NODE_ENV === 'production') {
   apiURI = process.env.API_URI;
   app.use((req, res, next) => {

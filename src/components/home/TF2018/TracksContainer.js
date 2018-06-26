@@ -2,9 +2,9 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
 import {Container, Row, Col, Button, Collapse, Nav, NavLink, NavItem, TabContent, TabPane} from 'reactstrap'
-import {Bracket} from '../common'
+import {Bracket} from '../../common/index'
 import {connect} from "react-redux";
-import {pageActions} from "../../actions/pageActions";
+import {pageActions} from "../../../actions/pageActions";
 import {ScaleLoader} from 'react-spinners';
 
 
@@ -104,64 +104,64 @@ class TracksContainer extends Component<Props, State> {
 
 
 
-        <Row>
-            <Col xs="12">
-                <Collapse isOpen={this.state.fadeIn}>
-                    <Nav tabs className="border-0">
-                        {this.props.response && this.props.response.acf && this.props.response.acf.tracks &&
-                        this.props.response.acf.tracks.map((track, index) =>
-                          <StyledNavItem key={index.toString()} className="text-center">
-                              <StyledNavLink
-                                className={this.state.activeTab === (index + 1).toString() ? 'active' : '' }
-                                onClick={() => { this.toggleTab((index + 1).toString()); }}
-                              >
-                                  {track.title === 'FLEXIBLE TRACK' ?
-                                    <p dangerouslySetInnerHTML={{__html: track.title}}/> : <p>TRACK {(index + 1).toString()}</p>
-                                  }
-                              </StyledNavLink>
-                          </StyledNavItem>
-                        )}
-                    </Nav>
+        {/*<Row>*/}
+            {/*<Col xs="12">*/}
+                {/*<Collapse isOpen={this.state.fadeIn}>*/}
+                    {/*<Nav tabs className="border-0">*/}
+                        {/*{this.props.response && this.props.response.acf && this.props.response.acf.tracks &&*/}
+                        {/*this.props.response.acf.tracks.map((track, index) =>*/}
+                          {/*<StyledNavItem key={index.toString()} className="text-center">*/}
+                              {/*<StyledNavLink*/}
+                                {/*className={this.state.activeTab === (index + 1).toString() ? 'active' : '' }*/}
+                                {/*onClick={() => { this.toggleTab((index + 1).toString()); }}*/}
+                              {/*>*/}
+                                  {/*{track.title === 'FLEXIBLE TRACK' ?*/}
+                                    {/*<p dangerouslySetInnerHTML={{__html: track.title}}/> : <p>TRACK {(index + 1).toString()}</p>*/}
+                                  {/*}*/}
+                              {/*</StyledNavLink>*/}
+                          {/*</StyledNavItem>*/}
+                        {/*)}*/}
+                    {/*</Nav>*/}
 
-                    <StyledTabContent activeTab={this.state.activeTab}>
-                        {this.props.trackResponse && this.props.trackResponse.acf && this.props.trackResponse.acf.challenge_descriptions &&
-                        this.props.trackResponse.acf.challenge_descriptions.map((track, index) =>
-                        <TabPane key={index.toString()} tabId={(index + 1).toString()}>
-                            <Row>
-                                <Col sm="12">
-                                    <div>
-                                        <div>
-                                            {this.props.response && this.props.response.acf && this.props.response.acf.tracks &&
-                                              this.props.response.acf.tracks[index] &&
-                                            <StyledDetailImg src={this.props.response.acf.tracks[index].icon}/>
-                                            }
-                                            <StyledTrackDetailH4>{track.track_title}</StyledTrackDetailH4>
-                                            {track.challenges &&
-                                            track.challenges.map((challenge, index) =>
-                                              <div key={index.toString()}>
-                                                  <h5 className="mt-4">{challenge.challenge_title}</h5>
-                                                  <p className="mb-0"><strong>{challenge.challenge_company}</strong></p>
-                                                  <div
-                                                    dangerouslySetInnerHTML={{__html: challenge.challenge_description}}/>
-                                              </div>
-                                            )}
-                                        </div>
-                                    </div>
-                                    {this.props.isTrackFetching &&
-                                    <LoaderContainer><ScaleLoader loading={this.props.isTrackFetching} height={20}
-                                                                  width={2}/></LoaderContainer>
-                                    }
-                                </Col>
-                            </Row>
-                        </TabPane>
-                        )}
-                    </StyledTabContent>
-                </Collapse>
-            </Col>
-            <Col xs="12" className="text-center">
-                <Button className="mt-4 " onClick={this.toggle}>{this.state.fadeIn ? 'HIDE CHALLENGES' : 'SHOW CHALLENGES'}</Button>
-            </Col>
-        </Row>
+                    {/*<StyledTabContent activeTab={this.state.activeTab}>*/}
+                        {/*{this.props.trackResponse && this.props.trackResponse.acf && this.props.trackResponse.acf.challenge_descriptions &&*/}
+                        {/*this.props.trackResponse.acf.challenge_descriptions.map((track, index) =>*/}
+                        {/*<TabPane key={index.toString()} tabId={(index + 1).toString()}>*/}
+                            {/*<Row>*/}
+                                {/*<Col sm="12">*/}
+                                    {/*<div>*/}
+                                        {/*<div>*/}
+                                            {/*{this.props.response && this.props.response.acf && this.props.response.acf.tracks &&*/}
+                                              {/*this.props.response.acf.tracks[index] &&*/}
+                                            {/*<StyledDetailImg src={this.props.response.acf.tracks[index].icon}/>*/}
+                                            {/*}*/}
+                                            {/*<StyledTrackDetailH4>{track.track_title}</StyledTrackDetailH4>*/}
+                                            {/*{track.challenges &&*/}
+                                            {/*track.challenges.map((challenge, index) =>*/}
+                                              {/*<div key={index.toString()}>*/}
+                                                  {/*<h5 className="mt-4">{challenge.challenge_title}</h5>*/}
+                                                  {/*<p className="mb-0"><strong>{challenge.challenge_company}</strong></p>*/}
+                                                  {/*<div*/}
+                                                    {/*dangerouslySetInnerHTML={{__html: challenge.challenge_description}}/>*/}
+                                              {/*</div>*/}
+                                            {/*)}*/}
+                                        {/*</div>*/}
+                                    {/*</div>*/}
+                                    {/*{this.props.isTrackFetching &&*/}
+                                    {/*<LoaderContainer><ScaleLoader loading={this.props.isTrackFetching} height={20}*/}
+                                                                  {/*width={2}/></LoaderContainer>*/}
+                                    {/*}*/}
+                                {/*</Col>*/}
+                            {/*</Row>*/}
+                        {/*</TabPane>*/}
+                        {/*)}*/}
+                    {/*</StyledTabContent>*/}
+                {/*</Collapse>*/}
+            {/*</Col>*/}
+            {/*<Col xs="12" className="text-center">*/}
+                {/*<Button className="mt-4 " onClick={this.toggle}>{this.state.fadeIn ? 'HIDE CHALLENGES' : 'SHOW CHALLENGES'}</Button>*/}
+            {/*</Col>*/}
+        {/*</Row>*/}
 
 
         <Row className="mt-5">
@@ -196,27 +196,27 @@ class TracksContainer extends Component<Props, State> {
         <Row className="my-5">
             <LineCol xs="12" lg="3" className="border-bottom border-dark"><LineColText>TECHFEST TECHNOLOGIES</LineColText></LineCol>
             <IndustryCol xs="12" lg="auto" className="p-0">
-                <StyledImg src={require('../../assets/icons/icon_IoT-network.png')}/>
+                <StyledImg src={require('../../../assets/icons/icon_IoT-network.png')}/>
                 <IndustryColText className="m-0">IOT</IndustryColText>
             </IndustryCol>
             <LineCol xs="12" lg="auto" className="border-bottom border-dark  d-none d-lg-block"> </LineCol>
             <IndustryCol xs="12" lg="auto" className="p-0">
-                <StyledImg src={require('../../assets/icons/icon_robotics_black.png')}/>
+                <StyledImg src={require('../../../assets/icons/icon_robotics_black.png')}/>
                 <IndustryColText className="m-0">ROBOTICS</IndustryColText>
             </IndustryCol>
             <LineCol xs="12" lg="auto" className="border-bottom border-dark  d-none d-lg-block"> </LineCol>
             <IndustryCol xs="12" lg="auto" className="p-0">
-                <StyledImg src={require('../../assets/icons/icon_blockchain_black.png')}/>
+                <StyledImg src={require('../../../assets/icons/icon_blockchain_black.png')}/>
                 <IndustryColText className="m-0">BLOCKCHAIN</IndustryColText>
             </IndustryCol>
             <LineCol xs="12" lg="auto" className="border-bottom border-dark  d-none d-lg-block"> </LineCol>
             <IndustryCol xs="12" lg="auto" className="p-0">
-                <StyledImg src={require('../../assets/icons/icon_AI_black.png')}/>
+                <StyledImg src={require('../../../assets/icons/icon_AI_black.png')}/>
                 <IndustryColText className="m-0">AI</IndustryColText>
             </IndustryCol>
             <LineCol xs="12" lg="auto" className="border-bottom border-dark  d-none d-lg-block"> </LineCol>
             <IndustryCol xs="12" lg="auto" className="p-0">
-                <StyledImg src={require('../../assets/icons/icon_Mixedreality_black.png')}/>
+                <StyledImg src={require('../../../assets/icons/icon_Mixedreality_black.png')}/>
                 <IndustryColText className="m-0">MIXED REALITY</IndustryColText>
             </IndustryCol>
             <LineCol className="border-bottom border-dark  d-none d-lg-block"> </LineCol>

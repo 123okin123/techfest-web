@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 
 import Navigation from './other/Navigation';
 import MemberNavigation from './other/MemberNavigation';
-import HomePage from './home/HomePage'
+import HomePage2018 from './home/TF2018/HomePage'
+import HomePage from './home/TF2019/HomePage'
 import ParticipantRegistration from './registration/register/ParticipantRegistration'
 import {Route, Switch} from 'react-router-dom'
 import Footer from './other/Footer'
@@ -43,6 +44,7 @@ class App extends Component<{}> {
       <RootComponent id="app-root">
           <Switch>
             <Route exact path="/" render={ () => <Navigation isFrontPage={true}/>}/>
+            <Route exact path="/2018" render={ () => <Navigation isFrontPage={true}/>}/>
             <Route exact path="/launchpad-day" render={ () => <Navigation isFrontPage={true}/>}/>
             <PrivateRoute path="/private" component={MemberNavigation}/>
             <Route path="/" render={() =><Navigation isFrontPage={false}/>}/>
@@ -77,6 +79,7 @@ class App extends Component<{}> {
 
                   {/*Public*/}
                   <Route exact path="/" component={HomePage}/>
+                  <Route path="/2018" component={HomePage2018}/>
                   <Route path="/imprint" render={() => (<Page title="Imprint" id='11'/>)}/>
                   <Route path="/privacy-policy" render={() => (<Page title="Privacy Policy" id='121'/>)}/>
                   <Route path="/terms-conditions" render={() => (<Page title="Terms & Conditions" id='211'/>)}/>

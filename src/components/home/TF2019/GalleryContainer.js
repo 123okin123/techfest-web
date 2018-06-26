@@ -1,7 +1,7 @@
 //@flow
 import React, {Component} from 'react'
 import styled from "styled-components";
-import {pageActions} from "../../actions/pageActions";
+import {pageActions} from "../../../actions/pageActions";
 import {connect} from 'react-redux'
 import {Container, Col, Row} from 'reactstrap'
 

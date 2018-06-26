@@ -1,6 +1,7 @@
 //@flow
 import React, {Component} from 'react'
 import {Container, Alert} from 'reactstrap';
+import URLSearchParams from 'url-search-params'
 
 type Props = {
     location: {search: string}

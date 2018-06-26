@@ -29,15 +29,14 @@ class HomeHeader extends Component<{},State> {
 
     render() { return (
         <Header>
-            <Background imgURL={require('../../assets/TF_WebsiteHeader_opt.jpg')}/>
+            <Background imgURL={require('../../../assets/TF_WebsiteHeader_opt.jpg')}/>
             <LineOverlay yPosition={- this.state.scrollY * 0.6}/>
             <Container>
                 <StyledRow className='align-items-center'>
                     <Col>
-                        <img style={{maxWidth: '100%', marginTop: '3.5em'}} width="550px"  src={require('../../assets/TechFest-Logo_gelb-1024x384.png')} alt="Techfest Logo"/>
+                        <img style={{maxWidth: '100%', marginTop: '3.5em'}} width="550px" src={require('../../../assets/TechFest-Logo_gelb-1024x384.png')} alt="Techfest Logo"/>
                         <Headline>MORE_THAN A HACKATHON</Headline>
                         <Date>June 14<sup>th</sup> - 17<sup>th</sup>, 2018</Date>
-                        <Button target="_blank" color="info" tag={Link} to="/register" className="rounded m-1">APPLY NOW</Button>
                         <HashTag>#TECHFESTMUNICH</HashTag>
                     </Col>
                 </StyledRow>

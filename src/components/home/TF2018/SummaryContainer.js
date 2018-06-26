@@ -3,7 +3,7 @@
 import React, {Component} from 'react'
 import styled from "styled-components";
 import {Container} from 'reactstrap'
-import {Bracket} from "../common";
+import {Bracket} from "../../common/index";
 import {connect} from "react-redux";
 
 type Props = {

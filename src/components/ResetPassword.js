@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import {Container, Row, Col, Button, Alert} from 'reactstrap'
 import {AvField, AvForm} from 'availity-reactstrap-validation'
 import {Link} from "react-router-dom";
+import URLSearchParams from 'url-search-params'
 
 type Props = {
     location: {search: string}
@@ -24,6 +25,7 @@ class ResetPassword extends Component<Props, State> {
 
     componentDidMount() {
         const search = this.props.location.search;
+
         const params = new URLSearchParams(search);
         const token = params.get('token');
         this.setState({token: token});
