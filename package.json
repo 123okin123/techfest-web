@@ -35,6 +35,7 @@
     "react-dropzone-s3-uploader": "^1.1.0",
     "react-form": "^3.2.2",
     "react-google-maps": "^9.4.5",
+    "react-image-gallery": "^0.8.9",
     "react-jsonschema-form": "^1.0.1",
     "react-jsonschema-form-layout": "^1.0.4",
     "react-popper": "^0.8.2",

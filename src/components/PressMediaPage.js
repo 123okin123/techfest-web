@@ -5,9 +5,10 @@ import {pageActions} from "../actions/pageActions";
 import {ScaleLoader} from 'react-spinners';
 import {Container, Col, Row} from 'reactstrap';
 import styled from 'styled-components';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import { faCloudDownloadAlt } from '@fortawesome/fontawesome-free-solid'
-import {Bracket, FileUpload} from "./common";
+import ImageGallery from 'react-image-gallery';
+import "react-image-gallery/styles/css/image-gallery.css";
+import "../../node_modules/react-image-gallery/styles/css/image-gallery.css";
+import {FileUpload} from './common'
 
 const PAGE_ID = '1681';
 
@@ -15,12 +16,17 @@ type Props = {
     response: {
         content?: {rendered?: string},
         acf?: {
-            uploads?:
-              Array<{
+            uploads?: Array<{
                 file: string,
                 name: string,
                 preview?: string
-            }>}
+            }>,
+            file_uploads?: Array<{
+                file: string,
+                name: string,
+                preview?: string
+            }>
+        }
     },
     isFetching: boolean,
     fetchPage: ()=>Promise<void>
@@ -35,19 +41,32 @@ class PressMediaPage extends Component<Props> {
     }
 
     render() {
-        return(
+        return (
           <Container className="container pt-5">
               <h1>Press & Media</h1>
-              <LoaderContainer><ScaleLoader loading={this.props.isFetching} height={20} width={2} /></LoaderContainer>
+              <LoaderContainer><ScaleLoader loading={this.props.isFetching} height={20} width={2}/></LoaderContainer>
               {this.props.response && this.props.response.content &&
-              <div className="pt-5 my-5 text-center" dangerouslySetInnerHTML={{__html: this.props.response.content.rendered}}/>
+              <div className="pt-5 my-5 text-center"
+                   dangerouslySetInnerHTML={{__html: this.props.response.content.rendered}}/>
               }
-              <div className="d-flex flex-wrap justify-content-center">
-              {this.props.response && this.props.response.acf && this.props.response.acf.uploads &&
-                  this.props.response.acf.uploads.map((e,i)=>
+              <div className="w-100">
+                  <h2 className="my-5">Images</h2>
+                  {this.props.response && this.props.response.acf && this.props.response.acf.uploads &&
+                  <ImageGallery items={this.props.response.acf.uploads.map(upload => {
+                      return {
+                          original: upload.file,
+                          thumbnail: upload.preview
+                      }
+                  })}/>
+                  }
+                  <h2 className="my-5">Files</h2>
+                  <div className="d-flex justify-content-center flex-wrap">
+                  {this.props.response && this.props.response.acf && this.props.response.acf.file_uploads &&
+                  this.props.response.acf.file_uploads.map((e, i) =>
                     <FileUpload width='300px' key={i.toString()} upload={e}/>
                   )
-              }
+                  }
+                  </div>
               </div>
           </Container>
         )
