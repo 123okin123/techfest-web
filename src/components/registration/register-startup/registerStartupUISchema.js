@@ -1,5 +1,5 @@
 //@flow
-import {TextWidget, TermsAndConditions, FileWidget, NeedsTransport} from '../registrationWidgets'
+import {TextWidget, TermsAndConditions, FileWidget, NeedsTransport} from './registrationWidgets'
 
 const uiSchema =  {
     firstName: {"ui:widget": TextWidget,"ui:options": {autoComplete: 'given-name'}},

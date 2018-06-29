@@ -25,8 +25,8 @@ class LaunchPadDayPage extends Component<Props> {
               <LPDLocation/>
               <LPDUSP/>
               <LPDIncubation/>
-              <LPDHowToParticipate/>
-              <LPDTimeline/>
+              {/*<LPDHowToParticipate/>*/}
+              {/*<LPDTimeline/>*/}
           </div>
         )
     }

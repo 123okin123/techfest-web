@@ -36,7 +36,8 @@ class HomeHeader extends Component<{},State> {
                     <Col>
                         <img style={{maxWidth: '100%', marginTop: '3.5em'}} width="550px" src={require('../../../assets/TechFest-Logo_gelb-1024x384.png')} alt="Techfest Logo"/>
                         <Headline>MORE_THAN A HACKATHON</Headline>
-                        <Date>June 14<sup>th</sup> - 17<sup>th</sup>, 2018</Date>
+                        <Date>THIS WAS TECHFEST MUNICH 2018</Date>
+                        {/*<Date>June 14<sup>th</sup> - 17<sup>th</sup>, 2018</Date>*/}
                         <HashTag>#TECHFESTMUNICH</HashTag>
                     </Col>
                 </StyledRow>

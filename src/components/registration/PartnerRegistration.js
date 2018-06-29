@@ -9,7 +9,7 @@ import {Alert, Button} from 'reactstrap';
 import LayoutField from "react-jsonschema-form-layout";
 import {connect} from "react-redux";
 import {userActions} from "../../actions/index";
-import {TextWidget} from "./registrationWidgets";
+import {TextWidget} from "./register-startup/registrationWidgets";
 
 const schema = {
     type: "object",
@@ -152,7 +152,7 @@ class PartnerRegistration extends Component<Props, State> {
     render() {
         return (
             <StyledContainer className="p-md-5">
-                <h1>CALL FOR PARTNERS 2018</h1>
+                <h1>CALL FOR PARTNERS 2019</h1>
                 <p>TECHFEST is what it is because of its participants and partners. Over the course of the last years we have had incredible experiences with companies and their employees during TECHFEST. The partners of TECHFEST are some of the largest companies around (Osram, SAP, Google, Infineon, Wacker, Würth, Rhode&Schwarz, Knorr Bremse, Magna, Stihl, Hawe). If you want to join TECHFEST as a partner, this is the place to get in touch with us.</p>
                 {!(this.props.registrationSuccess === true) &&
                 <Form schema={this.state.form.schema}

@@ -36,7 +36,7 @@ class HomeHeader extends Component<{},State> {
                     <Col>
                         <img style={{maxWidth: '100%', marginTop: '3.5em'}} width="550px" src={require('../../../assets/TechFest-Logo_gelb-1024x384.png')} alt="Techfest Logo"/>
                         <Date>2019</Date>
-                        <StyledButton target="_blank" color="info" tag={Link} to="/register" className="rounded m-1">Waiting List</StyledButton>
+                        <StyledButton target="_blank" color="info" tag={Link} to="/waitinglist" className="rounded m-1">Waiting List</StyledButton>
                         <StyledButton target="_blank" color="info" tag={Link} to="/register-partner" className="rounded m-1">Become a Partner</StyledButton>
                         <HashTag>#TECHFESTMUNICH</HashTag>
                     </Col>

@@ -4,7 +4,7 @@ import {NavHashLink as NavLink} from 'react-router-hash-link';
 import {Link} from 'react-router-dom'
 import {Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem} from 'reactstrap';
 import styled from 'styled-components'
-import {userActions} from "../../actions";
+import {userActions} from "../../actions/index";
 import {connect} from "react-redux";
 
 
@@ -100,7 +100,7 @@ class Navigation extends Component<Props, State> {
                           </StyledNavItem>
                           {!this.props.loggedIn &&
                           <StyledNavItem>
-                              <StyledNavLink target="_blank" to="/register" isFrontPage={this.props.isFrontPage}
+                              <StyledNavLink target="_blank" to="/waitinglist" isFrontPage={this.props.isFrontPage}
                                              isTop={this.state.isTop}>Waiting List</StyledNavLink>
                           </StyledNavItem>
                           }
@@ -109,7 +109,7 @@ class Navigation extends Component<Props, State> {
                               <StyledNavLink to="/private" isFrontPage={this.props.isFrontPage}
                                              isTop={this.state.isTop}>Member Area</StyledNavLink>
                           </StyledNavItem>}
-                          {LoginComponent}
+                          {/*{LoginComponent}*/}
                       </Nav>
                   </Collapse>
               </StyledNavBar>

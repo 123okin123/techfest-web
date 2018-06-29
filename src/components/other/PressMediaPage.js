@@ -1,14 +1,14 @@
 //@flow
 import React, {Component} from 'react'
 import {connect} from "react-redux";
-import {pageActions} from "../actions/pageActions";
+import {pageActions} from "../../actions/pageActions";
 import {ScaleLoader} from 'react-spinners';
 import {Container, Col, Row} from 'reactstrap';
 import styled from 'styled-components';
 import ImageGallery from 'react-image-gallery';
 import "react-image-gallery/styles/css/image-gallery.css";
-import "../../node_modules/react-image-gallery/styles/css/image-gallery.css";
-import {FileUpload} from './common'
+import "../../../node_modules/react-image-gallery/styles/css/image-gallery.css";
+import {FileUpload} from '../common'
 
 const PAGE_ID = '1681';
 
@@ -50,7 +50,7 @@ class PressMediaPage extends Component<Props> {
                    dangerouslySetInnerHTML={{__html: this.props.response.content.rendered}}/>
               }
               <div className="w-100">
-                  <h2 className="my-5">Images</h2>
+                  <h2 className="my-5">Images TECHFEST Munich 2018</h2>
                   {this.props.response && this.props.response.acf && this.props.response.acf.uploads &&
                   <ImageGallery items={this.props.response.acf.uploads.map(upload => {
                       return {

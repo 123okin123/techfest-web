@@ -39,7 +39,7 @@ class HomePage extends Component<{}> {
               <section id="tracks">
                   <Container>
                       <Heading imageURL={require('../../../assets/icons/icon_challenge-mountain_black.png')}
-                               title="THE TRACKS" subtitle="START CREATING IN ONE OF THIS YEAR'S TECHNOLOGY TRACKS"/>
+                               title="THE TRACKS 2018" subtitle="START CREATING IN ONE OF THIS YEAR'S TECHNOLOGY TRACKS"/>
                       <ChallengeContainer/>
                   </Container>
               </section>
@@ -56,7 +56,7 @@ class HomePage extends Component<{}> {
               <section id="speakers">
                   <Container>
                       <Heading imageURL={require('../../../assets/icons/icon_speakers-megafon_black.png')}
-                               title="OUR SPEAKERS" subtitle="TECH COMPETENCE - AT YOUR HANDS"/>
+                               title="OUR SPEAKERS 2018" subtitle="TECH COMPETENCE - AT YOUR HANDS"/>
                       <ImageGrid justifyContent="space-between" backAndWhite imageWidth={'180px'} elementWidth={'450px'}
                                  elementHeight={'180px'} elementMargin={'20px 0px'} elements={speakers}/>
                   </Container>

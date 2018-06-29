@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
 import {Collapse, Navbar, NavbarToggler, NavbarBrand, Nav} from 'reactstrap';
 import styled from 'styled-components'
-import {userActions} from "../../actions";
+import {userActions} from "../../actions/index";
 import {connect} from "react-redux";
-import PrivateNavItem from "../other/PrivateNavItem";
+import PrivateNavItem from "./PrivateNavItem";
 import {roles, allPartnerRoles} from "../../constants/userConstants";
 
 

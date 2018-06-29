@@ -35,7 +35,7 @@ class HomeHeader extends Component<{},State> {
               <StyledRow className='align-items-center'>
                   <Col>
                       <img style={{maxWidth: '100%', marginTop: '3.5em'}} width="550px"  src={require('../../assets/logo_utum_launchpad-day_white.png')} alt="Techfest Logo"/>
-                      <Date>Monday, June 18<sup>th</sup>, 2018</Date>
+                      {/*<Date>Monday, June 18<sup>th</sup>, 2018</Date>*/}
                       <HashTag>AT LAKE WÖRTHSEE</HashTag>
                   </Col>
               </StyledRow>

@@ -7,13 +7,13 @@ import {Label, Container, Row, Col, Button, Alert, FormGroup} from 'reactstrap'
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 //$FlowFixMe
-import {countryList} from "../../../helpers";
+import {countryList} from "../../helpers/index";
 import { ScaleLoader } from 'react-spinners';
-import {getCookie} from "../../../helpers/session";
+import {getCookie} from "../../helpers/session";
 import DropzoneS3Uploader from 'react-dropzone-s3-uploader'
-import {userActions} from '../../../actions'
-import {type User} from '../../../constants'
-import {pageActions} from "../../../actions/pageActions";
+import {userActions} from '../../actions/index'
+import {type User} from '../../constants/index'
+import {pageActions} from "../../actions/pageActions";
 
 
 
@@ -142,9 +142,7 @@ class ParticipantRegistration extends Component<Props, State> {
         } else if (e.target.value === 'false') {
             value = false;
         }
-        
         let field = {[array[array.length - 1]]: value};
-
         array.reverse().forEach((e, i)=>{
             if (i > 0) {
                 field = {[e]: field}

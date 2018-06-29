@@ -24,8 +24,8 @@ class PartnersContainer extends Component<Props> {
     render() {return (
     <div>
     <FlexContainer>
-        <Heading imageURL={require('../../../assets/icons/icon_partners-handshake_black.png')} title="OUR PARTNERS" subtitle="WORLD-LEADING TECHNOLOGY PARTNERS AND MORE"/>
-        <Button target="_blank" className="mb-3" tag={Link} to="/register-partner" color="primary">BECOME A PARTNER</Button>
+        <Heading imageURL={require('../../../assets/icons/icon_partners-handshake_black.png')} title="OUR PARTNERS 2018" subtitle="WORLD-LEADING TECHNOLOGY PARTNERS AND MORE"/>
+        {/*<Button target="_blank" className="mb-3" tag={Link} to="/register-partner" color="primary">BECOME A PARTNER</Button>*/}
     </FlexContainer>
     <PartnerContainer>
         {this.props.response && this.props.response.acf && this.props.response.acf.trackPartners &&

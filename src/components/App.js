@@ -1,33 +1,33 @@
 //@flow
 import React, { Component } from 'react';
 
-import Navigation from './other/Navigation';
-import MemberNavigation from './other/MemberNavigation';
+import Navigation from './navigation/Navigation';
+import MemberNavigation from './navigation/MemberNavigation';
 import HomePage2018 from './home/TF2018/HomePage'
 import HomePage from './home/TF2019/HomePage'
-import ParticipantRegistration from './registration/register/ParticipantRegistration'
+import ParticipantRegistration from './registration/ParticipantRegistration'
 import {Route, Switch} from 'react-router-dom'
 import Footer from './other/Footer'
 import NotFoundPage from "./other/NotFoundPage";
-import Page from './Page';
+import Page from './other/Page';
 import PartnerRegistration from './registration/PartnerRegistration';
-import PressMediaPage from './PressMediaPage';
-import VerifyNewsletterPage from './VerifyNewsletterPage';
+import PressMediaPage from './other/PressMediaPage';
+import VerifyNewsletterPage from './other/VerifyNewsletterPage';
 import styled from 'styled-components';
-import LoginPage from './LoginPage';
-import PrivateRoute from "./other/PrivateRoute";
+import LoginPage from './other/LoginPage';
+import PrivateRoute from "./navigation/PrivateRoute";
 import RegisterStartupPage from "./registration/register-startup/RegisterStartupPage";
 import RegisterStartPage from "./registration/RegisterStartPage";
 import PreEventPage from './private/participants/ParticipantPage';
-import VerifyRegistrationPage from "./VerifyRegistrationPage";
+import VerifyRegistrationPage from "./other/VerifyRegistrationPage";
 import {roles, allPartnerRoles} from '../constants/userConstants';
 import PartnerPage from "./private/partner/PartnerPage";
 import MemberAreaPage from './private/MemberAreaPage';
 import JobPage from './private/participants/JobPage';
 import PostJobPage from './private/partner/postJob/PostJobPage';
 import AdvisorPage from './private/partner/advisorRegistration/AdvisorPage';
-import ForgotPassword from './ForgotPassword';
-import ResetPassword from './ResetPassword'
+import ForgotPassword from './other/ForgotPassword';
+import ResetPassword from './other/ResetPassword'
 import AddMentorPage from './private/partner/mentorRegistration/AddMentorPage'
 import GuestRegistrationPage from './private/partner/guestRegistration/GuestRegistrationPage'
 import LaunchPadDayPage from './launchPadDay/LaunchPadDayPage'
@@ -36,8 +36,9 @@ import ChallengePage from './private/partner/challenge/ChallengePage'
 import MyChallengePage from './private/participants/MyChallenge/MyChallengePage'
 import MyTrackPage from './private/participants/MyTrack/MyTrackPage'
 import MentorPage from './private/participants/MentorPage'
-import SpecialTermsConditionPage from './SpecialTermsConditionPage'
+import SpecialTermsConditionPage from './other/SpecialTermsConditionPage'
 import CrewPage from './private/CrewPage'
+import WaitingListPage from "./registration/WaitingListPage";
 
 class App extends Component<{}> {
     render() { return (
@@ -93,6 +94,7 @@ class App extends Component<{}> {
                   <Route path="/forgot-password" component={ForgotPassword}/>
                   <Route path="/reset-password" component={ResetPassword}/>
                   <Route path="/launchpad-day" component={LaunchPadDayPage}/>
+                  <Route path="/waitinglist" component={WaitingListPage}/>
 
                   <Route path="/accept-terms-conditions" component={SpecialTermsConditionPage}/>
 

@@ -2,7 +2,7 @@
 
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { userActions } from '../actions/index';
+import { userActions } from '../../actions/index';
 import {Col, Row, Container, Button, Alert} from 'reactstrap';
 import {AvForm, AvField} from 'availity-reactstrap-validation'
 import { Redirect } from 'react-router-dom';

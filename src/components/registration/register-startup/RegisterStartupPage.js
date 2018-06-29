@@ -9,7 +9,7 @@ import styled from 'styled-components';
 import { ScaleLoader } from 'react-spinners';
 import schema from './registerStartupSchema';
 import uiSchema from './registerStartupUISchema';
-import {uploadFiles} from '../registrationWidgets';
+import {uploadFiles} from './registrationWidgets';
 
 //$FlowFixMe
 
