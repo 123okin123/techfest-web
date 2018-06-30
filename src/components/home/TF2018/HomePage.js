@@ -14,11 +14,37 @@ import SummaryContainer from './SummaryContainer'
 import FAQs from './FAQs'
 import {ImageGrid} from "../../common/index";
 import {speakers} from "../../../helpers/index";
+import {pageActions} from "../../../actions/pageActions";
+import {connect} from "react-redux";
+import ImageGallery from 'react-image-gallery';
 
 
-class HomePage extends Component<{}> {
-    componentWillMount() {
+type Props = {
+    fetchPage: ()=>Promise<void>,
+    fetchImages: ()=>Promise<void>,
+    response: {
+        content?: {rendered?: string},
+        acf?: {
+            uploads?: Array<{
+                file: string,
+                name: string,
+                preview?: string
+            }>
+        }
+    },
+    isFetching: boolean,
+};
 
+
+const PAGE_ID = '241';
+class HomePage extends Component<Props> {
+    componentDidMount() {
+        this.props.fetchPage();
+        this.props.fetchImages();
+    }
+    componentDidUpdate() {
+        this.props.fetchPage();
+        this.props.fetchImages();
     }
 
     render() {
@@ -30,6 +56,18 @@ class HomePage extends Component<{}> {
               </section>
               <section id="video">
                   <VideoContainer/>
+              </section>
+              <section id="gallery">
+                  <Container>
+                  {this.props.response && this.props.response.acf && this.props.response.acf.uploads &&
+                  <ImageGallery items={this.props.response.acf.uploads.map(upload => {
+                      return {
+                          original: upload.file,
+                          thumbnail: upload.preview
+                      }
+                  })}/>
+                  }
+                  </Container>
               </section>
               <section id="usps">
                   <Container>
@@ -75,10 +113,26 @@ class HomePage extends Component<{}> {
         );
     }
 }
+const mapStateToProps = (state, ownProps) => {
+    const {response, isFetching} = state.pages['1681'] || {response: {content: {rendered: ''}},isFetching: true};
+    return {
+        response,
+        isFetching
+    }
+};
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        fetchPage: () => {
+            return dispatch(pageActions.fetchPageIfNeeded(PAGE_ID))
+        },
+        fetchImages: () => {
+            return dispatch(pageActions.fetchPageIfNeeded('1681'))
+        }
+    }
+};
 
 
 
 
 
-
-export default HomePage
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
