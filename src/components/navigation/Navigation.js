@@ -106,7 +106,7 @@ class Navigation extends Component<Props, State> {
                           }
                           {this.props.loggedIn &&
                           <StyledNavItem>
-                              <StyledNavLink to="/private" isFrontPage={this.props.isFrontPage}
+                              <StyledNavLink to="/private/waitinglist" isFrontPage={this.props.isFrontPage}
                                              isTop={this.state.isTop}>Member Area</StyledNavLink>
                           </StyledNavItem>}
                           {/*{LoginComponent}*/}
