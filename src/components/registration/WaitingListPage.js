@@ -2,12 +2,12 @@
 import React, {Component} from 'react'
 import {Container, Row, Col, Button, FormGroup, Alert} from 'reactstrap'
 import {AvForm, AvField} from 'availity-reactstrap-validation'
-import {AvFieldParser} from "./AvFieldParser";
+import {AvFieldParser} from "../common/AvFieldParser";
 import {ScaleLoader} from 'react-spinners'
 import {userActions} from "../../actions";
 import {connect} from "react-redux";
 import styled from "styled-components";
-
+import {Link} from "react-router-dom"
 
 type State = {
     formData: {
@@ -66,6 +66,8 @@ class WaitingListPage extends Component<Props, State> {
     return (
       <StyledContainer>
           <h1  className="mb-5">WAITINGLIST TECHFEST MUNICH 2019</h1>
+          <p className="mb-3">Already have an TECHFEST 2018 account? Login <Link to="/private/waitinglist">here</Link> for signing up on the waiting list of TECHFEST 2019.</p>
+
           {!(this.props.registrationSuccess === true) &&
           <AvForm onChange={this.onChange} onSubmit={this.onSubmit} onValidSubmit={this.onValidSubmit}>
               <Row>

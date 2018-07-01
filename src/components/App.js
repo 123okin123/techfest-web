@@ -39,6 +39,8 @@ import MentorPage from './private/participants/MentorPage'
 import SpecialTermsConditionPage from './other/SpecialTermsConditionPage'
 import CrewPage from './private/CrewPage'
 import WaitingListPage from "./registration/WaitingListPage";
+import PrivateWaitingListPage from "./private/participants/PrivateWaitingListPage"
+
 
 class App extends Component<{}> {
     render() { return (
@@ -62,19 +64,18 @@ class App extends Component<{}> {
                   {/*Private Partner*/}
                   <PrivateRoute path="/private/partner" permittedRoles={[roles.ADMIN_ROLE, roles.MENTOR_ROLE, roles.SUPERVISOR_ROLE].concat(allPartnerRoles)} component={PartnerPage}/>
                   <PrivateRoute path="/private/post-job" permittedRoles={[roles.ADMIN_ROLE, roles.TRACK_PARTNER_ROLE]} permittedEmails={["wuerth@techfestmunich.com"]} component={PostJobPage}/>
-                  <PrivateRoute path="/private/register-advisor" permittedRoles={[roles.ADMIN_ROLE, roles.CHALLENGE_PARTNER_ROLE, roles.TRACK_PARTNER_ROLE]} component={AdvisorPage}/>
-                  <PrivateRoute path="/private/register-mentor" permittedRoles={[roles.ADMIN_ROLE, ...allPartnerRoles]} component={AddMentorPage}/>
-                  <PrivateRoute path="/private/register-guest" permittedRoles={[roles.ADMIN_ROLE, ...allPartnerRoles]} component={GuestRegistrationPage}/>
-                  <PrivateRoute path="/private/register-lpd-guest" permittedRoles={[roles.ADMIN_ROLE, ...allPartnerRoles]} component={LPDGuestRegistrationPage}/>
-                  <PrivateRoute path="/private/partner-challenge" permittedRoles={[roles.ADMIN_ROLE, roles.TRACK_PARTNER_ROLE, roles.CHALLENGE_PARTNER_ROLE]} component={ChallengePage}/>
+                  {/*<PrivateRoute path="/private/register-advisor" permittedRoles={[roles.ADMIN_ROLE, roles.CHALLENGE_PARTNER_ROLE, roles.TRACK_PARTNER_ROLE]} component={AdvisorPage}/>*/}
+                  {/*<PrivateRoute path="/private/register-mentor" permittedRoles={[roles.ADMIN_ROLE, ...allPartnerRoles]} component={AddMentorPage}/>*/}
+                  {/*<PrivateRoute path="/private/register-guest" permittedRoles={[roles.ADMIN_ROLE, ...allPartnerRoles]} component={GuestRegistrationPage}/>*/}
+                  {/*<PrivateRoute path="/private/register-lpd-guest" permittedRoles={[roles.ADMIN_ROLE, ...allPartnerRoles]} component={LPDGuestRegistrationPage}/>*/}
+                  {/*<PrivateRoute path="/private/partner-challenge" permittedRoles={[roles.ADMIN_ROLE, roles.TRACK_PARTNER_ROLE, roles.CHALLENGE_PARTNER_ROLE]} component={ChallengePage}/>*/}
 
 
                   {/*Private Participants & Start-ups*/}
-                  <PrivateRoute path="/private/member-area" permittedRoles={[roles.ADMIN_ROLE, roles.STARTUP_ROLE, roles.PARTICIPANT_ROLE, roles.MENTOR_ROLE, roles.SUPERVISOR_ROLE]} component={PreEventPage}/>
-                  <PrivateRoute path="/private/my-challenge" permittedRoles={[roles.ADMIN_ROLE, roles.PARTICIPANT_ROLE]} component={MyChallengePage}/>
-                  <PrivateRoute path="/private/my-track" permittedRoles={[roles.ADMIN_ROLE, roles.STARTUP_ROLE]} component={MyTrackPage}/>
-                  <PrivateRoute path="/private/mentors" permittedRoles={[roles.ADMIN_ROLE, roles.STARTUP_ROLE, roles.PARTICIPANT_ROLE, roles.MENTOR_ROLE, roles.SUPERVISOR_ROLE]} component={MentorPage}/>
-
+                  {/*<PrivateRoute path="/private/my-challenge" permittedRoles={[roles.ADMIN_ROLE, roles.PARTICIPANT_ROLE]} component={MyChallengePage}/>*/}
+                  {/*<PrivateRoute path="/private/my-track" permittedRoles={[roles.ADMIN_ROLE, roles.STARTUP_ROLE]} component={MyTrackPage}/>*/}
+                  {/*<PrivateRoute path="/private/mentors" permittedRoles={[roles.ADMIN_ROLE, roles.STARTUP_ROLE, roles.PARTICIPANT_ROLE, roles.MENTOR_ROLE, roles.SUPERVISOR_ROLE]} component={MentorPage}/>*/}
+                  <PrivateRoute path="/private/waitinglist" permittedRoles={[roles.ADMIN_ROLE, roles.STARTUP_ROLE, roles.PARTICIPANT_ROLE]} component={PrivateWaitingListPage}/>
 
 
 
