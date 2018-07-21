@@ -5,9 +5,6 @@ import HomeHeader from './HomeHeader'
 import {Heading} from "../../common/index";
 import USPContainer from "./USPContainer";
 import ChallengeContainer from '../TF2018/TracksContainer'
-import ContactContainer from '../TF2019/ContactContainer'
-import PartnersContainer from './PartnersContainer'
-import GalleryContainer from '../TF2019/GalleryContainer'
 import TimelineContainer from './TimelineContainer'
 import VideoContainer from './VideoContainer'
 import SummaryContainer from './SummaryContainer'
@@ -80,9 +77,6 @@ class HomePage extends Component<Props> {
                                title="THE TRACKS 2018" subtitle="START CREATING IN ONE OF THIS YEAR'S TECHNOLOGY TRACKS"/>
                       <ChallengeContainer/>
                   </Container>
-              </section>
-              <section id="partners">
-                  <PartnersContainer/>
               </section>
               <section id="timeline">
                   <Container>

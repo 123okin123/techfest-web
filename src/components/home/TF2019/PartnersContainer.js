@@ -31,37 +31,37 @@ class PartnersContainer extends Component<Props> {
         {this.props.response && this.props.response.acf && this.props.response.acf.trackPartners &&
         <div>
         <Container><PartnerSubTitle>Our track partners</PartnerSubTitle> </Container>
-        <ImageGrid containImage leftRightInset="20px" imageWidth={'100%'} elementWidth={'340px'} elementHeight={'200px'} elementMargin={'20px 20px'} elements={this.props.response.acf.trackPartners}/>
+        <ImageGrid containImage leftRightInset="0px" imageWidth={'100%'} elementWidth={'210px'} elementHeight={'130px'} elementMargin={'20px 10px'} elements={this.props.response.acf.trackPartners}/>
         </div>}
 
         {this.props.response && this.props.response.acf && this.props.response.acf.challengePartners &&
         <div>
         <Container><PartnerSubTitle>Our challenge partners</PartnerSubTitle> </Container>
-        <ImageGrid containImage leftRightInset="20px" imageWidth={'100%'} elementWidth={'280px'} elementHeight={'130px'} elementMargin={'20px 20px'} elements={this.props.response.acf.challengePartners}/>
+        <ImageGrid containImage leftRightInset="0px" imageWidth={'100%'} elementWidth={'210px'} elementHeight={'80px'} elementMargin={'20px 10px'} elements={this.props.response.acf.challengePartners}/>
         </div>}
 
         {this.props.response && this.props.response.acf && this.props.response.acf.technologyPartners &&
         <div>
         <Container><PartnerSubTitle>Our technology partners</PartnerSubTitle> </Container>
-        <ImageGrid containImage leftRightInset="20px" imageWidth={'100%'} elementWidth={'200px'} elementHeight={'110px'} elementMargin={'20px 20px'} elements={this.props.response.acf.technologyPartners}/>
+        <ImageGrid containImage leftRightInset="0px" imageWidth={'100%'} elementWidth={'200px'} elementHeight={'80px'} elementMargin={'20px 10px'} elements={this.props.response.acf.technologyPartners}/>
         </div>}
 
         {this.props.response && this.props.response.acf && this.props.response.acf.ecosystemPartners &&
         <div>
         <Container><PartnerSubTitle>Our ecosystem partners</PartnerSubTitle> </Container>
-        <ImageGrid containImage leftRightInset="20px" imageWidth={'100%'} elementWidth={'190px'} elementHeight={'110px'} elementMargin={'20px 20px'} elements={this.props.response.acf.ecosystemPartners}/>
+        <ImageGrid containImage leftRightInset="0px" imageWidth={'100%'} elementWidth={'190px'} elementHeight={'80px'} elementMargin={'20px 10px'} elements={this.props.response.acf.ecosystemPartners}/>
         </div>}
 
         {this.props.response && this.props.response.acf && this.props.response.acf.mediaPartners &&
         <div>
             <Container><PartnerSubTitle>Our media partners</PartnerSubTitle> </Container>
-            <ImageGrid containImage leftRightInset="20px" imageWidth={'100%'} elementWidth={'190px'} elementHeight={'110px'} elementMargin={'20px 20px'} elements={this.props.response.acf.mediaPartners}/>
+            <ImageGrid containImage leftRightInset="0px" imageWidth={'100%'} elementWidth={'190px'} elementHeight={'80px'} elementMargin={'20px 10px'} elements={this.props.response.acf.mediaPartners}/>
         </div>}
 
         {this.props.response && this.props.response.acf && this.props.response.acf.supportPartners &&
         <div>
             <Container><PartnerSubTitle>Our support partners</PartnerSubTitle> </Container>
-            <ImageGrid containImage leftRightInset="20px" imageWidth={'100%'} elementWidth={'190px'} elementHeight={'110px'} elementMargin={'20px 20px'} elements={this.props.response.acf.supportPartners}/>
+            <ImageGrid containImage leftRightInset="0px" imageWidth={'100%'} elementWidth={'190px'} elementHeight={'80px'} elementMargin={'20px 10px'} elements={this.props.response.acf.supportPartners}/>
         </div>}
 
     </PartnerContainer>

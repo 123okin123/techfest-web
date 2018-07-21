@@ -1,5 +1,5 @@
 //@flow
-import React from 'react'
+import * as React from 'react'
 import styled from 'styled-components'
 import {Bracket} from './'
 
@@ -15,7 +15,7 @@ type Props = {
     leftRightInset?: string,
     elements: Array<{
         imageURL: string,
-        title?: string,
+        title?: string | React.Element<'a'>,
         url?: string,
         description?: string,
         extraDescription?: string

@@ -3,18 +3,10 @@ import React, {Component} from 'react'
 import {Container} from 'reactstrap'
 import HomeHeader from './HomeHeader'
 import {Heading} from "../../common/index";
-import USPContainer from "../TF2018/USPContainer";
-import ChallengeContainer from './TracksContainer'
 import ContactContainer from './ContactContainer'
-import PartnersContainer from '../TF2018/PartnersContainer'
 import GalleryContainer from './GalleryContainer'
-import TimelineContainer from '../TF2018/TimelineContainer'
-import VideoContainer from '../TF2018/VideoContainer'
-import SummaryContainer from '../TF2018/SummaryContainer'
-import FAQs from '../TF2018/FAQs'
-import {ImageGrid} from "../../common/index";
-import {speakers} from "../../../helpers/index";
-
+import TeaserContainer from './TeaserContainer'
+import PartnersContainer from './PartnersContainer'
 
 class HomePage extends Component<{}> {
     componentWillMount() {
@@ -37,6 +29,14 @@ class HomePage extends Component<{}> {
                       <Heading title="GALLERY" subtitle="SOME IMPRESSIONS OF THE TECHFEST MUNICH"/>
                   </Container>
                   <GalleryContainer/>
+              </section>
+              <section id="teaser">
+                  <Container>
+                    <TeaserContainer/>
+                  </Container>
+              </section>
+              <section id="partners">
+                  <PartnersContainer/>
               </section>
               <section id="contact">
                   <Container>
