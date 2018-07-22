@@ -6,7 +6,7 @@ import {Heading} from "../../common/index";
 import USPContainer from "./USPContainer";
 import ChallengeContainer from '../TF2018/TracksContainer'
 import TimelineContainer from './TimelineContainer'
-import VideoContainer from './VideoContainer'
+import VideoContainer from '../../common/VideoContainer'
 import SummaryContainer from './SummaryContainer'
 import FAQs from './FAQs'
 import {ImageGrid} from "../../common/index";
@@ -52,7 +52,7 @@ class HomePage extends Component<Props> {
                   <SummaryContainer/>
               </section>
               <section id="video">
-                  <VideoContainer/>
+                  <VideoContainer videoURL={require('../../../assets/MASTER TF_2018_3.mp4')} posterURL={require('../../../assets/video_poster.jpg')}/>
               </section>
               <section id="gallery">
                   <Container>

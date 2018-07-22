@@ -4,8 +4,8 @@ import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 
 const TeaserContainer = () => <Row>
-    <StyledCol lg={6} img={require('../../../assets/lpd_header.jpg')}><StyledLink to={'/2018'}>TECHFEST MUNICH 2018</StyledLink></StyledCol>
-    <StyledCol lg={6} img={require('../../../assets/lpd_header.jpg')}><StyledLink to={'/launchpad-day'}>What´s happened next?</StyledLink></StyledCol>
+    <StyledCol lg={6} img={require('../../../assets/images/techfest.jpg')}><StyledLink to={'/2018'}>TECHFEST MUNICH 2018</StyledLink></StyledCol>
+    <StyledCol lg={6} img={require('../../../assets/images/lpd.jpg')}><StyledLink to={'/launchpad-day'}>What´s happened next?</StyledLink></StyledCol>
 </Row>;
 
 
