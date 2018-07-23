@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 
 import Navigation from './navigation/Navigation';
 import MemberNavigation from './navigation/MemberNavigation';
-import HomePage2018 from './home/TF2018/HomePage'
-import HomePage from './home/TF2019/HomePage'
+import HomePage2018 from './TF2018/HomePage'
+import HomePage from './home/HomePage'
 import ParticipantRegistration from './registration/ParticipantRegistration'
 import {Route, Switch} from 'react-router-dom'
 import Footer from './other/Footer'

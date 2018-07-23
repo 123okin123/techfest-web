@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 import {Button, Row, Col, Alert} from 'reactstrap'
 import { AvForm, AvField } from 'availity-reactstrap-validation';
 import {connect} from "react-redux";
-import {contactActions} from "../../../actions/contactActions";
+import {contactActions} from "../../actions/contactActions";
 import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 import styled from 'styled-components';
 

@@ -2,7 +2,7 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
 import {Container, Row, Col } from 'reactstrap'
-import {Bracket} from '../../common/index'
+import {Bracket} from '../common/index'
 
 type Props = {
 
@@ -38,7 +38,7 @@ class USPContainer extends Component<Props, State> {
             <Col xs="12" lg="4" className="py-3">
                 <FlexContainer id="usp-title-1" className="mb-4">
                     <Bracket/>
-                    <HeaderLogo src={require('../../../assets/icons/icon_challenge-mountain_black-white.png')}/>
+                    <HeaderLogo src={require('../../assets/icons/icon_challenge-mountain_black-white.png')}/>
                     <HeaderTitle  onMouseOut={(e) =>e.target.innerHTML = "THE TECHFEST COMPETITION"} onMouseOver={(e) =>e.target.innerHTML = "MORE_DISCIPLINES"}>THE TECHFEST COMPETITION</HeaderTitle>
                     <Bracket right/>
                 </FlexContainer>
@@ -52,7 +52,7 @@ class USPContainer extends Component<Props, State> {
             <Col xs="12" lg="4" className="py-3">
                 <FlexContainer id="usp-title-3" className="mb-4">
                     <Bracket/>
-                    <HeaderLogo src={require('../../../assets/icons/icon_launchpad-rocket_black-white.png')}/>
+                    <HeaderLogo src={require('../../assets/icons/icon_launchpad-rocket_black-white.png')}/>
                     <HeaderTitle onMouseOut={(e) =>e.target.innerHTML = "UNTERNEHMERTUM LAUNCH PAD"} onMouseOver={(e) =>e.target.innerHTML = "MORE_IMPACT"}>UNTERNEHMERTUM LAUNCH PAD</HeaderTitle>
                     <Bracket right/>
                 </FlexContainer>
@@ -66,7 +66,7 @@ class USPContainer extends Component<Props, State> {
             <Col xs="12" lg="4" className="py-3">
                 <FlexContainer id="usp-title-2" className="mb-4">
                     <Bracket/>
-                    <HeaderLogo src={require('../../../assets/icons/icon_toolsmethods_chip_black-white.png')}/>
+                    <HeaderLogo src={require('../../assets/icons/icon_toolsmethods_chip_black-white.png')}/>
                     <HeaderTitle  onMouseOut={(e) =>e.target.innerHTML = "STATE-OF-THE-ART TOOLS & METHODS"} onMouseOver={(e) =>e.target.innerHTML = "MORE_FUN"}>STATE-OF-THE-ART TOOLS & METHODS</HeaderTitle>
                     <Bracket right/>
                 </FlexContainer>

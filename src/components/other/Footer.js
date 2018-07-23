@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom'
 
 
 const Footer = () => (
-    <FooterContainer className="mt-5 pt-3">
+    <FooterContainer className="pt-3">
 
         <Container>
             <Row className="justify-content-center">

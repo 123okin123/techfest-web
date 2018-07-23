@@ -10,7 +10,7 @@ type Props = {
     elementWidth: string,
     imageWidth: string,
     elementMargin?: string,
-    magnifierImg: boolean,
+    magnifierImg?: boolean,
     containImage?: boolean,
     leftRightInset?: string,
     elements: Array<{

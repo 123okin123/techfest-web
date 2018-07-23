@@ -9,8 +9,17 @@ import ImageGallery from 'react-image-gallery';
 import "react-image-gallery/styles/css/image-gallery.css";
 import "../../../node_modules/react-image-gallery/styles/css/image-gallery.css";
 import {FileUpload} from '../common'
+import {ImageGrid} from '../common/ImageGrid'
 
 const PAGE_ID = '1681';
+
+const pressLogos = [{
+    imageURL: require('../../assets/pressLogos/Süddeutsche_Zeitung_Logo.svg'),
+    url: 'https://www.sueddeutsche.de/muenchen/studenten-wettbewerb-frischgezapftes-bier-per-app-1.4019201',
+},{
+    imageURL: require('../../assets/pressLogos/Logo_PC_Magazin.jpg'),
+    url: 'https://www.pc-magazin.de/ratgeber/techfest-munich-2018-hackathon-termin-fotos-3199577.html',
+}];
 
 type Props = {
     response: {
@@ -42,6 +51,7 @@ class PressMediaPage extends Component<Props> {
 
     render() {
         return (
+          <div>
           <Container className="container pt-5">
               <h1>Press & Media</h1>
               <LoaderContainer><ScaleLoader loading={this.props.isFetching} height={20} width={2}/></LoaderContainer>
@@ -68,7 +78,7 @@ class PressMediaPage extends Component<Props> {
                   }
                   </div>
                   <h2 className="my-5">Aftermovies</h2>
-                      <Row className="mt-5">
+                      <Row className="my-5">
                           <Col xs="12" md="6">
                               <iframe title="techfest1" width="100%" height="315" src="https://www.youtube.com/embed/-E-DKadx5Hk" frameBorder="0"  allowFullScreen/>
                           </Col>
@@ -76,12 +86,19 @@ class PressMediaPage extends Component<Props> {
                               <iframe title="techfest2" width="100%" height="315" src="https://www.youtube.com/embed/CUOdwcsd6ww" frameBorder="0"  allowFullScreen/>
                           </Col>
                       </Row>
+                  <h2 className="my-5">Read some articles about TECHFEST Munich 2018</h2>
               </div>
           </Container>
+            <LogoContainer>
+            <ImageGrid containImage leftRightInset="0px" imageWidth={'100%'} elementWidth={'300px'} elementHeight={'120px'} elementMargin={'20px 10px'} elements={pressLogos}/>
+            </LogoContainer>
+          </div>
         )
     }
 }
-
+const LogoContainer = styled.div`
+  background-color: white;
+`;
 const LoaderContainer = styled.div`
   position: absolute;
   top: 50vh;

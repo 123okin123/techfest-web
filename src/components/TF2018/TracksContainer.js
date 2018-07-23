@@ -2,9 +2,9 @@
 import React, {Component} from 'react'
 import styled from 'styled-components'
 import {Container, Row, Col, Button, Collapse, Nav, NavLink, NavItem, TabContent, TabPane} from 'reactstrap'
-import {Bracket} from '../../common/index'
+import {Bracket} from '../common/index'
 import {connect} from "react-redux";
-import {pageActions} from "../../../actions/pageActions";
+import {pageActions} from "../../actions/pageActions";
 import {ScaleLoader} from 'react-spinners';
 
 
@@ -196,27 +196,27 @@ class TracksContainer extends Component<Props, State> {
         <Row className="my-5">
             <LineCol xs="12" lg="3" className="border-bottom border-dark"><LineColText>TECHFEST TECHNOLOGIES</LineColText></LineCol>
             <IndustryCol xs="12" lg="auto" className="p-0">
-                <StyledImg src={require('../../../assets/icons/icon_IoT-network.png')}/>
+                <StyledImg src={require('../../assets/icons/icon_IoT-network.png')}/>
                 <IndustryColText className="m-0">IOT</IndustryColText>
             </IndustryCol>
             <LineCol xs="12" lg="auto" className="border-bottom border-dark  d-none d-lg-block"> </LineCol>
             <IndustryCol xs="12" lg="auto" className="p-0">
-                <StyledImg src={require('../../../assets/icons/icon_robotics_black.png')}/>
+                <StyledImg src={require('../../assets/icons/icon_robotics_black.png')}/>
                 <IndustryColText className="m-0">ROBOTICS</IndustryColText>
             </IndustryCol>
             <LineCol xs="12" lg="auto" className="border-bottom border-dark  d-none d-lg-block"> </LineCol>
             <IndustryCol xs="12" lg="auto" className="p-0">
-                <StyledImg src={require('../../../assets/icons/icon_blockchain_black.png')}/>
+                <StyledImg src={require('../../assets/icons/icon_blockchain_black.png')}/>
                 <IndustryColText className="m-0">BLOCKCHAIN</IndustryColText>
             </IndustryCol>
             <LineCol xs="12" lg="auto" className="border-bottom border-dark  d-none d-lg-block"> </LineCol>
             <IndustryCol xs="12" lg="auto" className="p-0">
-                <StyledImg src={require('../../../assets/icons/icon_AI_black.png')}/>
+                <StyledImg src={require('../../assets/icons/icon_AI_black.png')}/>
                 <IndustryColText className="m-0">AI</IndustryColText>
             </IndustryCol>
             <LineCol xs="12" lg="auto" className="border-bottom border-dark  d-none d-lg-block"> </LineCol>
             <IndustryCol xs="12" lg="auto" className="p-0">
-                <StyledImg src={require('../../../assets/icons/icon_Mixedreality_black.png')}/>
+                <StyledImg src={require('../../assets/icons/icon_Mixedreality_black.png')}/>
                 <IndustryColText className="m-0">MIXED REALITY</IndustryColText>
             </IndustryCol>
             <LineCol className="border-bottom border-dark  d-none d-lg-block"> </LineCol>

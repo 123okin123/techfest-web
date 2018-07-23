@@ -2,7 +2,7 @@
 import React, {Component} from 'react'
 import {Container} from 'reactstrap'
 import HomeHeader from './HomeHeader'
-import {Heading} from "../../common/index";
+import {Heading} from "../common/index";
 import ContactContainer from './ContactContainer'
 import GalleryContainer from './GalleryContainer'
 import TeaserContainer from './TeaserContainer'
@@ -40,7 +40,7 @@ class HomePage extends Component<{}> {
               </section>
               <section id="contact">
                   <Container>
-                      <Heading imageURL={require('../../../assets/icons/icon_contact-mail_black.png')}
+                      <Heading imageURL={require('../../assets/icons/icon_contact-mail_black.png')}
                                title="GET IN CONTACT" subtitle="QUESTIONS, INQUIRIES AND FURTHER INFORMATION"/>
                       <ContactContainer/>
                   </Container>

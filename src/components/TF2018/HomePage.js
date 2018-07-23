@@ -2,16 +2,16 @@
 import React, {Component} from 'react'
 import {Container} from 'reactstrap'
 import HomeHeader from './HomeHeader'
-import {Heading} from "../../common/index";
+import {Heading} from "../common/index";
 import USPContainer from "./USPContainer";
-import ChallengeContainer from '../TF2018/TracksContainer'
+import ChallengeContainer from './TracksContainer'
 import TimelineContainer from './TimelineContainer'
-import VideoContainer from '../../common/VideoContainer'
+import VideoContainer from '../common/VideoContainer'
 import SummaryContainer from './SummaryContainer'
 import FAQs from './FAQs'
-import {ImageGrid} from "../../common/index";
-import {speakers} from "../../../helpers/index";
-import {pageActions} from "../../../actions/pageActions";
+import {ImageGrid} from "../common/index";
+import {speakers} from "../../helpers/index";
+import {pageActions} from "../../actions/pageActions";
 import {connect} from "react-redux";
 import ImageGallery from 'react-image-gallery';
 
@@ -52,7 +52,7 @@ class HomePage extends Component<Props> {
                   <SummaryContainer/>
               </section>
               <section id="video">
-                  <VideoContainer videoURL={require('../../../assets/MASTER TF_2018_3.mp4')} posterURL={require('../../../assets/video_poster.jpg')}/>
+                  <VideoContainer videoURL={require('../../assets/MASTER TF_2018_3.mp4')} posterURL={require('../../assets/video_poster.jpg')}/>
               </section>
               <section id="gallery">
                   <Container>
@@ -73,7 +73,7 @@ class HomePage extends Component<Props> {
               </section>
               <section id="tracks">
                   <Container>
-                      <Heading imageURL={require('../../../assets/icons/icon_challenge-mountain_black.png')}
+                      <Heading imageURL={require('../../assets/icons/icon_challenge-mountain_black.png')}
                                title="THE TRACKS 2018" subtitle="START CREATING IN ONE OF THIS YEAR'S TECHNOLOGY TRACKS"/>
                       <ChallengeContainer/>
                   </Container>
@@ -87,7 +87,7 @@ class HomePage extends Component<Props> {
               </section>
               <section id="speakers">
                   <Container>
-                      <Heading imageURL={require('../../../assets/icons/icon_speakers-megafon_black.png')}
+                      <Heading imageURL={require('../../assets/icons/icon_speakers-megafon_black.png')}
                                title="OUR SPEAKERS 2018" subtitle="TECH COMPETENCE - AT YOUR HANDS"/>
                       <ImageGrid justifyContent="space-between" backAndWhite imageWidth={'180px'} elementWidth={'450px'}
                                  elementHeight={'180px'} elementMargin={'20px 0px'} elements={speakers}/>
