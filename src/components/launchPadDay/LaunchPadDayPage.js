@@ -10,8 +10,19 @@ import LPDTimeline from './LPDTimeline'
 import LPDUSP from './LPDUSP'
 import LPDIncubation from './LPDIncubation'
 import VideoContainer from '../common/VideoContainer'
+import styled from "styled-components";
+import {ImageGrid} from '../common/ImageGrid'
+import {Container} from 'reactstrap'
 
 type Props = {}
+
+const logos = [{
+    imageURL: require('../../assets/partnerLogos/logo_audi.png'),
+},{
+    imageURL: require('../../assets/partnerLogos/logo_stihl.png'),
+},{
+    imageURL: require('../../assets/partnerLogos/logo_lh.png'),
+}];
 
 class LaunchPadDayPage extends Component<Props> {
     constructor(props: Props) {
@@ -29,10 +40,19 @@ class LaunchPadDayPage extends Component<Props> {
               <LPDIncubation/>
               {/*<LPDHowToParticipate/>*/}
               {/*<LPDTimeline/>*/}
+              <Container><h2 className="mb-5">OFFICIAL TECHFEST AGILE INCUBATION PARTNERS</h2></Container>
+              <LogoContainer>
+                  <ImageGrid containImage leftRightInset="0px" imageWidth={'100%'} elementWidth={'300px'} elementHeight={'120px'} elementMargin={'20px 10px'} elements={logos}/>
+              </LogoContainer>
           </div>
         )
     }
 }
+
+const LogoContainer = styled.div`
+  background-color: white;
+  margin-bottom: 8em;
+`;
 
 const mapStateToProps = (state, ownProps) => {
     return {}

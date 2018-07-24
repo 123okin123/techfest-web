@@ -7,6 +7,8 @@ import ContactContainer from './ContactContainer'
 import GalleryContainer from './GalleryContainer'
 import TeaserContainer from './TeaserContainer'
 import PartnersContainer from './PartnersContainer'
+import ShowcaseContainer from './ShowcaseContainer'
+
 
 class HomePage extends Component<{}> {
     componentWillMount() {
@@ -37,6 +39,11 @@ class HomePage extends Component<{}> {
               </section>
               <section id="partners">
                   <PartnersContainer/>
+              </section>
+              <section id="showcase">
+                  <Container>
+                  <ShowcaseContainer/>
+                </Container>
               </section>
               <section id="contact">
                   <Container>

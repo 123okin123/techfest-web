@@ -98,6 +98,7 @@ class PressMediaPage extends Component<Props> {
 }
 const LogoContainer = styled.div`
   background-color: white;
+  margin-bottom: 8em;
 `;
 const LoaderContainer = styled.div`
   position: absolute;
