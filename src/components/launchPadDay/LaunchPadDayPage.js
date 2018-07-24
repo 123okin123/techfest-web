@@ -13,6 +13,8 @@ import VideoContainer from '../common/VideoContainer'
 import styled from "styled-components";
 import {ImageGrid} from '../common/ImageGrid'
 import {Container} from 'reactstrap'
+import ShowcaseContainer from './ShowcaseContainer'
+
 
 type Props = {}
 
@@ -44,6 +46,9 @@ class LaunchPadDayPage extends Component<Props> {
               <LogoContainer>
                   <ImageGrid containImage leftRightInset="0px" imageWidth={'100%'} elementWidth={'300px'} elementHeight={'120px'} elementMargin={'20px 10px'} elements={logos}/>
               </LogoContainer>
+                  <Container>
+                      <ShowcaseContainer/>
+                  </Container>
           </div>
         )
     }

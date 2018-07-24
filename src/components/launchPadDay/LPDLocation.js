@@ -15,7 +15,8 @@ for (let i = 0; i<11; i++) {
 
 
 const LPDLocation = (props) =>
-  <StyledContainer>
+  <StyledWrapper>
+  <Container>
       <Heading title="EXCLUSIVE EVENT AT LAKE WÖRTHSEE" subtitle="WHERE TECHFEST IDEAS TURN INTO FUTURE TECH BUSINESSES"/>
       {/*<img className="w-100" src={require('../../assets/lpd_location.jpg')} alt="lpd_location"/>*/}
       {/*<div className="text-center mt-4">*/}
@@ -24,9 +25,10 @@ const LPDLocation = (props) =>
       {/*</div>*/}
 
       <ImageGallery items={images}/>
-  </StyledContainer>;
+  </Container>
+  </StyledWrapper>;
 
-const StyledContainer = styled(Container)`
+const StyledWrapper = styled.div`
 margin: 8em 0;
 `;
 
