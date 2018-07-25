@@ -36,7 +36,7 @@ class LaunchPadDayPage extends Component<Props> {
           <div style={{marginTop: '-5em'}}>
               <LPDHeader/>
               <LPDTeaser/>
-              <VideoContainer videoURL={'https://s3.eu-central-1.amazonaws.com/techfest-wp-admin/TF+++LAUNCHPERDAY_master_3.mp4'}/>
+              <VideoContainer videoURL={'https://s3.eu-central-1.amazonaws.com/techfest-wp-admin/TF+++LAUNCHPERDAY_master_4.mp4'}/>
               <LPDLocation/>
               <LPDUSP/>
               <LPDIncubation/>
