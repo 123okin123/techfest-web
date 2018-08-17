@@ -67,7 +67,7 @@ class Navigation extends Component<Props, State> {
           </StyledNavItem> :
           <StyledNavItem>
               <LoginNavLink to="/private" isFrontPage={this.props.isFrontPage}
-                            isTop={this.state.isTop}>Login</LoginNavLink>
+                            isTop={this.state.isTop}>2018 Login</LoginNavLink>
           </StyledNavItem>;
 
         return (
@@ -109,7 +109,7 @@ class Navigation extends Component<Props, State> {
                               <StyledNavLink to="/private/waitinglist" isFrontPage={this.props.isFrontPage}
                                              isTop={this.state.isTop}>Member Area</StyledNavLink>
                           </StyledNavItem>}
-                          {/*{LoginComponent}*/}
+                          {LoginComponent}
                       </Nav>
                   </Collapse>
               </StyledNavBar>

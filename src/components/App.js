@@ -18,7 +18,7 @@ import LoginPage from './other/LoginPage';
 import PrivateRoute from "./navigation/PrivateRoute";
 import RegisterStartupPage from "./registration/register-startup/RegisterStartupPage";
 import RegisterStartPage from "./registration/RegisterStartPage";
-import PreEventPage from './private/participants/ParticipantPage';
+import ParticipantPage from './private/participants/ParticipantPage';
 import VerifyRegistrationPage from "./other/VerifyRegistrationPage";
 import {roles, allPartnerRoles} from '../constants/userConstants';
 import PartnerPage from "./private/partner/PartnerPage";
@@ -76,6 +76,8 @@ class App extends Component<{}> {
                   {/*<PrivateRoute path="/private/my-track" permittedRoles={[roles.ADMIN_ROLE, roles.STARTUP_ROLE]} component={MyTrackPage}/>*/}
                   {/*<PrivateRoute path="/private/mentors" permittedRoles={[roles.ADMIN_ROLE, roles.STARTUP_ROLE, roles.PARTICIPANT_ROLE, roles.MENTOR_ROLE, roles.SUPERVISOR_ROLE]} component={MentorPage}/>*/}
                   <PrivateRoute path="/private/waitinglist" permittedRoles={[roles.ADMIN_ROLE, roles.STARTUP_ROLE, roles.PARTICIPANT_ROLE]} component={PrivateWaitingListPage}/>
+                  <PrivateRoute path="/private/member-area" permittedRoles={[roles.ADMIN_ROLE, roles.STARTUP_ROLE, roles.PARTICIPANT_ROLE]} component={ParticipantPage}/>
+
 
 
 
