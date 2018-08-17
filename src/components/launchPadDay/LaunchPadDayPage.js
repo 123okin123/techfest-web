@@ -18,6 +18,7 @@ import ShowcaseContainer from './ShowcaseContainer'
 
 type Props = {}
 
+
 const logos = [{
     imageURL: require('../../assets/partnerLogos/logo_audi.png'),
 },{
@@ -27,9 +28,6 @@ const logos = [{
 }];
 
 class LaunchPadDayPage extends Component<Props> {
-    constructor(props: Props) {
-        super(props)
-    }
 
     render() {
         return (

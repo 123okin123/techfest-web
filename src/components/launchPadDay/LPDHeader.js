@@ -8,7 +8,7 @@ type State = {
     scrollY: number
 }
 
-class HomeHeader extends Component<{},State> {
+class LPDHeader extends Component<{},State> {
     constructor() {
         super();
         (this: any).onScroll = this.onScroll.bind(this);
@@ -126,5 +126,5 @@ const Line = styled.div`
   background-color: ${props => props.color ? props.color : '#fce200'};
 `;
 
-export default HomeHeader;
+export default LPDHeader;
 
